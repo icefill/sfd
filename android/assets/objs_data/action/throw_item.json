@@ -1,0 +1,38 @@
+{
+	"action_name":"Throw item",
+	"icon_name":"throw",
+	"description":"Throw item",
+	"action_type":"item",
+	"ai_type":"ranged",
+	"target_empty_contain":true,
+	"center_contain":false,
+	"splash_center_contain":true,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_max_range":4,
+	"targeting_type":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":false,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"required_level":1,
+	"cool_time":1,
+	"motions":[
+		{
+		"pre_motions":["push_half","throw_selected_item"],
+	 	"motions":["basic_attack_effect"],
+	 		"hit_motions":["blood_effect"],
+	 		"status_change":
+	 		{
+	 			"status_type":"physical_damage",
+	 			"effect":[
+	 				{"amount":5,"accuracy":85}
+	 			]
+	 		}
+	 	}
+	]
+}

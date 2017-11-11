@@ -1,0 +1,11 @@
+{
+	"name":"novice_2",
+	"equipment_name":["helm2","leather_armor1",null,"bow0",null,null],
+	"item_name":[null,null,null,null,null,
+				 null,null,null,null,null],	
+	"type":"char",
+	"job":"novice_bow",
+	"sprites_name":"basic",
+	"equippable":true,
+	"level":1
+}

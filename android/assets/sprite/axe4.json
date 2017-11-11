@@ -1,0 +1,8 @@
+{
+	"anchor_x":25,
+	"anchor_y":5,
+	"rotation_anchor":90,
+	"rotatable":true,
+	"has_direction":true,
+	"is_symmetric":true
+}

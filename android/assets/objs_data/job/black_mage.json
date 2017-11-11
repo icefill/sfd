@@ -1,0 +1,34 @@
+{
+	"job_name":"black_mage",
+	"jp_need":3,
+	"type":"character",
+	"ai_type":"ranged",
+	"default_sprites":"basic",
+	"description":"Bummer...",
+	"str_modifier":[0,1],
+	"base_str":4,
+	"dex_modifier":[0,1],
+	"base_dex":2,
+	"int_modifier":[3,4],
+	"base_int":2,
+	"hp_modifier":[1,2],
+	"base_hp":10,
+	"equipments_for_level":[
+		{
+			"equipment_names":[
+				["hood3","robe2","staff2",null,null,null]
+			]
+		}
+	],
+	"equippable_gear":["cloth_armor","staff"],
+	"ability_name":["Burn","Fireball","Charge mana","Push"],
+	"attainable_ability":["Charge mana"],
+	"learnable_magic_type":["fire_magic","lightning_magic"],
+	"move_ability":"Move",
+	"lightning_level":2,
+	"fire_level":2,
+	"unholy_level":2,
+	"ability_count":2,
+	"price":180,
+	
+}

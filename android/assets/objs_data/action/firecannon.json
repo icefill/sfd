@@ -1,0 +1,45 @@
+{
+	"action_name":"Fire cannon",
+	"icon_name":"fire_ball",
+	"description":"Shoot magical bullet of Fire \n in straight direction.",
+	"action_type":"fire_magic",
+	"ai_type":"ranged",
+	"target_empty_contain":true,
+	"center_contain":false,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"wall_block":false,
+	"obj_block":false,
+	"targeting_min_range":1,
+	"targeting_max_range":7,
+	"targeting_type":1,
+	"splash_max_range":2,
+	"splash_type":0,
+	"self_targeting":true,
+	"splash_center_contain":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"required_level":1,
+	"cool_time":3,
+	"motions":[
+		{
+			"pre_motions":["shoot_fire_cannon"],
+	 		"motions":["explosion_effect"],
+	 		"hit_motions":["fire_hit"],
+	 		"status_change":
+	 		{
+	 			"status_type":"magic_damage",
+	 			"effect":[
+	 				{"amount":8,"accuracy":82},
+	 				{"amount":12,"accuracy":85},
+	 				{"amount":14,"accuracy":87},
+	 				{"amount":16,"accuracy":89},
+	 				{"amount":18,"accuracy":95},
+	 				{"amount":22,"accuracy":98},
+	 			]
+	 		}
+	 	}
+	]
+}

@@ -1,0 +1,49 @@
+{
+	"action_name":"Energy ray",
+	"icon_name":"energy_ray",
+	"short_name":"e ray",
+	"description":"Straight line of lightining enegy ",
+	"action_type":"lightning_magic",
+	"ai_type":"ranged",
+	"action_level":3,
+	"target_empty_contain":true,
+	"center_contain":false,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"wall_block":true,
+	"targeting_min_range":1,
+	"targeting_max_range":1,
+	"targeting_type":1,
+	"splash_min_range":4,
+	"splash_max_range":4,
+	"splash_type":2,
+	"required_level":1,
+	"self_targeting":false,
+	"splash_center_contain":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"cool_time":1,
+	"mana_cost":4,
+	"price":220,
+	"motions":[
+		{
+		"pre_motions":["basic_attack"],
+	 	"motions":["cast_energy_ray"],
+	 	"hit_motions":["lightning_hit"],
+	 	"status_change":
+	 	{
+	 		"status_type":"magic_damage",
+	 		"effect":[
+	 			{"amount":7,"accuracy":84},
+	 			{"amount":8,"accuracy":88},
+	 			{"amount":10,"accuracy":92},
+	 			{"amount":13,"accuracy":95},
+	 			{"amount":15,"accuracy":100}
+	 		]
+	 	}
+	 	}
+	]
+}

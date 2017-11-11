@@ -1,0 +1,33 @@
+{
+	"job_name":"apprentice_mage",
+	"type":"character",
+	"ai_type":"ranged",
+	"default_sprites":"basic",
+	"description":"Bummer...",
+	"str_modifier":[0,1],
+	"base_str":4,
+	"dex_modifier":[0,1],
+	"base_dex":2,
+	"int_modifier":[3,3],
+	"base_int":2,
+	"hp_modifier":[1,2],
+	"base_hp":10,
+	"equipments_for_level":[
+		{
+			"equipment_names":[
+				["hood1","robe1","staff1",null,null,null]
+			]
+		}
+	],
+	"equippable_gear":["cloth_armor","staff"],
+	"ability_name":["Burn","Charge mana","Push"],
+	"attainable_ability":["First aid"],
+	"changeable_job":["black_mage","cleric"],
+	"learnable_magic_type":["fire_magic","lightning_magic"],
+	"move_ability":"Move",
+	"fire_level":1,
+	"lightning_level":1,
+	"unholy_level":1,
+	"ability_count":2,
+	"price":150
+}

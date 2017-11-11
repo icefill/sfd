@@ -1,0 +1,44 @@
+{
+	"job_name":"bandit",
+	"type":"character",
+	"default_sprites":"basic",
+	"description":"Basic job",
+		"str_modifier":[2,3],
+	"base_str":3,
+	"dex_modifier":[1,2],
+	"base_dex":3,
+	"int_modifier":[0,1],
+	"base_int":3,
+	"hp_modifier":[2,3],
+	"base_hp":12,
+	"runaway_ratio":0.2
+	"equipments_for_level":[
+	{
+		"max_level":1,
+			"equipment_names":[
+				["bandana","leather_armor1","cudgel",null,null,null]
+			]
+			
+		},
+		{
+		"min_level":2,
+			"max_level":3,
+			"equipment_names":[
+				["bandana","leather_armor2","axe0","shield1",null,null],
+				["bandana","leather_armor3","short_sword",null,null,null]
+		]},
+		{
+		"min_level":4,
+			"max_level":15,
+			"equipment_names":[
+				["bandana","leather_armor3","axe1","shield1",null,null],
+				["bandana","leather_armor3","short_sword2",null,null,null]
+		]},
+	],
+	"equippable_gear":["cloth_armor","light_armor","bladed_weapon","blunt_weapon","bow"],
+	"ability_name":["Normal attack","Push"],
+	"attainable_ability":[],
+	"changeable_job":["knight","spearman"],
+	"move_ability":"Move",
+	"ability_count":2
+}

@@ -1,0 +1,61 @@
+{
+	"action_name":"Two handed attack",
+		"icon_name":"double_attack",
+	"description":"...",
+	"action_type":"attack",
+	"target_empty_contain":true,
+	"friendly_contain":true,
+	"center_contain":false,
+	"splash_center_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_min_range":1,
+	"targeting_max_range":1,
+	"targeting_type":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":false,
+	"splash_empty_contain":false,
+	"splash_friendly_contain":false,
+	"splash_enemy_contain":false,
+	"splash_obj_block":true,
+	"cool_time":1,
+	"required_level":2,
+	"weapon_type":["bladed_weapon","blunt_weapon"],
+
+	"motions":[
+		{
+			"pre_motions":["basic_attack"],
+	 		"motions":["basic_attack_effect"],
+	 		"hit_motions":["blood_effect"],
+	 		status_change:
+	 		{
+	 			"status_type":"physical_weapon1_damage",
+	 			effect:[
+	 				{"amount":70,"accuracy":-1},
+	 				{"amount":80,"accuracy":-1},
+	 				{"amount":90,"accuracy":-1},
+	 				{"amount":95,"accuracy":-1},
+	 				{"amount":100,"accuracy":-1}
+	 			]
+	 		}
+	 	},
+	 	{
+	 		"pre_motions":["basic_right_attack"],
+	 		"motions":["basic_attack_effect"	],
+	 		"hit_motions":["blood_effect"],
+	 		"status_change":
+	 		{
+	 			"status_type":"physical_weapon2_damage",
+	 			"effect":[
+	 				{"amount":70,"accuracy":-1},
+	 				{"amount":80,"accuracy":-1},
+	 				{"amount":90,"accuracy":-1},
+	 				{"amount":95,"accuracy":-1},
+	 				{"amount":100,"accuracy":-1}
+	 				
+	 			]
+	 		}
+	 	}
+	]
+}

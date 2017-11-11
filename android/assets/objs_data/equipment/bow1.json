@@ -1,0 +1,13 @@
+{
+	"name":"bow1",
+	"type":"bow",
+	"sprites_name":"bow1",
+		"direction_rotation":[270,270,-33,213],
+		"two_handed":true,
+	
+	"body_color":null,
+	"item_type":-3,
+	"price":100,
+	"status":{"STR_MODIFIER":0,"DEX_MODIFIER":0,"INT_MODIFIER":0,"HP_MODIFIER":0,
+			"MIN_ATTACK":4,"MAX_ATTACK":5,"DEFENSE":0,"ACCURACY":70}
+}

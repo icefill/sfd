@@ -1,0 +1,69 @@
+{
+	"job_name":"skeleton",
+	"type":"character",
+	"default_sprites":"skeleton",
+		"transparent":1,
+	
+	"description":"Bummer...",
+		"str_modifier":[1,1],
+	"base_str":3,
+	"dex_modifier":[0,2],
+	"base_dex":0,
+	"int_modifier":[0,0],
+	"base_int":0,
+	"hp_modifier":[2,2],
+	"base_hp":17,
+	"equipments_for_level":[
+		{
+			"max_level":1,
+			"equipment_names":[
+				[null,null,"sabre1",null,null,null],
+				[null,"leather_armor3","axe1",null,null,null]
+			]
+		},
+		{
+			"min_level":2,
+			"max_level":2,
+			"equipment_names":[
+				[null,null,"axe2","shield1",null,null],
+				[null,null,"sabre1","shield1",null,null],
+			]
+		},
+		
+		{
+			"min_level":3,
+			"max_level":3,
+			"equipment_names":[
+				[null,null,"axe3","shield3",null,null],
+				[null,null,"long_sword1",null,null,null],
+			]
+		},
+		
+		{
+			"min_level":4,
+			"max_level":4
+			"equipment_names":[
+				[null,null,"long_sword1","shield3",null,null],
+				[null,null,"axe4",null,null,null],
+				[null,null,"axe5","shield3",null,null],
+				[null,null,"long_sword1","shield4",null,null],
+			]
+		},
+		{
+			"min_level":5,
+			"equipment_names":[
+				[null,null,"axe4","shield3",null,null],
+				[null,null,"axe5","shield4",null,null],
+				[null,null,"long_sword3","shield5",null,null],		
+			]
+		},
+		
+		
+	],
+	
+	"ability_name":["Normal attack"],
+	"move_ability":"Move",
+	"dead_ability":"undead_revive",
+	"ability_count":2
+	
+}

@@ -1,0 +1,44 @@
+{
+	"job_name":"bandit_archer",
+	"type":"character",
+	"ai_type":"ranged",
+	"default_sprites":"basic",
+	"description":"Basic job",
+		"str_modifier":[2,3],
+	"base_str":3,
+	"dex_modifier":[1,2],
+	"base_dex":3,
+	"int_modifier":[0,1],
+	"base_int":3,
+	"hp_modifier":[2,3],
+	"base_hp":8,
+	"equipments_for_level":[
+		{
+		"min_level":1,
+		"max_level":1,
+			"equipment_names":[["bandana","leather_armor1",null,"bow0",null,null]]
+		},
+		{
+		"min_level":2,
+		"max_level":3,
+			"equipment_names":[
+				["bandana","leather_armor2",null,"bow1",null,null],
+				["bandana","leather_armor3",null,"bow2",null,null]
+		]
+		},
+		{
+		"min_level":4,
+		"max_level":15,
+			"equipment_names":[
+				["bandana","leather_armor2",null,"bow3",null,null],
+				["bandana","leather_armor3",null,"bow3",null,null]
+		]
+		}
+	],
+	"equippable_gear":["cloth_armor","light_armor","bladed_weapon","blunt_weapon","bow"],
+	"ability_name":["Normal attack","Shoot arrow"],
+	"attainable_ability":[],
+	"changeable_job":["knight","spearman"],
+	"move_ability":"Move",
+	"ability_count":2
+}

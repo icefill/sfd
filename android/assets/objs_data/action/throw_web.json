@@ -1,0 +1,44 @@
+{
+	"action_name":"Throw web",
+	"short_name":"web",
+	"icon_name":"throw_web",
+	"description":"Throw web.",
+	"action_type":"attack",
+	"action_level":1,
+	"ai_type":"nuff",
+	"target_empty_contain":true,
+	"center_contain":false,
+	"splash_center_contain":true,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_max_range":4,
+	"targeting_type":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":false,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"required_level":1,
+	"cool_time":1,
+	"price":80,
+	"motions":[
+		{
+		"pre_motions":["basic_attack","throw_web"],
+	 	"status_change":
+	 		{
+	 			"turn_effect":"Don't move",
+	 			"status_type":"nuff",
+	 			"effect":[
+	 				{"accuracy":75,"duration":3,"restricted_ability_type":["move"]},
+	 				{"accuracy":80,"duration":3,"restricted_ability_type":["move"]},
+	 				{"accuracy":85,"duration":4,"restricted_ability_type":["move"]},
+	 				{"accuracy":90,"duration":4,"restricted_ability_type":["move"]},
+	 				{"accuracy":100,"duration":4,"restricted_ability_type":["move"]},
+	 			]
+	 		}
+	 	}
+	]
+}

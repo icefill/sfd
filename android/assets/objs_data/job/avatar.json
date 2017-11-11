@@ -1,0 +1,32 @@
+{
+	"job_name":"avatar",
+	"type":"character",
+	"ai_type":"melee",
+	"default_sprites":"basic",
+	"description":"Bummer...",
+		"str_modifier":[2,3],
+	"base_str":3,
+	"dex_modifier":[1,2],
+	"base_dex":3,
+	"int_modifier":[0,1],
+	"base_int":3,
+	"hp_modifier":[2,3],
+	"base_hp":17,
+	"equipments_for_level":[
+		{
+			"equipment_names":[["hair1","armor1","sword1","shield1",null,null]],
+		}
+	],
+	"equippable_gear":["cloth_armor","light_armor","bladed_weapon","blunt_weapon","bow"],
+	"ability_name":["Normal attack","Spear attack","Shoot arrow","Push"],
+	"attainable_ability":["First aid","Charge mana"],
+	"attainable_passive_ability":["max hire up","max mana up"],
+	"changeable_job":["war_lord","arch_mage"],
+	"move_ability":"Move",
+	"ability_count":2,
+	"fire_level":1,
+	"lightning_level":1,
+	"holy_level":1,
+	
+
+}

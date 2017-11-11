@@ -1,0 +1,35 @@
+{
+	"action_name":"Minor healing potion",
+		"icon_name":"potion",
+	"description":"Use healing potion.",
+	"action_type":"item",
+	"target_empty_contain":true,
+	"friendly_contain":true,
+	"center_contain":true,
+	"splash_center_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_max_range":1,
+	"targeting_type":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":true,
+	"motions":[
+		{
+		"pre_motions":["show_selected_item"],
+	 	"motions":["cast_heal"],
+	 	"hit_motions":null,
+	 	"status_change":
+	 	{
+	 		"status_type":"healing",
+	 		"effect":[
+	 			{"amount":14,"accuracy":100}
+	 		]
+	 	}
+	 	}
+	]
+}

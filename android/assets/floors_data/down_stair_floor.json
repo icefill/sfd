@@ -1,0 +1,7 @@
+{
+	"name":"down_stair_floor",
+	"atlas":"sprite/up_stair_floor.atlas",
+	"n_of_tiles":1,
+	"description":"Typical wall.",
+	"is_wall":false
+}

@@ -1,0 +1,10 @@
+{
+	"name":"horned_helm",
+	"type":"heavy_armor",
+	"sprites_name":"horned_helm",
+	"direction_rotation":[0,0,0,0],
+	"body_color":null,
+	"item_type":0,
+	"status":{"STR_MODIFIER":0,"DEX_MODIFIER":0,"INT_MODIFIER":0,"HP_MODIFIER":0,
+			"DEFENSE":1,"ACCURACY":0}
+}

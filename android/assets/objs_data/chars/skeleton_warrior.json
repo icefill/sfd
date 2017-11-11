@@ -1,0 +1,17 @@
+{
+	"name":"skeleton_warrior",
+	"equipment_name":[null,null,"sword2","shield2",null,null],
+	"type":"char",
+	"job":"knight",
+	"sprites_name":"skeleton",
+	"equippable":true,
+	"level":3,
+		"base_status":{
+		"STR":3,
+		"DEX":5,
+		"INT":3,
+		"ABILITY_COUNT":2,
+		"HP":15
+	}
+	
+}

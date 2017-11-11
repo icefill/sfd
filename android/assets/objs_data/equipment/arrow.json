@@ -1,0 +1,10 @@
+{
+	"name":"arrow",
+	"type":"arrow",
+	"sprites_name":"arrow",
+	"direction_rotation":[135,45,45,135],
+	"body_color":null,
+	"item_type":4,
+	"status":{"STR_MODIFIER":0,"DEX_MODIFIER":0,"INT_MODIFIER":0,"HP_MODIFIER":0,
+		"DEFENSE":1,"ACCURACY":65}
+}

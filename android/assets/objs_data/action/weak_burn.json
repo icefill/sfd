@@ -1,0 +1,43 @@
+{
+	"action_name":"Weak Burn",
+	"short_name":"w-burn",
+	"icon_name":"burn",
+	"description":"Burn enemy in\n magical flame.",
+	"action_type":"fire_magic",
+	"ai_type":"ranged",
+	"target_empty_contain":true,
+	"center_contain":false,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_min_range":1,
+	"targeting_max_range":3,
+	"targeting_type":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":true,
+	"splash_center_contain":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"cool_time":1,
+	"motions":[
+		{
+		"pre_motions":["basic_cast"],
+	 	"motions":["cast_burn","restore_dark"],
+	 	"hit_motions":["fire_hit"],
+	 	"status_change":
+	 	{
+	 		"status_type":"magic_damage",
+	 		"effect":[
+	 			{"amount":6,"accuracy":70},
+	 			{"amount":8,"accuracy":75},
+	 			{"amount":12,"accuracy":85},
+	 			{"amount":15,"accuracy":90},
+	 			{"amount":17,"accuracy":92}
+	 		]
+	 	}
+	 	}
+	]
+}

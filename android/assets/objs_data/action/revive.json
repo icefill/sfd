@@ -1,0 +1,38 @@
+{
+	"action_name":"Revive",
+	"icon_name":"depend",
+	"description":"Revive one recently dead friendly unit",
+	"action_type":"item",
+	"target_empty_contain":true,
+	"center_contain":true,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"obj_block":true,
+	"targeting_min_range":0,
+	"targeting_max_range":0,
+	"targeting_type":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":true,
+	"splash_center_contain":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"required_level":3,
+	"motions":[
+		{
+			"pre_motions":[],
+	 		"motions":[],
+	 		"hit_motions":["revive"],
+	 		"status_change":
+	 		{
+	 			"status_type":"magic_damage",
+	 			"effect":[
+	 				{"amount":0,"accuracy":300}
+	 			]
+	 		}
+	 		
+	 	}
+	]
+}

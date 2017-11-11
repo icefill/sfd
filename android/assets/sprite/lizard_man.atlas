@@ -1,0 +1,313 @@
+
+lizard_man.png
+format: RGBA8888
+filter: MipMapNearestNearest,MipMapNearestNearest
+repeat: none
+dead_dl_head0000
+  rotate: false
+  xy: 1, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+dead_dl_head0001
+  rotate: false
+  xy: 1, 1
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+dead_dl_head0002
+  rotate: false
+  xy: 43, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+dead_dl_head0003
+  rotate: false
+  xy: 43, 1
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+dead_dl_head0004
+  rotate: false
+  xy: 85, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+dead_ur_head0000
+  rotate: false
+  xy: 85, 1
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+dead_ur_head0001
+  rotate: false
+  xy: 127, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+dead_ur_head0002
+  rotate: false
+  xy: 127, 1
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+dead_ur_head0003
+  rotate: false
+  xy: 169, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+dead_ur_head0004
+  rotate: false
+  xy: 169, 1
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+guard_dl_body0000
+  rotate: false
+  xy: 211, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+walk_dl_body0003
+  rotate: false
+  xy: 211, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+guard_dl_head0000
+  rotate: false
+  xy: 211, 1
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+walk_dl_head0001
+  rotate: false
+  xy: 211, 1
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+guard_ur_body0000
+  rotate: false
+  xy: 253, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+walk_ur_body0001
+  rotate: false
+  xy: 253, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+guard_ur_head0000
+  rotate: false
+  xy: 253, 1
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+walk_ur_head0003
+  rotate: false
+  xy: 253, 1
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+idle_dl_body0000
+  rotate: false
+  xy: 295, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+idle_dl_body0001
+  rotate: false
+  xy: 295, 1
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+idle_dl_body0002
+  rotate: false
+  xy: 337, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+idle_dl_body0003
+  rotate: false
+  xy: 337, 1
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+idle_dl_head0000
+  rotate: false
+  xy: 379, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+idle_dl_head0001
+  rotate: false
+  xy: 379, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+idle_dl_head0002
+  rotate: false
+  xy: 379, 1
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+idle_dl_head0003
+  rotate: false
+  xy: 379, 1
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+idle_ur_body0000
+  rotate: false
+  xy: 421, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+idle_ur_body0001
+  rotate: false
+  xy: 421, 1
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+idle_ur_body0002
+  rotate: false
+  xy: 463, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+idle_ur_body0003
+  rotate: false
+  xy: 463, 1
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+idle_ur_head0000
+  rotate: false
+  xy: 505, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+idle_ur_head0001
+  rotate: false
+  xy: 505, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+walk_ur_head0000
+  rotate: false
+  xy: 505, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+walk_ur_head0002
+  rotate: false
+  xy: 505, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+idle_ur_head0002
+  rotate: false
+  xy: 505, 1
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+idle_ur_head0003
+  rotate: false
+  xy: 505, 1
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+walk_dl_body0000
+  rotate: false
+  xy: 547, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+walk_dl_body0002
+  rotate: false
+  xy: 547, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+walk_dl_body0001
+  rotate: false
+  xy: 547, 1
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+walk_dl_head0000
+  rotate: false
+  xy: 589, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+walk_dl_head0002
+  rotate: false
+  xy: 589, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+walk_ur_body0000
+  rotate: false
+  xy: 589, 1
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+walk_ur_body0002
+  rotate: false
+  xy: 589, 1
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+walk_ur_body0003
+  rotate: false
+  xy: 631, 63
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1

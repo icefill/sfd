@@ -1,0 +1,44 @@
+{
+	"action_name":"Acidball",
+	"short_name":"A ball",
+	"icon_name":"acid_ball",
+	"description":"Cast Ball of Acid gas \n in straight direction.",
+	"action_type":"unholy_magic",
+	"action_level":2,
+	"ai_type":"ranged",
+	"target_empty_contain":true,
+	"center_contain":false,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"obj_block":true,
+	"targeting_min_range":1,
+	"targeting_max_range":5,
+	"targeting_type":1,
+	"splash_max_range":1,
+	"splash_type":0,
+	"self_targeting":true,
+	"splash_center_contain":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"cool_time":2,
+	"mana_cost":3,
+	"price":200,
+	"motions":[
+		{
+			"pre_motions":["basic_attack","cast_acidball"],
+	 		"motions":["acid_explosion_effect"],
+	 		"hit_motions":["acid_hit"],
+	 		"end_motions":["release_acid"],
+	 		"status_change":
+	 		{
+	 			"turn_effect":"poisoned",
+	 			"status_type":"magic_damage",
+	 			"effect":[
+	 				{"amount":2,"accuracy":75,"duration":2}
+	 			]
+	 		}
+	 	}
+	]
+}

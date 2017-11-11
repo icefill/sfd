@@ -1,0 +1,41 @@
+{
+	"action_name":"Attract",
+	"icon_name":"explosion",
+	"description":"attract enemies.",
+	"action_type":"fire_magic",
+	"target_empty_contain":true,
+	"center_contain":true,
+	"splash_center_contain":false,
+	"friendly_contain":false,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_max_range":5,
+	"targeting_type":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"required_level":1,
+	"do_not_execute_avoid_motion":true,
+	"motions":[
+		{
+		"pre_motions":null,
+	 	"motions":["basic_attack"],
+	 	"hit_motions":["attract"],
+	 	"status_change":
+	 	{
+	 		"status_type":"magic_damage",
+	 		"effect":[
+	 			{"amount":0,"accuracy":75},
+	 			{"amount":0,"accuracy":85},
+	 			{"amount":0,"accuracy":90},
+	 			{"amount":0,"accuracy":95},
+	 			{"amount":0,"accuracy":100},
+	 		]
+	 	}
+	 	}
+	]
+}

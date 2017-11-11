@@ -1,0 +1,25 @@
+{
+	"job_name":"paladin",
+	"jp_need":10,
+	"type":"character",
+	"default_sprites":"basic",
+	"description":"Bummer...",
+		"str_modifier":[2,3],
+	"base_str":4,
+	"dex_modifier":[1,2],
+	"base_dex":2,
+	"int_modifier":[0,1],
+	"base_int":2,
+	"hp_modifier":[2,3],
+	"base_hp":20,
+	"equipments_for_level":[
+		{
+			"equipment_names":[["helm1","armor1","short_sword","shield1",null,null]]
+		}
+	],
+	"equippable_gear":["cloth_armor","light_armor","heavy_armor","shield","bladed_weapon","blunt_weapon"],
+	"ability_name":["Normal attack","Defend","Push"],
+	"attainable_ability":["Shield bash","Defend","Charge"],
+	"move_ability":"Move",
+	"ability_count":2
+}

@@ -1,0 +1,10 @@
+{
+	"job_name":"wall2",
+	"type":"wall",
+	"default_sprites":"wall2",
+	"description":"Bummer...",
+	"hp_modifier":[20,30],
+	"adjust_color":true,
+	"ability_count":0
+    	
+}

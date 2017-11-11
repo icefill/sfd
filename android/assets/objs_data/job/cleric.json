@@ -1,0 +1,29 @@
+{
+	"job_name":"cleric",
+	"jp_need":3,
+	"type":"character",
+	"default_sprites":"basic",
+	"description":"Bummer...",
+	"str_modifier":[0,1],
+	"base_str":4,
+	"dex_modifier":[0,1],
+	"base_dex":2,
+	"int_modifier":[3,4],
+	"base_int":2,
+	"hp_modifier":[1,2],
+	"base_hp":10,
+	"equipments_for_level":[
+		{
+			"equipment_names":[
+				["hood2","robe5","staff1",null,null,null]
+			]
+		}
+	],
+	"equippable_gear":["cloth_armor","staff"],
+	"ability_name":["First aid","Heal","Charge mana","Push"],
+	"attainable_ability":["Heal","Charge mana","Area Heal"],
+	"move_ability":"Move",
+	"holy_level":2,
+	"ability_count":2,
+	"price":120,
+}

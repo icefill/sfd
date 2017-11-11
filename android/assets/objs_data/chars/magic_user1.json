@@ -1,0 +1,12 @@
+{
+	"name":"magic_user1",
+	"equipment_name":["mage_hat3","robe1","staff1",null,null,null],
+	"item_name":[null,null,null,null,null,
+				 null,null,null,null,null],
+	"type":"char",
+	"job":"black_mage",
+	"sprites_name":"basic",
+	"equippable":true,
+	"level":1,
+
+}

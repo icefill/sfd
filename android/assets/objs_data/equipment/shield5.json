@@ -1,0 +1,11 @@
+{
+	"name":"shield5",
+	"type":"shield",
+	"sprites_name":"shield5",
+	"direction_rotation":[0,0,0,0],
+	"body_color":null,
+	"item_type":3,
+	"price":240,
+	"status":{"STR_MODIFIER":0,"DEX_MODIFIER":0,"INT_MODIFIER":0,"HP_MODIFIER":9,
+			"DEFENSE":0,"ACCURACY":0,"BLOCK":18,"BLOCK_H":20}
+}

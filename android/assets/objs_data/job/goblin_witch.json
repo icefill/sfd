@@ -1,0 +1,26 @@
+{
+	"job_name":"goblin_witch",
+	"type":"character",
+	"ai_type":"assist",
+	
+	"default_sprites":"goblin",
+	"description":"Bummer...",
+		"str_modifier":[0,1],
+	"base_str":0,
+	"dex_modifier":[1,2],
+	"base_dex":0,
+	"int_modifier":[0,1],
+	"base_int":4,
+	"hp_modifier":[1,2],
+	"base_hp":20,
+	"equipments_for_level":[
+		{
+			"equipment_names":[
+				[null,null,"goblin_staff",null,null,null],
+			]
+		}
+	],
+	"ability_name":["Area Heal","Chain lightning"],
+	"move_ability":"Move",
+	"ability_count":2
+}

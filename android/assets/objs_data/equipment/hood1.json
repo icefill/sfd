@@ -1,0 +1,10 @@
+{
+	"name":"hood1",
+	"type":"light_armor",
+	"sprites_name":"hood1",
+	"direction_rotation":[0,0,0,0],
+	"body_color":null,
+	"item_type":0,
+	"status":{"STR_MODIFIER":0,"DEX_MODIFIER":1,"INT_MODIFIER":0,"HP_MODIFIER":0,
+			"DEFENSE":0,"ACCURACY":0}
+}

@@ -1,0 +1,6 @@
+{
+	"name":"floor1",
+	"atlas":"sprite/floor1.atlas",
+	"n_of_tiles":6,
+	"description":"Typical floor."
+}

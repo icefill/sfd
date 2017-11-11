@@ -1,0 +1,11 @@
+{
+	"name":"morning_star",
+	"type":"blunt_weapon",
+	"sprites_name":"mace2",
+	"direction_rotation":[135,45,45,135],
+	"body_color":null,
+	"item_type":2,
+	"price":400,
+	"status":{"STR_MODIFIER":0,"DEX_MODIFIER":0,"INT_MODIFIER":0,"HP_MODIFIER":0,
+			"MIN_ATTACK":3,"MAX_ATTACK":15,"DEFENSE":0,"ACCURACY":90}
+}

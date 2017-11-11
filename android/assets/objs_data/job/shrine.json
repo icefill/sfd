@@ -1,0 +1,10 @@
+{
+	"job_name":"shrine",
+	"type":"wall",
+	"default_sprites":"shrine",
+	"description":"Bummer...",
+	"hp_modifier":[20,30],
+	"ability_count":0,
+	"adjust_color":true
+    	
+}

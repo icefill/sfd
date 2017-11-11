@@ -1,0 +1,45 @@
+{
+	"action_name":"Summon skeleton",
+	"icon_name":"summon_skeleton",
+	"short_name":"s skeleton",
+	"description":"Summon skeleton minion",
+	"action_type":"unholy_magic",
+	"action_level":2,
+	"ai_type":"summon",
+	"target_empty_contain":true,
+	"center_contain":false,
+	"friendly_contain":false,
+	"enemy_contain":false,
+	"obj_block":false,
+	"targeting_min_range":1,
+	"targeting_max_range":3,
+	"targeting_type":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":false,
+	"splash_center_contain":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":false,
+	"splash_enemy_contain":false,
+	"splash_obj_block":false,
+	"cool_time":2,
+	"price":150,
+	"mana_cost":2,
+	"motions":[
+		{
+		"pre_motions":["basic_attack"],
+	 	"motions":["summon skeleton"],
+	 	"status_change":
+	 	{
+	 		"status_type":"magic_damage",
+	 		"effect":[
+	 			{"amount":0,"accuracy":70},
+	 			{"amount":0,"accuracy":75},
+	 			{"amount":0,"accuracy":85},
+	 			{"amount":0,"accuracy":90},
+	 			{"amount":0,"accuracy":92}
+	 		]
+	 	}
+	 	}
+	]
+}

@@ -1,0 +1,9 @@
+{
+	"name":"energy_ray_scroll",
+	"type":"disposable_item",
+	"disposable":true,
+	"equip_action":"Energy ray",
+	"direction_rotation":[0,0,0,0],
+	"sprites_name":"scroll",
+	"item_type":4,
+}

@@ -1,0 +1,41 @@
+{
+	"action_name":"Shoot arrow",
+	"icon_name":"shoot_arrow",
+	"short_name":"attack",
+	"ai_type":"ranged",
+	"description":"Shoot arrow\n far away object.",
+	"action_type":"attack",
+	"target_empty_contain":true,
+	"center_contain":false,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_min_range":3,
+	"targeting_max_range":4,
+	"targeting_type":0,
+	"splash_min_range":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":true,
+	"splash_center_contain":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"weapon_type":["bow"],
+	"motions":[
+		{
+		"pre_motions":["basic_shoot_arrow","shoot_arrow"],
+	 	"hit_motions":["blood_effect"],
+	 	"status_change":
+	 	{
+	 		"relative":true,
+	 		"base_weapon_type":"ARM2",
+	 		"status_type":"physical_weapon2_damage",
+	 		"effect":[
+	 			{"amount":100,"accuracy":100,"critical":100}
+	 		]
+	 	}
+	 	}
+	]
+}

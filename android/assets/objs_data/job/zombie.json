@@ -1,0 +1,28 @@
+{
+	"job_name":"zombie",
+	"type":"character",
+	"default_sprites":"zombie",
+		"transparent":1,
+	
+	"description":"Bummer...",
+		"str_modifier":[1,2],
+	"base_str":4,
+	"dex_modifier":[0,2],
+	"base_dex":3,
+	"int_modifier":[0,0],
+	"base_int":0,
+	"hp_modifier":[3,3],
+	"base_hp":12,
+	"equipments_for_level":[
+	{
+			"max_level":15,
+			"equipment_names":[
+				[null,null,null,null,null,null]
+			]
+		}	],
+	
+	"ability_name":["Weak attack"],
+	"move_ability":"Move2",
+	"dead_ability":"undead_revive",
+	"ability_count":2
+}

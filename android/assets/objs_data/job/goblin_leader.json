@@ -1,0 +1,29 @@
+{
+	"job_name":"goblin_leader",
+	"type":"character",
+	"default_sprites":"goblin",
+		"transparent":1,
+	
+	"description":"Bummer...",
+		"str_modifier":[1,2],
+	"base_str":4,
+	"dex_modifier":[0,2],
+	"base_dex":3,
+	"int_modifier":[0,0],
+	"base_int":0,
+	"hp_modifier":[3,3],
+	"base_hp":18,
+	"equipments_for_level":[
+	{
+			"min_level":1,
+			"equipment_names":[
+				[null,null,"goblin_sword","goblin_shield",null,null]
+			]
+			
+		}		
+	],
+	
+	"ability_name":["Normal attack","Bash"],
+	"move_ability":"Move",
+	"ability_count":2
+}

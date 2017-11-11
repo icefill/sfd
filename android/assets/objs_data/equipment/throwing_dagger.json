@@ -1,0 +1,10 @@
+{
+	"name":"throwing_dagger",
+	"type":"disposable_item",
+	"disposable":true,
+	"equip_action":"Throw item straight",
+	"direction_rotation":[0,0,0,0],
+	"sprites_name":"throwing_dagger",
+	"item_type":4,
+	"n":5,
+}

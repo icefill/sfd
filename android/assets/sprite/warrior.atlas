@@ -1,0 +1,250 @@
+
+warrior.png
+format: RGBA8888
+filter: MipMapNearestNearest,MipMapNearestNearest
+repeat: none
+dead_dl0000
+  rotate: false
+  xy: 1, 85
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+dead_dl0001
+  rotate: false
+  xy: 1, 43
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+dead_dl0002
+  rotate: false
+  xy: 35, 85
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+dead_dl0003
+  rotate: false
+  xy: 1, 1
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+dead_dl0004
+  rotate: false
+  xy: 35, 43
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+dead_dl0005
+  rotate: false
+  xy: 69, 85
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+dead_dl0006
+  rotate: false
+  xy: 35, 1
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+dead_dl0007
+  rotate: false
+  xy: 69, 43
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+dead_ur0000
+  rotate: false
+  xy: 103, 85
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+dead_ur0001
+  rotate: false
+  xy: 69, 1
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+dead_ur0002
+  rotate: false
+  xy: 103, 43
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+dead_ur0003
+  rotate: false
+  xy: 137, 85
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+dead_ur0004
+  rotate: false
+  xy: 103, 1
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+dead_ur0005
+  rotate: false
+  xy: 137, 43
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+dead_ur0006
+  rotate: false
+  xy: 171, 85
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+guard_dl0000
+  rotate: false
+  xy: 137, 1
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+walk_dl0002
+  rotate: false
+  xy: 137, 1
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+guard_ur0000
+  rotate: false
+  xy: 171, 43
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+walk_ur0002
+  rotate: false
+  xy: 171, 43
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+idle_dl0000
+  rotate: false
+  xy: 205, 85
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+idle_dl0001
+  rotate: false
+  xy: 171, 1
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+idle_dl0002
+  rotate: false
+  xy: 205, 43
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+idle_dl0003
+  rotate: false
+  xy: 239, 85
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+idle_dl0004
+  rotate: false
+  xy: 205, 1
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+idle_ur0000
+  rotate: false
+  xy: 239, 43
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+idle_ur0001
+  rotate: false
+  xy: 273, 85
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+idle_ur0002
+  rotate: false
+  xy: 239, 1
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+idle_ur0003
+  rotate: false
+  xy: 273, 43
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+idle_ur0004
+  rotate: false
+  xy: 307, 85
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+walk_dl0000
+  rotate: false
+  xy: 273, 1
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+walk_dl0001
+  rotate: false
+  xy: 307, 43
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+walk_dl0003
+  rotate: false
+  xy: 307, 43
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+walk_ur0000
+  rotate: false
+  xy: 341, 85
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+walk_ur0001
+  rotate: false
+  xy: 307, 1
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+walk_ur0003
+  rotate: false
+  xy: 307, 1
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1

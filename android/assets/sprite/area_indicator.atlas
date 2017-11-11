@@ -1,0 +1,33 @@
+
+area_indicator.png
+format: RGBA8888
+filter: MipMapNearestNearest,MipMapNearestNearest
+repeat: none
+dl0000
+  rotate: false
+  xy: 1, 1
+  size: 96, 48
+  orig: 96, 48
+  offset: 0, 0
+  index: -1
+dl0001
+  rotate: false
+  xy: 99, 1
+  size: 96, 48
+  orig: 96, 48
+  offset: 0, 0
+  index: -1
+dl0002
+  rotate: false
+  xy: 197, 1
+  size: 96, 48
+  orig: 96, 48
+  offset: 0, 0
+  index: -1
+dl0003
+  rotate: false
+  xy: 295, 1
+  size: 96, 48
+  orig: 96, 48
+  offset: 0, 0
+  index: -1

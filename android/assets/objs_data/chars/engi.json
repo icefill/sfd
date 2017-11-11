@@ -1,0 +1,12 @@
+{
+	"name":"engi",
+	"equipment_name":[null,"leather_armor1",null,null,null,null],
+	"item_name":[null,null,null,null,null,
+				 null,null,null,null,null],
+	"type":"char",
+	"job":"engineer",
+	"sprites_name":"basic",
+	"equippable":true,
+	"level":1,
+
+}

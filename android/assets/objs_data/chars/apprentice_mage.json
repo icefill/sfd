@@ -1,0 +1,12 @@
+{
+	"name":"apprentice_mage",
+	"equipment_name":["hood1","robe1","staff1",null,null,null],
+	"item_name":[null,null,null,null,null,
+				 null,null,null,null,null],
+	"type":"char",
+	"job":"apprentice_mage",
+	"sprites_name":"basic",
+	"equippable":true,
+	"level":1,
+
+}

@@ -1,0 +1,13 @@
+{
+	"name":"Teresa",
+	"equipment_name":["hood2","robe3","staff1",null,null,null],
+	"item_name":[null,null,null,null,null,
+				 null,null,null,null,null],	
+	"type":"char",
+	"job":"cleric",
+	"sprites_name":"basic",
+	"equippable":true,
+	"level":1
+	
+	
+}

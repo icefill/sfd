@@ -1,0 +1,25 @@
+{
+	"job_name":"bandit_boss",
+	"type":"character",
+	"default_sprites":"basic",
+	"description":"Basic job",
+		"str_modifier":[2,3],
+	"base_str":3,
+	"dex_modifier":[1,2],
+	"base_dex":3,
+	"int_modifier":[0,1],
+	"base_int":3,
+	"hp_modifier":[2,3],
+	"base_hp":17,
+	"equipments_for_level":[
+		{
+			"equipment_names":[["horned_helm","leather_armor3","axe1","short_sword",null,null]],
+		}
+	],
+	"equippable_gear":["cloth_armor","light_armor","bladed_weapon","blunt_weapon","bow"],
+	"ability_name":["Two handed attack","Shoot arrow","Push"],
+	"attainable_ability":[],
+	"changeable_job":["knight","spearman"],
+	"move_ability":"Move",
+	"ability_count":2
+}

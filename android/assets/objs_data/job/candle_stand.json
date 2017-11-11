@@ -1,0 +1,12 @@
+{
+	"job_name":"candle_stand",
+	"type":"obstacle",
+	"default_sprites":"candle_stand",
+	"description":"Bummer...",
+	"hp_modifier":[2,3],
+	"base_hp":2,
+	"ability_count":0,
+	"light":{"xx":-1,"yy":2,"zz":5,"radius":5,"direction":1},
+	"no_direction":true
+	
+}

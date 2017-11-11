@@ -1,0 +1,10 @@
+{
+	"name":"mana_stone",
+	"type":"disposable_item",
+	"disposable":true,
+	"equip_action":"Mana stone",
+	"direction_rotation":[0,0,0,0],
+	"sprites_name":"mana_stone",
+	"price":70,
+	"item_type":4,
+}

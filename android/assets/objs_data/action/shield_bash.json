@@ -1,0 +1,41 @@
+{
+	"action_name":"Shield bash",
+	"icon_name":"shield_bash",
+	"description":"bashing enemy with shield,\n knocks back enemy.",
+	"action_type":"attack",
+	"target_empty_contain":true,
+	"friendly_contain":true,
+	"center_contain":false,
+	"splash_center_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_min_range":1,
+	"targeting_max_range":1,
+	"targeting_type":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":false,
+	"splash_empty_contain":false,
+	"splash_friendly_contain":false,
+	"splash_enemy_contain":false,
+	"splash_obj_block":true,
+	"weapon_type":["bladed_weapon","blunt_weapon"],
+	"motions":[
+		{
+	 		"motions":["shield_bash"],
+	 		"hit_motions":["blood_effect","move_back"],
+	 		"status_change":
+	 		{
+	 			"status_type":"physical_weapon1_damage",
+	 			"effect":[
+	 				{"amount":70,"accuracy":-1},
+	 				{"amount":78,"accuracy":-1},
+	 				{"amount":85,"accuracy":-1},
+	 				{"amount":90,"accuracy":-1},
+	 				{"amount":100,"accuracy":-1},
+	 				
+	 			]
+	 		}
+	 	}
+	]
+}

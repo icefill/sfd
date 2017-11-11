@@ -1,0 +1,13 @@
+{
+	"name":"Jerry",
+	"equipment_name":["hood1","robe2",null,"bow0",null,null],
+	"item_name":[null,null,null,null,null,
+				 null,null,null,null,null],	
+	"type":"char",
+	"job":"bowman",
+	"sprites_name":"basic",
+	"equippable":true,
+	"level":1
+	
+	
+}

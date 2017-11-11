@@ -1,0 +1,11 @@
+{
+	"name":"throwing_axe",
+	"type":"disposable_item",
+	"disposable":true,
+	"equip_action":"Throw item",
+	"direction_rotation":[0,0,0,0],
+	"sprites_name":"throwing_axe",
+	"item_type":4,
+	"price":65,
+	"n":3,
+}

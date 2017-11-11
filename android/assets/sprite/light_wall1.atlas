@@ -1,0 +1,45 @@
+
+light_Wall13.png
+format: RGBA8888
+filter: MipMapNearestNearest,MipMapNearestNearest
+repeat: none
+0ul0000
+  rotate: false
+  xy: 1, 1
+  size: 96, 208
+  orig: 96, 208
+  offset: 0, 0
+  index: -1
+0ur0000
+  rotate: false
+  xy: 99, 1
+  size: 96, 208
+  orig: 96, 208
+  offset: 0, 0
+  index: -1
+
+light_Wall14.png
+format: RGBA8888
+filter: MipMapNearestNearest,MipMapNearestNearest
+repeat: none
+output/light_wall12
+  rotate: false
+  xy: 1, 259
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+output/light_wall
+  rotate: false
+  xy: 1, 1
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+output/light_wall1
+  rotate: false
+  xy: 515, 515
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1

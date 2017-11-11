@@ -1,0 +1,27 @@
+{
+	"job_name":"war_lord",
+	"jp_need":4,
+	"type":"character",
+	"default_sprites":"basic",
+	"description":"Bummer...",
+		"str_modifier":[3,4],
+	"base_str":3,
+	"dex_modifier":[2,3],
+	"base_dex":3,
+	"int_modifier":[0,1],
+	"base_int":3,
+	"hp_modifier":[2,3],
+	"base_hp":17,
+	"equipments_for_level":[
+		{
+			"equipment_names":[["hair1","armor1","sword1","shield1",null,null]],
+		}
+	],
+	"equippable_gear":["cloth_armor","light_armor","heavy_armor","spear","bladed_weapon","blunt_weapon","bow","shield"],
+	"ability_name":["Normal attack","Spear attack","Shoot arrow","Push"],
+	"attainable_ability":[],
+	"attainable_passive_ability":["max hire up"],
+	"move_ability":"Move",
+	"ability_count":2
+
+}

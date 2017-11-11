@@ -1,0 +1,19 @@
+{
+	"name":"Spike",
+	"equipment_name":[null,null,null,null,null,null],
+	"item_name":["robe2","staff1","mage_hat2",null,null,
+				 null,null,null,null,null],	
+	"type":"char",
+	"job":"paladin",
+	"sprites_name":"basic2",
+	"equippable":true,
+	"level":3,
+		"base_status":{
+		"STR":3,
+		"DEX":5,
+		"INT":3,
+		"ABILITY_COUNT":3,
+		"HP":20
+	}
+	
+}

@@ -1,0 +1,12 @@
+{
+	"job_name":"obstacle2",
+	"type":"obstacle",
+	"default_sprites":"obstacle2",
+	"description":"Bummer...",
+	"hp_modifier":[2,3],
+	"base_hp":2,
+	
+	"adjust_color":false,
+	"ability_count":0,
+	"no_direction":true
+}

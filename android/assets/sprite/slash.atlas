@@ -1,0 +1,61 @@
+
+slash.png
+format: RGBA8888
+filter: MipMapNearestNearest,MipMapNearestNearest
+repeat: none
+dl0000
+  rotate: false
+  xy: 1, 1
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: -1
+dl0001
+  rotate: false
+  xy: 67, 1
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: -1
+dl0002
+  rotate: false
+  xy: 133, 1
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: -1
+dl0003
+  rotate: false
+  xy: 199, 1
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: -1
+ur0000
+  rotate: false
+  xy: 265, 1
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: -1
+ur0001
+  rotate: false
+  xy: 331, 1
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: -1
+ur0002
+  rotate: false
+  xy: 397, 1
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: -1
+ur0003
+  rotate: false
+  xy: 463, 1
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: -1

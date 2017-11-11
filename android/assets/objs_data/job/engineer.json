@@ -1,0 +1,26 @@
+{
+	"job_name":"engineer",
+	"type":"character",
+	"default_sprites":"basic",
+	"description":"Bummer...",
+	"str_modifier":[0,1],
+	"base_str":4,
+	"dex_modifier":[0,1],
+	"base_dex":2,
+	"int_modifier":[3,4],
+	"base_int":2,
+	"hp_modifier":[1,2],
+	"base_hp":10,
+	"equipments_for_level":[
+		{
+			"equipment_names":[
+				[null,"leather_armor1",null,null,null,null]
+			]
+		}
+	],
+	"ability_name":["Bomb","Fire cannon","Push"],
+	"attainable_ability":["Charge mana"],
+	"learnable_magic_type":[],
+	"move_ability":"Move2",
+	"ability_count":2
+}

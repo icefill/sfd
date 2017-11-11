@@ -1,0 +1,41 @@
+{
+	"action_name":"Rolling attack",
+	"icon_name":"rotating_attack",
+	"description":"Attack nearby enemies.",
+	"action_type":"attack",
+	"target_empty_contain":true,
+	"center_contain":true,
+	"splash_center_contain":false,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_max_range":0,
+	"targeting_type":0,
+	"splash_max_range":1,
+	"splash_type":0,
+	"self_targeting":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"cool_time":2,
+	"required_level":2,
+	"motions":[
+		{
+			"pre_motions":["rotate"],
+	 		"motions":["rotating_hit"],
+	 		"hit_motions":["blood_effect"],
+	 		"status_change":
+	 		{
+	 			"status_type":"physical_weapon1_damage",
+	 			"effect":[
+	 				{"amount":85,"accuracy":75},
+	 				{"amount":90,"accuracy":80},
+	 				{"amount":100,"accuracy":85},
+	 				{"amount":120,"accuracy":90},
+	 				{"amount":130,"accuracy":95},
+	 			]
+	 		}
+	 	}
+	]
+}

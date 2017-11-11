@@ -1,0 +1,29 @@
+{
+	"job_name":"king jelly",
+	"type":"character",
+	"ai_type":"assist",
+	"default_sprites":"king_slime",
+		"transparent":0.4,
+	
+	"description":"Bummer...",
+		"str_modifier":[1,2],
+	"base_str":4,
+	"dex_modifier":[0,2],
+	"base_dex":3,
+	"int_modifier":[0,0],
+	"base_int":0,
+	"hp_modifier":[3,3],
+	"base_hp":25,
+	"equipments_for_level":[
+	{
+			"max_level":15,
+			"equipment_names":[
+				[null,null,null,null,null,null]
+			]
+		}	],
+	
+	"ability_name":["Weak attack","Summon jelly"],
+	"move_ability":"Move",
+	"ability_count":2,
+	"no_direction":true
+}

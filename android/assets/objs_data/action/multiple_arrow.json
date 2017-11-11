@@ -1,0 +1,45 @@
+{
+	"action_name":"Multiple arrow",
+	"icon_name":"multiple_arrow",
+	"description":"Shoot multiple arrow\n far away object.",
+	"action_type":"attack",
+	"ai_type":"ranged",
+	"target_empty_contain":true,
+	"center_contain":false,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_min_range":3,
+	"targeting_max_range":4,
+	"targeting_type":0,
+	"splash_min_range":0,
+	"splash_max_range":1,
+	"splash_type":0,
+	"self_targeting":true,
+	"splash_center_contain":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"weapon_type":["bow"],
+	"cool_time":2,
+	"required_level":4,
+	"motions":[
+		{
+		"pre_motions":["basic_shoot_arrow","shoot_multiple_arrow"],
+	 	"motions":null,
+	 	"hit_motions":["blood_effect"],
+	 	"status_change":
+	 	{
+	 		"status_type":"physical_weapon2_damage",
+	 		"effect":[
+	 			{"amount":80,"accuracy":-1},
+	 			{"amount":90,"accuracy":-1},
+	 			{"amount":110,"accuracy":-1},
+	 			{"amount":120,"accuracy":-1},
+	 			{"amount":130,"accuracy":-1},
+	 		]
+	 	}
+	 	}
+	]
+}

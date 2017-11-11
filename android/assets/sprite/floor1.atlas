@@ -1,0 +1,47 @@
+
+floor1.png
+format: RGBA8888
+filter: MipMapNearestNearest,MipMapNearestNearest
+repeat: none
+0dl0000
+  rotate: false
+  xy: 1, 1
+  size: 70, 58
+  orig: 70, 58
+  offset: 0, 0
+  index: -1
+1dl0000
+  rotate: false
+  xy: 73, 1
+  size: 70, 58
+  orig: 70, 58
+  offset: 0, 0
+  index: -1
+2dl0000
+  rotate: false
+  xy: 145, 1
+  size: 70, 58
+  orig: 70, 58
+  offset: 0, 0
+  index: -1
+3dl0000
+  rotate: false
+  xy: 217, 1
+  size: 70, 58
+  orig: 70, 58
+  offset: 0, 0
+  index: -1
+4dl0000
+  rotate: false
+  xy: 289, 1
+  size: 70, 58
+  orig: 70, 58
+  offset: 0, 0
+  index: -1
+5dl0000
+  rotate: false
+  xy: 361, 1
+  size: 70, 58
+  orig: 70, 58
+  offset: 0, 0
+  index: -1

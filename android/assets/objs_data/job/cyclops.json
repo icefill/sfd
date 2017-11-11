@@ -1,0 +1,30 @@
+{
+	"job_name":"cyclops",
+	"type":"character",
+	"default_sprites":"cyclops",
+		"transparent":1,
+	
+	"description":"Bummer...",
+		"str_modifier":[3,1],
+	"base_str":3,
+	"dex_modifier":[0,2],
+	"base_dex":0,
+	"int_modifier":[0,0],
+	"base_int":0,
+	"hp_modifier":[3,5],
+	"base_hp":30,
+	"equipments_for_level":[
+		{
+			"max_level":1,
+			"equipment_names":[
+				[null,null,"axe5",null,null,null],
+				[null,null,"mace3",null,null,null]
+			]
+		}	
+	],
+	
+	"ability_name":["Normal attack","Bash"],
+	"move_ability":"Move",
+	"ability_count":2
+	
+}

@@ -1,0 +1,27 @@
+{
+	"job_name":"archer",
+	"jp_need":4,
+	"ai_type":"ranged",
+	"type":"character",
+	"default_sprites":"basic",
+	"description":"Bummer...",
+	"str_modifier":[0,1],
+	"base_str":2,
+	"dex_modifier":[3,4],
+	"base_dex":4,
+	"int_modifier":[0,1],
+	"base_int":2,
+	"hp_modifier":[2,3],
+	"base_hp":12,
+	"equipments_for_level":[
+		{
+			"equipment_names":[["archer_hat","armor1",null,"bow2",null,null]]
+		}
+	],
+	"equippable_gear":["cloth_armor","light_armor","bow"],
+	"ability_name":["Shoot arrow","Push"],
+	"attainable_ability":["Multiple arrow","Leg aim shot"],
+	"move_ability":"Move",
+	"ability_count":2,
+	"price":110
+}

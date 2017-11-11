@@ -1,0 +1,25 @@
+{
+	"job_name":"spearman",
+	"jp_need":6,
+	"type":"character",
+	"default_sprites":"basic",
+	"description":"Bummer...",
+	"str_modifier":[0,1],
+	"base_str":2,
+	"dex_modifier":[3,4],
+	"base_dex":4,
+	"int_modifier":[0,1],
+	"base_int":2,
+	"hp_modifier":[2,3],
+	"base_hp":19,
+	"equipments_for_level":[
+		{
+			"equipment_names":[["helm1","armor1","spear",null,null,null]]
+		}
+	],
+	"equippable_gear":["cloth_armor","light_armor","bladed_weapon","blunt_weapon","spear"],
+	"ability_name":["Spear attack","Push"],
+	"attainable_ability":["Spear nockback attack"],
+	"move_ability":"Move",
+	"ability_count":2
+}

@@ -1,0 +1,28 @@
+{
+	"action_name":"Fly",
+	"icon_name":"move",
+	"description":"Move by flying.",
+	"action_type":"move",
+	"target_empty_contain":true,
+	"friendly_contain":false,
+	"center_contain":false,
+	"splash_center_contain":true,
+	"enemy_contain":false,
+	"obj_block":false,
+	"targeting_min_range":1,
+	"targeting_max_range":4,
+	"targeting_type":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":false,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":false,
+	"splash_enemy_contain":true,
+	"splash_obj_block":true,
+	"cool_time":1,
+	"motions":[
+		{
+		"pre_motions":["fly"],
+	 	}
+	]
+}

@@ -1,0 +1,11 @@
+{
+	"name":"robe1",
+	"type":"cloth_armor",
+	"sprites_name":"robe1",
+	"direction_rotation":[0,0,0,0],
+	"body_color":[0.5,0.5,0.5,1]
+	"item_type":1,
+	"price":100,
+	"status":{"STR_MODIFIER":0,"DEX_MODIFIER":0,"INT_MODIFIER":2,"HP_MODIFIER":2,
+			"DEFENSE":0,"ACCURACY":0}
+}

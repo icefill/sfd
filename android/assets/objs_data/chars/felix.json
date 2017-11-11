@@ -1,0 +1,14 @@
+{
+	"name":"Felix",
+	"type":"char",
+	"equipment_name":["helm2","leather_armor1","spear",null,null,null],
+	"item_name":[null,null,null,null,null,
+				 null,null,null,null,null],	
+	
+	"job":"spearman",
+	"sprites_name":"basic",
+	"equippable":true,
+	"level":1
+	
+	
+}

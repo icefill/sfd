@@ -1,0 +1,12 @@
+{
+	"action_name":"max mana up",
+	"short_name":"mana up2",
+	"icon_name":"charge_mana",
+	"description":"increase Max mana by 2",
+	"action_type":"passive",
+	"motions":[
+		{
+	 	"motions":["max_mana_up"],
+	 	}
+	]
+}

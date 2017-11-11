@@ -1,0 +1,41 @@
+{
+	"action_name":"Undead revive",
+	"short_name":"revive",
+	"icon_name":"acid_ball",
+	"description":"Revive after a turn",
+	"action_type":"unholy_magic",
+	"ai_type":"ranged",
+	"target_empty_contain":true,
+	"center_contain":false,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"obj_block":true,
+	"targeting_min_range":0,
+	"targeting_max_range":0,
+	"targeting_type":1,
+	"splash_max_range":1,
+	"splash_type":0,
+	"self_targeting":true,
+	"splash_center_contain":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"cool_time":0,
+	"mana_cost":0,
+	"price":200,
+	"motions":[
+		{
+	 		"motions":["acid_explosion_effect"],
+	 		"end_motions":["revive"],
+	 		"status_change":
+	 		{
+	 			"turn_effect":"undead revive",
+	 			"status_type":"magic_damage",
+	 			"effect":[
+	 				{"amount":1,"accuracy":100,"duration":1}
+	 			]
+	 		}
+	 	}
+	]
+}

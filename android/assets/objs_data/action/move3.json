@@ -1,0 +1,27 @@
+{
+	"action_name":"Move3",
+	"icon_name":"move",
+	"description":"Bummer...",
+	"action_type":"move",
+	"target_empty_contain":true,
+	"friendly_contain":false,
+	"center_contain":false,
+	"splash_center_contain":true,
+	"enemy_contain":false,
+	"obj_block":true,
+	"targeting_max_range":5,
+	"targeting_type":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":false,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":false,
+	"splash_enemy_contain":true,
+	"splash_obj_block":true,
+	"cool_time":1,
+	"motions":[
+		{
+		"pre_motions":["move"]
+	 	}
+	]
+}

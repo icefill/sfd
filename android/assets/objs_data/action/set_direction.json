@@ -1,0 +1,32 @@
+{
+	"action_name":"Setdirection",
+	"icon_name":"explosion",
+	"description":"make explosion\n near caster,\n knock back nearby enemies.",
+	"action_type":"fire_magic",
+	"target_empty_contain":true,
+	"center_contain":true,
+	"splash_center_contain":false,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_min_range":1,
+	"targeting_max_range":1,
+	"targeting_type":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":false,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"required_level":1,
+	"cool_time":0,
+	"mana_cost":1,
+	"motions":[
+		{
+		"pre_motions":null,
+	 	"motions":["set_direction"],
+	 	
+	 	}
+	]
+}

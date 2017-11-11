@@ -1,0 +1,6 @@
+{
+	"name":"floor3",
+	"atlas":"sprite/floors.atlas",
+	"atlas_index":"floor3",
+	"description":"Typical floor."
+}

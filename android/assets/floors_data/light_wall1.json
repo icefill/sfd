@@ -1,0 +1,13 @@
+{
+	"name":"light_wall1",
+	"atlas":"sprite/floor1.atlas",
+	"n_of_tiles":1,
+	"wall_atlas":"sprite/wall1.atlas",
+	"n_of_wall_tiles":1,
+	"description":"Typical light wall.",
+	"light_radius":5,
+	"particle_name":"particles/particle3.json",
+	"is_wall":true,
+	"particle_offset_x": 24,
+	"particle_offset_y": 34
+}

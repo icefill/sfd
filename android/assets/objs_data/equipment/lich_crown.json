@@ -1,0 +1,10 @@
+{
+	"name":"lich_crown",
+	"type":"heavy_armor",
+	"sprites_name":"lich_crown",
+	"direction_rotation":[0,0,0,0],
+	"body_color":null,
+	"item_type":0,
+	"status":{"STR_MODIFIER":0,"DEX_MODIFIER":0,"INT_MODIFIER":0,"HP_MODIFIER":0,
+			"DEFENSE":0,"ACCURACY":0}
+}

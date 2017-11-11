@@ -1,0 +1,57 @@
+{
+	"action_name":"Double arrow",
+	"short_name":"arrow x2",
+	"icon_name":"double_arrow",
+	"description":"Shoot arrow\n far away object.",
+	"action_type":"attack",
+	"ai_type":"ranged",
+	"target_empty_contain":true,
+	"center_contain":false,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_min_range":3,
+	"targeting_max_range":4,
+	"targeting_type":0,
+	"splash_min_range":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":true,
+	"splash_center_contain":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"cool_time":3,
+	"weapon_type":["bow"],
+	"motions":[
+		{
+		"pre_motions":["basic_shoot_arrow","shoot_arrow"],
+	 	"hit_motions":["blood_effect"],
+	 	"status_change":
+	 	{
+	 		"status_type":"physical_weapon2_damage",
+	 		"relative":true,
+	 		"base_weapon_type":"ARM2",
+	 		"effect":[
+	 			{"amount":88,"accuracy":90,"critical":90}
+	 			,{"amount":95,"accuracy":90,"critical":95}
+	 			,{"amount":100,"accuracy":90,"critical":100}
+	 		]
+	 	}
+	 	},
+	 	{
+		"pre_motions":["basic_shoot_arrow","shoot_arrow"],
+	 	"hit_motions":["blood_effect"],
+	 	"status_change":
+	 	{
+	 		"status_type":"physical_weapon2_damage",
+	 		"base_weapon_type":"ARM2",
+	 		
+	 		"effect":[
+	 			{"amount":80,"accuracy":-1}
+	 		]
+	 	}
+	 	}
+	]
+}

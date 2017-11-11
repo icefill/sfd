@@ -1,0 +1,41 @@
+{
+	"action_name":"Push",
+	"short_name":"push",
+	"icon_name":"push",
+	"description":"push back enemy.",
+	"action_type":"attack",
+	"target_empty_contain":true,
+	"friendly_contain":true,
+	"center_contain":false,
+	"splash_center_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_min_range":1,
+	"targeting_max_range":1,
+	"targeting_type":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":false,
+	"splash_empty_contain":false,
+	"splash_friendly_contain":false,
+	"splash_enemy_contain":false,
+	"splash_obj_block":true,
+	"motions":[
+		{
+	 		"motions":["push"],
+	 		"hit_motions":["move_back"],
+	 		"status_change":
+	 		{
+	 			"status_type":"physical_damage",
+	 			"effect":[
+	 				{"amount":0,"accuracy":100},
+	 				{"amount":0,"accuracy":100},
+	 				{"amount":0,"accuracy":100},
+	 				{"amount":0,"accuracy":100},
+	 				{"amount":0,"accuracy":100},
+	 				
+	 			]
+	 		}
+	 	}
+	]
+}

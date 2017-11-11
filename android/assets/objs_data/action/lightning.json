@@ -1,0 +1,46 @@
+{
+	"action_name":"Lightning",
+	"icon_name":"lightning",
+	"description":"attack an enemy with lightning",
+	"action_type":"lightning_magic",
+	"action_level":1,
+	"ai_type":"ranged",
+	"target_empty_contain":true,
+	"center_contain":false,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_min_range":1,
+	"targeting_max_range":3,
+	"targeting_type":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":true,
+	"splash_center_contain":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"required_level":3,
+	"splash_obj_block":false,
+	"cool_time":1,
+	"mana_cost":2,
+	"price":120,
+	"motions":[
+		{
+		"pre_motions":["basic_attack"],
+	 	"motions":["cast_lightning"],
+	 	"hit_motions":["lightning_hit"],
+	 	"status_change":
+	 	{
+	 		"status_type":"magic_damage",
+	 		"effect":[
+	 			{"amount":7,"accuracy":65},
+	 			{"amount":8,"accuracy":70},
+	 			{"amount":10,"accuracy":75},
+	 			{"amount":12,"accuracy":80},
+	 			{"amount":14,"accuracy":85}
+	 		]
+	 	}
+	 	}
+	]
+}

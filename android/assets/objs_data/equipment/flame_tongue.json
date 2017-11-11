@@ -1,0 +1,11 @@
+{
+	"name":"flame_tongue",
+	"type":"bladed_weapon",
+	"sprites_name":"goblin_sword",
+	"direction_rotation":[90,90,90,90],
+	"body_color":null,
+	"equip_action":"Burn",
+	"item_type":2,
+	"status":{"STR_MODIFIER":0,"DEX_MODIFIER":0,"INT_MODIFIER":0,"HP_MODIFIER":0,
+			"MIN_ATTACK":5,"MAX_ATTACK":5,"DEFENSE":0,"ACCURACY":87}
+}

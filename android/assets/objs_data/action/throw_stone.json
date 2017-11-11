@@ -1,0 +1,39 @@
+{
+	"action_name":"Throw stone",
+	"short_name":"stone",
+	"icon_name":"throw_stone",
+	"description":"Throw stone.",
+	"action_type":"attack",
+	"ai_type":"ranged",
+	"target_empty_contain":true,
+	"center_contain":false,
+	"splash_center_contain":true,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_max_range":4,
+	"targeting_type":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":false,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"required_level":1,
+	"cool_time":1,
+	"price":80,
+	"motions":[
+		{
+		"pre_motions":["basic_attack","throw_stone"],
+	 	"hit_motions":["blood_effect"],
+	 	"status_change":
+	 	{
+	 		"status_type":"physical_damage",
+	 		"effect":[
+	 			{"amount":3,"accuracy":75}
+	 		]
+	 	}
+	 	}
+	]
+}

@@ -1,0 +1,37 @@
+info face="VIKING, ELDER Runes Regular" size=32 bold=0 italic=0 charset="" unicode=0 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=0,0
+common lineHeight=25 base=25 scaleW=512 scaleH=512 pages=1 packed=0
+page id=0 file="rune.png"
+chars count=31
+char id=32   x=0     y=0     width=0     height=0     xoffset=0     yoffset=25    xadvance=11     page=0  chnl=0 
+char id=63   x=0     y=0     width=17     height=27     xoffset=0     yoffset=-1    xadvance=17     page=0  chnl=0 
+char id=33   x=17     y=0     width=6     height=27     xoffset=0     yoffset=-1    xadvance=7     page=0  chnl=0 
+char id=97   x=23     y=0     width=49     height=27     xoffset=0     yoffset=-1    xadvance=3     page=0  chnl=0 
+char id=90   x=72     y=0     width=17     height=27     xoffset=0     yoffset=-1    xadvance=17     page=0  chnl=0 
+char id=89   x=89     y=0     width=17     height=27     xoffset=0     yoffset=-1    xadvance=17     page=0  chnl=0 
+char id=88   x=106     y=0     width=15     height=27     xoffset=0     yoffset=-1    xadvance=15     page=0  chnl=0 
+char id=87   x=121     y=0     width=15     height=27     xoffset=0     yoffset=-1    xadvance=16     page=0  chnl=0 
+char id=86   x=136     y=0     width=12     height=27     xoffset=0     yoffset=-1    xadvance=12     page=0  chnl=0 
+char id=85   x=148     y=0     width=12     height=27     xoffset=0     yoffset=-1    xadvance=12     page=0  chnl=0 
+char id=84   x=160     y=0     width=17     height=27     xoffset=0     yoffset=-1    xadvance=17     page=0  chnl=0 
+char id=83   x=177     y=0     width=14     height=27     xoffset=0     yoffset=-1    xadvance=14     page=0  chnl=0 
+char id=82   x=191     y=0     width=12     height=27     xoffset=0     yoffset=-1    xadvance=13     page=0  chnl=0 
+char id=81   x=203     y=0     width=17     height=27     xoffset=0     yoffset=-1    xadvance=17     page=0  chnl=0 
+char id=80   x=220     y=0     width=14     height=27     xoffset=0     yoffset=-1    xadvance=14     page=0  chnl=0 
+char id=78   x=234     y=0     width=15     height=27     xoffset=0     yoffset=-1    xadvance=15     page=0  chnl=0 
+char id=77   x=249     y=0     width=15     height=27     xoffset=0     yoffset=-1    xadvance=16     page=0  chnl=0 
+char id=76   x=264     y=0     width=12     height=27     xoffset=0     yoffset=-1    xadvance=12     page=0  chnl=0 
+char id=74   x=276     y=0     width=19     height=27     xoffset=0     yoffset=-1    xadvance=19     page=0  chnl=0 
+char id=73   x=295     y=0     width=5     height=27     xoffset=0     yoffset=-1    xadvance=5     page=0  chnl=0 
+char id=72   x=300     y=0     width=13     height=27     xoffset=0     yoffset=-1    xadvance=14     page=0  chnl=0 
+char id=71   x=313     y=0     width=14     height=27     xoffset=0     yoffset=-1    xadvance=14     page=0  chnl=0 
+char id=70   x=327     y=0     width=12     height=27     xoffset=0     yoffset=-1    xadvance=12     page=0  chnl=0 
+char id=69   x=339     y=0     width=15     height=27     xoffset=0     yoffset=-1    xadvance=16     page=0  chnl=0 
+char id=68   x=354     y=0     width=14     height=27     xoffset=0     yoffset=-1    xadvance=14     page=0  chnl=0 
+char id=67   x=368     y=0     width=13     height=27     xoffset=0     yoffset=-1    xadvance=13     page=0  chnl=0 
+char id=66   x=381     y=0     width=12     height=27     xoffset=0     yoffset=-1    xadvance=13     page=0  chnl=0 
+char id=65   x=393     y=0     width=12     height=27     xoffset=0     yoffset=-1    xadvance=12     page=0  chnl=0 
+char id=64   x=405     y=0     width=28     height=26     xoffset=0     yoffset=0    xadvance=28     page=0  chnl=0 
+char id=79   x=433     y=0     width=16     height=22     xoffset=0     yoffset=2    xadvance=17     page=0  chnl=0 
+char id=75   x=449     y=0     width=13     height=22     xoffset=0     yoffset=2    xadvance=13     page=0  chnl=0 
+char id=46   x=462     y=0     width=6     height=6     xoffset=0     yoffset=20    xadvance=7     page=0  chnl=0 
+kernings count=-1

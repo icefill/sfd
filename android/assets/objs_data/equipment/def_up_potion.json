@@ -1,0 +1,9 @@
+{
+	"name":"def_up_potion",
+	"type":"disposable_item",
+	"disposable":true,
+	"equip_action":"Def up",
+	"direction_rotation":[0,0,0,0],
+	"sprites_name":"green_potion",
+	"item_type":4,
+}

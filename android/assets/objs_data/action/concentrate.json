@@ -1,0 +1,41 @@
+{
+	"action_name":"Concentrate",
+	"short_name":"concen",
+	"icon_name":"depend",
+	"description":"Increase ACC",
+	"action_type":"buff_magic",
+	"target_empty_contain":true,
+	"center_contain":true,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"obj_block":true,
+	"targeting_min_range":0,
+	"targeting_max_range":0,
+	"targeting_type":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":true,
+	"splash_center_contain":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"required_level":3,
+	"cool_time":3,
+	"motions":[
+		{
+			"pre_motions":[],
+	 		"motions":[],
+	 		"hit_motions":["cast_defend"],
+	 		"end_motions":["defend_release"],
+	 		"status_change":
+	 		{
+	 			"turn_effect":"Defend",
+	 			"status_type":"magic_damage",
+	 			"effect":[
+	 				{"accuracy":300,"duration":1,"initial_status_change":{"DEFENSE":5}}
+	 			]
+	 		}
+	 	}
+	]
+}

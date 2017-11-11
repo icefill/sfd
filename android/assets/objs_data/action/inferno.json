@@ -1,0 +1,43 @@
+{
+	"action_name":"Inferno",
+		"icon_name":"sonic_blade",
+	"description":"Damaging\n row of enemies.",
+	"action_type":"attack",
+	"target_empty_contain":true,
+	"friendly_contain":true,
+	"center_contain":false,
+	"splash_center_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_min_range":1,
+	"targeting_max_range":3,
+	"targeting_type":1,
+	
+	"splash_max_range":0,
+	"splash_type":2,
+	"self_targeting":false,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"cool_time":3,
+	"required_level":1,
+	"motions":[
+		{
+			"pre_motions":["basic_attack","cast_decay"],
+	 		"motions":["basic_attack_effect"],
+	 		"hit_motions":["fire_hit"],
+	 		"status_change":{
+	 			"status_type":"magic_damage",
+	 			"effect":[
+	 				 	{"amount":7,"accuracy":75},
+	 				 	{"amount":8,"accuracy":80},
+	 				 	{"amount":10,"accuracy":95},
+	 				 	{"amount":12,"accuracy":100},
+	 				 	{"amount":13,"accuracy":120},
+	 				 	{"amount":15,"accuracy":130},
+	 		 	]
+	 		}
+	 	}
+	]
+}

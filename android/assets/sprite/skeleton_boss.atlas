@@ -1,0 +1,117 @@
+
+skeleton_boss.png
+format: RGBA8888
+filter: MipMapNearestNearest,MipMapNearestNearest
+repeat: none
+dead_dl0000
+  rotate: false
+  xy: 1, 1
+  size: 48, 60
+  orig: 48, 60
+  offset: 0, 0
+  index: -1
+guard_dl0000
+  rotate: false
+  xy: 51, 1
+  size: 48, 60
+  orig: 48, 60
+  offset: 0, 0
+  index: -1
+idle_dl0000
+  rotate: false
+  xy: 51, 1
+  size: 48, 60
+  orig: 48, 60
+  offset: 0, 0
+  index: -1
+walk_dl0000
+  rotate: false
+  xy: 51, 1
+  size: 48, 60
+  orig: 48, 60
+  offset: 0, 0
+  index: -1
+guard_dl0001
+  rotate: false
+  xy: 101, 1
+  size: 48, 60
+  orig: 48, 60
+  offset: 0, 0
+  index: -1
+idle_dl0001
+  rotate: false
+  xy: 101, 1
+  size: 48, 60
+  orig: 48, 60
+  offset: 0, 0
+  index: -1
+walk_dl0001
+  rotate: false
+  xy: 101, 1
+  size: 48, 60
+  orig: 48, 60
+  offset: 0, 0
+  index: -1
+guard_dl0002
+  rotate: false
+  xy: 151, 1
+  size: 48, 60
+  orig: 48, 60
+  offset: 0, 0
+  index: -1
+idle_dl0002
+  rotate: false
+  xy: 151, 1
+  size: 48, 60
+  orig: 48, 60
+  offset: 0, 0
+  index: -1
+walk_dl0002
+  rotate: false
+  xy: 151, 1
+  size: 48, 60
+  orig: 48, 60
+  offset: 0, 0
+  index: -1
+guard_dl0003
+  rotate: false
+  xy: 201, 1
+  size: 48, 60
+  orig: 48, 60
+  offset: 0, 0
+  index: -1
+idle_dl0003
+  rotate: false
+  xy: 201, 1
+  size: 48, 60
+  orig: 48, 60
+  offset: 0, 0
+  index: -1
+walk_dl0003
+  rotate: false
+  xy: 201, 1
+  size: 48, 60
+  orig: 48, 60
+  offset: 0, 0
+  index: -1
+guard_dl0004
+  rotate: false
+  xy: 251, 1
+  size: 48, 60
+  orig: 48, 60
+  offset: 0, 0
+  index: -1
+idle_dl0004
+  rotate: false
+  xy: 251, 1
+  size: 48, 60
+  orig: 48, 60
+  offset: 0, 0
+  index: -1
+walk_dl0004
+  rotate: false
+  xy: 251, 1
+  size: 48, 60
+  orig: 48, 60
+  offset: 0, 0
+  index: -1

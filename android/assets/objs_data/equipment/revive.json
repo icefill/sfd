@@ -1,0 +1,9 @@
+{
+	"name":"revive",
+	"type":"disposable_item",
+	"disposable":true,
+	"equip_action":"Revive",
+	"direction_rotation":[0,0,0,0],
+	"sprites_name":"revive",
+	"item_type":4,
+}

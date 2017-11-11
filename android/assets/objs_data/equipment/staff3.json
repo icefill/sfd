@@ -1,0 +1,12 @@
+{
+	"name":"staff3",
+	"type":"staff",
+	"sprites_name":"staff3",
+	"two_handed":true,
+	"direction_rotation":[90,90,90,90],
+	"body_color":null,
+	"item_type":2,
+	"price":120,
+	"status":{"STR_MODIFIER":0,"DEX_MODIFIER":0,"INT_MODIFIER":4,"HP_MODIFIER":0,
+			"DEFENSE":0,"ACCURACY":0}
+}

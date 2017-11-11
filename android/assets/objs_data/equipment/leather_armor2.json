@@ -1,0 +1,11 @@
+{
+	"name":"leather_armor2",
+	"type":"light_armor",
+	"sprites_name":"leather_armor2",
+	"direction_rotation":[0,0,0,0],
+	"body_color":[0.5,0.5,0.5,1]
+	"item_type":1,
+	"price":80,
+	"status":{"STR_MODIFIER":0,"DEX_MODIFIER":0,"INT_MODIFIER":0,"HP_MODIFIER":5,"HP_MODIFIER_H":6,
+			"DEFENSE":0,"ACCURACY":0}
+}

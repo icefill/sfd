@@ -1,0 +1,40 @@
+{
+	"action_name":"Throw item straight",
+	"icon_name":"explosion",
+	"description":"Throw item",
+	"action_type":"fire_magic",
+	"ai_type":"ranged",
+	"target_empty_contain":true,
+	"center_contain":false,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"obj_block":true,
+	"targeting_min_range":1,
+	"targeting_max_range":5,
+	"targeting_type":1,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":true,
+	"splash_center_contain":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"required_level":1,
+	"cool_time":1,
+	"mana_cost":3,
+	"motions":[
+		{
+		"pre_motions":["push_half","throw_selected_item_straight"],
+	 	"motions":["basic_attack_effect"],
+	 		"hit_motions":["blood_effect"],
+	 		"status_change":
+	 		{
+	 			"status_type":"physical_damage",
+	 			"effect":[
+	 				{"amount":7,"accuracy":85}
+	 			]
+	 		}
+	 	}
+	]
+}

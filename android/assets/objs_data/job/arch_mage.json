@@ -1,0 +1,32 @@
+{
+	"job_name":"arch_mage",
+	"jp_need":4,
+	"ai_type":"ranged",
+	"type":"character",
+	"default_sprites":"basic",
+	"description":"Bummer...",
+		"str_modifier":[2,3],
+	"base_str":3,
+	"dex_modifier":[1,2],
+	"base_dex":3,
+	"int_modifier":[0,1],
+	"base_int":3,
+	"hp_modifier":[2,3],
+	"base_hp":17,
+	"equipments_for_level":[
+		{
+			"equipment_names":[["hair1","armor1","sword1","shield1",null,null]],
+		}
+	],
+	"equippable_gear":["cloth_armor","light_armor","staff"],
+	"ability_name":["Normal attack","Spear attack","Shoot arrow","Push","Fireball"],
+	"attainable_ability":["Charge mana","Heal","Burn","Fireball"],
+	"attainable_passive_ability":[],
+	"move_ability":"Move",
+	"fire_level":3,
+	"lightning_level":3,
+	"holy_level":3,
+	"unholy_level":3,	
+	"ability_count":2
+
+}

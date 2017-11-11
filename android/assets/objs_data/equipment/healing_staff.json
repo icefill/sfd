@@ -1,0 +1,13 @@
+{
+	"name":"healing_staff",
+	"type":"staff",
+	"two_handed":true,
+	"sprites_name":"staff1",
+	"direction_rotation":[90,90,90,90],
+	"body_color":null,
+	"equip_action":"Heal",
+	"item_type":2,
+	"price":350,
+	"status":{"STR_MODIFIER":0,"DEX_MODIFIER":0,"INT_MODIFIER":1,"HP_MODIFIER":0,
+			"DEFENSE":0,"ACCURACY":65}
+}

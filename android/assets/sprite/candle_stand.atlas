@@ -1,0 +1,40 @@
+
+candle_stand.png
+format: RGBA8888
+filter: MipMapNearestNearest,MipMapNearestNearest
+repeat: none
+idle_dl0000
+  rotate: false
+  xy: 1, 1
+  size: 32, 50
+  orig: 32, 50
+  offset: 0, 0
+  index: -1
+idle_dl0001
+  rotate: false
+  xy: 35, 1
+  size: 32, 50
+  orig: 32, 50
+  offset: 0, 0
+  index: -1
+idle_dl0002
+  rotate: false
+  xy: 69, 1
+  size: 32, 50
+  orig: 32, 50
+  offset: 0, 0
+  index: -1
+idle_dl0003
+  rotate: false
+  xy: 103, 1
+  size: 32, 50
+  orig: 32, 50
+  offset: 0, 0
+  index: -1
+dead_dl0000
+  rotate: false
+  xy: 137, 11
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1

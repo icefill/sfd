@@ -1,0 +1,9 @@
+{
+	"name":"str_up_potion",
+	"type":"disposable_item",
+	"disposable":true,
+	"equip_action":"Str up",
+	"direction_rotation":[0,0,0,0],
+	"sprites_name":"yello_potion",
+	"item_type":4,
+}

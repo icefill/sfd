@@ -1,0 +1,12 @@
+{
+	"name":"Proto",
+	"equipment_name":[null,null,"axe1","axe1",null,null],
+	"item_name":[null,null,null,null,null,
+				 null,null,null,null,null],	
+	"type":"char",
+	"job":"knight",
+	"sprites_name":"basic",
+	"equippable":true,
+	"level":1
+	
+}

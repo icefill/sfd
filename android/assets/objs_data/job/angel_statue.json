@@ -1,0 +1,11 @@
+{
+	"job_name":"angel_statue",
+	"type":"wall",
+	"default_sprites":"angel_statue",
+	"description":"Bummer...",
+	"hp_modifier":[20,30],
+	"ability_count":0,
+	"adjust_color":true,
+	"no_direction":true
+    	
+}

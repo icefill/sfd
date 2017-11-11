@@ -1,0 +1,11 @@
+{
+	"name":"Spike",
+	"equipment_name":["helm1","armor1","short_sword","shield2",null,null],
+	"item_name":[null,null,null,null,null,
+				 null,null,null,null,null],	
+	"type":"char",
+	"job":"paladin",
+	"sprites_name":"basic",
+	"equippable":true,
+	"level":1
+}

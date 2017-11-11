@@ -1,0 +1,10 @@
+{
+	"name":"healing_potion_10",
+	"type":"disposable_item",
+	"disposable":true,
+	"equip_action":"Minor healing potion",
+	"direction_rotation":[0,0,0,0],
+	"sprites_name":"red_potion",
+	"item_type":4,
+	"price":50
+}

@@ -1,0 +1,27 @@
+{
+	"job_name":"skeleton_mage",
+	"type":"character",
+	"ai_type":"ranged",
+	"default_sprites":"skeleton",
+	"description":"Bummer...",
+		"str_modifier":[0,1],
+	"base_str":0,
+	"dex_modifier":[1,2],
+	"base_dex":0,
+	"int_modifier":[0,1],
+	"base_int":4,
+	"hp_modifier":[1,2],
+	"base_hp":8,
+	"equipments_for_level":[
+		{
+			"equipment_names":[
+				["hood1",null,"staff4",null,null,null],
+				["hood1",null,"staff3",null,null,null]
+			]
+		}
+	],
+	"ability_name":["Weak Burn","Acidball","Decay"],
+	"move_ability":"Move",
+	"dead_ability":"undead_revive",
+	"ability_count":2
+}

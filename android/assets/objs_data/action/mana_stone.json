@@ -1,0 +1,38 @@
+{
+	"action_name":"Mana stone",
+	"icon_name":"depend",
+	"description":"Increase mana",
+	"action_type":"item",
+	"target_empty_contain":true,
+	"center_contain":true,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"obj_block":true,
+	"targeting_min_range":0,
+	"targeting_max_range":0,
+	"targeting_type":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":true,
+	"splash_center_contain":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"required_level":3,
+	"motions":[
+		{
+			"pre_motions":["show_selected_item"],
+			"motions":[],
+	 		"hit_motions":[],
+	 		"status_change":
+	 		{
+	 			"status_type":"mana_change",
+	 			"effect":[
+	 				{"amount":3,"accuracy":300}
+	 			]
+	 		}
+	 		
+	 	}
+	]
+}

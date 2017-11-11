@@ -1,0 +1,26 @@
+{
+	"job_name":"goblin_shaman",
+	"type":"character",
+	"ai_type":"ranged",
+	
+	"default_sprites":"goblin",
+	"description":"Bummer...",
+		"str_modifier":[0,1],
+	"base_str":0,
+	"dex_modifier":[1,2],
+	"base_dex":0,
+	"int_modifier":[0,1],
+	"base_int":4,
+	"hp_modifier":[1,2],
+	"base_hp":15,
+	"equipments_for_level":[
+		{
+			"equipment_names":[
+				[null,null,"staff1",null,null,null],
+			]
+		}
+	],
+	"ability_name":["Heal","Weak Burn"],
+	"move_ability":"Move",
+	"ability_count":2
+}

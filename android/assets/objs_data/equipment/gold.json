@@ -1,0 +1,10 @@
+{
+	"name":"gold",
+	"type":"disposable_item",
+	"disposable":true,
+	"equip_action":"Mana stone",
+	"direction_rotation":[0,0,0,0],
+	"sprites_name":"gold",
+	"item_type":4,
+	"n":10
+}

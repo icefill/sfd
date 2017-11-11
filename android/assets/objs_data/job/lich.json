@@ -1,0 +1,26 @@
+{
+	"job_name":"lich",
+	"type":"character",
+	"ai_type":"ranged",
+	
+	"default_sprites":"skeleton",
+	"description":"Bummer...",
+		"str_modifier":[0,1],
+	"base_str":0,
+	"dex_modifier":[1,2],
+	"base_dex":0,
+	"int_modifier":[0,1],
+	"base_int":4,
+	"hp_modifier":[1,2],
+	"base_hp":30,
+	"equipments_for_level":[
+		{
+			"equipment_names":[
+				["lich_crown","robe7","staff7",null,null,null],
+			]
+		}
+	],
+	"ability_name":["Acidball","Decay","Summon skeleton"],
+	"move_ability":"Move",
+	"ability_count":2
+}

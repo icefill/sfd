@@ -1,0 +1,12 @@
+{
+	"action_name":"max hire up",
+	"short_name":"hire up",
+	"icon_name":"hire_novice",
+	"description":"increase Max hire by 1",
+	"action_type":"passive",
+	"motions":[
+		{
+	 	"motions":["max_hire_up"],
+	 	}
+	]
+}

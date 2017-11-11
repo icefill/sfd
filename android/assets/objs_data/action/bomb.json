@@ -1,0 +1,40 @@
+{
+	"action_name":"Bomb",
+	"short_name":"Bomb",
+	"icon_name":"explosion",
+	"description":"make explosion\n near caster,\n knock back nearby enemies.",
+	"action_type":"item",
+	"ai_type":"ranged",
+	"target_empty_contain":true,
+	"center_contain":false,
+	"splash_center_contain":true,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_max_range":5,
+	"targeting_type":0,
+	"splash_max_range":1,
+	"splash_type":0,
+	"self_targeting":false,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"required_level":1,
+	"cool_time":3,
+	"price":80,
+	"motions":[
+		{
+		"pre_motions":["basic_attack","throw_bomb"],
+	 	"motions":["explosion_effect"],
+	 	"hit_motions":["fire_hit","move_scatter"],
+	 	"status_change":
+	 	{
+	 		"status_type":"magic_damage",
+	 		"effect":[
+	 			{"amount":8,"accuracy":75}
+	 		]
+	 	}
+	 	}
+	]
+}

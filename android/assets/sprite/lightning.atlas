@@ -1,0 +1,26 @@
+
+lightning.png
+format: RGBA8888
+filter: MipMapNearestNearest,MipMapNearestNearest
+repeat: none
+lightning_m
+  rotate: false
+  xy: 1, 1
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+lightning_l
+  rotate: false
+  xy: 33, 1
+  size: 15, 30
+  orig: 15, 30
+  offset: 0, 0
+  index: -1
+lightning_r
+  rotate: false
+  xy: 50, 1
+  size: 15, 30
+  orig: 15, 30
+  offset: 0, 0
+  index: -1

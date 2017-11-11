@@ -1,0 +1,12 @@
+{
+	"name":"bow3",
+	"type":"bow",
+	"sprites_name":"bow3",
+		"direction_rotation":[270,270,-33,213],
+		"two_handed":true,
+"body_color":null,
+	"item_type":-3,
+	"price":200,
+	"status":{"STR_MODIFIER":0,"DEX_MODIFIER":0,"INT_MODIFIER":0,"HP_MODIFIER":0,
+			"MIN_ATTACK":5,"MAX_ATTACK":6,"DEFENSE":0,"ACCURACY":65,"CRITICAL":10}
+}

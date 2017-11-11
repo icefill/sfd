@@ -1,0 +1,41 @@
+{
+	"action_name":"Meteor",
+	"icon_name":"meteor",
+	"description":"summon meteor",
+	"action_type":"fire_magic",
+	"action_level":3,
+	"ai_type":"ranged",
+	"target_empty_contain":true,
+	"friendly_contain":true,
+	"center_contain":false,
+	"splash_center_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_max_range":5,
+	"targeting_type":0,
+	"splash_max_range":2,
+	"splash_type":0,
+	"self_targeting":false,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"required_level":6,
+	"cool_time":2,
+	"mana_cost":3,
+	"price":400,
+	"motions":[
+		{
+		"pre_motions":["basic_attack","cast_meteor"],
+	 	"motions":["explosion_effect"],
+	 	"hit_motions":["fire_hit"],
+	 	"status_change":
+	 	{
+	 		"status_type":"magic_damage"
+	 		"effect":[
+	 			{"amount":10,"accuracy":85}
+	 		]
+	 	}
+	 	}
+	]
+}

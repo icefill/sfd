@@ -1,0 +1,30 @@
+{
+	"action_name":"Hire novice",
+	"icon_name":"hire_novice_sword",
+	"description":"Hire Novice. \n WARNING!!! YOU MUST HAVE ENOUGH HIRE POINT",
+	"action_type":"passive",
+	"need_hire":"true",
+	"target_empty_contain":true,
+	"friendly_contain":true,
+	"center_contain":true,
+	"splash_center_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_max_range":1,
+	"targeting_type":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":true,
+	"price":100,
+	"motions":[
+		{
+		"pre_motions":[],
+	 	"motions":["add_novice"],
+	 	"hit_motions":null
+	 	}
+	]
+}

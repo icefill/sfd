@@ -1,0 +1,11 @@
+{
+	"name":"armor1",
+	"type":"heavy_armor",
+	"sprites_name":"armor1",
+	"direction_rotation":[0,0,0,0],
+	"body_color":[0.5,0.5,0.5,1]
+	"item_type":1,
+	"price":100,
+	"status":{"STR_MODIFIER":0,"DEX_MODIFIER":-3,"INT_MODIFIER":0,"HP_MODIFIER":6,"HP_MODIFIER_H":9,
+			"DEFENSE":0,"ACCURACY":0}
+}

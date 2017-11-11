@@ -1,0 +1,43 @@
+{
+	"action_name":"Getoverhere",
+	"icon_name":"chain",
+	"short_name":"pull",
+	"description":"drag enemy with chain",
+	"action_type":"item",
+	"target_empty_contain":true,
+	"center_contain":false,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"obj_block":true,
+	"targeting_min_range":1,
+	"targeting_max_range":7,
+	"targeting_type":1,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":true,
+	"splash_center_contain":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"required_level":3,
+	"motions":[
+		{
+			"pre_motions":["basic_attack","throw_chain"],
+			"motions":[],
+	 		"hit_motions":["blood_effect","move_foward"],
+	 		"status_change":
+	 		{
+	 			"turn_effect":"Seal Magic",
+	 			"status_type":"nuff",
+	 			"effect":[
+	 				{"accuracy":100,"duration":0,"restricted_ability_type":["fire_magic","lightning_magic","acid_magic"]},
+	 				{"accuracy":100,"duration":0,"restricted_ability_type":["fire_magic","lightning_magic","acid_magic"]},
+	 				{"accuracy":100,"duration":0,"restricted_ability_type":["fire_magic","lightning_magic","acid_magic"]},
+	 				{"accuracy":100,"duration":0,"restricted_ability_type":["fire_magic","lightning_magic","acid_magic"]},
+	 				{"accuracy":100,"duration":0,"restricted_ability_type":["fire_magic","lightning_magic","acid_magic"]},
+	 			]
+	 		}
+		}
+	]
+}

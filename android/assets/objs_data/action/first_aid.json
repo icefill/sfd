@@ -1,0 +1,38 @@
+{
+	"action_name":"First aid",
+	"short_name":"f aid",
+	"icon_name":"first_aid",
+	"description":"Heals a unit\n near caster.",
+	"action_type":"holy_magic",
+	"target_empty_contain":true,
+	"friendly_contain":true,
+	"center_contain":true,
+	"splash_center_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_max_range":1,
+	"targeting_type":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":true,
+	"mana_cost":2,
+	"motions":[
+		{
+		"pre_motions":["basic_attack"],
+	 	"motions":["cast_heal"],
+	 	"hit_motions":null,
+	 	"status_change":
+	 	{
+	 		"status_type":"healing",
+	 		"effect":[
+	 			{"amount":12,"accuracy":100},
+	 			{"amount":18,"accuracy":100}
+	 		]
+	 	}
+	 	}
+	]
+}

@@ -1,0 +1,47 @@
+{
+	"action_name":"Fireball",
+	"icon_name":"fire_ball",
+	"short_name":"f ball",
+	"description":"Cast Ball of Fire \n in straight direction.",
+	"action_type":"fire_magic",
+	"ai_type":"ranged",
+	"action_level":2,
+	"target_empty_contain":true,
+	"center_contain":false,
+	"friendly_contain":true,
+	"enemy_contain":true,
+	"obj_block":true,
+	"targeting_min_range":1,
+	"targeting_max_range":5,
+	"targeting_type":1,
+	"splash_max_range":1,
+	"splash_type":0,
+	"self_targeting":true,
+	"splash_center_contain":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":false,
+	"required_level":1,
+	"mana_cost":3,
+	"price":180,
+	"motions":[
+		{
+			"pre_motions":["basic_cast","cast_fireball"],
+	 		"motions":["explosion_effect"],
+	 		"hit_motions":["fire_hit","move_scatter"],
+	 		"status_change":
+	 		{
+	 			"status_type":"magic_damage",
+	 			"effect":[
+	 				{"amount":8,"accuracy":82},
+	 				{"amount":12,"accuracy":85},
+	 				{"amount":14,"accuracy":87},
+	 				{"amount":16,"accuracy":89},
+	 				{"amount":18,"accuracy":95},
+	 				{"amount":22,"accuracy":98},
+	 			]
+	 		}
+	 	}
+	]
+}

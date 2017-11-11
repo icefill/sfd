@@ -1,0 +1,11 @@
+{
+	"name":"axe3",
+	"type":"bladed_weapon",
+	"sprites_name":"axe3",
+		"direction_rotation":[90,90,90,90],
+"body_color":null,
+	"item_type":2,
+	"price":210,
+	"status":{"STR_MODIFIER":3,"DEX_MODIFIER":0,"INT_MODIFIER":0,"HP_MODIFIER":0,
+			"MIN_ATTACK":6,"MAX_ATTACK":8,"DEFENSE":0,"ACCURACY":65,"CRITICAL":18}
+}

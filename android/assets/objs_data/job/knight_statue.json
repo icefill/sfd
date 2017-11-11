@@ -1,0 +1,12 @@
+{
+	"job_name":"knight_statue",
+	"type":"wall",
+	"default_sprites":"knight_statue",
+	"description":"Bummer...",
+	"hp_modifier":[20,30],
+	"base_hp":50,
+	"adjust_color":true,
+	"ability_count":0,
+	"no_direction":true
+    	
+}

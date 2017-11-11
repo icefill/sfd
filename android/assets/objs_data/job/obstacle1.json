@@ -1,0 +1,12 @@
+{
+	"job_name":"obstacle1",
+	"type":"obstacle",
+	"default_sprites":"obstacle1",
+	"description":"Bummer...",
+	"hp_modifier":[2,3],
+	"base_hp":2,
+	"ability_count":0,
+    "dead_ability":"explode",
+    "dangerous":true,
+    "no_direction":true	
+}

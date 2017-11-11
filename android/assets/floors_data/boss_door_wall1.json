@@ -1,0 +1,9 @@
+{
+	"name":"door_wall1",
+	"atlas":"sprite/floor1.atlas",
+	"n_of_tiles":1,
+	"wall_atlas":"sprite/door_wall1.atlas",
+	"n_of_wall_tiles":1,
+	"is_wall":true,
+	"description":"Typical wall.",
+}

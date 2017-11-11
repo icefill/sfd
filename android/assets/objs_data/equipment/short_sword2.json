@@ -1,0 +1,12 @@
+{
+	"name":"short_sword2",
+	"type":"bladed_weapon",
+	"sprites_name":"short_sword2",
+	"direction_rotation":[90,90,90,90],
+	"body_color":null,
+	"price":60,
+	"item_type":2,
+	"status":{"STR_MODIFIER":0,"DEX_MODIFIER":0,"INT_MODIFIER":0,"HP_MODIFIER":0,
+			"MIN_ATTACK":4,"MAX_ATTACK":5,"MAX_ATTACK_H":7,"DEFENSE":0,"ACCURACY":83,
+			"CRITICAL":10}
+}

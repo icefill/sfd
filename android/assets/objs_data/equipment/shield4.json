@@ -1,0 +1,11 @@
+{
+	"name":"shield4",
+	"type":"shield",
+	"sprites_name":"shield4",
+	"direction_rotation":[0,0,0,0],
+	"body_color":null,
+	"item_type":3,
+	"price":200,
+	"status":{"STR_MODIFIER":0,"DEX_MODIFIER":0,"INT_MODIFIER":0,"HP_MODIFIER":7,
+			"DEFENSE":0,"ACCURACY":0,"BLOCK":20,"BLOCK_H":23}
+}

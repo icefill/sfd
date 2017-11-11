@@ -1,0 +1,10 @@
+{
+	"name":"bomb",
+	"type":"disposable_item",
+	"disposable":true,
+	"equip_action":"Bomb",
+	"direction_rotation":[0,0,0,0],
+	"sprites_name":"bomb",
+	"price":80,
+	"item_type":4,
+}

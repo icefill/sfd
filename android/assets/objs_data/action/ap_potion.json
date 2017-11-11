@@ -1,0 +1,38 @@
+{
+	"action_name":"AP potion",
+	"short_name":"AP ptn",
+		"icon_name":"potion",
+	"description":"increase AP by 1",
+	"action_type":"item",
+	"target_empty_contain":true,
+	"friendly_contain":true,
+	"center_contain":true,
+	"splash_center_contain":true,
+	"enemy_contain":true,
+	"obj_block":false,
+	"targeting_max_range":1,
+	"targeting_type":0,
+	"splash_max_range":0,
+	"splash_type":0,
+	"self_targeting":true,
+	"splash_empty_contain":true,
+	"splash_friendly_contain":true,
+	"splash_enemy_contain":true,
+	"splash_obj_block":true,
+	"price":80,
+	"motions":[
+		{
+		"pre_motions":["show_selected_item"],
+	 	"motions":["cast_heal"],
+	 	"hit_motions":null,
+	 	"status_change":
+	 		{
+	 			"turn_effect":"AP up",
+	 			"status_type":"magic_damage",
+	 			"effect":[
+	 				{"accuracy":100,"duration":1,"initial_status_change":{"ABILITY_COUNT":1}}
+	 			]
+	 		}
+	 		}
+	]
+}
