@@ -15,7 +15,7 @@ import com.icefill.game.AreaComputer;
 import com.icefill.game.Assets;
 import com.icefill.game.Constants;
 import com.icefill.game.Global;
-import com.icefill.game.NonRepetRandomizer;
+import com.icefill.game.NonRepeatRandomizer;
 import com.icefill.game.Randomizer;
 import com.icefill.game.StatusTuple;
 import com.icefill.game.Team;
@@ -87,7 +87,7 @@ public class DungeonGroup extends Group  implements Constants
   
   public AreaComputer area_computer;
   
-  GFSMActor fsm;
+  GFSM fsm;
   
   MapActor current_map;
   private RoomGroup current_room;
@@ -142,7 +142,7 @@ public class DungeonGroup extends Group  implements Constants
 	this.initial_room=dungeon_seed.initial_room;
 	
     //this.Global.dungeon = this;
-    this.fsm = new GFSMActor(this);
+    this.fsm = new GFSM(this);
     Global.gfs=fsm;
     Global.dungeon=this;
     //this.transparent_list = new LinkedList();
@@ -652,7 +652,7 @@ public class DungeonGroup extends Group  implements Constants
 		}
 	}
 
-   public GFSMActor getGFSM() {
+   public GFSM getGFSM() {
 	   return fsm;
    }
 
@@ -795,7 +795,7 @@ public class DungeonGroup extends Group  implements Constants
     	}
     	
     	
-    	NonRepetRandomizer randomizer= new NonRepetRandomizer(dungeon_size[0],dungeon_size[1]);
+    	NonRepeatRandomizer randomizer= new NonRepeatRandomizer(dungeon_size[0],dungeon_size[1]);
     	int rn;
     	for (int i=0;i<dungeon_size[2];i++) {
     		randomizer.reset();
@@ -1361,7 +1361,7 @@ public class DungeonGroup extends Group  implements Constants
 	    	int monster_x=0;
 	    	int monster_y=0;
 	    	int iter=0;
-	    	NonRepetRandomizer randomizer= new NonRepetRandomizer(x_min,x_max,y_min,y_max);
+	    	NonRepeatRandomizer randomizer= new NonRepeatRandomizer(x_min,x_max,y_min,y_max);
 
 	    	for (int i=0;i<monster_n;i++) {
 	    		int rn= randomizer.nextInt();
@@ -1522,7 +1522,7 @@ public class DungeonGroup extends Group  implements Constants
 	    	if (has_door[1]) x_max--;
 	    	if (has_door[2]) y_min++; 
 	    	if (has_door[3]) x_min++;
-	    	NonRepetRandomizer randomizer= new NonRepetRandomizer(x_min,x_max,y_min,y_max);
+	    	NonRepeatRandomizer randomizer= new NonRepeatRandomizer(x_min,x_max,y_min,y_max);
 
 	    	for (int i=0;i<n_in_room;i++) {
 	    		int rn=randomizer.nextInt();

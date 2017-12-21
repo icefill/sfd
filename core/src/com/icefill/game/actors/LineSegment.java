@@ -38,9 +38,6 @@ public class LineSegment extends Actor{
 		
 	}
 	public void draw(Batch batch, float delta) {
-		//batch.draw(middle, getX()-thickness/20f-15, getY()-thickness/10f-15, 15, 15, 30, 30, length/30f, thickness/10f, getRotation());
-		//batch.draw(left, start_point.x-thickness/20f-15, start_point.y-thickness/10f-15, 15, 15, 15, 30, thickness/10f, thickness/10f, getRotation());
-		//batch.draw(right, end_point.x-thickness/20f, end_point.y-thickness/10-15f, 0, 15, 15, 30, thickness/10f, thickness/10f, getRotation());
 		batch.setBlendFunction(GL20.GL_SRC_ALPHA,GL20.GL_SRC_ALPHA);
 		batch.setColor(.5f,.5f,1f,1f);
 		
@@ -53,9 +50,6 @@ public class LineSegment extends Actor{
 		
 	}
 	public void draw(Batch batch, float delta,float r,float g,float b,float a) {
-		//batch.draw(middle, getX()-thickness/20f-15, getY()-thickness/10f-15, 15, 15, 30, 30, length/30f, thickness/10f, getRotation());
-		//batch.draw(left, start_point.x-thickness/20f-15, start_point.y-thickness/10f-15, 15, 15, 15, 30, thickness/10f, thickness/10f, getRotation());
-		//batch.draw(right, end_point.x-thickness/20f, end_point.y-thickness/10-15f, 0, 15, 15, 30, thickness/10f, thickness/10f, getRotation());
 		batch.setBlendFunction(GL20.GL_SRC_ALPHA,GL20.GL_ONE);
 		batch.setColor(r,g,b,a);
 		

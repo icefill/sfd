@@ -20,12 +20,12 @@ import java.util.LinkedList;
 /**
  * Created by Byungpil on 2017-01-21.
  */
-public class GFSMActor {
+public class GFSM {
     private DungeonGroup dungeonGroup;
     LinkedList<Integer> states_stack;
     int seq = 0;
     int sub_seq = 0;
-    int current_team = 0;
+    public int current_team = 0;
     int click_counter = 0;
     int initial_team = 1;
     int clicked_before_xx = -1;
@@ -40,7 +40,7 @@ public class GFSMActor {
     int pause_index = 0;
     AIController ai_controller;
 
-    public GFSMActor(DungeonGroup dungeonGroup) {
+    public GFSM(DungeonGroup dungeonGroup) {
         this.dungeonGroup = dungeonGroup;
         this.states_stack = new LinkedList<Integer>();
         ai_controller = new AIController(dungeonGroup.area_computer);

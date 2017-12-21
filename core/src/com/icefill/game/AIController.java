@@ -92,7 +92,7 @@ public class AIController {
 		  
 		  private float computeAttackWeight(AreaCell temp,int attack_range)
 		  {	  
-			  float to_return=9999999; 
+			  float to_return=Float.MAX_VALUE;
 			  for (ObjActor obj:getOpponentTeam(Global.getSelectedObj()))
 			  {
 				 to_return= Math.min(obj.getOneDistance(temp),to_return);
@@ -110,7 +110,7 @@ public class AIController {
 					  to_return+=obj.getOneDistance(temp);
 			  }
 			  
-			  float to_return2=9999999;
+			  float to_return2=Float.MAX_VALUE;
 			  for (ObjActor obj:getOpponentTeam(Global.getSelectedObj()))
 			  {
 				 to_return2= Math.min(obj.getOneDistance(temp),to_return2);
@@ -292,7 +292,7 @@ public class AIController {
 			  opponent= opponent_team.get(index);
 			  int initial_distance=opponent.getOneDistance(selected_obj);
 			  LinkedList<AreaCell> temp_list= area_computer.computeArea(move_action,selected_obj);
-			  int min_distance=90000;
+			  int min_distance=Integer.MAX_VALUE;
 			  int distance=0;
 			  AreaCell to_return=null; 
 			  for (AreaCell temp_cell :temp_list) {

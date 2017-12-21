@@ -1,47 +1,18 @@
 package com.icefill.game.actors;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Random;
-
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Window;
-import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.icefill.game.Assets;
 import com.icefill.game.Global;
-import com.icefill.game.Job;
-import com.icefill.game.NonRepetRandomizer;
+import com.icefill.game.NonRepeatRandomizer;
 import com.icefill.game.Randomizer;
-import com.icefill.game.actors.ObjActor.Status;
-import com.icefill.game.actors.actionActors.AbilityActor;
-import com.icefill.game.actors.actionActors.ActionActor;
-import com.icefill.game.actors.actionActors.ActionActor.ActionContainer;
-import com.icefill.game.actors.devices.ItemActor;
-import com.icefill.game.extendedActions.ExtendedActions;
-import com.icefill.game.screens.GameScreen;
 
 public class BattleWinWindow extends BasicWindow{
 	
@@ -68,7 +39,7 @@ public class BattleWinWindow extends BasicWindow{
 	String hero1;
 	String hero2;
 	String magic_item;
-	NonRepetRandomizer rn= new NonRepetRandomizer(5);
+	NonRepeatRandomizer rn= new NonRepeatRandomizer(5);
     
 	
 	public String getHero(int i)

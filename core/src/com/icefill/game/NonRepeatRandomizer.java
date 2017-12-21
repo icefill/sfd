@@ -4,18 +4,18 @@ import java.util.Collections;
 import java.util.LinkedList;
 
 
-public class NonRepetRandomizer {
+public class NonRepeatRandomizer {
 		private LinkedList<LookupElt> look_up=new LinkedList<LookupElt>();
 		private int upper_bound;
 		private int n;
 		
-		public NonRepetRandomizer(int upper_bound) {
+		public NonRepeatRandomizer(int upper_bound) {
 			n=this.upper_bound=upper_bound;
 			for (int i=0;i<upper_bound;i++) {
 				look_up.add(new LookupElt(i));
 			}
 		}
-		public NonRepetRandomizer(int upper_bound1,int upper_bound2) {
+		public NonRepeatRandomizer(int upper_bound1, int upper_bound2) {
 			n=this.upper_bound=upper_bound1*upper_bound2;
 			for (int x=0;x<upper_bound1;x++) {
 				for (int y=0;y<upper_bound2;y++) {
@@ -24,7 +24,7 @@ public class NonRepetRandomizer {
 				}	
 			}
 		}
-		public NonRepetRandomizer(int lower_bound1,int upper_bound1,int lower_bound2,int upper_bound2) {
+		public NonRepeatRandomizer(int lower_bound1, int upper_bound1, int lower_bound2, int upper_bound2) {
 			n=this.upper_bound=(upper_bound1-lower_bound1)*(upper_bound2-lower_bound2);
 			for (int x=lower_bound1;x<upper_bound1;x++) {
 				for (int y=lower_bound2;y<upper_bound2;y++) {

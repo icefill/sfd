@@ -123,7 +123,7 @@ public class Assets {
     	manager.load("sprite/ability_indicator.png",Texture.class);
     	
         manager.finishLoading();
-        
+
         LoadFloorMap();
         //LoadWallMap();
         LoadObjSprites(obj_sprites_name_list);

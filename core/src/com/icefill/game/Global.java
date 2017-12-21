@@ -17,7 +17,7 @@ public class Global {
 	private static EquipActor selected_equip;
 	private static SlotActor selected_slot;
 	public static DragAndDrop drag_and_drop= new DragAndDrop();
-	public static GFSMActor gfs;
+	public static GFSM gfs;
 	public static DungeonGroup dungeon;
 	public static BasicScreen current_screen;
 	private static TooltipTable tool_tip;
