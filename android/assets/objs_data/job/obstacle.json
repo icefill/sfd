@@ -1,5 +1,5 @@
 {
-	"job_name":"obstacle2",
+	"job_name":"obstacle",
 	"type":"obstacle",
 	"default_sprites":"obstacle2",
 	"description":"Bummer...",

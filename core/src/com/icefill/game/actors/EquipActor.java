@@ -1,26 +1,19 @@
 package com.icefill.game.actors;
 
-import java.util.ArrayList;
-
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.icefill.game.Assets;
 import com.icefill.game.Constants;
-import com.icefill.game.Randomizer;
+import com.icefill.game.utils.Randomizer;
 import com.icefill.game.actors.actionActors.AbilityActor;
 import com.icefill.game.actors.actionActors.ActionActor.ActionContainer;
 import com.icefill.game.sprites.NonObjSprites;
-import com.icefill.game.sprites.ObjSprites;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;

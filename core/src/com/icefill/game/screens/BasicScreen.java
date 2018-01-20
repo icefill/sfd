@@ -114,16 +114,12 @@ public class BasicScreen
       this.zoom -= 0.01F;
       ((OrthographicCamera)this.camera).zoom = this.zoom;
       this.camera.update();
-
-      Gdx.app.log(SigmaFiniteDungeon.LOG, "!!!" + this.zoom);
     }
     else if ((Gdx.input.isKeyPressed(9)) && (this.zoom < 1.5D))
     {
       this.zoom += 0.01F;
       ((OrthographicCamera)this.camera).zoom = this.zoom;
       this.camera.update();
-
-      Gdx.app.log(SigmaFiniteDungeon.LOG, "@@@" + this.zoom);
     }
     this.stage.act(delta);
     this.ui_stage.act(delta);

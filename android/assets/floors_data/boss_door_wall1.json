@@ -5,5 +5,5 @@
 	"wall_atlas":"sprite/door_wall1.atlas",
 	"n_of_wall_tiles":1,
 	"is_wall":true,
-	"description":"Typical wall.",
+	"description":"Typical wall."
 }

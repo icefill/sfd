@@ -1,4 +1,4 @@
-package com.icefill.game;
+package com.icefill.game.utils;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -29,7 +29,7 @@ public class ObjSprites extends BasicSprites {
 	int shield_dir=0;
 	boolean sound_run;
 	Texture shadow;
-	Animation animation[][][];
+	public Animation[][][] animation;
 	boolean has_animation[];
 	int head_coord[][][][];
 	int body_coord[][][][];

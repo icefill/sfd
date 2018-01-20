@@ -3,15 +3,11 @@ package com.icefill.game.actors;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.FloatAction;
-import com.icefill.game.Assets;
-import com.icefill.game.Randomizer;
+import com.icefill.game.utils.Randomizer;
 
 public class Lightning extends Actor{
 	Vector2 start_point;

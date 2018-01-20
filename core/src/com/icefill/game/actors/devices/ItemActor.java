@@ -2,24 +2,19 @@ package com.icefill.game.actors.devices;
 
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.actions.RepeatAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.icefill.game.Assets;
 import com.icefill.game.Global;
-import com.icefill.game.Randomizer;
 import com.icefill.game.actors.AreaCell;
 import com.icefill.game.actors.DungeonGroup;
 import com.icefill.game.actors.EquipActor;
 import com.icefill.game.actors.ObjActor;
 import com.icefill.game.actors.RoomGroup;
 import com.icefill.game.extendedActions.ExtendedActions;
-import com.icefill.game.sprites.NonObjSprites;
-import com.icefill.game.sprites.ObjSprites;
 
 public class ItemActor extends DeviceActor{
 	EquipActor equip;

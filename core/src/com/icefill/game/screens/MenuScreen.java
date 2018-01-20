@@ -43,7 +43,8 @@ public class MenuScreen extends BasicScreen
     start_button.addListener(new ClickListener() {
       public void clicked(InputEvent event, float x, float y) {
     	Global.initializeTooltip();
-        game.setScreen(new GameScreen(game));
+       // game.setScreen(new GameScreen(game));
+        game.setScreen(new DungeonMakingScreen(game));
         
       }
     });

@@ -11,8 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.icefill.game.Assets;
 import com.icefill.game.Global;
-import com.icefill.game.NonRepeatRandomizer;
-import com.icefill.game.Randomizer;
+import com.icefill.game.utils.NonRepeatRandomizer;
+import com.icefill.game.utils.Randomizer;
 
 public class BattleWinWindow extends BasicWindow{
 	
@@ -32,7 +32,7 @@ public class BattleWinWindow extends BasicWindow{
 	
 	TextButton item_button;
 	TextButton magic_item_button;
-	
+
 	TextButton hero_button;
 	TextButton hero_button2;
 	BattleWinWindow self=this;
@@ -152,49 +152,14 @@ public class BattleWinWindow extends BasicWindow{
 	 	    	
 	    EquipActor relic;
 	    int i=Randomizer.nextInt(10);
-	    /*
-	    switch (i) {
-	    	case 0:
-	    		relic=new EquipActor("S#Getoverhere");
-	    		break;
-	    	case 1:
-	    		relic= new EquipActor("S#Burn");
-	    		break;
-	    	case 2:
-	    		relic= new EquipActor("S#Teleport");
-	    		break;
-	    	case 3:
-	    	case 4:
-	    	case 5:
-	    		relic= new EquipActor("healing_potion_10");
-	    		break;
-	    	case 6:
-	    		relic= new EquipActor("def_up_potion");
-	    		break;
-	    	case 7:
-	    		relic= new EquipActor("str_up_potion");
-	    		;break;
-	    	case 8:
-	    		relic= new EquipActor("mana_stone");
-	    		;break;
-	    	
-	    	default:
-	    		relic= new EquipActor("Bomb");
-	    		break;
-	    }
-	    */
+
 	    if (i<5) relic= new EquipActor(dungeon.item_pool.getItem(dungeon.room_zzz+1));
 	    else if (i<8) relic= new EquipActor(dungeon.equip_pool.getItem(dungeon.room_zzz+1));
 	    else relic= new EquipActor(dungeon.scroll_pool.getItem(dungeon.room_zzz+1));
 		if (relic!=null) {
 			int xx= dungeon.getCurrentMap().getCenterXX();
 			int yy= dungeon.getCurrentMap().getCenterYY();
-			AreaCell temp=dungeon.getCurrentRoom().getMap().getCell(xx, yy);
-			//ItemActor item= new ItemActor(relic,null);
 			dungeon.getCurrentRoom().setItem(xx,yy, relic,true);
-			
-			//temp.device.addAction(ExtendedActions.moveToParabolic(temp.getX(), temp.getY(), temp.getZ(), .5f));
-			//temp.device.addAction(Actions.rotateBy(360,.5f));
 		}
 		Global.gfs.pushState(10);
 		//getDungeon().getDeadEnemyList().clear();	      	  
@@ -236,38 +201,7 @@ public class BattleWinWindow extends BasicWindow{
 	    revive_button=new TextButton("Rivive", Assets.getSkin(), "default");
 	    revive_button.addListener(new ClickListener() {
 		      public void clicked(InputEvent event, float x, float y) {
-		    	  //getDungeon().getDeadEnemyList().clear();	      	  
-			  	/*	
-		    	  int i=1;
-		  		Iterator<ObjActor> itr= window.getDungeon().getDeadPlayerList().iterator();
-		  		while (itr.hasNext()) {
-		  			ObjActor temp =itr.next();
-		  			//ObjActor temp= dungeon.getDeadlist().get(itr.next());
-		  			if (temp.getTeam() ==0) {
-		  				if (window.getDungeon().getCurrentRoom().setActor(temp)) {
-		  					temp.reviveAction(window.getDungeon());
-		  					temp.status.current_hp=temp.status.total_status.HP/5;
-		  					ProjectileActor prj= new ProjectileActor("particles/particle_heal.json",null,100,new Color(.0f,.0f,.3f,1f));
-		  					prj.setPosition(temp.getX(), temp.getY());
-		  					prj.setZ(50);
-		  					window.getDungeon().getCurrentRoom().addActor(prj);
-		  					prj.addAction(
-		  							Actions.sequence(
-		  									prj.startAction()
-		  									,Actions.delay(.5f)
-		  									,prj.deActivateAction()
-		  									
-		  									//,prj.endActionSubAction()
-		  									//,Actions.run(new Runnable() {public void run() {prj.remove();}})
-		  							)
-		  					);
-		  					itr.remove();
-		  				}
-		  				i++;
-		  				
-		  			}
-		  		}
-		  		*/
+
 		  		window.hideTable();
 					window.getDungeon().setVisible(true);
 					

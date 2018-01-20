@@ -11,6 +11,7 @@ import com.icefill.game.actors.*
 import com.icefill.game.actors.Function
 import com.icefill.game.actors.devices.SpikeTrapActor
 import com.icefill.game.extendedActions.ExtendedActions
+import com.icefill.game.utils.Randomizer
 import java.util.*
 
 /**

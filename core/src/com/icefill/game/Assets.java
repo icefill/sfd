@@ -51,7 +51,6 @@ public class Assets {
     public static HashMap<String, Wall> wall_map = new HashMap<String,Wall>();
     public static HashMap<String, BasicSprites> obj_sprites_map =new HashMap<String,BasicSprites>();
     public static HashMap<String, BasicSprites> non_obj_sprites_map =new HashMap<String,BasicSprites>();
-	public static HashMap<String, ObjActor> obj_map= new HashMap<String, ObjActor>();
 	public static HashMap<String, Job> jobs_map= new HashMap<String, Job>();
 	public static HashMap<String, BasicActor> effects_map= new HashMap<String, BasicActor>();
 	public static HashMap<String, ActionActor> actions_map = new HashMap<String, ActionActor>();

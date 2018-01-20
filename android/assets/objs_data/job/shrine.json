@@ -3,7 +3,7 @@
 	"type":"wall",
 	"default_sprites":"shrine",
 	"description":"Bummer...",
-	"hp_modifier":[20,30],
+	"hp_modifier":[200,300],
 	"ability_count":0,
 	"adjust_color":true
     	

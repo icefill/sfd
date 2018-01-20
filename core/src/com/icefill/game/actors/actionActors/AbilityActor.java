@@ -1,27 +1,18 @@
 package com.icefill.game.actors.actionActors;
 
 
-import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.ArrayList;
-import java.util.Random;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.scenes.scene2d.Action;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.icefill.game.Assets;
 import com.icefill.game.Global;
-import com.icefill.game.Randomizer;
+import com.icefill.game.utils.Randomizer;
 import com.icefill.game.actors.AreaCell;
-import com.icefill.game.actors.BasicActor;
 import com.icefill.game.actors.DungeonGroup;
 import com.icefill.game.actors.EffectActor;
 import com.icefill.game.actors.EquipActor;

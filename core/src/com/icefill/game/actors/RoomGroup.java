@@ -2,48 +2,24 @@ package com.icefill.game.actors;
 
 
 
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
 import java.util.Comparator;
 
-import com.icefill.game.Constants;
-import com.icefill.game.Global;
-import com.icefill.game.Randomizer;
-import com.icefill.game.Team;
+import com.icefill.game.*;
 
 import java.util.LinkedList;
 
-import box2dLight.RayHandler;
-import box2dLight.PointLight;
-
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Pixmap.Format;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Sort;
-import com.icefill.game.Assets;
-import com.icefill.game.actors.DungeonGroup.LightInformation;
-import com.icefill.game.actors.actionActors.AbilityActor;
-import com.icefill.game.actors.devices.ChestActor;
-import com.icefill.game.actors.devices.DeviceActor;
-import com.icefill.game.actors.devices.ItemActor;
-import com.icefill.game.actors.devices.TrapActor;
+import com.icefill.game.actors.devices.*;
 import com.icefill.game.extendedActions.ExtendedActions;
 import com.icefill.game.sprites.NonObjSprites;
+import com.icefill.game.utils.Randomizer;
+import com.icefill.game.utils.StaticFunctions;
+
+import static com.icefill.game.utils.StaticFunctions.chooseAmong;
+
 public class RoomGroup extends Group implements Constants
 {
 	//position of room in dungeon
@@ -56,138 +32,139 @@ public class RoomGroup extends Group implements Constants
 	boolean[] has_door;
 	ObjActor[][] obj_array;
 	Sort sort=new Sort();
-	RayHandler ray_handler;
 	Team enemy_list;
 	Team player_list;
 	MapActor map;
-	RoomGroup obj_group;
-	//ArrayList<PointLight> light_list;
-	//ArrayList<TorchActor> torch_list;
-	//ArrayList<DungeonGroup.LightInformation>lights;
 	NonObjSprites glow;
 	NonObjSprites light_emitter;
 	boolean visited;
 	boolean boss_room;
-	private float elapsed_time=0f;
 	AComparator comp= new AComparator();
 	
 	
 
-	public RoomGroup(int room_xx, int room_yy,int room_zz
-			,DungeonGroup.DungeonSeed dungeon_seed
-			){
+	public RoomGroup(RoomShapeType roomShapeType, int room_xx, int room_yy, int room_zz, DungeonGroup.DungeonSeed dungeon_seed) {
 				this.has_door=dungeon_seed.room_array[room_xx][room_yy][room_zz].has_door;
 				this.room_type=dungeon_seed.room_array[room_xx][room_yy][room_zz].room_type;
 				this.room_xx=room_xx;this.room_yy=room_yy;
 				this.room_zz=room_zz;
 				this.dungeon_level=room_zz+1;
-				this.map=new MapActor(
+				this.map=new MapActor(roomShapeType,
 						this,
 						dungeon_seed.room_array[room_xx][room_yy][room_zz].room_size
-						, dungeon_seed.floor_list
-						, dungeon_seed.wall_list
-						, dungeon_seed.room_array[room_xx][room_yy][room_zz].floor_index_array
-						, dungeon_seed.room_array[room_xx][room_yy][room_zz].device_index_array
+						, dungeon_seed.room_array[room_xx][room_yy][room_zz].array
 						,dungeon_seed.item_pool,dungeon_seed.equip_pool,dungeon_seed.scroll_pool
 						,dungeon_level
 						);
-				//this.ray_handler=ray_handler;
-				/*
-				if (map.getLightsInformation()!= null)
-					lights=map.getLightsInformation();
-				*/
+
 				//make obj list
 				
 				enemy_list= new Team();
 				int controlled;
 				this.room_size=dungeon_seed.room_array[room_xx][room_yy][room_zz].room_size;
-				
+				DungeonGroup.RoomSeed roomSeed= dungeon_seed.room_array[room_xx][room_yy][room_zz];
 				obj_array= new ObjActor[room_size[0]][room_size[1]];
 				
 				for (int yy=0;yy<room_size[1];yy++) {
 					for (int xx=0;xx<room_size[0];xx++) {
-						if (dungeon_seed.room_array[room_xx][room_yy][room_zz].obj_index_array[xx][yy]>0){// add Monster
-							DungeonGroup.ObjListElt temp_obj;
-							float x=map.mapToScreenCoordX(xx,yy);
-							float y=map.mapToScreenCoordY(xx,yy);
-							ObjActor temp;
-							//Controll
-								controlled=CONTROLLED_AI;
-								
-							if (dungeon_seed.room_array[room_xx][room_yy][room_zz].obj_index_array[xx][yy]==10) {
-								
-								temp_obj=dungeon_seed.boss_pool.getMonster(dungeon_level);
-								temp=new ObjActor(xx,yy,temp_obj.team,temp_obj.level,Assets.jobs_map.get(temp_obj.job),controlled);
-								enemy_list.setLeader(temp);
-								boss_room=true;
+						float x=map.mapToScreenCoordX(xx,yy);
+						float y=map.mapToScreenCoordY(xx,yy);
+						ObjActor temp;
+
+						switch (OBJ.toEnum(roomSeed.array[xx][yy])) {
+							case ANGEL 			: break;
+							case WALL			: {
+							break;
 							}
-							else {
+							case EXPLOSIVE		: {
+								temp=new ObjActor(xx,yy,-1,1,Assets.jobs_map.get(chooseAmong(dungeon_seed.explosive_name_list).job),CONTROLLED_AI);
+								obj_array[xx][yy]=temp;
+								temp.setX(x);
+								temp.setY(y+map.getCell(xx,yy).getZ());
+								this.addActor(temp);
+								break;
+							}
+							case OBSTACLE		: {
+								DungeonGroup.ObjListElt elt;
+								if (Randomizer.hitInRatio(.3f))
+									elt= chooseAmong(dungeon_seed.undest_obs_info_list);
+								else
+									elt= chooseAmong(dungeon_seed.dest_obs_info_list);
+								temp=new ObjActor(xx,yy,elt.team,elt.level,Assets.jobs_map.get(elt.job),CONTROLLED_AI);
+								obj_array[xx][yy]=temp;
+								temp.setX(x);
+								temp.setY(y+map.getCell(xx,yy).getZ());
+								this.addActor(temp);
+								break;
+							}
+							case FIRE_BOWL		: {
+									temp=new ObjActor(xx,yy,-1,1,Assets.jobs_map.get(roomShapeType.fire_bowl_name),CONTROLLED_AI);
+								obj_array[xx][yy]=temp;
+								temp.setX(x);
+								temp.setY(y+map.getCell(xx,yy).getZ());
+								this.addActor(temp);
+								break;
+							}
+							case DOOR			: break;
+							case TRAP			: break;
+							case SHOP_CAT		: break;
+							case SHRINE			: break;
+							case MONSTER		: {
+								DungeonGroup.ObjListElt temp_obj;
+								controlled=CONTROLLED_AI;
 								temp_obj=dungeon_seed.monster_pool.getMonster(dungeon_level);
 								temp=new ObjActor(xx,yy,temp_obj.team,temp_obj.level,Assets.jobs_map.get(temp_obj.job),controlled);
-								
+								temp.setDirection(com.icefill.game.utils.Randomizer.nextInt(0,3));
+								obj_array[xx][yy]=temp;
+								temp.setX(x);
+								temp.setY(y+map.getCell(xx,yy).getZ());
+								enemy_list.add(temp);
+								this.addActor(temp);
+								break;
 							}
-									//obj_list.get(obj_index_array[xx][yy]);
-							
-								
-							
-							temp.setDirection(Randomizer.nextInt(0,3));
-							
-							obj_array[xx][yy]=temp;
-							temp.setX(x);
-							temp.setY(y+map.getCell(xx,yy).getZ());
-							
-							//put objActor in team_list
-							if (temp_obj.team != -1)
-							enemy_list.add(temp);
-							
-							this.addActor(temp);			
-						}
-						else if (dungeon_seed.room_array[room_xx][room_yy][room_zz].obj_index_array[xx][yy]<0){// add Obstacle
-							if (dungeon_seed.obs_list!= null) {
-							DungeonGroup.ObjListElt temp_obs=dungeon_seed.obs_list.get(
-									-dungeon_seed.room_array[room_xx][room_yy][room_zz].obj_index_array[xx][yy]);
-							
-							float x=map.mapToScreenCoordX(xx,yy);
-							float y=map.mapToScreenCoordY(xx,yy);
-							//map.setAreaCellZ(xx, yy, map.getHeightModifier()-1);
-							controlled=CONTROLLED_AI;
-							
-							
-							ObjActor temp=new ObjActor(xx,yy,temp_obs.team,temp_obs.level,Assets.jobs_map.get(temp_obs.job),controlled);
-							temp.setDirection(Randomizer.nextInt(0,3));
-							obj_array[xx][yy]=temp;
-							temp.setX(x);
-							temp.setY(y);
-							temp.setZ(map.getCell(xx,yy).getZ());
-							this.addActor(temp);	
+							case BOSS_MONSTER	: {
+								DungeonGroup.ObjListElt temp_obj;
+								controlled=CONTROLLED_AI;
+								temp_obj=dungeon_seed.boss_pool.getMonster(dungeon_level);
+								temp=new ObjActor(xx,yy,temp_obj.team,temp_obj.level,Assets.jobs_map.get(temp_obj.job),controlled);
+								enemy_list.add(temp);
+								enemy_list.setLeader(temp);
+								boss_room=true;
+								temp.setDirection(com.icefill.game.utils.Randomizer.nextInt(0,3));
+								obj_array[xx][yy]=temp;
+								temp.setX(x);
+								temp.setY(y+map.getCell(xx,yy).getZ());
+								//put objActor in team_list
+								this.addActor(temp);
+								break;
 							}
+							case MAGIC_SCROLL	: break;
+							case ITEM			: break;
+							case WEAPON			: break;
+							case RECRUIT_CAT	: break;
+							case UNDEST_OBS		: {
+								DungeonGroup.ObjListElt elt= chooseAmong(dungeon_seed.undest_obs_info_list);
+								temp=new ObjActor(xx,yy,elt.team,elt.level,Assets.jobs_map.get(elt.job),CONTROLLED_AI);
+								obj_array[xx][yy]=temp;
+								temp.setX(x);
+								temp.setY(y+map.getCell(xx,yy).getZ());
+								this.addActor(temp);
+								break;
+							}
+							case DEST_OBS		: {
+								DungeonGroup.ObjListElt elt= chooseAmong(dungeon_seed.dest_obs_info_list);
+								temp=new ObjActor(xx,yy,elt.team,elt.level,Assets.jobs_map.get(elt.job),CONTROLLED_AI);
+								obj_array[xx][yy]=temp;
+								temp.setX(x);
+								temp.setY(y+map.getCell(xx,yy).getZ());
+								this.addActor(temp);
+								break;
+							}
+							default: break;
 						}
-						
-							
-						
 					}
 				}
 				
-				
-				
-	/*
-				// Initialize torch
-				//this.lights=lights;
-				if (lights!=null) {
-					torch_list= new ArrayList<TorchActor>();
-					for (DungeonGroup.LightInformation temp_light:lights){
-						TorchActor torch= new TorchActor();
-						float torch_x=map.mapToScreenCoordX(temp_light.xx, temp_light.yy)-5;
-						float torch_y= map.mapToScreenCoordY(temp_light.xx, temp_light.yy);
-						torch.setPosition(torch_x,torch_y);
-						torch.setZ(temp_light.zz*8-10);
-						torch.setXX(temp_light.xx);
-						torch.setYY(temp_light.yy);
-						torch_list.add(torch);
-						torch.start();
-					}
-				}
-		*/		
 				glow= (NonObjSprites)Assets.non_obj_sprites_map.get("glow");
 				light_emitter= (NonObjSprites)Assets.non_obj_sprites_map.get("light_emitter");
 				//map.getAreaCell(1, 1).device=new ItemActor(new EquipActor((AbilityActor)Assets.actions_map.get("Fireball")),map.getAreaCell(1, 1));
@@ -203,7 +180,7 @@ public class RoomGroup extends Group implements Constants
     			
     		
 	}
-	
+
 	public void setPlayerToRoom(LinkedList<ObjActor> player_list,int from_dir) {
 		int init_pos_x=0;
 		int init_pos_y=0;
@@ -231,8 +208,8 @@ public class RoomGroup extends Group implements Constants
 			  adder_y=1;
 			  break;
 	      default:
-	    	  init_pos_x=map.map_size[0]/2-2;
-			  init_pos_y=map.map_size[1]/2-2;
+	    	  init_pos_x=map.map_size[0]/2;
+			  init_pos_y=map.map_size[1]-3;
 			  adder_x=1;
 			  from_dir=DL;
 	    	  break;
@@ -249,8 +226,7 @@ public class RoomGroup extends Group implements Constants
 	public void setRoom(Team player_list,int from_dir,int to_dir) {
 		  this.player_list=player_list;
 		  setPlayerToRoom(player_list,from_dir);
-		  //setLights();	  
-		  
+
 		  if (from_dir<4)
 		  {
 			  for (ObjActor temp:player_list) {
@@ -262,12 +238,11 @@ public class RoomGroup extends Group implements Constants
 	}
 	public void removeRoom() {
 		this.remove();
-		  //removeLights();
-		  //hideObjs();
 		  for (ObjActor temp:player_list) {
 			  removeActor(temp.getXX(), temp.getYY());
 		  }
 	}
+
 	public void setObj(int xx,int yy,ObjActor to_set) {
 		if (to_set != null) {
 			float x=map.mapToScreenCoordX(xx,yy);
@@ -290,6 +265,7 @@ public class RoomGroup extends Group implements Constants
 		}
 		return false;
 	}
+
 	public boolean setObj(ObjActor to_set) {
 		int xx=map.getCenterXX();
 		int yy=map.getCenterYY();
@@ -413,7 +389,9 @@ public class RoomGroup extends Group implements Constants
 		return obj_array[xx][yy];
 	}
 	public ObjActor getObj(AreaCell cell) {
+		if (cell!=null)
 		return obj_array[cell.xx][cell.yy];
+		else return null;
 	}
 	public ObjActor getNearObj(ObjActor obj,int dir)
 	{
@@ -494,40 +472,9 @@ public class RoomGroup extends Group implements Constants
 	{
 		
 
-		//batch.end();
-		//elapsed_time += Gdx.graphics.getDeltaTime();
-		//ray_handler.update();
-		//ray_handler.render();			
-		//batch.begin();
-		//drawWallLight(batch,delta);
 		map.drawArea(batch, delta);
-		
-		//map.drawDevice(batch,delta);
 		super.draw(batch, delta);
-		//map.drawGlow(batch,delta);
-		//map.drawOuterWall(batch, delta);
-		//map.drawWall(batch, delta);
 	}
-	/*
-	public void drawWallLight(Batch batch,float delta){
-		if (lights!=null) {
-			for (DungeonGroup.LightInformation temp_light:lights){
-				float x=map.mapToScreenCoordX(temp_light.xx, temp_light.yy);
-				float y= map.mapToScreenCoordY(temp_light.xx, temp_light.yy);
-				if (temp_light.xx<0 || temp_light.yy<0)
-		 		light_emitter.drawAnimation(batch, 0, 1, temp_light.direction,x 
-						,y+temp_light.zz*8
-						,0,1f,1f);
-				}
-			
-			for (TorchActor temp_torch:torch_list) {
-				if (temp_torch.getXX()<0 || temp_torch.getYY()<0)
-				temp_torch.draw(batch, delta);
-			}
-		}
-			
-	}
-	*/
 	public AreaCell getNearEmptyCell(int xx_origin, int yy_origin)
 	{
 		int xx,yy;
@@ -551,11 +498,6 @@ public class RoomGroup extends Group implements Constants
 	public void act(float delta)
 	{
 		super.act(delta);
-		/*
-		if (lights != null)
-		for (TorchActor torch: torch_list)
-			torch.act(delta);
-			*/
 		sortActors();
 	}
 	public void sortActors()
@@ -565,8 +507,6 @@ public class RoomGroup extends Group implements Constants
 	public class AComparator implements Comparator<Actor> {
 		public int compare(Actor arg0, Actor arg1)
 		{
-			//if ((((BasicActor)arg0).is_on_bottom) && !((BasicActor)arg0).is_on_bottom)))
-			//	return -1;
 		 if ((((BasicActor)arg0).getFrontBack()) <(((BasicActor)arg1).getFrontBack()))
 		 {
 			 return -1;
@@ -575,11 +515,11 @@ public class RoomGroup extends Group implements Constants
 		 {
 			 return 1;
 		 }
-		 else if (((BasicActor)arg0).getY()> ((BasicActor)arg1).getY())
+		 else if ((arg0).getY()> (arg1).getY())
 		 {
 				return -1;
 		 }
-		else if (((BasicActor)arg0).getY() == ((BasicActor)arg1).getY()){
+		else if ((arg0).getY() == (arg1).getY()){
 			if (((BasicActor)arg0).getZ()<((BasicActor)arg1).getZ())
 			{
 				return -1;
@@ -595,44 +535,7 @@ public class RoomGroup extends Group implements Constants
 			}
 		}
 	}
-	/*
-	public void hideObjs() {	
-		for (Actor temp:this.getChildren()) {
-			((BasicActor)temp).hide();
-		}
-	}
-	*/
-	/*
-	public void removeLights(){
-		  if (light_list !=null) {
-			  for (PointLight temp:light_list) {
-				  temp.remove();
-			  }
-			  light_list.clear();
-		  }
-		  
-	  }
-	  */
-	/*
-	  public void setLights() {
-		// Initialize Lights;
-					
-					if (lights != null) {
-						//if (light_list==null) light_list= new ArrayList<PointLight>();
-						for (DungeonGroup.LightInformation temp_light:lights ) {
-							
-							PointLight point_light= new PointLight(this.ray_handler, 150);
-							point_light.setPosition(map.mapToScreenCoordX(temp_light.xx, temp_light.yy),
-						    						map.mapToScreenCoordY(temp_light.xx, temp_light.yy));
-						    point_light.setDistance(20*temp_light.radius);
-						    point_light.setColor(1f, .8f, .8f, 1f);
-						    
-						    light_list.add(point_light);
-						    
-						}
-					}
-	  }
-*/
+
 	  public boolean isVisited() {
 		  return visited;
 	  }

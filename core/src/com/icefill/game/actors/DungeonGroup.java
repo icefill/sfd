@@ -11,18 +11,13 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.Json;
-import com.icefill.game.AreaComputer;
-import com.icefill.game.Assets;
-import com.icefill.game.Constants;
-import com.icefill.game.Global;
-import com.icefill.game.NonRepeatRandomizer;
-import com.icefill.game.Randomizer;
-import com.icefill.game.StatusTuple;
-import com.icefill.game.Team;
+import com.badlogic.gdx.utils.OrderedMap;
+import com.icefill.game.*;
 import com.icefill.game.actors.actionActors.AbilityActor;
 import com.icefill.game.actors.actionActors.ActionActor;
 import com.icefill.game.actors.actionActors.ActionActor.ActionContainer;
 import com.icefill.game.screens.BasicScreen;
+import com.icefill.game.utils.NonRepeatRandomizer;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -133,10 +128,7 @@ public class DungeonGroup extends Group  implements Constants
 	 //music_wib.setVolume(.5f);
 	 // music_wib.play();
 	 //music_anod.play();
-  /*
-	setDeadPlayerlist(new LinkedList<ObjActor>());
-	setDeadEnemylist(new LinkedList<ObjActor>());
-	*/
+
 	this.boss_room=dungeon_seed.boss_room;
 	this.final_room=dungeon_seed.final_room;
 	this.initial_room=dungeon_seed.initial_room;
@@ -155,7 +147,7 @@ public class DungeonGroup extends Group  implements Constants
   
     //Initialize team lists
   team_lists= new Team[2];
-  team_lists[0]= new Team(dungeon_seed.char_list,true);
+  team_lists[0]= new Team(dungeon_seed.char_name_list,true);
   Global.setPlayerTeam(team_lists[0]);
  
     this.dungeon_size=dungeon_seed.dungeon_size;
@@ -171,7 +163,7 @@ public class DungeonGroup extends Group  implements Constants
     for (int z=0;z<dungeon_size[2];z++) {
     for (int y=0;y<dungeon_size[1];y++) {
     	for (int x=0;x<dungeon_size[0];x++) {
-    		rooms[x][y][z]= new RoomGroup(x,y,z,dungeon_seed);
+    		rooms[x][y][z]= new RoomGroup(dungeon_seed.room_shape_types.get("basic"),x,y,z,dungeon_seed);
     		
     	}
     }
@@ -363,30 +355,6 @@ public class DungeonGroup extends Group  implements Constants
     
   }
 
-  /*
-  public void checkOpaqueWall(int radius)
-  {
-    for (int i = -radius; i < radius + 1; i++)
-    {
-      for (int j = -radius; j < radius + 1; j++)
-      {
-        if ((this.current_map.isMovableAndNoDeviceFloor(this.cursor.getXX() + i, this.cursor.getYY() + j)) && 
-          (this.getCurrentRoom().getActor(this.cursor.getXX() + i, this.cursor.getYY() + j) != null) && 
-          (this.getCurrentRoom().getActor(this.cursor.getXX() + i, this.cursor.getYY() + j).getType().equals("wall")))
-        {
-          this.getCurrentRoom().getActor(this.cursor.getXX() + i, this.cursor.getYY() + j).setColor(1.0F, 1.0F, 1.0F, 0.8F);
-          this.transparent_list.add(this.getCurrentRoom().getActor(this.cursor.getXX() + i, this.cursor.getYY() + j));
-        }
-      }
-    }
-  }
-
-  public void releaseOpaqueWall() { 
-	  for (ObjActor temp : this.transparent_list) {
-		  temp.setColor(1.0F, 1.0F, 1.0F, 1.0F);
-    }
-    this.transparent_list.clear(); }
-*/
   
   public void selectObj(ObjActor to_select) {
     if (getSelectedObj() == to_select) {
@@ -403,15 +371,7 @@ public class DungeonGroup extends Group  implements Constants
     getSelectedObj().selectActor();
     Global.renewItemWindow();
     }
-    /*
-    if (to_select.getTeam()==0 && this.fsm.getActingState()!=0) {
-    	Global.getHUD().showInventory();
-    }
-    else
-    {
-    	Global.getHUD().hideInventory();
-    }
-    */
+
   }
   
   public void deSelectObj() { 
@@ -553,14 +513,11 @@ public class DungeonGroup extends Group  implements Constants
 			room=getAdjacentRoom(xxx,yyy,zzz,i);
 			if (room!=null)
 			{
-				//for (int j=0;j<4;j++)
-				//{
 				int j= (i+2) %4;
 					if (room.map.getDoor(j)!=null)
 					{
 						room.map.getDoor(j).setBossDoor();
 					}
-				//}
 			}
 		}
 	}
@@ -598,7 +555,6 @@ public class DungeonGroup extends Group  implements Constants
 				if (target!= null){
 					StatusTuple status_change=((AbilityActor)action.action).getFirstStatusTuple();
 					if (status_change!=null){
-						int front_reat_back=getSelectedObj().getFrontRearOrBack(target);
 						String frb_string=getSelectedObj().getFrontRearOrBackString(target);
 						int hit_rate=(int)((AbilityActor)action.action).calculateHitRate(status_change,action.level, getSelectedObj(), target);
 						int crit=(int)((AbilityActor)action.action).calculateCriticalRate(status_change,action.level, getSelectedObj(), target);
@@ -612,30 +568,7 @@ public class DungeonGroup extends Group  implements Constants
 
 	}
 
-	/*
-	public void showAbilityName(String message,int type) {
-		final Label status_change_label = new Label("", new Label.LabelStyle(Assets.getFont(), Color.WHITE) );
-    	
-		status_change_label.setPosition(0, 450);
-		status_change_label.setVisible(false);
-		status_change_label.setFontScale(1.2f);
-	
-		status_change_label.setColor(1f,1f,1f,1f);
-		status_change_label.setText(message);
-		status_change_label.setVisible(true);
-		ui_stage.addActor(status_change_label);
-		status_change_label.addAction(
-										Actions.sequence(
-												Actions.moveTo(200,450,.3f),
-												Actions.delay(.5f),
-												Actions.fadeOut(.3f),
-												Actions.removeActor()
-										)
-										
-									);
-	}
-	*/
-	public void enableClick(boolean flag)
+		public void enableClick(boolean flag)
 	{
 		enable_click=flag;
 		screen.clicked=false;
@@ -656,9 +589,9 @@ public class DungeonGroup extends Group  implements Constants
 	   return fsm;
    }
 
-	//**************************************************************************************************//
-//***************************************** SEED CLASS ****************************************//
-//**************************************************************************************************//
+	/**************************************************************************************************
+													SEED CLASS
+	**************************************************************************************************/
   public static class DungeonSeed
   { 
 	int[][] initial_room;
@@ -666,23 +599,23 @@ public class DungeonGroup extends Group  implements Constants
 	int dungeon_area;
 	int[][] final_room;
 	int[][] boss_room;
-    ArrayList<String> floor_list;
-    ArrayList<String> wall_list;
-    ArrayList<String> char_list;
-   // ArrayList<ObjListElt> obj_list;
+    ArrayList<String> char_name_list;
+    OrderedMap<String,RoomShapeType> room_shape_types;
     MonsterPool recruit_pool;
     MonsterPool monster_pool;
     MonsterPool boss_pool;
     ItemPool item_pool;
     ItemPool equip_pool;
     ItemPool scroll_pool;
-    ArrayList<ObjListElt> obs_list;
+    ArrayList<ObjListElt> undest_obs_info_list;
+	ArrayList<ObjListElt> dest_obs_info_list;
+	  ArrayList<ObjListElt> explosive_name_list;
     RoomSeed[][][]room_array;
-    //int[][][] room_type;
     LinkedList<RoomSeed> stack;
     public DungeonSeed(){}
-    public DungeonSeed(ArrayList<String> char_list,MonsterPool recruit_pool,MonsterPool monster_pool,MonsterPool boss_pool,ItemPool item_pool,ItemPool equip_pool,ItemPool scroll_pool,ArrayList<ObjListElt> obs_list,ArrayList<String>floor_list,ArrayList<String>wall_list){
-    	this.char_list=char_list;
+    public DungeonSeed(OrderedMap<String,RoomShapeType> room_type, ArrayList<String> char_name_list, MonsterPool recruit_pool, MonsterPool monster_pool, MonsterPool boss_pool
+			, ItemPool item_pool, ItemPool equip_pool, ItemPool scroll_pool, ArrayList<ObjListElt>explosive_name_list,ArrayList<ObjListElt>undest_obs_info_list, ArrayList<ObjListElt>dest_obs_info_list) {
+    	this.char_name_list =char_name_list;
     	//this.obj_list=obj_list;
     	this.recruit_pool=recruit_pool;
     	this.monster_pool=monster_pool;
@@ -690,14 +623,11 @@ public class DungeonGroup extends Group  implements Constants
     	this.item_pool= item_pool;
     	this.equip_pool= equip_pool;
     	this.scroll_pool=scroll_pool;
-    	this.obs_list=obs_list;
-    	this.wall_list=wall_list;
-    	this.floor_list=floor_list;
-    	int floor_n= floor_list.size()-1;
-    	int wall_n= wall_list.size();
-    	//int obj_n= obj_list.size()-1;
+    	this.explosive_name_list=explosive_name_list;
+    	this.undest_obs_info_list =undest_obs_info_list;
+		this.dest_obs_info_list =dest_obs_info_list;
+    	this.room_shape_types=room_type;
     	int obj_n=1;
-    	int obs_n= obs_list.size();
     	dungeon_size= new int[3];
     	
     	
@@ -707,6 +637,7 @@ public class DungeonGroup extends Group  implements Constants
     	//room_type= new int[dungeon_size[0]][dungeon_size[1]][dungeon_size[2]];
     	chooseInitialAndFinalRooms();
     	boss_room= new int[dungeon_size[2]][2];
+
     	stack= new LinkedList<RoomSeed>();
     	
     	
@@ -724,13 +655,10 @@ public class DungeonGroup extends Group  implements Constants
     		for (int yyy=0;yyy<dungeon_size[1];yyy++) {
     			for (int zzz=0;zzz<dungeon_size[2];zzz++) {
     				//Randomize room size
-    				//int room_size2=Randomizer.nextInt(56,72);
-    				int room_size_x=Randomizer.nextInt((int)(8+zzz*.35f),9+(int)(zzz*.5f));
-    				//int room_size_y=(int)((float)room_size/(float)room_size_x);
-    				int room_size_y=Randomizer.nextInt((int)(8+zzz*.35f),9+(int)(zzz*.5f));
-    				int room_area=room_size_x*room_size_y;
-    				room_array[xxx][yyy][zzz]= new RoomSeed(xxx,yyy,room_size_x,room_size_y);
-    				
+    				int room_size_x= com.icefill.game.utils.Randomizer.nextInt((int)(8+zzz*.35f),9+(int)(zzz*.5f));
+    				int room_size_y= com.icefill.game.utils.Randomizer.nextInt((int)(8+zzz*.35f),9+(int)(zzz*.5f));
+    				room_array[xxx][yyy][zzz]= new RoomSeed(room_type.get("basic"),xxx,yyy,room_size_x,room_size_y);
+
     				if (xxx==initial_room[zzz][0] && yyy==initial_room[zzz][1])
     					room_array[xxx][yyy][zzz].checkInitialRoom();
     	    	
@@ -752,7 +680,7 @@ public class DungeonGroup extends Group  implements Constants
     						(xxx==initial_room[zzz][0] && yyy==initial_room[zzz][1])
     						
     						) {
-    					room_array[xxx][yyy][zzz].randomizeFloor(floor_n);
+    					room_array[xxx][yyy][zzz].makeWallAndDoor();
     					if (zzz!=0) {
     						room_array[xxx][yyy][zzz].makeAngelRoom();
     					//room_array[xxx][yyy][zzz].makeUpStair();
@@ -763,7 +691,7 @@ public class DungeonGroup extends Group  implements Constants
     					// Do some stuff
     				}
     				else if (xxx==final_room[zzz][0] && yyy==final_room[zzz][1]){
-    					room_array[xxx][yyy][zzz].randomizeFloor(floor_n);
+    					room_array[xxx][yyy][zzz].makeWallAndDoor();
     					if (zzz!=dungeon_size[2]) {
     							
     						room_array[xxx][yyy][zzz].makeDownStair();
@@ -777,14 +705,9 @@ public class DungeonGroup extends Group  implements Constants
     					int max_obs=(int)(room_area*0.2f);
     					int min_obs=(int)(room_area*0.15f);
     					int obs_n_in_room=0;
-    					//if (obs_ratio>0)
-    					obs_n_in_room= Randomizer.nextInt(min_obs,max_obs);
-    					room_array[xxx][yyy][zzz].createObstacles(obs_n,obs_n_in_room);
-    	    	
-    							
-    						
-        				
-    					room_array[xxx][yyy][zzz].randomizeFloor(floor_n);	
+    					obs_n_in_room= com.icefill.game.utils.Randomizer.nextInt(min_obs,max_obs);
+						room_array[xxx][yyy][zzz].createObstacles(obs_n_in_room);
+						room_array[xxx][yyy][zzz].makeWallAndDoor();
     				}
     				
     	        
@@ -795,7 +718,7 @@ public class DungeonGroup extends Group  implements Constants
     	}
     	
     	
-    	NonRepeatRandomizer randomizer= new NonRepeatRandomizer(dungeon_size[0],dungeon_size[1]);
+    	com.icefill.game.utils.NonRepeatRandomizer randomizer= new com.icefill.game.utils.NonRepeatRandomizer(dungeon_size[0],dungeon_size[1]);
     	int rn;
     	for (int i=0;i<dungeon_size[2];i++) {
     		randomizer.reset();
@@ -813,10 +736,10 @@ public class DungeonGroup extends Group  implements Constants
     						(xx!=final_room[i][0] || yy!=final_room[i][1]) &&
         					(xx!=boss_room[i][0]|| yy!=boss_room[i][1])
     						) {
-    					int monster_n=Randomizer.nextInt((int)((i)*.5f+3),(int)((i)*.5f+4));//(int)(room_array[xx][yy][i].getRoomArea()*0.022f+(i+1));
+    					int monster_n= com.icefill.game.utils.Randomizer.nextInt((int)((i)*.5f+3),(int)((i)*.5f+4));//(int)(room_array[xx][yy][i].getRoomArea()*0.022f+(i+1));
     					room_array[xx][yy][i].createMonster(obj_n,monster_n);
     					room_array[xx][yy][i].room_type=4;
-    					System.out.println("monsterroom"+p+":"+rn);
+    					System.out.println("monster room #"+p+":"+rn);
     					p++;
     					break;
     				}
@@ -922,7 +845,7 @@ public class DungeonGroup extends Group  implements Constants
     				}
     			}
     		}
-    		int monster_n=Randomizer.nextInt((int)((i)*.5f+4),(int)((i)*.5f+4));
+    		int monster_n= com.icefill.game.utils.Randomizer.nextInt((int)((i)*.5f+4),(int)((i)*.5f+4));
     		room_array[boss_room[i][0]][boss_room[i][1]][i].createMonster(obj_n,monster_n);
     		room_array[boss_room[i][0]][boss_room[i][1]][i].createBoss();
     		room_array[boss_room[i][0]][boss_room[i][1]][i].room_type=1;
@@ -1035,7 +958,7 @@ public class DungeonGroup extends Group  implements Constants
         			}
         			else {
         				//Make door direction
-        				next_direction=possible_door.get(Randomizer.nextInt(possible_door.size()));
+        				next_direction=possible_door.get(com.icefill.game.utils.Randomizer.nextInt(possible_door.size()));
         			}
     			
         			switch (next_direction) {
@@ -1103,7 +1026,7 @@ public class DungeonGroup extends Group  implements Constants
     			if (!(room_array[xx][yy][zzz].visited)){
     				System.out.println("not visited"+xx+","+yy);
     				for (int i=0;i<4;i++) {
-    					if (Randomizer.hitInRatio(0.5f)) {
+    					if (com.icefill.game.utils.Randomizer.hitInRatio(0.5f)) {
     					switch (i) {
     					case DL:
     						if (yy+1<dungeon_size[1] && !isFinalRoom(xx,yy+1,zzz)) {
@@ -1182,27 +1105,7 @@ public class DungeonGroup extends Group  implements Constants
     	    	
     		}
     	}
-    	/*
-    	initial_room[0][0]=Randomizer.nextInt(dungeon_size[0]);
-    	initial_room[0][1]=Randomizer.nextInt(dungeon_size[1]);
-    	do{
-    	    	
-    		final_room[0][0]=Randomizer.nextInt(dungeon_size[0]);
-    		final_room[0][1]=Randomizer.nextInt(dungeon_size[1]);
-    	} while (Math.abs(initial_room[0][0]-final_room[0][0])+Math.abs(initial_room[0][1]-final_room[0][1])<minimum_length);
-    	
-    	for (int i=1;i<dungeon_size[2];i++) {
-    		
-    		initial_room[i][0]=final_room[i-1][0];
-    		initial_room[i][1]=final_room[i-1][1];
-    		do{		
-    			final_room[i][0]=Randomizer.nextInt(dungeon_size[0]);
-    			final_room[i][1]=Randomizer.nextInt(dungeon_size[1]);
-    		} while (Math.abs(initial_room[i][0]-final_room[i][0])+Math.abs(initial_room[i][1]-final_room[i][1])<minimum_length);
-        	
-    	}
-    	*/
-    }
+       }
     public void showDungeonStatus() {
     	for (int i=0;i<dungeon_size[2];i++){
     		System.out.println("initail_room"+i+":"+initial_room[i][0]+","+initial_room[i][1]);
@@ -1214,10 +1117,9 @@ public class DungeonGroup extends Group  implements Constants
   	  String to_return="";
   	  to_return+=("Dungeon_size:"+dungeon_size[0]+","+dungeon_size[1]+"\n");
   	  to_return+=("Initial room:"+ initial_room[0]+","+initial_room[1]+"\n");
-  	  to_return+=("floorn:"+floor_list.size()+"\n");
-  	  to_return+=("charn:"+char_list.size()+"\n");
+  	  to_return+=("charn:"+ char_name_list.size()+"\n");
   	  //to_return+=("objn:"+obj_list.size()+"\n");
-  	to_return+=("obsn:"+obs_list.size()+"\n");
+  	to_return+=("obsn:"+ (undest_obs_info_list.size()+dest_obs_info_list.size())+"\n");
   	  for (int x=0;x<dungeon_size[0];x++)  {
   	 	  for (int y=0;y<dungeon_size[1];y++)  {
   	  		  to_return+=room_array[x][y].toString()+"\n";
@@ -1232,65 +1134,52 @@ public class DungeonGroup extends Group  implements Constants
 	  	int[] room_size;
 	  	ArrayList<LightInformation> lights;
 	  	int xxx,yyy;
-	    int[][] floor_index_array;
-	    int[][] obj_index_array;
-	    int[][] device_index_array;
+	  	char[][] array;
 	    public boolean[] has_door;
 	    public boolean visited;
 	    public boolean initial_room=false;
+	    public RoomShapeType room_shape_type;
 	    int room_type;
-	    public RoomSeed(){}
-	    public RoomSeed(int room_xxx,int room_yyy,int room_size_xx,int room_size_yy) {
-	    	this.xxx=room_xxx;
-	    	this.yyy=room_yyy;
+
+
+
+
+	    public RoomSeed(int room_xxx,int room_yyy){
+			this.xxx=room_xxx;
+			this.yyy=room_yyy;
+			has_door= new boolean[4];
+		}
+
+	    public RoomSeed(RoomShapeType room_type,int room_xxx,int room_yyy,int room_size_xx,int room_size_yy) {
+	    	this(room_xxx,room_yyy);
 	    	room_size= new int[2];
 	    	room_size[0]=room_size_xx;
 	    	room_size[1]=room_size_yy;
-	    	
-	    	//wall_index_array=new int[4][]
-	    	floor_index_array= new int[room_size[0]][room_size[1]];
-	    	obj_index_array= new int[room_size[0]][room_size[1]];
-	    	device_index_array=new int[room_size[0]][room_size[1]];
-	    	lights= new ArrayList<LightInformation>();
-	    	
-	    	has_door= new boolean[4];
-	    	
-	    	
-	    	/*
-	    	for (int i=0;i<room_size[1]-2;i+=3) {
-	    		lights.add(new LightInformation(-1,i,3,7));
-	    		
-	    		//lights.add(new LightInformation(room_size[0]-1,i,3,4));
-	    	}
-	    	for (int j=1;j<room_size[0]-2;j+=3) {
-	    		lights.add(new LightInformation(j+1,-1,3,7));
-	    		//lights.add(new LightInformation(j+1,room_size[0]-1,3,4));
-	    	}
-	    	*/
+			this.room_shape_type=room_type;
+
+	    	array= new char[room_size[0]][room_size[1]];
 	    }
+
 	    public void makeDownStair() {
 	    	int middle_x=room_size[0]/2;
 	    	int middle_y=room_size[1]/2;
 	    	for (int dx=-1;dx<2;dx++){
 	    		for (int dy=-1;dy<2;dy++){
-	    			//if (dx!= 0 || dy!=1)
-	    			floor_index_array[middle_x+dx][middle_y+dy]=0;
+	    			array[middle_x+dx][middle_y+dy]= OBJ.NOTHING.c;
 	    		}
 	    	}
-	    	floor_index_array[room_size[0]/2][room_size[1]/2-1]=0;
-	    	floor_index_array[room_size[0]/2][room_size[1]/2]=1;
+	    	array[room_size[0]/2][room_size[1]/2-1]=OBJ.NOTHING.c;
+	    	array[room_size[0]/2][room_size[1]/2]=OBJ.NOTHING.c;
 	    }
 	    public void makeUpStair() {
 	    	int middle_x=room_size[0]/2;
 	    	int middle_y=room_size[1]/2;
 	    	for (int dx=-1;dx<2;dx++){
 	    		for (int dy=-1;dy<2;dy++){
-	    			//if (dx!= 0 || dy!=1)
-	    			floor_index_array[middle_x+dx][middle_y+dy]=0;
+	    			array[middle_x+dx][middle_y+dy]=OBJ.NOTHING.c;
 	    		}
 	    	}
-	    	floor_index_array[room_size[0]/2][room_size[1]/2+1]=0;
-	    	//floor_index_array[room_size[0]/2][room_size[1]/2]=-4;
+	    	array[room_size[0]/2][room_size[1]/2+1]=OBJ.NOTHING.c;
 	    }
 	    
 	    public void checkInitialRoom() {
@@ -1305,69 +1194,48 @@ public class DungeonGroup extends Group  implements Constants
 	    public int getRoomArea() {
 	    	return (room_size[0]-1)*(room_size[1]-1);
 	    }
-	    
-	    public void addObj(int obj_n,int xx,int yy) {
-	    	obj_index_array[xx][yy]=obj_n;
-	    }
-	    public void addLight(LightInformation light) {
-	    	lights.add(light);
-	    }
-	    public void randomizeFloor(int floor_n){
+
+
+	    public void makeWallAndDoor(){
+	    	// Make wall
 	    	for (int yy=0;yy<room_size[1];yy++) {
 	    		for (int xx=0;xx<room_size[0];xx++) {
-	    			if (xx==0){ 
-	    				if ((yy % 4 ==2) && yy!=room_size[1]-1)floor_index_array[xx][yy]=-2;
-	    				else floor_index_array[xx][yy]=-1;
-	    				
-	    			}
-	    			else if(xx==room_size[0]-1){
-	    				floor_index_array[xx][yy]=-1;
-	    			}
-	    			else if( yy==0){
-	    				if (xx % 4 ==2 && xx!=room_size[0]-1)floor_index_array[xx][yy]=-2;
-	    				else floor_index_array[xx][yy]=-1;
-	    			}
+	    			if (xx==0) array[xx][yy]=OBJ.WALL.c;
+	    			else if(xx==room_size[0]-1) array[xx][yy]=OBJ.WALL.c;
+	    			else if( yy==0) array[xx][yy]=OBJ.WALL.c;
 	    			else if (  yy==room_size[1]-1) {
-	    				floor_index_array[xx][yy]=-1;
+	    				array[xx][yy]=OBJ.WALL.c;
 	    			}
-	    			else /*if (floor_n==1)*/ floor_index_array[xx][yy]=0;
-	    			//else floor_index_array[xx][yy]=rn.nextInt(floor_n)+1;
-	    			
-	    			//if (device_index_array[xx][yy]!=0)
-	    			//	floor_index_array[xx][yy]=rn.nextInt(floor_n);
+
 		    	}	
 	    	}
-	    	if (has_door[DL]) floor_index_array[room_size[0]/2][room_size[1]-1]=-3;
-	    	if (has_door[DR]) floor_index_array[room_size[0]-1][room_size[1]/2]=-3;
-	    	if (has_door[UR]) floor_index_array[room_size[0]/2][0]=-3;
-	    	if (has_door[UL]) floor_index_array[0][room_size[1]/2]=-3;
+	    	// Make door
+	    	if (has_door[DL]) array[room_size[0]/2][room_size[1]-1]=OBJ.DOOR.c;
+	    	if (has_door[DR]) array[room_size[0]-1][room_size[1]/2]=OBJ.DOOR.c;
+	    	if (has_door[UR]) array[room_size[0]/2][0]=OBJ.DOOR.c;
+	    	if (has_door[UL]) array[0][room_size[1]/2]=OBJ.DOOR.c;
 	    }
+
 	    public void createMonster(int obj_n,int monster_n) {
 	    	int x_min=1;
 	    	int x_max=room_size[0]-1;
 	    	int y_min=1;
 	    	int y_max=room_size[1]-1;
-	    	//x_min+=1;
-	    	//y_min+=1;
-	    	//x_max-=1;
-	    	//y_max-=1;
-	    	
+
 	    	if (has_door[0] || initial_room) y_max-=2;
 	    	if (has_door[1]) x_max-=2;
 	    	if (has_door[2]) y_min+=2; 
 	    	if (has_door[3]) x_min+=2;
 	    	
-	    	
-	    	int monster_x=0;
-	    	int monster_y=0;
-	    	int iter=0;
-	    	NonRepeatRandomizer randomizer= new NonRepeatRandomizer(x_min,x_max,y_min,y_max);
 
+	    	int monster_x;
+	    	int monster_y;
+	    	com.icefill.game.utils.NonRepeatRandomizer randomizer= new com.icefill.game.utils.NonRepeatRandomizer(x_min,x_max,y_min,y_max);
 	    	for (int i=0;i<monster_n;i++) {
 	    		int rn= randomizer.nextInt();
 	    		monster_x=rn/10;
 	    		monster_y=rn%10;
-	    		obj_index_array[monster_x][monster_y]=1;//Randomizer.nextInt(1,obj_n-1);//rn.nextInt(obj_n-1)+1;
+	    		array[monster_x][monster_y]=OBJ.MONSTER.c;
 	    	}
 	    	
 	    	//Clearing 
@@ -1375,83 +1243,54 @@ public class DungeonGroup extends Group  implements Constants
 	    	
 	    	
 	    }
+	    public void clearRoom() {
+			for (int y=1;y<room_size[1]-1;y++){
+				for (int x=1;x<room_size[0]-1;x++){
+					array[x][y]=OBJ.NOTHING.c;
+				}
+			}
+		}
 	    public void createBoss() {
-	    		obj_index_array[room_size[0]/2][room_size[1]/2]=10;
-	    	
+	    		array[room_size[0]/2][room_size[1]/2]=OBJ.BOSS_MONSTER.c;
 	    }
 	    public void makeItemRoom() {
+	    	clearRoom();
 	    	int middle_x=(int)(room_size[0]/2);
 	    	int middle_y=(int)(room_size[1]/2);
-	    	for (int y=0;y<room_size[1];y++){
-	    		for (int x=0;x<room_size[0];x++){
-		    		obj_index_array[x][y]=0;
-		    		device_index_array[x][y]=0;
-		    	}	
-	    	}
-	    	
-	    	//obj_index_array[middle_x][middle_y]=-8;
-	    	obj_index_array[middle_x][middle_y-1]=-6;
-	    	obj_index_array[middle_x][middle_y+1]=-6;
-	    	device_index_array[middle_x][middle_y]=5;
-	    	device_index_array[middle_x-1][middle_y]=2;
+	    	array[middle_x][middle_y-1]=OBJ.FIRE_BOWL.c;
+	    	array[middle_x][middle_y+1]=OBJ.FIRE_BOWL.c;
+	    	array[middle_x][middle_y]=OBJ.WEAPON.c;
+	    	array[middle_x-1][middle_y]=OBJ.ITEM.c;
 	    }
+
 	    public void makeScrollRoom() {
+	    	clearRoom();
 	    	int middle_x=(int)(room_size[0]/2);
 	    	int middle_y=(int)(room_size[1]/2);
-	    	for (int y=0;y<room_size[1];y++){
-	    		for (int x=0;x<room_size[0];x++){
-		    		obj_index_array[x][y]=0;
-		    		device_index_array[x][y]=0;
-		    	}	
-	    	}
-	    	
-	    	//obj_index_array[middle_x][middle_y]=-8;
-	    	obj_index_array[middle_x][middle_y-1]=-6;
-	    	obj_index_array[middle_x][middle_y+1]=-6;
-	    
-	    	device_index_array[middle_x][middle_y]=4;
+			array[middle_x][middle_y-1]=OBJ.FIRE_BOWL.c;
+			array[middle_x][middle_y+1]=OBJ.FIRE_BOWL.c;
+			array[middle_x][middle_y]=OBJ.MAGIC_SCROLL.c;
 	    	
 	    }
 	    public void makeInitialRoom() {
-	    	int middle_x=(int)((room_size[0]-1)/2);
+			clearRoom();
+			int middle_x=(int)((room_size[0]-1)/2);
 	    	int middle_y=(int)((room_size[1]-1)/2);
-	    	for (int y=0;y<room_size[1];y++){
-	    		for (int x=0;x<room_size[0];x++){
-		    		obj_index_array[x][y]=0;
-		    	}	
-	    	}
-	    	//obj_index_array[middle_x][middle_y]=-8;
-	    	//obj_index_array[1][1]=-4;
-	    	//obj_index_array[1][2]=-4;
-	    	//obj_index_array[1][3]=-4;
-	    	//obj_index_array[middle_x][middle_y+1]=-7;
-	    	//obj_index_array[middle_x][middle_y]=-6;
-	    	device_index_array[middle_x][middle_y]=8;
-	    	
-	    	//obj_index_array[middle_x-1][middle_y]=-7;
-	    	//obj_index_array[middle_x+1][middle_y]=-7;
-	    	//device_index_array[middle_x-1][middle_y]=2;
-	    	//device_index_array[middle_x+1][middle_y]=2;
-	    	//device_index_array[middle_x][middle_y+1]=5;
-	    	//device_index_array[middle_x][middle_y-1]=4;
-	    	
+	    	array[middle_x][middle_y]=OBJ.RECRUIT_CAT.c;
+
 	    	
 	    }
 	    public void makeAngelRoom() {
-	    	int middle_x=(int)((room_size[0]-1)/2);
+			clearRoom();
+			int middle_x=(int)((room_size[0]-1)/2);
 	    	int middle_y=(int)((room_size[1]-1)/2);
-	    	for (int y=0;y<room_size[1];y++){
-	    		for (int x=0;x<room_size[0];x++){
-		    		obj_index_array[x][y]=0;
-		    	}	
-	    	}
 	    	//obj_index_array[middle_x][middle_y]=-8;
 	    	//obj_index_array[1][1]=-4;
 	    	//obj_index_array[1][2]=-4;
 	    	//obj_index_array[1][3]=-4;
 	    	//obj_index_array[middle_x][middle_y+1]=-7;
 	    	//obj_index_array[middle_x][middle_y]=-6;
-	    	device_index_array[middle_x][middle_y]=7;
+	    	array[middle_x][middle_y]=OBJ.ANGEL.c;
 	    	
 	    	//obj_index_array[middle_x-1][middle_y]=-7;
 	    	//obj_index_array[middle_x+1][middle_y]=-7;
@@ -1465,55 +1304,18 @@ public class DungeonGroup extends Group  implements Constants
 	    public void makeShopRoom() {
 	    	int middle_x=(int)((room_size[0]-1)/2);
 	    	int middle_y=(int)((room_size[1]-1)/2);
-	    	for (int y=0;y<room_size[1];y++){
-	    		for (int x=0;x<room_size[0];x++){
-		    		obj_index_array[x][y]=0;
-		    		device_index_array[x][y]=0;
-		    	}	
-	    	}
-	    	for (int y=0;y<room_size[1];y++){
-	    		for (int x=0;x<room_size[0];x++){
-		    		obj_index_array[x][y]=0;
-		    	}	
-	    	}
-	    	//obj_index_array[middle_x][middle_y]=-8;
-	    	//obj_index_array[1][1]=-4;
-	    	//obj_index_array[1][2]=-4;
-	    	//obj_index_array[1][3]=-4;
-	    	//obj_index_array[middle_x][middle_y+1]=-7;
-	    	//obj_index_array[middle_x][middle_y]=-6;
-	    	device_index_array[middle_x][middle_y]=6;
-	    	
-	    	//obj_index_array[middle_x-1][middle_y]=-7;
-	    	//obj_index_array[middle_x+1][middle_y]=-7;
-	    	//device_index_array[middle_x-1][middle_y]=2;
-	    	//device_index_array[middle_x+1][middle_y]=2;
-	    	//device_index_array[middle_x][middle_y+1]=5;
-	    	//device_index_array[middle_x][middle_y-1]=4;
-	    	
-	    	
+			clearRoom();
+	    	array[middle_x][middle_y]=OBJ.SHOP_CAT.c;
 	    }
 	    public void makemercRoom() {
 	    	int middle_x=(int)((room_size[0]-1)/2);
 	    	int middle_y=(int)((room_size[1]-1)/2);
-	    	for (int y=0;y<room_size[1];y++){
-	    		for (int x=0;x<room_size[0];x++){
-		    		obj_index_array[x][y]=0;
-		    		device_index_array[x][y]=0;
-		    	}	
-	    	}
-	    	for (int y=0;y<room_size[1];y++){
-	    		for (int x=0;x<room_size[0];x++){
-		    		obj_index_array[x][y]=0;
-		    	}	
-	    	}
-	    	
-	    	device_index_array[middle_x][middle_y]=8;
+			clearRoom();
+			array[middle_x][middle_y]=OBJ.RECRUIT_CAT.c;
 
 	    }
-	    public void createObstacles(int obstacle_n,int n_in_room) {
-	    	obstacle_n-=2;
-	    	int trap_n=Randomizer.nextInt(3);
+	    public void createObstacles(int n_in_room) {
+	    	int trap_n= com.icefill.game.utils.Randomizer.nextInt(3);
 	    	int x_min=1;
 	    	int x_max=room_size[0]-1;
 	    	int y_min=1;
@@ -1522,70 +1324,59 @@ public class DungeonGroup extends Group  implements Constants
 	    	if (has_door[1]) x_max--;
 	    	if (has_door[2]) y_min++; 
 	    	if (has_door[3]) x_min++;
-	    	NonRepeatRandomizer randomizer= new NonRepeatRandomizer(x_min,x_max,y_min,y_max);
+	    	com.icefill.game.utils.NonRepeatRandomizer randomizer= new NonRepeatRandomizer(x_min,x_max,y_min,y_max);
 
 	    	for (int i=0;i<n_in_room;i++) {
 	    		int rn=randomizer.nextInt();
 	    		int monster_x=rn/10;
 	    		int monster_y=rn%10;
-	    		obj_index_array[monster_x][monster_y]=-(Randomizer.nextInt(1,obstacle_n-1));//rn.nextInt(obstacle_n-1)+1);
+	    		if (com.icefill.game.utils.Randomizer.hitInRatio(.8f))
+	    			array[monster_x][monster_y]=OBJ.UNDEST_OBS.c;
+	    		else
+					array[monster_x][monster_y]=OBJ.DEST_OBS.c;
 	    	}
 	    	for (int i=0;i<trap_n;i++) {
 	    		int rn= randomizer.nextInt();
 	    		int trap_x=rn/10;
 	    		int trap_y=rn%10;
-	    		if (obj_index_array[trap_x][trap_y]==0)
-	    		device_index_array[trap_x][trap_y]=3;
+	    		array[trap_x][trap_y]=OBJ.TRAP.c;
 	    	}
-	    	int explosive_n=Randomizer.nextInt(2);
+	    	int explosive_n= com.icefill.game.utils.Randomizer.nextInt(2);
 	    	for (int i=0;i<explosive_n;i++) {
 	    		int rn=randomizer.nextInt();
-	    		obj_index_array[rn/10][rn%10]=-obstacle_n-1;
+	    		array[rn/10][rn%10]=OBJ.EXPLOSIVE.c;
 	    	}
 	    	if (has_door[0] && has_door[2]&& !has_door[1]&& !has_door[3]) {
-	    		int xx=Randomizer.nextInt(1,room_size[0]-2);//rn.nextInt(room_size[0]-2)+1;
+	    		int xx= com.icefill.game.utils.Randomizer.nextInt(1,room_size[0]-2);//rn.nextInt(room_size[0]-2)+1;
 	    		for (int yy=0;yy<room_size[1];yy++){
-	    			obj_index_array[xx][yy]=0;
+	    			array[xx][yy]=OBJ.NOTHING.c;
 	    		}
 	    	}
 	    	else if (!has_door[0] && !has_door[2]&& has_door[1]&& has_door[3]) {
-	    		int yy=Randomizer.nextInt(1,room_size[1]-2);//rn.nextInt(room_size[1]-2)+1;
+	    		int yy= com.icefill.game.utils.Randomizer.nextInt(1,room_size[1]-2);//rn.nextInt(room_size[1]-2)+1;
 	    		for (int xx=0;xx<room_size[0];xx++){
-	    			obj_index_array[xx][yy]=0;
+					array[xx][yy]=OBJ.NOTHING.c;
 	    		}
 	    	}
-	    	/*
-	    	for (int yy=0;yy<room_size[1];yy++)
-	    	{
-	    		for (int xx=0;xx<room_size[1];yy++)
-		    	{
-		    		
-		    	}
-	    	}*/
 
 	    	
 	    }
 	    public void makeHealingRoom() {
 	    	int middle_x=(int)(room_size[0]/2);
 	    	int middle_y=(int)(room_size[1]/2);
-	    	for (int y=0;y<room_size[1];y++){
-	    		for (int x=0;x<room_size[0];x++){
-		    		obj_index_array[x][y]=0;
-		    		device_index_array[x][y]=0;
-		    	}	
-	    	}
+	    	clearRoom();
 	    	
 	    	//obj_index_array[middle_x][middle_y]=-8;
 	    	if (middle_x-2>1)
-	    		obj_index_array[middle_x-2][middle_y]=-6;
+	    		array[middle_x-2][middle_y]=OBJ.FIRE_BOWL.c;
 	    	if (middle_x+2<room_size[0]-2)
-	    		obj_index_array[middle_x+2][middle_y]=-6;
+	    		array[middle_x+2][middle_y]=OBJ.FIRE_BOWL.c;
 	    	if (middle_y-2>1)
-	    		obj_index_array[middle_x][middle_y-2]=-6;
+	    		array[middle_x][middle_y-2]=OBJ.FIRE_BOWL.c;
 	    	if (middle_y+2<room_size[1]-2)
-	    		obj_index_array[middle_x][middle_y+2]=-6;
+	    		array[middle_x][middle_y+2]=OBJ.FIRE_BOWL.c;
 	    
-	    	device_index_array[middle_x][middle_y]=1;
+	    	array[middle_x][middle_y]=OBJ.ANGEL.c;
 	    	
 	    }
 	    public String toString() {
@@ -1593,14 +1384,14 @@ public class DungeonGroup extends Group  implements Constants
 	    	to_return+="room_size:"+room_size[0]+","+room_size[1]+"\n";
 		  	to_return+="obj_index:\n";
 		  	to_return+="room_n:"+this.xxx+","+this.yyy+"\n";
-		  	String array="";
+		  	String arr="";
 		  	for (int yy=0;yy<room_size[1];yy++){
 		  		for (int xx=0;xx<room_size[0];xx++){
-			  		array+=" "+obj_index_array[xx][yy];
+			  		arr+=" "+array[xx][yy];
 			  	}
-			  	array+="\n";
+			  	arr+="\n";
 		  	}
-		  	array+="\n\n";
+		  	arr+="\n\n";
 		    return to_return+array;
 	    }
   }
@@ -1637,7 +1428,7 @@ public class DungeonGroup extends Group  implements Constants
 				   )
 				  temp_list_list.add(temp_list);
 		  }
-		  return temp_list_list.get(Randomizer.nextInt(temp_list_list.size())).getRandomObjElt();
+		  return temp_list_list.get(com.icefill.game.utils.Randomizer.nextInt(temp_list_list.size())).getRandomObjElt();
 	  }
   }
   public static class MonsterPoolElt {
@@ -1654,7 +1445,7 @@ public class DungeonGroup extends Group  implements Constants
 		  monster_list.add(obj_elt);
 	  }
 	  public ObjListElt getRandomObjElt() {
-		return monster_list.get(Randomizer.nextInt(monster_list.size()));  
+		return monster_list.get(com.icefill.game.utils.Randomizer.nextInt(monster_list.size()));
 	  }
   }
   public static class ItemPool {
@@ -1674,7 +1465,7 @@ public class DungeonGroup extends Group  implements Constants
 				   )
 				  temp_list_list.add(temp_list);
 		  }
-		  return temp_list_list.get(Randomizer.nextInt(temp_list_list.size())).getRandomItem();
+		  return temp_list_list.get(com.icefill.game.utils.Randomizer.nextInt(temp_list_list.size())).getRandomItem();
 	  }
   }
   public static class ItemPoolElt {
@@ -1691,7 +1482,7 @@ public class DungeonGroup extends Group  implements Constants
 		  item_list.add(obj_elt);
 	  }
 	  public String getRandomItem() {
-		return item_list.get(Randomizer.nextInt(item_list.size()));  
+		return item_list.get(com.icefill.game.utils.Randomizer.nextInt(item_list.size()));
 	  }
   }
 

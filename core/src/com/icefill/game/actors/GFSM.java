@@ -188,14 +188,11 @@ public class GFSM {
             for (Iterator<ObjActor> itr = dungeonGroup.team_lists[0].iterator(); itr.hasNext(); ) {
                 ObjActor temp = itr.next();
                 temp.resetCoolTimes();
-                //temp.addCoolTimes();
-                //temp.doTurnEffect(Global.dungeon);
             }
             dungeonGroup.team_lists[0].setManaToInitial();
             dungeonGroup.team_lists[1].increaseMana(15);
 
         }
-        //deSelectObj();
         if (Global.dungeon.checkWinorGameOver(0) == 1)
             pushState(Constants.GS_DUNGEON_INSPECTION_INIT);
         else
@@ -203,13 +200,10 @@ public class GFSM {
     }
 
     private void gs_battle_init() {
-        //initial_team=Randomizer.nextInt(2);
         initial_team = 0;
         if (Global.getCurrentRoom().boss_room) {
             Global.showBigMessage("BOSS BATTLE!!!");
         }
-        //else
-        //	Global.showBigMessage("ENEMY INCOUNTER!!!");
         final Sound sound = Assets.getAsset("sound/slash.wav", Sound.class);
 
         pushState(Constants.GS_TURN_INIT);
@@ -219,7 +213,6 @@ public class GFSM {
         for (final ObjActor temp : Global.getCurrentRoom().getEnemyList()) {
             if (temp.obj_state != Constants.PL_DEAD) {
                 action.addAction(Actions.sequence(
-                        //Actions.moveTo(200,100,.3f),
                         temp.setDirectionAction(dungeonGroup.from_dir),
                         Actions.run(new Runnable() {
                             public void run() {
@@ -233,8 +226,6 @@ public class GFSM {
                         Actions.delay(.4f)
                 ));
             }
-            //temp.showMessage("!!!");
-            //temp.setDirection(from_dir);
         }
 
         action.addAction(Actions.run(new Runnable() {
@@ -246,10 +237,6 @@ public class GFSM {
         action.addAction(Actions.delay(.4f));
         action.addAction(this.reRunGFSAction());
         Global.getCurrentRoom().addAction(action);
-        //music_anod.pause();
-        //music_battle.setPosition(0f);
-        //music_battle.play();
-        // Choose first team
     }
 
     private void gs_battle_end() {
@@ -269,16 +256,10 @@ public class GFSM {
             obj.clearTurnEffect();
             obj.initializeRunawayCount();
         }
-        //Global.getCurrentRoom().map.openAllDoor(Global.dungeon);
 
         Global.getHUD().getBattleWinWindow().battleWin(Global.dungeon);
-        //dead_enemy_list.clear();
 
         Global.dungeon.deSelectObj();
-        //	Global.dungeon.selectObj(Global.dungeon.team_lists[0].get(0));
-        //	music_battle.stop();
-        //	music_anod.setPosition(0f);
-        //	music_anod.play();
         pushState(Constants.GS_DUNGEON_INSPECTION_INIT);
     }
 
@@ -304,22 +285,11 @@ public class GFSM {
                 temp.subCoolTimes();
                 temp.doTurnEffect(Global.dungeon);
                 temp.decreaseRunawayCount();
-                /*
-                if (temp.checkDeadandExecuteDead(Global.dungeon))
-                {
-                      if (checkBattleOverandChangeState()) return;
-                    
-                }
-                */
+
             }
         }
-        //}
-
         // If there's no ememy,=> inspection state
         dungeonGroup.deSelectObj();
-        //if (Global.dungeon.checkWinorGameOver(0)==1)
-        //	pushState(GS_DUNGEON_INSPECTION_INIT);
-        //else {// There's an enemy 
         dungeonGroup.setSelectedObj(null);
         boolean have_ai = false;
         ai_controller.clearAI();
@@ -440,22 +410,6 @@ public class GFSM {
                 seq++;
 
             default:
-                if (dungeonGroup.getSelectedObj() == null) {
-        
-        /*
-        for (ObjActor temp:getTeamList(0))
-        {
-            if (temp.status.current_ap>0)
-            {
-                temp.obj_state=PL_WAIT;
-                selectObj(temp);
-                pushState(GS_CHOOSE_ACTION);
-                
-                break;
-            }
-        }
-        */
-                }
                 if (dungeonGroup.isMouseClicked() && dungeonGroup.current_map.isInFloor(dungeonGroup.clicked_xx, dungeonGroup.clicked_yy)) {
                     if ((dungeonGroup.getCurrentRoom().getObj(dungeonGroup.clicked_xx, dungeonGroup.clicked_yy) != null)
                             &&
@@ -728,7 +682,6 @@ public class GFSM {
         Global.showInformation("ACTING");
         switch (this.seq) {
             case 0:
-                //showMessage(getSelectedObj().getSelectedAction().getActionName(),0);
                 if (dungeonGroup.getSelectedObj() != null && dungeonGroup.getSelectedObj().getSelectedAction() != null) {
                     dungeonGroup.getSelectedObj().getSelectedAction().action.initialize();
                     sub_seq = dungeonGroup.getSelectedObj().getSelectedAction().execute(Global.dungeon, dungeonGroup.getSelectedObj());
@@ -768,7 +721,7 @@ public class GFSM {
                         if (dungeonGroup.getSelectedObj() != null) {
                             AreaCell selected_cell = dungeonGroup.current_map.getCell(dungeonGroup.getSelectedObj().getXX(), dungeonGroup.getSelectedObj().getYY());
                             if (selected_cell.device != null) { // IF there is a device on current tile
-                                ((DeviceActor) (selected_cell.device)).action(Global.dungeon, selected_cell);
+                                (selected_cell.device).action(Global.dungeon, selected_cell);
                             }
 
                         }
@@ -777,7 +730,7 @@ public class GFSM {
                             if (target != null) {
                                 if (target_cell.device != null && !target.equals(Global.getSelectedObj())) {
                                     // IF there is a device on current tile
-                                    ((DeviceActor) (target_cell.device)).action(Global.dungeon, target_cell);
+                                     (target_cell.device).action(Global.dungeon, target_cell);
                                 }
 
                             }
@@ -814,16 +767,6 @@ public class GFSM {
                                 if (dungeonGroup.getSelectedObj().status.getCurrentAP() > 0) { //AP remain
                                     pushState(Constants.GS_CHOOSE_ACTION);
                                 } else {// AP =0
-                                    /*if (getSelectedObj().status.current_ap==0)
-                                    {
-                                        if (getSelectedObj().getTeam()==0)
-                                        {
-                                            getSelectedObj().selectAction(new ActionContainer(Assets.actions_map.get("Setdierction"),0));
-                                            pushState(GS_PLAYER_ACTING);
-                                        }
-                                    } 
-                                    else*/
-                                    {
                                         if (dungeonGroup.getSelectedObj().obj_state != Constants.PL_DEAD) {
                                             dungeonGroup.getSelectedObj().obj_state = Constants.PL_DONE;
                                             dungeonGroup.getSelectedObj().showMessage("WAIT");
@@ -844,7 +787,6 @@ public class GFSM {
                                         } else {
                                             pushState(Constants.GS_CHOOSE_CHAR);
                                         }
-                                    }
                                 }
                             } else if (acting_state == BATTLE_AI) {
                                 if (dungeonGroup.getSelectedObj() == null) {
@@ -880,7 +822,7 @@ public class GFSM {
                                     if (dungeonGroup.getSelectedObj() != null) {
                                         AreaCell selected_cell = dungeonGroup.current_map.getCell(dungeonGroup.getSelectedObj().getXX(), dungeonGroup.getSelectedObj().getYY());
                                         if (selected_cell.device != null) { // IF there is a device on current tile
-                                            ((DeviceActor) (selected_cell.device)).action(Global.dungeon, selected_cell);
+                                            (selected_cell.device).action(Global.dungeon, selected_cell);
                                             pushState(Constants.GS_ROOM_INIT);
                                             return;
                                         }
@@ -890,22 +832,13 @@ public class GFSM {
                                         ObjActor target = Global.dungeon.getCurrentRoom().getObj(target_cell);
                                         if (target != null) {
                                             if (target_cell.device != null) { // IF there is a device on current tile
-                                                ((DeviceActor) (target_cell.device)).action(Global.dungeon, target_cell);
+                                                 (target_cell.device).action(Global.dungeon, target_cell);
                                                 pushState(Constants.GS_ROOM_INIT);
                                                 return;
                                             }
 
                                         }
                                     }
-                    /*
-                          AreaCell temp=current_map.getAreaCell(getSelectedObj().getXX(),getSelectedObj().getYY());
-                  
-                          if (temp.device!=null) { // IF there is a device on current tile
-                              ((DeviceActor)(temp.device)).action(Global.dungeon,temp);
-                              pushState(GS_ROOM_INIT);
-                          }
-                          return;
-                          */
                                 } else {
                                     popAll();
                                     pushState(Constants.GS_BATTLE_END);
@@ -915,8 +848,6 @@ public class GFSM {
                             break;
                     }
                 }
-                //clearTargetList();
-
                 break;
         }
 

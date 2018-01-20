@@ -1,4 +1,4 @@
-package com.icefill.game;
+package com.icefill.game.utils;
 
 import java.util.Collections;
 import java.util.LinkedList;

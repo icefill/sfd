@@ -8,6 +8,7 @@ import com.icefill.game.actors.AreaCell;
 import com.icefill.game.actors.ObjActor;
 import com.icefill.game.actors.actionActors.AbilityActor;
 import com.icefill.game.actors.actionActors.ActionActor.ActionContainer;
+import com.icefill.game.utils.Randomizer;
 
 
 public class AIController {
@@ -304,7 +305,7 @@ public class AIController {
 					  }
 			  }
 			  area_computer.clearAreaList();
-			  if (type==0&&initial_distance<=min_distance && Randomizer.hitInRatio(.5f)) return null;
+			  if (type==0&&initial_distance<=min_distance && com.icefill.game.utils.Randomizer.hitInRatio(.5f)) return null;
 				  else  return to_return;
 		  }
 		  
@@ -678,7 +679,7 @@ public class AIController {
 									selected_obj.selectAction(selected_obj.getActionList().getFirst());
 				  					target=obs_cell;
 				  				}
-					  			else if (target==null ||Randomizer.hitInRatio(.3f))
+					  			else if (target==null || Randomizer.hitInRatio(.3f))
 						  		{
 						  				target=getDumbMovePosition(selected_obj,(AbilityActor)selected_obj.getMoveAction().action,1);
 						  			

@@ -1,9 +1,9 @@
 {
-	"job_name":"wall2",
+	"job_name":"wall",
 	"type":"wall",
 	"default_sprites":"wall2",
-	"description":"Bummer...",
-	"hp_modifier":[20,30],
+	"description":"Undestructable obstacle",
+	"hp_modifier":[200,300],
 	"adjust_color":true,
 	"ability_count":0
     	

@@ -1,6 +1,0 @@
-{
-	"name":"floor2",
-	"atlas":"sprite/floors.atlas",
-	"atlas_index":"floor2",
-	"description":"Normal floor."
-}

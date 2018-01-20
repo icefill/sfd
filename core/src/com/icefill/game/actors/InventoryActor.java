@@ -1,35 +1,19 @@
 package com.icefill.game.actors;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.NinePatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
-import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
-import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload;
-import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Source;
-import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
 import com.icefill.game.Assets;
 import com.icefill.game.Global;
-import com.icefill.game.Randomizer;
-import com.icefill.game.sprites.ObjSprites;
+import com.icefill.game.utils.Randomizer;
 
 public class InventoryActor extends Table {
 	ArrayList<SlotActor> equipping_slots;

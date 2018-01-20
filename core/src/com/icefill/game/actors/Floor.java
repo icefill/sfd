@@ -7,10 +7,8 @@ import java.util.Queue;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.icefill.game.Assets;
 import com.icefill.game.Constants;
-import com.icefill.game.Randomizer;
-import com.icefill.game.actors.Wall.Factory;
+import com.icefill.game.utils.Randomizer;
 
 public class Floor extends BasicActor
   implements Constants
@@ -28,26 +26,11 @@ public class Floor extends BasicActor
 	  public ArrayList<Animation[]> wall_animation;
 	  
 	  public boolean is_wall;
- // private String atlas_name;
- // private String atlas_index;
- // public Animation curr_animation;
 
   public Floor()
   {
   }
 
-  /*
-  public Floor(FloorFactory factory)
-  {
-    this.name = factory.name;
-    TextureAtlas atlas = (TextureAtlas)Assets.getAsset(factory.atlas, TextureAtlas.class);
-    this.atlas_name = factory.atlas;
-    this.atlas_index = factory.atlas_index;
-    this.description = factory.description;
-
-    this.curr_animation = new Animation(0.07F, new TextureRegion[] { atlas.findRegion(this.atlas_index) });
-  }
-*/
   public Floor(Factory factory)
   {
     this.name = factory.name;

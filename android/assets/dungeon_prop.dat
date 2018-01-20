@@ -1,0 +1,286 @@
+/* Dungeon properties */
+{
+    //Room tileSet can choose
+
+     dungeon_size:{xxx:4,yyy:4,zzz:5}
+
+     room_type:[
+        {name:"basic",floor_name:"floor1", down_stair_name:"down_stair_floor",wall_name:"wall1",door_name:"door_wall1","fire_bowl_name":"candle_stand"}
+     ]
+
+     shrine:"shrine"
+
+     //Character when start a game.(objs_data/chars/) ex) novice1, tom, teressa,skeleton warrrior ....
+     initial_characters_name:["proto"]
+
+     //Companions which can buy at the mercenaries shop (mul is multiplier. the larger the value is, odd of spawning that monster is larger)
+    mercernaries:[
+        {   min_floor:1, max_floor:1
+            // name,level,multiplier
+            names:[ {name:novice,level:1,mul:2}
+                    ,{name:novice_bow,level:1,mul:1}
+                    ,{name:apprentice_mage,level:1,mul:1}
+                  ]
+        }
+        {  min_floor:2, max_floor:2
+            names:[ {name:novice,level:2,mul:2}
+                    ,{name:novice_bow,level:2,mul:2}
+                    ,{name:apprentice_mage,level:2,mul:1}
+                  ]
+        }
+        {   min_floor:3, max_floor:3
+            names:[ {name:black_mage,level:2,mul:1}
+                    ,{name:knight,level:2,mul:1}
+                    ,{name:cleric,level:2,mul:1}
+                    ,{name:archer,level:2,mul:1}
+                    ,{name:spearman,level:2,mul:1}
+                  ]
+        }
+        {   min_floor:4, max_floor:4
+            names:[ {name:black_mage,level:4,mul:1}
+                    ,{name:knight,level:4,mul:1}
+                    ,{name:cleric,level:4,mul:1}
+                    ,{name:archer,level:4,mul:1}
+                    ,{name:spearman,level:4,mul:1}
+                  ]
+        }
+        {   min_floor:5, max_floor:15
+                    names:[ {name:black_mage,level:5,mul:1}
+                            ,{name:knight,level:5,mul:1}
+                            ,{name:cleric,level:5,mul:1}
+                            ,{name:archer,level:5,mul:1}
+                            ,{name:spearman,level:5,mul:1}
+                          ]
+         }
+
+    ]
+
+
+    monsters:[
+        {   min_floor:1, max_floor:1
+                        names:[ {name:jelly,level:1,mul:2}
+                                ,{name:wolf,level:1,mul:2}
+                                ,{name:bat,level:1,mul:2}
+                                ,{name:zombie,level:1,mul:2}
+                                ,{name:bandit,level:1,mul:1}
+                                ,{name:spider,level:1,mul:1}
+                                ,{name:skeleton_archer,level:1,mul:1}
+                              ]
+        }
+        {   min_floor:2, max_floor:2
+                        names:[ {name:goblin,level:1,mul:4}
+                                ,{name:zombie,level:3,mul:1}
+                                ,{name:bandit,level:2,mul:2}
+                                ,{name:bandit_archer,level:1,mul:1}
+                                ,{name:skeleton_archer,level:1,mul:1}
+                                ,{name:spider,level:3,mul:1}
+                                ,{name:bat,level:3,mul:1}
+                              ]
+        }
+        {   min_floor:3, max_floor:3
+                        names:[ {name:goblin,level:3,mul:2}
+                                {name:goblin_shaman,level:1,mul:1}
+                                ,{name:zombie,level:3,mul:1}
+                                ,{name:bandit,level:3,mul:3}
+                                ,{name:bandit_archer,level:2,mul:1}
+                                ,{name:skeleton,level:2,mul:2}
+                                ,{name:skeleton_archer,level:1,mul:1}
+                                ,{name:spider,level:3,mul:1}
+                                ,{name:bat,level:3,mul:1}
+                                ,{name:lizard_man,level:1,mul:2}
+                              ]
+        }
+        {   min_floor:4, max_floor:4
+                        names:[ {name:goblin,level:4,mul:3}
+                                {name:goblin_shaman,level:1,mul:3}
+                                ,{name:zombie,level:3,mul:1}
+                                ,{name:bandit,level:4,mul:3}
+                                ,{name:bandit_archer,level:4,mul:1}
+                                ,{name:skeleton,level:3,mul:4}
+                                ,{name:skeleton_archer,level:3,mul:1}
+                                ,{name:spider,level:3,mul:1}
+                                ,{name:bat,level:3,mul:1}
+                                ,{name:lizard_man,level:3,mul:2}
+                              ]
+        }
+        {   min_floor:5, max_floor:15
+                                names:[ ,{name:skeleton,level:5,mul:2}
+                                        ,{name:skeleton,level:4,mul:2}
+                                        ,{name:skeleton_archer,level:3,mul:1}
+                                        ,{name:spider,level:7,mul:1}
+                                        ,{name:bat,level:3,mul:1}
+                                        ,{name:lizard_man,level:5,mul:3}
+                                        ,{name:bandit_archer,level:5,mul:1}
+                                        ,{name:skeleton_archer,level:5,mul:1}
+                                        ,{name:skeleton_mage,level:5,mul:2}
+                                        ,{name:goblin_shaman,level:5,mul:1}
+                                      ]
+         }
+    ]
+    bosses:[
+            {   min_floor:1, max_floor:1
+                            names:[ {name:king jelly,level:3,mul:1}
+                                    ,{name:goblin_leader,level:3,mul:1}
+                                  ]
+            }
+            {   min_floor:2, max_floor:2
+                            names:[ {name:cyclops,level:3,mul:1}
+                                    ,{name:goblin_witch,level:3,mul:1}
+                                  ]
+            }
+            {   min_floor:3, max_floor:3
+                            names:[ {name:cyclops,level:5,mul:1}
+                                    ,{name:goblin_witch,level:5,mul:1}
+                                  ]
+            }
+            {   min_floor:4, max_floor:15
+                            names:[ {name:lich,level:9,mul:1}
+
+                                  ]
+            }
+    ]
+    scrolls_in_chest:[
+            {   min_floor:1, max_floor:2
+                                names:[ {name:S#Fireball,mul:1}
+                                       ,{name:S#Energy ray,mul:1}
+                                       ,{name:S#Decay,mul:1}
+                                       ,{name:S#Lightning,mul:1}
+                                       ,{name:S#Explosion,mul:2}
+                                       ,{name:S#Burn,mul:3}
+                                       ,{name:S#Heal,mul:2}
+                                       ,{name:S#Summon jelly,mul:1}
+                                      ]
+            }
+            {   min_floor:3, max_floor:4
+                                names:[ {name:S#Fireball,mul:2}
+                                       ,{name:S#Acidball,mul:2}
+                                       ,{name:S#Energy ray,mul:1}
+                                       ,{name:S#Decay,mul:1}
+                                       ,{name:S#Lightning,mul:1}
+                                       ,{name:S#Chain lightning,mul:1}
+                                       ,{name:S#Explosion,mul:2}
+                                       ,{name:S#Burn,mul:1}
+                                       ,{name:S#Heal,mul:1}
+                                       ,{name:S#Summon jelly,mul:1}
+                                       ,{name:S#Summon skeleton,mul:1}
+                                       ,{name:S#Area Heal,mul:1}
+                                      ]
+            }
+            {   min_floor:3, max_floor:15
+                                            names:[ {name:S#Acidball,mul:2}
+                                                   ,{name:S#Energy ray,mul:1}
+                                                   ,{name:S#Decay,mul:3}
+                                                   ,{name:S#Lightning,mul:1}
+                                                   ,{name:S#Chain lightning,mul:3}
+                                                   ,{name:S#Summon skeleton,mul:2}
+                                                   ,{name:S#Area Heal,mul:1}
+                                                   ,{name:S#Meteor,mul:1}
+                                                  ]
+             }
+    ]
+    weapons_in_chest:[
+            {   min_floor:1, max_floor:1
+                                            names:[ {name:axe0,mul:1}
+                                                   ,{name:staff1,mul:1}
+                                                   ,{name:short_sword2,mul:1}
+                                                   ,{name:leather_armor2,mul:1}
+                                                   ,{name:robe1,mul:1}
+                                                   ,{name:shield1,mul:1}
+                                                   ,{name:bow0,mul:1}
+                                                  ]
+             }
+            {   min_floor:1, max_floor:3
+                                            names:[ {name:axe1,mul:2}
+                                                   ,{name:sabre1,mul:2}
+                                                   ,{name:staff2,mul:2}
+                                                   ,{name:leather_armor3,mul:2}
+                                                   ,{name:spear,mul:2}
+                                                   ,{name:shield2,mul:2}
+                                                   ,{name:robe2,mul:2}
+                                                   ,{name:bow1,mul:2}
+                                                  ]
+             }
+            {   min_floor:3, max_floor:4
+                                            names:[ {name:armor1,mul:1}
+                                                   ,{name:bow2,mul:1}
+                                                   ,{name:axe2,mul:1}
+                                                   ,{name:spear,mul:1}
+                                                   ,{name:mace1,mul:1}
+                                                   ,{name:long_sword1,mul:1}
+                                                   ,{name:shield3,mul:1}
+                                                  ]
+             }
+            {   min_floor:4, max_floor:5
+                                            names:[ {name:armor2,mul:1}
+                                                   ,{name:bow3,mul:1}
+                                                   ,{name:axe3,mul:1}
+                                                   ,{name:long_sword2,mul:1}
+                                                   ,{name:shield4,mul:1}
+                                                   ,{name:mace2,mul:1}
+                                                   ,{name:robe3,mul:1}
+                                                  ]
+             }
+            {   min_floor:5, max_floor:15
+                                            names:[ {name:armor3,mul:1}
+                                                   ,{name:bow3,mul:1}
+                                                   ,{name:axe4,mul:1}
+                                                   ,{name:long_sword3,mul:1}
+                                                   ,{name:shield4,mul:1}
+                                                   ,{name:mace3,mul:1}
+                                                   ,{name:robe3,mul:1}
+                                                  ]
+             }
+
+
+    ]
+    items:[
+            {   min_floor:1, max_floor:2
+                                                names:[ {name:mana_stone,mul:3}
+                                                       ,{name:bomb,mul:2}
+                                                       ,{name:throwing_axe,mul:3}
+                                                       ,{name:str_up_potion,mul:1}
+                                                       ,{name:def_up_potion,mul:1}
+                                                       ,{name:healing_potion_10,mul:8}
+                                                       ,{name:S#Ice wall,mul:1}
+                                                       ,{name:S#Throw web,mul:2}
+                                                       ,{name:S#Teleport,mul:1}
+                                                      ]
+            }
+            {   min_floor:3, max_floor:4
+                                                names:[ {name:mana_stone,mul:3}
+                                                       ,{name:bomb,mul:2}
+                                                       ,{name:throwing_axe,mul:3}
+                                                       ,{name:str_up_potion,mul:1}
+                                                       ,{name:def_up_potion,mul:1}
+                                                       ,{name:healing_potion_10,mul:8}
+                                                       ,{name:S#Ice wall,mul:1}
+                                                       ,{name:S#Throw web,mul:2}
+                                                       ,{name:S#Teleport,mul:1}
+                                                      ]
+            }
+            {   min_floor:5, max_floor:15
+                                                names:[ {name:mana_stone,mul:3}
+                                                       ,{name:bomb,mul:2}
+                                                       ,{name:throwing_axe,mul:3}
+                                                       ,{name:str_up_potion,mul:1}
+                                                       ,{name:def_up_potion,mul:1}
+                                                       ,{name:healing_potion_10,mul:8}
+                                                       ,{name:S#Ice wall,mul:1}
+                                                       ,{name:S#Throw web,mul:2}
+                                                       ,{name:S#Teleport,mul:1}
+                                                      ]
+            }
+    ]
+    explosive_obs_list:[ {name:"explosive",mul:1}]
+    destructible_obs_list:[
+                           {name:"obstacle",mul:6}
+                          ,{name:"candle_stand",mul:1}
+                         ]
+    undestructible_obs_list:[ {name:"wall",mul:5}
+                              {name:"knight_statue",mul:1}
+                         ]
+}
+
+
+
+

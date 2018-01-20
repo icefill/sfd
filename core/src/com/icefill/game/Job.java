@@ -2,10 +2,9 @@ package com.icefill.game;
 
 import com.icefill.game.actors.DungeonGroup;
 import com.icefill.game.sprites.ObjSprites;
+import com.icefill.game.utils.Randomizer;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 public class Job
@@ -100,28 +99,28 @@ public class Job
   }
   public int getHPModifier() {
 	  if (hp_modifier!=null) {
-			return  Randomizer.nextInt(hp_modifier[0],hp_modifier[1]);
+			return  com.icefill.game.utils.Randomizer.nextInt(hp_modifier[0],hp_modifier[1]);
 		}
 	  else return 0;
 		
   }
    public int getSTRModifier() {
 	  if (str_modifier!=null) {
-			return  Randomizer.nextInt(str_modifier[0],str_modifier[1]);
+			return  com.icefill.game.utils.Randomizer.nextInt(str_modifier[0],str_modifier[1]);
 		}
 	  else return 0;
 		
   }
   public int getDEXModifier() {
 	  if (dex_modifier!=null) {
-			return  Randomizer.nextInt(dex_modifier[0],dex_modifier[1]);
+			return  com.icefill.game.utils.Randomizer.nextInt(dex_modifier[0],dex_modifier[1]);
 		}
 	  else return 0;
 		
   }
   public int getINTModifier() {
 	  if (int_modifier!=null) {
-			return  Randomizer.nextInt(int_modifier[0],int_modifier[1]);
+			return  com.icefill.game.utils.Randomizer.nextInt(int_modifier[0],int_modifier[1]);
 		}
 	  else return 0;
 		

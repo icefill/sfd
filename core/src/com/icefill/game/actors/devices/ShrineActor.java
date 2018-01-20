@@ -2,10 +2,7 @@ package com.icefill.game.actors.devices;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
-import java.util.ListIterator;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -16,19 +13,16 @@ import com.badlogic.gdx.scenes.scene2d.actions.RepeatAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.icefill.game.Assets;
 import com.icefill.game.Global;
-import com.icefill.game.Randomizer;
+import com.icefill.game.utils.Randomizer;
 import com.icefill.game.actors.AreaCell;
 import com.icefill.game.actors.BasicActor;
 import com.icefill.game.actors.DungeonGroup;
 import com.icefill.game.actors.Function;
-import com.icefill.game.actors.ObjActor;
-import com.icefill.game.actors.ProjectileActor;
 import com.icefill.game.actors.RoomGroup;
 import com.icefill.game.actors.actionActors.ObjActions;
 import com.icefill.game.sprites.NonObjSprites;
-import com.icefill.game.sprites.ObjSprites;
 
-public class TrapActor extends DeviceActor{
+public class ShrineActor extends DeviceActor{
 	private float door_x=0;
 	private float door_y=0;
 	Animation effect[];
@@ -39,7 +33,7 @@ public class TrapActor extends DeviceActor{
 	Function function;
 	static ArrayList<Function> shrine_effect_list;
 
-	public TrapActor() {
+	public ShrineActor() {
 			passable=false;
 			curr_dir=0;
 			TextureAtlas atlas= Assets.getAsset("sprite/shrine.atlas",TextureAtlas.class);
@@ -51,7 +45,7 @@ public class TrapActor extends DeviceActor{
 			this.addActor(rune);
 			rune.setPosition(16, 70);
 	}
-	public TrapActor(AreaCell cell,RoomGroup room) {
+	public ShrineActor(AreaCell cell, RoomGroup room) {
 		super(room);
 		passable=false;
 		curr_dir=0;

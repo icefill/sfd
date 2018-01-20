@@ -1,9 +1,6 @@
 package com.icefill.game.actors.devices;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.ListIterator;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -15,7 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.RepeatAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.icefill.game.Assets;
-import com.icefill.game.Randomizer;
 import com.icefill.game.actors.AreaCell;
 import com.icefill.game.actors.BasicActor;
 import com.icefill.game.actors.DungeonGroup;
@@ -23,9 +19,7 @@ import com.icefill.game.actors.Function;
 import com.icefill.game.actors.ObjActor;
 import com.icefill.game.actors.ProjectileActor;
 import com.icefill.game.actors.RoomGroup;
-import com.icefill.game.actors.actionActors.ObjActions;
 import com.icefill.game.sprites.NonObjSprites;
-import com.icefill.game.sprites.ObjSprites;
 
 public class Angel extends DeviceActor{
 	private float door_x=0;

@@ -2,13 +2,10 @@ package com.icefill.game.actors;
 
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.icefill.game.Assets;
-import com.icefill.game.Randomizer;
 import com.icefill.game.actors.devices.DeviceActor;
 import com.icefill.game.sprites.NonObjSprites;
 
@@ -22,7 +19,6 @@ public class AreaCell extends BasicActor{
 	public boolean transparent=false;
 	
 	public int wall_direction;
-	public int light_radius;
 	public Floor floor;
 	public int floor_index;
 	public int wall_index;
@@ -39,14 +35,9 @@ public class AreaCell extends BasicActor{
 			is_blocked=true;
 			room.addActor(this);
 		}
-		//this.floor_index=floor_index;
-		//if (floor.n_of_wall_tiles!=0)
-		//	this.door_index=Randomizer.nextInt(floor.n_of_wall_tiles);
-		//if (parent!=null) this.n=parent.n+1;
 		this.xx=xx;
 		this.yy=yy;
 		elapsed_time=0f;
-		//this.parent = parent;
 		if (floor.particle_name!=null) {
 			effect= new ParticleEffect();
 			effect.load(Gdx.files.internal(floor.particle_name),Gdx.files.internal("particles/"));
@@ -73,6 +64,7 @@ public class AreaCell extends BasicActor{
 	public void clearAreaCount() {
 		area_count=0;
 	}
+
 	public void setWallIndex(){
 		wall_index=floor.getRndWallIndex();
 	}
@@ -84,23 +76,12 @@ public class AreaCell extends BasicActor{
 	public void draw(Batch batch, float delta) {
 		super.draw(batch, delta);
 		
-		//batch.setColor(1f,1f,1f,.33f);
 		if (floor.wall_animation!=null)
 			drawWall(batch,delta);
-		//if (device!=null)
-			
-		//batch.setColor(1f,1f,1f,1f);
-		
 	}
 	public void setBossDoor()
 	{
 		wall_index=1;
-		/*
-		if (getDirection()<2)
-		{
-			transparent=true;
-		}
-		*/
 	}
 	public void drawWall(Batch batch, float delta) {
 		if (floor.wall_animation!=null && is_blocked)

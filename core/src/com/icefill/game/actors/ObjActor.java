@@ -9,31 +9,15 @@ import com.icefill.game.Job;
 
 
 import com.icefill.game.Job.EquipmentForLevel;
-import com.icefill.game.Randomizer;
+import com.icefill.game.utils.Randomizer;
 import com.icefill.game.StatusTuple;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Action;
-import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
-import com.badlogic.gdx.scenes.scene2d.actions.AfterAction;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.audio.Sound;
@@ -42,13 +26,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
-import java.util.Queue;
 import java.util.LinkedList;
-import java.util.Random;
 
 import com.icefill.game.Assets;
 import com.icefill.game.Constants;
@@ -58,7 +39,6 @@ import com.icefill.game.actors.actionActors.ActionActor.ActionContainer;
 import com.icefill.game.actors.actionActors.ObjActions;
 import com.icefill.game.actors.devices.ItemActor;
 import com.icefill.game.extendedActions.ExtendedActions;
-import com.icefill.game.sprites.BasicSprites;
 import com.icefill.game.sprites.NonObjSprites;
 import com.icefill.game.sprites.ObjSprites;
 
