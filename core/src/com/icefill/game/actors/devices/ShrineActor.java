@@ -105,7 +105,6 @@ public class ShrineActor extends DeviceActor{
 	}
 	*/
 	public void activateDevice(DungeonGroup dungeon,AreaCell cell) {
-		System.out.println("Activate Device");
 		if (!activated)
 		{
 			function.execute(dungeon, Global.getSelectedObj(), null, null);

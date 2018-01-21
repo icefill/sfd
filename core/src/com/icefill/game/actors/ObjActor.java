@@ -218,41 +218,21 @@ public class ObjActor extends BasicActor implements Constants {
     	
     		this.job=job;
     		adjust_color=job.adjust_color;
-    		//info_table= new Table();
-    		//info_table.setFillParent(true);
     		Label.LabelStyle style= new Label.LabelStyle(Assets.getFont(),Color.BLACK);
-    		//style.font=Assets.getFont();
-    		//style.font.setColor(Color.BLACK);
-			//TextureAtlas skinAtlas = Assets.getAsset(("ui/uiskin.atlas"),TextureAtlas.class);
-			
-			
-			//target_info.setWrap(true);
-			//info_table.setSize(100, 20);
-    		//target_info.setFontScale(1.0f);
-			//info_table.add(target_info);
-			style.background = new NinePatchDrawable(new NinePatch(Assets.getAsset(("sprite/message_background.png"), Texture.class), 15, 8, 8, 15));
+    		style.background = new NinePatchDrawable(new NinePatch(Assets.getAsset(("sprite/message_background.png"), Texture.class), 15, 8, 8, 15));
 		    
-			//Global.dungeon.addActor(target_info);
 			turn_effect_info=new Label("Bummer",new Label.LabelStyle(Assets.getFont(), Color.GREEN) );
 			turn_effect_info.setPosition(-20, 36+getZ());
-			//target_info.setColor(Color.BLACK);
 			turn_effect_info.setVisible(false);
 			turn_effect_info.pack();
 		
 			target_info= new TargetInfoActor(this,style);
 			ability_info=new TargetInfoActor(this,style);
-			//target_info.setFillParent(true);
-			//info_table.setPosition(-30, 44);
-			//info_table.setFillParent(true);
-			//info_table.setVisible(false);
-			//target_info.setColor(1f,1f,1f,1f);
-		
+
     	
     		skill_window = new ObjInfoWindow(this,Assets.getSkin());
     		
-    		//this.total_status=new Status();
-    		//this.base_status= new Status();
-			
+
 			setJob(job,true);
 			
 			elapsed_time=(float)(Math.random()*10);
@@ -285,23 +265,7 @@ public class ObjActor extends BasicActor implements Constants {
 	    	if (equipment_names!= null) {
 	    		inventory = new InventoryActor(Assets.getSkin(),equipment_names,job.item_name,this,null);
 	    	}
-	    	/*
-	    	if (job.equipments_for_level!=null) {
-	    		int i=0;
-	    		String[] equipment_names;
-	    		if (job.equipments_for_level.size()>1) {
-	    			//i=rn.nextInt(job.equipments_for_level.size());
-	    			//ArrayList<EquipmentForLevel> temp_list= new ArrayList<EquipmentForLevel>();
-	    			
-	    			equipment_names=job.equipments_for_level.get(i).chooseEquipmentSet();
-	    		}
-	    		else {
-	    			equipment_names=job.equipments_for_level.get(0).chooseEquipmentSet();
-	    		}
-	    		inventory = new InventoryActor(Assets.getSkin(),equipment_names,job.item_name,this);
-	    	}
-	    	*/
-	    	status= new TotalStatus(this,base_status,inventory);
+	   		status= new TotalStatus(this,base_status,inventory);
 	    	this.addActor(turn_effect_info);
 	    	//this.addActor(target_info);
 	    	level_up_window = new LevelUpWindow(this,Assets.getSkin());
@@ -1512,10 +1476,7 @@ public class ObjActor extends BasicActor implements Constants {
 			turn_effect_info.setVisible(true);
 			turn_effect_info.pack();
 			
-			//target_info.remove();
-			//info_table.add(target_info);
-			//info_table.setVisible(true);
-			}
+				}
 		}
 		
 		public void removeTargetInfo() {

@@ -73,8 +73,7 @@ public class ShopDeviceActor extends DeviceActor{
 }
 
 	public void activateDevice(DungeonGroup dungeon,AreaCell cell) {
-		System.out.println("Activate Device");
-		if (!activated)
+			if (!activated)
 			revive(dungeon);
 	}	
 	public void action(final DungeonGroup dungeon,final AreaCell target_cell) {

@@ -1,7 +1,7 @@
 {
-	"job_name":"wall",
+	"job_name":"obs_basic",
 	"type":"wall",
-	"default_sprites":"wall2",
+	"default_sprites":"obs_basic",
 	"description":"Undestructable obstacle",
 	"hp_modifier":[200,300],
 	"adjust_color":true,

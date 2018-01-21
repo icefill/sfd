@@ -1,19 +1,13 @@
 package com.icefill.game.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.icefill.game.Assets;
 import com.icefill.game.SigmaFiniteDungeon;
-import com.icefill.game.actors.InventoryActor;
-import com.icefill.game.sprites.NonObjSprites;
 import com.icefill.game.sprites.ObjSprites;
 
 public class DungeonMakingScreen extends BasicScreen
 {
-  public boolean animationDone = false;
   public float elapsed_time=0f;
   private Animation anim;
   boolean creating_done=false;

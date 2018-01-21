@@ -3,8 +3,7 @@
 	"anchor_y":15,
 	"has_direction":true,
 	"is_symmetric":true,
-	"shadow_shape":"circle",
-	"shadow_size":40,
+
 		"equippable":false,
 	"body_equippable":false
 }

@@ -27,7 +27,6 @@
 	"jelly.json",
 	"king_jelly.json",
 	"bat.json",
-	
 	"spider.json",
 	"zombie.json",
 	"skeleton_mage.json",
@@ -37,7 +36,7 @@
 	"knight.json",
 	"archer.json",
 	"spearman.json",
-	"wall.json",
+	"obs_basic.json",
 	"candle_stand.json",
 	"explosive.json",
 	"obstacle.json",

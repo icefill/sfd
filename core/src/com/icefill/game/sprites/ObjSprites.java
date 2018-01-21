@@ -24,8 +24,6 @@ public class ObjSprites extends BasicSprites {
 	boolean body_equippable;
 	//Sound foot1= Assets.getAsset("sound/footstep.wav", Sound.class);
 	boolean equippable;
-	int shadow_shape;
-	int shadow_size;
 	int shield_dir=0;
 	boolean sound_run;
 	Texture shadow;
@@ -55,13 +53,6 @@ public class ObjSprites extends BasicSprites {
 		
 		height=animation[0][0][0].getKeyFrame(0).getRegionHeight();
 		width=animation[0][0][0].getKeyFrame(0).getRegionHeight();
-		if (factory.shadow_shape.equals("circle"))
-			this.shadow_shape=0;
-		else
-			this.shadow_shape=1;
-		
-		this.shadow_size=factory.shadow_size;
-		
 	}
 	public boolean hasAnimation(int ani)
 	{
@@ -105,8 +96,6 @@ public class ObjSprites extends BasicSprites {
 		
 	}
 	public Texture getShadow() {return shadow;}
-	public int getShadowShape(){ return shadow_shape;}
-	public int getShadowSize(){ return shadow_size;}
 	public boolean isEquippable(){
 		return equippable;
 	}
@@ -127,10 +116,10 @@ public class ObjSprites extends BasicSprites {
 			if (anim != IDLE && anim !=DEAD)
 				anim=IDLE;
 			if ((anim==DEAD ||anim==RAISE)&& animation[anim][0][0]!=null)
-				batch.draw(animation[anim][0][0].getKeyFrame(elapsed_time,false), x-anchor_x, y-anchor_y);
+				batch.draw(animation[anim][direction][0].getKeyFrame(elapsed_time,false), x-anchor_x, y-anchor_y);
 			else{
 				batch.setColor(color);
-				batch.draw(animation[anim][0][0].getKeyFrame(elapsed_time,true), x-anchor_x, y-anchor_y);
+				batch.draw(animation[anim][direction][0].getKeyFrame(elapsed_time,true), x-anchor_x, y-anchor_y);
 			}
 			batch.setColor(1f,1f,1f,1f);
 		}
@@ -358,43 +347,8 @@ public class ObjSprites extends BasicSprites {
 						
 					}//bodyparts	
 				}//dir
-				}//ani
-			/*
-			for (int dir=0;dir<N_DIRECTION;dir+=direction_adder) {
-				for (int bodyparts=0;bodyparts<n_bodyparts;bodyparts++){
-					index=0;
-					while(true) {
-						if (body_equippable)
-						region_name=animation_name[DEAD]+"_"
-								+direction_name[dir]+"_"
-								+bodyparts_name[bodyparts]
-								+String.format("%04d", index);
-						else {
-							region_name=animation_name[DEAD]+"_"
-									+direction_name[dir]
-									+String.format("%04d", index);
-						}
-						temp_region=atlas.findRegion(region_name);
-						if (temp_region == null) break;
-						else {	
-							temp_frames.add(temp_region);
-							index++;
-						}
-					}//while
-					animation[RAISE][dir][bodyparts]=new Animation(0.1f,temp_frames.toArray(new TextureRegion[index]));
-					temp_frames.clear();
-					if (is_symmetric) {
-						animation[RAISE][dir+1][bodyparts]=createFlippedAnimation(animation[RAISE][dir][bodyparts]);
-						animation[RAISE][dir+1][bodyparts].setPlayMode(PlayMode.REVERSED);
-					}
-					animation[RAISE][dir][bodyparts].setPlayMode(PlayMode.REVERSED);
-					
-					
-				}
-				
-			}
-			*/
-			//setAnimationReverse(RAISE);
+            }//ani
+
 	}
 
 	public static class Factory {
@@ -404,8 +358,6 @@ public class ObjSprites extends BasicSprites {
     	public boolean is_symmetric;
     	public boolean equippable;
     	public boolean body_equippable;
-    	public String shadow_shape;
-    	public int shadow_size;
     	public int[][][][] head_coord;
     	public int[][][][] body_coord;
     	public int[][][][] arm2_coord;

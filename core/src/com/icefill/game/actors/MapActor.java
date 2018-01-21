@@ -156,25 +156,20 @@ public class MapActor extends BasicActor implements Constants {
 
 	
 	public void drawArea(Batch batch,float delta){
-		float x;
-		float y;
-		AreaCell temp;
+			AreaCell temp;
 		for (int yy=0;yy<map_size[1];yy++) {
 			for (int xx=0;xx<map_size[0];xx++) {
-				x=mapToScreenCoordX(xx,yy)- TILE_ANCHOR_X;
-				y=mapToScreenCoordY(xx,yy)- TILE_ANCHOR_Y;
 				temp=area_cell_array[xx][yy];
+
 				batch.setColor(area_color);
 				if (temp.is_in_range && temp.isAnimationStarted())	{
-					area_selection.drawAnimation(batch, temp.elapsed_time,0, 0, mapToScreenCoordX(temp.xx, temp.yy), mapToScreenCoordY(temp.xx, temp.yy)+temp.getZ(),false);				
+					area_selection.drawAnimation(batch, temp.elapsed_time,0, 0, mapToScreenCoordX(temp.xx, temp.yy), mapToScreenCoordY(temp.xx, temp.yy)+temp.getZ(),false);
 					temp.elapsed_time+=Gdx.graphics.getDeltaTime();
 				}
 				if (temp.is_target){
 					batch.setColor(1f,0f,0f,0.5f);
 					area_selection.drawAnimation(batch, 1, 0, 0, mapToScreenCoordX(temp.xx, temp.yy), mapToScreenCoordY(temp.xx, temp.yy)+temp.getZ(),false);
-							
 				}
-				
 				batch.setColor(1f,1f,1f,1f);
 			}
 		}
@@ -201,58 +196,30 @@ public class MapActor extends BasicActor implements Constants {
 
 
 	}
-	public void drawOuterWall(Batch batch, float delta)
-	{
-		AreaCell temp;
-		for (int yy=0;yy<map_size[1];yy++)
-		{
-			temp=area_cell_array[map_size[0]-1][yy];
-			if (temp.device==null)
-			{
-				temp.drawWall(batch, delta);
-			}
-			else
-			{
-				temp.drawWallTransparently(batch, delta);
-			}
-		}
-		for (int xx=0;xx<map_size[0];xx++)
-		{
-			temp=area_cell_array[xx][map_size[1]-1];
-			if (temp.device==null)
-			{
-				temp.drawWall(batch, delta);
-			}
-			else
-			{
-				temp.drawWallTransparently(batch, delta);
-			}
-		}
-	}
+
 	public void drawFloors(Batch batch, float delta) {
 		float x;
 		float y;
 		AreaCell temp;
 		for (int yy=0;yy<map_size[1];yy++) {
 			for (int xx=0;xx<map_size[0];xx++) {
-				x=mapToScreenCoordX(xx,yy)- TILE_ANCHOR_X;
-				y=mapToScreenCoordY(xx,yy)- TILE_ANCHOR_Y;
-				temp=area_cell_array[xx][yy];
-				if (!((xx==map_size[0]-1) || (yy ==map_size[1]-1))) {
-					batch.draw((temp.floor.animation.get(temp.floor_index)[temp.getDirection()]).getKeyFrame(elapsed_time,true), x,y+temp.getZ());
-					if (temp.device!=null)
-						temp.device.drawDevice(batch, delta);
-					//temp.drawWall(batch, delta);
-				}
-				else
-				{
-					batch.draw((temp.floor.animation.get(temp.floor_index)[temp.getDirection()]).getKeyFrame(elapsed_time,true), x,y+temp.getZ());
-				}
-				
-				if (temp.effect!= null) {
-					temp.drawEffect(batch,delta);
-				}
+				temp = area_cell_array[xx][yy];
+				if ((xx!=(map_size[0]-1) && yy!=(map_size[1]-1)) || (temp.device instanceof DoorActor)) {
+					x = mapToScreenCoordX(xx, yy) - TILE_ANCHOR_X;
+					y = mapToScreenCoordY(xx, yy) - TILE_ANCHOR_Y;
+					if (!((xx == map_size[0] - 1) || (yy == map_size[1] - 1))) {
+						batch.draw((temp.floor.animation.get(temp.floor_index)[temp.getDirection()]).getKeyFrame(elapsed_time, true), x, y + temp.getZ());
+						if (temp.device != null)
+							temp.device.drawDevice(batch, delta);
+						//temp.drawWall(batch, delta);
+					} else {
+						batch.draw((temp.floor.animation.get(temp.floor_index)[temp.getDirection()]).getKeyFrame(elapsed_time, true), x, y + temp.getZ());
+					}
 
+					if (temp.effect != null) {
+						temp.drawEffect(batch, delta);
+					}
+				}
 			}
 		}
 	}

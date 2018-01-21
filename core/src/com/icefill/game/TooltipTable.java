@@ -41,11 +41,9 @@ public class TooltipTable extends Table {
 		this.pack();
 		//this.setSize(tooltip.getWidth(), tooltip.getHeight());
 		this.setVisible(true);
-		System.out.println("set");
 	}
 	public void relesseText(){
 		this.setVisible(false);
-		System.out.println("rel");
 	}
 	public void act(float delta) {
 		if (this.isVisible()) {

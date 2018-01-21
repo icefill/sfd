@@ -2,23 +2,14 @@ package com.icefill.game.screens;
 
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.icefill.game.Assets;
 import com.icefill.game.Constants;
-import com.icefill.game.Global;
 import com.icefill.game.SigmaFiniteDungeon;
-import com.icefill.game.actors.DungeonGroup;
-import com.icefill.game.actors.DungeonGroup.DungeonSeed;
-import com.icefill.game.actors.DungeonGroup.ObjListElt;
-import com.icefill.game.actors.HUDActor;
-
-import java.util.ArrayList;
 
 public class TutorialScreen extends BasicScreen
   implements Constants

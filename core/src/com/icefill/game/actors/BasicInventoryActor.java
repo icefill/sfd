@@ -100,7 +100,7 @@ public class BasicInventoryActor extends BasicWindow {
 	public void setInventory(String[] inventory_name){
         		
     		if (name!=null)
-    			inven_table.add(name).colspan(4);
+    			inven_table.add(name).colspan(5).pad(5f);
     		inventory_slots = new ArrayList<SlotActor>();
     		inven_table.row();
     		//if (inventory_name !=null)

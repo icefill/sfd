@@ -2062,8 +2062,7 @@ class ObjActions : Constants{
         }
 
         val Explode: Function = Function { room, to_act, action, current_target ->
-            //System.out.println("Explode!");
-            val center_xx = to_act.xx
+           val center_xx = to_act.xx
             val center_yy = to_act.yy
             //subaction_map["wooden_hit"]?.execute(room, to_act, null, room.currentMap.getCell(center_xx, center_yy))
             for (dxx in -1..1) {

@@ -200,7 +200,6 @@ public class AreaComputer {
 							 to_return.add(next_cell);
 							 index_xx=next_cell.getXX();
 							 index_yy=next_cell.getYY();
-							 System.out.println("target"+i+"("+index_xx+","+index_yy+")");
 						  }
 						  temp_list.clear();
 					  }

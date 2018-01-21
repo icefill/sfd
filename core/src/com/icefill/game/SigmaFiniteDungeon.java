@@ -17,12 +17,10 @@ import com.icefill.game.screens.LoadingScreen;
 public class SigmaFiniteDungeon extends Game
 {
   public static final String LOG = SigmaFiniteDungeon.class.getSimpleName();
-  private FPSLogger fpsLogger;
 
   public void create()
   {
     Gdx.app.log(LOG, "Creating game");
-    this.fpsLogger = new FPSLogger();
     setScreen(new LoadingScreen(this));
   }
 

@@ -81,7 +81,6 @@ public class Angel extends DeviceActor{
 	}
 	*/
 	public void activateDevice(DungeonGroup dungeon,AreaCell cell) {
-		System.out.println("Activate Device");
 		if (!activated)
 		{
 			//function.execute(dungeon, null, null, null);

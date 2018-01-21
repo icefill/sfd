@@ -1,5 +1,5 @@
 
-wall2.png
+obs_basic.png
 format: RGBA8888
 filter: MipMapNearestNearest,MipMapNearestNearest
 repeat: none

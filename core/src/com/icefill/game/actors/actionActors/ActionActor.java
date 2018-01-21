@@ -193,16 +193,10 @@ public class ActionActor extends BasicActor {
 			self=this;
 			this.level=level;
 			this.listener=new InputListener() {
-				public void enter(InputEvent event,float x, float y, int pointer,Actor fromActor)
-				{
-					//System.out.println("Enter");
-					//tooltip.setVisible(true);
+				public void enter(InputEvent event,float x, float y, int pointer,Actor fromActor) {
 					action.on_cursor=true;
-				//	if (!self.is_forbidden && current_cool_time<=0)
-				//		action.setColor(0f,0f,.5f,1f);
 				}
-				public void exit(InputEvent event,float x, float y, int pointer,Actor fromActor)
-				{
+				public void exit(InputEvent event,float x, float y, int pointer,Actor fromActor) {
 					//tooltip.setVisible(false);
 					action.on_cursor=false;
 					if (!self.is_forbidden && current_cool_time<=0)

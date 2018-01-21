@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.icefill.game.Constants;
 import com.icefill.game.Global;
 import com.icefill.game.actors.actionActors.ActionActor;
+import com.icefill.game.actors.devices.DeviceActor;
 import com.icefill.game.extendedActions.ExtendedActions;
 import com.icefill.game.sprites.BasicSprites;
 import com.badlogic.gdx.math.Vector2;
@@ -36,7 +37,6 @@ public class BasicActor extends Group implements Constants{
 	protected BasicActor self=this;
 	
 	protected boolean acting=false;
-	protected boolean has_no_direction=false;
 	private boolean active=false;
 	protected BasicSprites sprites;
 	protected String sprites_name;
@@ -167,11 +167,11 @@ public class BasicActor extends Group implements Constants{
 	/*********************** Action related Direction  *******************************/
 	public void setDirection(int dir)
 	{
-		if (0<=dir && dir<=3)
-		{
-			if (curr_dir!=dir)curr_dir=dir;
+		if ((sprites!=null && sprites.hasDirection()) || this instanceof DeviceActor) {
+			if (0 <= dir && dir <= 3) {
+				if (curr_dir != dir) curr_dir = dir;
+			}
 		}
-		
 	}
 public int getDirection(){return curr_dir;}
 	

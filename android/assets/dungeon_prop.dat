@@ -3,12 +3,13 @@
     //Room tileSet can choose
 
      dungeon_size:{xxx:4,yyy:4,zzz:5}
+     monster_room_ratio:0.33
+
 
      room_type:[
         {name:"basic",floor_name:"floor1", down_stair_name:"down_stair_floor",wall_name:"wall1",door_name:"door_wall1","fire_bowl_name":"candle_stand"}
      ]
 
-     shrine:"shrine"
 
      //Character when start a game.(objs_data/chars/) ex) novice1, tom, teressa,skeleton warrrior ....
      initial_characters_name:["proto"]
@@ -272,11 +273,14 @@
             }
     ]
     explosive_obs_list:[ {name:"explosive",mul:1}]
+
+
+    ratio_destructible:.2f
     destructible_obs_list:[
                            {name:"obstacle",mul:6}
                           ,{name:"candle_stand",mul:1}
                          ]
-    undestructible_obs_list:[ {name:"wall",mul:5}
+    undestructible_obs_list:[ {name:"obs_basic",mul:5}
                               {name:"knight_statue",mul:1}
                          ]
 }

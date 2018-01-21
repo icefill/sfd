@@ -356,7 +356,7 @@ public class SlotActor extends ImageButton {
 		public SlotTarget(SlotActor actor) {
 			super(actor);
 			target_slot=actor;
-			getActor().setColor(Color.LIGHT_GRAY);
+			getActor().setColor(Color.WHITE);
 		}
 		public boolean drag(Source source, Payload payload, float x, float y , int pointer) {
 			SlotActor payload_slot= (SlotActor) payload.getObject();
@@ -367,7 +367,7 @@ public class SlotActor extends ImageButton {
 			
 		}
 		public void reset(Source source, Payload payload){
-			getActor().setColor(Color.LIGHT_GRAY);
+			getActor().setColor(Color.WHITE);
 		}
 	}
 }

@@ -20,6 +20,7 @@ import com.icefill.game.Constants;
 import com.icefill.game.Global;
 import com.icefill.game.SigmaFiniteDungeon;
 
+
 public class MenuScreen extends BasicScreen
   implements Constants
 {
@@ -66,10 +67,8 @@ public class MenuScreen extends BasicScreen
     this.table = new Table(Assets.getSkin());
 
     this.table.setFillParent(true);
-    Label label = new Label("VER 1.09", new Label.LabelStyle(Assets.getFont(), Color.WHITE) );
-    //label.setFontScale(1);
-    //this.table.add("GAME OVER").center();
-    this.table.add(image).center().row();
+      Label label = new Label("VER 1.15", new Label.LabelStyle(Assets.getFont(), Color.WHITE) );
+   this.table.add(image).center().row();
     table.add(label).bottom().right();
     this.table.row();
 
@@ -84,8 +83,6 @@ public class MenuScreen extends BasicScreen
     this.ui_stage.addActor(this.table);
   }
   public void render(float alpha) {
-     // Gdx.gl.glClearColor(1f,1f,1f,1f);
-     // Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
       super.render(alpha);
 

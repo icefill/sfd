@@ -36,41 +36,13 @@ public class CommonInventoryActor extends BasicInventoryActor {
 
 	CommonInventoryActor inventory;
 	public CommonInventoryActor(Skin skin,String[] item_name){
-		super("COMMON_INVENTORY",skin,item_name);
+		super("COMMON INVENTORY",skin,item_name);
 		obj_inven_table=new Table(skin);
 		table.add(obj_inven_table);
 		this.setSlot(new EquipActor("healing_potion_10"));
 		this.setSlot(new EquipActor("healing_potion_10"));
 		this.setSlot(new EquipActor("healing_potion_10"));
 		this.setSlot(new EquipActor("throwing_axe"));
-		
-		/*
-		this.setSlot(new EquipActor("S#Teleport"));
-		this.setSlot(new EquipActor("S#Getoverhere"));	
-		this.setSlot(new EquipActor("S#Lightning"));	
-		//this.setSlot(new EquipActor("S#Chain lightning"));
-		this.setSlot(new EquipActor("S#Energy ray"));
-		this.setSlot(new EquipActor("S#Acidball"));
-		this.setSlot(new EquipActor("S#Acidball"));
-		this.setSlot(new EquipActor("S#Acidball"));
-		this.setSlot(new EquipActor("S#Acidball"));
-		
-		
-		this.setSlot(new EquipActor("S#Decay"));
-		this.setSlot(new EquipActor("S#Decay"));
-		this.setSlot(new EquipActor("S#Decay"));
-		this.setSlot(new EquipActor("S#Decay"));
-		this.setSlot(new EquipActor("S#Decay"));
-		
-		this.setSlot(new EquipActor("S#Fireball"));	
-		this.setSlot(new EquipActor("S#Fireball"));	
-		this.setSlot(new EquipActor("S#Fireball"));	
-		this.setSlot(new EquipActor("S#Fireball"));	
-		this.setSlot(new EquipActor("S#Ice wall"));	
-		*/
-		//this.setSlot(new EquipActor("S#Explosion"));	
-		
-		
 	}
 	public void addObjInventory(InventoryActor inven) {
 		if(this.inven!=null) this.inven.remove();

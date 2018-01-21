@@ -4,9 +4,9 @@
 	"default_sprites":"knight_statue",
 	"description":"Bummer...",
 	"hp_modifier":[20,30],
-	"base_hp":50,
+	"base_hp":500,
 	"adjust_color":true,
 	"ability_count":0,
-	"no_direction":true
+	"no_direction":false
     	
 }

@@ -1,0 +1,117 @@
+
+wall1.png
+format: RGBA8888
+filter: MipMapNearestNearest,MipMapNearestNearest
+repeat: none
+0dl0000
+  rotate: false
+  xy: 1, 1
+  size: 71, 109
+  orig: 71, 109
+  offset: 0, 0
+  index: -1
+0dr0000
+  rotate: false
+  xy: 1, 1
+  size: 71, 109
+  orig: 71, 109
+  offset: 0, 0
+  index: -1
+1dl0000
+  rotate: false
+  xy: 1, 1
+  size: 71, 109
+  orig: 71, 109
+  offset: 0, 0
+  index: -1
+1dr0000
+  rotate: false
+  xy: 1, 1
+  size: 71, 109
+  orig: 71, 109
+  offset: 0, 0
+  index: -1
+2dl0000
+  rotate: false
+  xy: 1, 1
+  size: 71, 109
+  orig: 71, 109
+  offset: 0, 0
+  index: -1
+2dr0000
+  rotate: false
+  xy: 1, 1
+  size: 71, 109
+  orig: 71, 109
+  offset: 0, 0
+  index: -1
+3dl0000
+  rotate: false
+  xy: 1, 1
+  size: 71, 109
+  orig: 71, 109
+  offset: 0, 0
+  index: -1
+3dr0000
+  rotate: false
+  xy: 1, 1
+  size: 71, 109
+  orig: 71, 109
+  offset: 0, 0
+  index: -1
+0ul0000
+  rotate: false
+  xy: 74, 1
+  size: 71, 109
+  orig: 71, 109
+  offset: 0, 0
+  index: -1
+0ur0000
+  rotate: false
+  xy: 74, 1
+  size: 71, 109
+  orig: 71, 109
+  offset: 0, 0
+  index: -1
+1ul0000
+  rotate: false
+  xy: 147, 1
+  size: 71, 109
+  orig: 71, 109
+  offset: 0, 0
+  index: -1
+1ur0000
+  rotate: false
+  xy: 220, 1
+  size: 71, 109
+  orig: 71, 109
+  offset: 0, 0
+  index: -1
+2ul0000
+  rotate: false
+  xy: 293, 1
+  size: 71, 109
+  orig: 71, 109
+  offset: 0, 0
+  index: -1
+2ur0000
+  rotate: false
+  xy: 366, 1
+  size: 71, 109
+  orig: 71, 109
+  offset: 0, 0
+  index: -1
+3ul0000
+  rotate: false
+  xy: 439, 1
+  size: 71, 109
+  orig: 71, 109
+  offset: 0, 0
+  index: -1
+3ur0000
+  rotate: false
+  xy: 512, 1
+  size: 71, 109
+  orig: 71, 109
+  offset: 0, 0
+  index: -1

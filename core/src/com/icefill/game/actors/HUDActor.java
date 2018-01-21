@@ -96,15 +96,7 @@ public class HUDActor extends Table{
 		
 		
 		status_table.setBackground(Assets.getBackground());
-		//status_table2.setBackground(Assets.getBackground());
-		//ability_table.setBackground(Assets.getBackground());
-		//ability_table2.setBackground(Assets.getBackground());
 		ability_info.setBackground(Assets.getBackground());
-		//quick_slot_table.setBackground(Assets.getBackground());
-
-
-		//bottom_table.setBackground(Assets.getBackground());
-		
 
 		status_parent_table.add(status_parent_table3).bottom();
 		status_parent_table3.add(ability_table2).row();
@@ -116,10 +108,8 @@ public class HUDActor extends Table{
 		common_parent.add(common_info);
 		top_table.add(top_left_table).expandX().top().left();;
 		top_left_table.add(common_parent).top();
-		//top_left_table.add(ability_table2).top();
-		
-		//common_parent.add(common);
-		top_table.add(quick_slot_table).right().top();	
+
+		top_table.add(quick_slot_table).right().top();
 		center_table.add(minimap_table).center();
 		minimap_table.setVisible(false);
 		//top_table.pack();
@@ -149,28 +139,18 @@ public class HUDActor extends Table{
 	{
 		super.act(delta);
 		common_info.setText(Global.getPlayerTeam().getTeamResourceInfo());
-		//this.setBounds(getX(), getY(), 50, 50);
-	}
+		}
 	public Table getStatusTable()
 	{
 		return status_table;
 	}
 	public void setInventory(Team team)
 	{
-		//inventory_table.clear();
 		quick_slot_table.clear();
-		//inventory_table.add(team.getInventory());
-		//quick_slot_table.add(new Label("quick_slots",new Label.LabelStyle(Assets.getFont(), Color.BLACK))).row();
 		quick_slot_table.add(team.getQuickSlotInventory());
 		
 	}
 
-	/*
-	public boolean isInventoryVisible()
-	{
-		return inventory_table.isVisible();
-	}
-	*/
 	public void addObj(ObjActor selected){
 		this.selected=selected;
 		status_table.setObj(selected);

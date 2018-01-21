@@ -6,8 +6,6 @@
 	"is_symmetric":true,
 	"equippable":true,
 	"body_equippable":false,
-	"shadow_shape":"circle",
-	"shadow_size":8,
 "head_coord":[
 	  [
 	 	 [[18,35],[18,35],[18,36],[18,36]]

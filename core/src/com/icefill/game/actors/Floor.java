@@ -100,7 +100,6 @@ public class Floor extends BasicActor
   }
   public int getRndFloorIndex()
   {
-	  System.out.println(n_of_tiles);
 	  int rn=Randomizer.nextInt(n_of_tiles+13);
 	  if (rn<14)
 		  return 0;

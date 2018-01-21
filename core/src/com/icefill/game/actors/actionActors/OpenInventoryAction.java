@@ -18,10 +18,8 @@ public class OpenInventoryAction extends ActionActor {
 		icon_texture = new TextureRegion(Assets.getAsset("sprite/icon.atlas", TextureAtlas.class).findRegion("inventory"));
 	}
 	public int execute(DungeonGroup room, ObjActor to_act,int level){
-		System.out.println("execute");
-		
+
 		if (Global.gfs.getSeq()==0) {
-			//System.out.println("inventoryopent");
 			Global.getPlayerTeam().getInventory().addObjInventory(to_act.getInventory());
 			Global.getPlayerTeam().getInventory().setVisible(true);
 			Global.getPlayerTeam().showInventory();

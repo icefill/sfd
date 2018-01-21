@@ -16,7 +16,6 @@ import com.icefill.game.actors.devices.*;
 import com.icefill.game.extendedActions.ExtendedActions;
 import com.icefill.game.sprites.NonObjSprites;
 import com.icefill.game.utils.Randomizer;
-import com.icefill.game.utils.StaticFunctions;
 
 import static com.icefill.game.utils.StaticFunctions.chooseAmong;
 
@@ -43,7 +42,7 @@ public class RoomGroup extends Group implements Constants
 	
 	
 
-	public RoomGroup(RoomShapeType roomShapeType, int room_xx, int room_yy, int room_zz, DungeonGroup.DungeonSeed dungeon_seed) {
+	public RoomGroup(RoomShapeType roomShapeType, int room_xx, int room_yy, int room_zz, DungeonSeed dungeon_seed) {
 				this.has_door=dungeon_seed.room_array[room_xx][room_yy][room_zz].has_door;
 				this.room_type=dungeon_seed.room_array[room_xx][room_yy][room_zz].room_type;
 				this.room_xx=room_xx;this.room_yy=room_yy;
@@ -62,7 +61,7 @@ public class RoomGroup extends Group implements Constants
 				enemy_list= new Team();
 				int controlled;
 				this.room_size=dungeon_seed.room_array[room_xx][room_yy][room_zz].room_size;
-				DungeonGroup.RoomSeed roomSeed= dungeon_seed.room_array[room_xx][room_yy][room_zz];
+				RoomSeed roomSeed= dungeon_seed.room_array[room_xx][room_yy][room_zz];
 				obj_array= new ObjActor[room_size[0]][room_size[1]];
 				
 				for (int yy=0;yy<room_size[1];yy++) {
@@ -146,6 +145,7 @@ public class RoomGroup extends Group implements Constants
 								DungeonGroup.ObjListElt elt= chooseAmong(dungeon_seed.undest_obs_info_list);
 								temp=new ObjActor(xx,yy,elt.team,elt.level,Assets.jobs_map.get(elt.job),CONTROLLED_AI);
 								obj_array[xx][yy]=temp;
+								temp.setDirection(Randomizer.nextInt(4));
 								temp.setX(x);
 								temp.setY(y+map.getCell(xx,yy).getZ());
 								this.addActor(temp);
@@ -470,8 +470,6 @@ public class RoomGroup extends Group implements Constants
 	
 	public void draw(Batch batch,float delta)
 	{
-		
-
 		map.drawArea(batch, delta);
 		super.draw(batch, delta);
 	}

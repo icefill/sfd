@@ -47,7 +47,9 @@ public class AreaCell extends BasicActor{
 	}
 
 	public void setDirection(int direction) {
-		super.setDirection(direction);
+		if (0 <= direction && direction <= 3) {
+				if (curr_dir != direction) curr_dir = direction;
+		}
 		wall_direction=direction;
 		if (floor.wall_animation !=null && getDirection()<2)
 		{
@@ -88,7 +90,7 @@ public class AreaCell extends BasicActor{
 		{
 			if (transparent)
 			{
-				batch.setColor(1f,1f,1f,.6f);
+				batch.setColor(1f,1f,1f,.4f);
 			}
 			batch.draw((floor.wall_animation.get(wall_index)[getDirection()]).getKeyFrame(elapsed_time,true), getX()-35,getY()+getZ()-15);
 			batch.setColor(1f,1f,1f,1f);

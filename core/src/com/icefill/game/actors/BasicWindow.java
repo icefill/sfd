@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.icefill.game.Assets;
+import com.icefill.game.Global;
 
 public class BasicWindow extends Table {
 	BasicWindow window;
@@ -43,8 +44,7 @@ public class BasicWindow extends Table {
 		    });
 	    table.addListener(new ClickListener() {
 		      public void clicked(InputEvent event, float x, float y) {
-		  		 //System.out.println("Table clicked");
-		      }
+		     }
 		      
 		    });
 	    table.setTouchable(Touchable.enabled);
@@ -52,7 +52,7 @@ public class BasicWindow extends Table {
 	    
 	    
 	    //dungeon.getUiStage().addActor(this);
-	    this.add(table);
+	    this.add(table).fill().expand();
 	    this.setFillParent(true);
 	    this.center();
 	    //table.pack();
@@ -67,6 +67,12 @@ public class BasicWindow extends Table {
 		public void showTable() {
 		//this.mp_button.setText("MANA:"+getDungeon().getDeadEnemyList().size());
 		this.setVisible(true);
+	}
+	public void addToUIStage() {
+		Table table=new Table(Assets.getSkin());
+		table.setFillParent(true);
+		Global.getUIStage().addActor(table);
+		table.add(this).fill().expand();
 	}
 	public void hideTable() {
 		this.setVisible(false);

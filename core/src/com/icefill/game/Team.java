@@ -37,7 +37,8 @@ public class Team extends LinkedList<ObjActor>{
 		if (first_member_is_leader)
 			setLeader(this.get(0));
 		inventory= new CommonInventoryActor(Assets.getSkin(),null);
-		Global.getUIStage().addActor(inventory);
+		inventory.addToUIStage();
+		//Global.getUIStage().addActor(inventory);
 		quick_slot= new QuickslotInventoryActor();
 		quick_slot.setSlot(inventory.getSlot(0));
 		quick_slot.setSlot(inventory.getSlot(1));

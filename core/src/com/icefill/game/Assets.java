@@ -27,10 +27,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Json;
 import com.icefill.game.actors.Floor;
-import com.icefill.game.actors.ObjActor;
-import com.icefill.game.actors.DungeonGroup.DungeonSeed;
-import com.icefill.game.actors.DungeonGroup.ObjListElt;
-import com.icefill.game.actors.Wall;
 import com.icefill.game.actors.actionActors.*;
 import com.icefill.game.actors.BasicActor;
 import com.icefill.game.sprites.BasicSprites;
@@ -48,7 +44,6 @@ public class Assets {
 	private static Label.LabelStyle style; 
 	private static Label.LabelStyle style_back; 
     public static HashMap<String, Floor> floor_map = new HashMap<String,Floor>();
-    public static HashMap<String, Wall> wall_map = new HashMap<String,Wall>();
     public static HashMap<String, BasicSprites> obj_sprites_map =new HashMap<String,BasicSprites>();
     public static HashMap<String, BasicSprites> non_obj_sprites_map =new HashMap<String,BasicSprites>();
 	public static HashMap<String, Job> jobs_map= new HashMap<String, Job>();
@@ -233,8 +228,7 @@ public class Assets {
     		//read atlas
     		String atlas_path="sprite/"+non_obj_sprites_file_name+".atlas";
     		// read json
-    		System.out.println(non_obj_sprites_file_name);
-    		
+
     		temp_factory= floor_json.fromJson(NonObjSprites.Factory.class
     				,Gdx.files.internal("sprite/"+ non_obj_sprites_file_name+".json"));
     		non_obj_sprites_map.put(non_obj_sprites_file_name,new NonObjSprites(temp_factory,atlas_path));
@@ -263,20 +257,7 @@ public class Assets {
     		floor_map.put(temp_factory.name,new Floor(temp_factory));
     	}
     }
-    private static void LoadWallMap() {
-    	Json wall_json = new Json();
-    	ArrayList<String> wall_name_list = wall_json.fromJson(ArrayList.class,
-                Gdx.files.internal("walls_data/wall_list.json"));
-    	//ArrayList<Floor.FloorFactory> floor_factory_list;
-    	Wall.Factory temp_factory;
-    	for (String wall_file_name:wall_name_list) {
-    		temp_factory= wall_json.fromJson(Wall.Factory.class
-    				,Gdx.files.internal("walls_data/"+ wall_file_name));
-    		//manager.load(temp_factory.atlas,TextureAtlas.class);
-    		System.out.println(temp_factory.atlas);
-    		wall_map.put(temp_factory.name,new Wall(temp_factory));
-    	}
-    }
+
     private static void LoadJobsMap(){
     	Json job_json= new Json();
     	ArrayList<String> job_name_list= job_json.fromJson(ArrayList.class,

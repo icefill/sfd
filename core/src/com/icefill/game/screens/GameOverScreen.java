@@ -1,14 +1,8 @@
 package com.icefill.game.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Cell;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -20,10 +14,6 @@ import com.icefill.game.SigmaFiniteDungeon;
 public class GameOverScreen extends BasicScreen
   implements Constants
 {
-  SpriteBatch batch;
-  Texture img;
-  Texture img3;
-  Image img2;
   Table table;
 
   public GameOverScreen(final SigmaFiniteDungeon game)
@@ -36,14 +26,10 @@ public class GameOverScreen extends BasicScreen
       }
     });
     Gdx.input.setInputProcessor(this.ui_stage);
-    this.img = new Texture("badlogic.jpg");
-
     this.table = new Table(Assets.getSkin());
-
     this.table.setFillParent(true);
     Label label = new Label("GAME OVER", new Label.LabelStyle(Assets.getBigFont(), Color.WHITE) );
     label.setFontScale(1);
-    //this.table.add("GAME OVER").center();
     table.add(label).center();
     this.table.row();
 

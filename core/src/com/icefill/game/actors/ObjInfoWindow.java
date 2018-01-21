@@ -79,7 +79,6 @@ public class ObjInfoWindow extends BasicWindow {
 		window=this;
 		
 		label = new Label("", new Label.LabelStyle(Assets.getSkin().getFont("default-font"), Color.WHITE) );
-
 	    job_label= new Label("JOBS", new Label.LabelStyle(Assets.getSkin().getFont("default-font"), Color.WHITE) );
 	    job_label2= new Label("CURRENT: ", new Label.LabelStyle(Assets.getSkin().getFont("default-font"), Color.BLACK) );
 	    job_label3= new Label("CHANGEABLE: ", new Label.LabelStyle(Assets.getSkin().getFont("default-font"), Color.BLACK) );

@@ -151,8 +151,7 @@ public class GFSM {
         this.seq = 0;
         this.sub_seq = 0;
         this.states_stack.push(Integer.valueOf(state));
-        System.out.println(Constants.gs_state_name[state]);
-    }
+      }
 
     public String getCurrentStateName() {
         return DungeonGroup.gs_state_name[((Integer) states_stack.getFirst()).intValue()];
