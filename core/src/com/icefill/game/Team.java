@@ -3,10 +3,10 @@ package com.icefill.game;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import com.icefill.game.actors.CommonInventoryActor;
+import com.icefill.game.actors.windows.CommonInventoryWindow;
 import com.icefill.game.actors.ObjActor;
-import com.icefill.game.actors.QuickslotInventoryActor;
-import com.icefill.game.actors.RoomGroup;
+import com.icefill.game.actors.windows.QuickslotInventory;
+import com.icefill.game.actors.dungeon.RoomGroup;
 
 
 public class Team extends LinkedList<ObjActor>{
@@ -17,8 +17,8 @@ public class Team extends LinkedList<ObjActor>{
 	private int gold=200;
 	private int jp;
 	private int max_hire=3;
-	CommonInventoryActor inventory;
-	QuickslotInventoryActor quick_slot;
+	CommonInventoryWindow inventory;
+	QuickslotInventory quick_slot;
 	//private LinkedList<ObjActor> team_list;
 	private ObjActor leader;
 	
@@ -36,16 +36,16 @@ public class Team extends LinkedList<ObjActor>{
 		}
 		if (first_member_is_leader)
 			setLeader(this.get(0));
-		inventory= new CommonInventoryActor(Assets.getSkin(),null);
+		inventory= new CommonInventoryWindow(Assets.getSkin(),null);
 		inventory.addToUIStage();
 		//Global.getUIStage().addActor(inventory);
-		quick_slot= new QuickslotInventoryActor();
+		quick_slot= new QuickslotInventory();
 		quick_slot.setSlot(inventory.getSlot(0));
 		quick_slot.setSlot(inventory.getSlot(1));
 		inventory.setVisible(false);
 			
 	}
-	public CommonInventoryActor getInventory()
+	public CommonInventoryWindow getInventory()
 	{
 		return inventory;
 	}
@@ -69,7 +69,7 @@ public class Team extends LinkedList<ObjActor>{
 	{
 		inventory.hideTable();
 	}
-	public QuickslotInventoryActor getQuickSlotInventory()
+	public QuickslotInventory getQuickSlotInventory()
 	{
 		return quick_slot;
 	}

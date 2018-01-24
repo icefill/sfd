@@ -3,9 +3,9 @@ package com.icefill.game;
 import java.util.LinkedList;
 
 import com.badlogic.gdx.utils.Pool;
-import com.icefill.game.actors.AreaCell;
+import com.icefill.game.actors.dungeon.AreaCell;
 import com.icefill.game.actors.ObjActor;
-import com.icefill.game.actors.RoomGroup;
+import com.icefill.game.actors.dungeon.RoomGroup;
 import com.icefill.game.actors.actionActors.AbilityActor;
 import com.icefill.game.utils.Randomizer;
 

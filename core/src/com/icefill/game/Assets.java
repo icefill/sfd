@@ -26,7 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Json;
-import com.icefill.game.actors.Floor;
+import com.icefill.game.actors.dungeon.Floor;
 import com.icefill.game.actors.actionActors.*;
 import com.icefill.game.actors.BasicActor;
 import com.icefill.game.sprites.BasicSprites;

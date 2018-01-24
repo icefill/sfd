@@ -1,15 +1,11 @@
 package com.icefill.game.actors.devices;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.icefill.game.Assets;
-import com.icefill.game.actors.AreaCell;
+import com.icefill.game.actors.dungeon.AreaCell;
 import com.icefill.game.actors.BasicActor;
-import com.icefill.game.actors.DungeonGroup;
-import com.icefill.game.actors.RoomGroup;
-import com.icefill.game.sprites.NonObjSprites;
+import com.icefill.game.actors.dungeon.DungeonGroup;
+import com.icefill.game.actors.dungeon.RoomGroup;
 
 public class DeviceActor extends BasicActor{
 	//Boolean acting=false;

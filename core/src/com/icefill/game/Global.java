@@ -7,26 +7,29 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.icefill.game.actors.*;
+import com.icefill.game.actors.dungeon.GFSM;
+import com.icefill.game.actors.windows.HUD;
+import com.icefill.game.actors.windows.SlotButton;
 import com.icefill.game.screens.BasicScreen;
 
 public class Global {
 	private static Stage stage;
 	private static Stage ui_stage;
 	private static ObjActor selected_obj;
-	private static RoomGroup current_room;
+	private static com.icefill.game.actors.dungeon.RoomGroup current_room;
 	private static EquipActor selected_equip;
-	private static SlotActor selected_slot;
+	private static SlotButton selected_slot;
 	public static DragAndDrop drag_and_drop= new DragAndDrop();
 	public static GFSM gfs;
-	public static DungeonGroup dungeon;
+	public static com.icefill.game.actors.dungeon.DungeonGroup dungeon;
 	public static BasicScreen current_screen;
 	private static TooltipTable tool_tip;
-	private static ItemWindow item_window;
-	private static ShopItemWindow shop_item_window;
+	private static com.icefill.game.actors.windows.ItemWindow item_window;
+	private static com.icefill.game.actors.windows.ShopItemWindow shop_item_window;
 	private static Label information_label ;
 	private static int message_n=0;
 	private static Team player_team;
-	private static HUDActor hud;
+	private static HUD hud;
 	private static Vector3 reserved_camera_position;
 	
 	public static void setUIStage(Stage st)
@@ -45,12 +48,12 @@ public class Global {
 	{
 		return stage;
 	}
-	public static void setHUD(HUDActor h)
+	public static void setHUD(HUD h)
 	{
 		hud=h;
 		ui_stage.addActor(h);
 	}
-	public static HUDActor getHUD()
+	public static HUD getHUD()
 	{
 		return hud;
 	}
@@ -83,11 +86,11 @@ public class Global {
 
 	}
 	*/
-	public static void setCurrentRoom(RoomGroup room)
+	public static void setCurrentRoom(com.icefill.game.actors.dungeon.RoomGroup room)
 	{
 		current_room=room;
 	}
-	public static RoomGroup getCurrentRoom()
+	public static com.icefill.game.actors.dungeon.RoomGroup getCurrentRoom()
 	{
 		return current_room;
 	}
@@ -125,18 +128,18 @@ public class Global {
 
 	}
 	
-	public static void setitemWindow(SlotActor slot) {
+	public static void setitemWindow(SlotButton slot) {
 		if (item_window ==null) {
-			item_window= new ItemWindow(Assets.getSkin());
+			item_window= new com.icefill.game.actors.windows.ItemWindow(Assets.getSkin());
 		}
 		ui_stage.addActor(item_window);
 		if (slot.getEquip()!=null)
 		item_window.showTable(slot,null);
 		//tool_tip.setPosition(Global.current_screen.getScreenX(),Global.current_screen.getScreenY());
 	}
-	public static void setShopitemWindow(SlotActor slot) {
+	public static void setShopitemWindow(SlotButton slot) {
 		if (shop_item_window ==null) {
-			shop_item_window= new ShopItemWindow(Assets.getSkin());
+			shop_item_window= new com.icefill.game.actors.windows.ShopItemWindow(Assets.getSkin());
 		}
 		ui_stage.addActor(shop_item_window);
 		if (slot.getEquip()!=null)
@@ -280,7 +283,7 @@ public class Global {
 
 		information_label.setVisible(false);
 	}
-	public static void setSelectedSlot(SlotActor slot)
+	public static void setSelectedSlot(SlotButton slot)
 	{
 		selected_slot=slot;
 	}

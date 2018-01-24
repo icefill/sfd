@@ -14,11 +14,11 @@ import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.icefill.game.Assets;
 import com.icefill.game.Global;
 import com.icefill.game.utils.Randomizer;
-import com.icefill.game.actors.AreaCell;
+import com.icefill.game.actors.dungeon.AreaCell;
 import com.icefill.game.actors.BasicActor;
-import com.icefill.game.actors.DungeonGroup;
-import com.icefill.game.actors.Function;
-import com.icefill.game.actors.RoomGroup;
+import com.icefill.game.actors.dungeon.DungeonGroup;
+import com.icefill.game.actors.actionActors.Function;
+import com.icefill.game.actors.dungeon.RoomGroup;
 import com.icefill.game.actors.actionActors.ObjActions;
 import com.icefill.game.sprites.NonObjSprites;
 

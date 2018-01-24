@@ -3,8 +3,8 @@ package com.icefill.game;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import com.icefill.game.actors.EffectActor;
-import com.icefill.game.actors.Function;
+import com.icefill.game.actors.effects.EffectActor;
+import com.icefill.game.actors.actionActors.Function;
 import com.icefill.game.actors.ObjActor;
 
 

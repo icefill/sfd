@@ -8,8 +8,12 @@ import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction
 import com.icefill.game.*
 import com.icefill.game.actors.*
-import com.icefill.game.actors.Function
 import com.icefill.game.actors.devices.SpikeTrapActor
+import com.icefill.game.actors.dungeon.AreaCell
+import com.icefill.game.actors.effects.EffectActor
+import com.icefill.game.actors.effects.Lightning
+import com.icefill.game.actors.effects.LineSegment
+import com.icefill.game.actors.effects.ProjectileActor
 import com.icefill.game.extendedActions.ExtendedActions
 import com.icefill.game.utils.Randomizer
 import java.util.*
@@ -173,10 +177,10 @@ class ObjActions : Constants{
             )
             -1
         }
-        val darkAction: Function= Function { room, to_act, action, current_target->
+        val darkAction: Function = Function { room, to_act, action, current_target ->
             -1
         }
-        val restoreDarkAction: Function= Function { room, to_act, action, current_target->
+        val restoreDarkAction: Function = Function { room, to_act, action, current_target ->
             -1
         }
         val HalfHPSubAction: Function = Function { room, to_act, action, current_target ->
@@ -314,7 +318,7 @@ class ObjActions : Constants{
             -1
         }
 
-        val AttractAction: Function = Function{ room, to_act, action, current_target ->
+        val AttractAction: Function = Function { room, to_act, action, current_target ->
             val target_obj = room.currentRoom.getObj(current_target)
             if (target_obj != null)
                 current_target.direction = current_target.getDirectionToTarget(to_act.xx, to_act.yy)
@@ -2062,7 +2066,7 @@ class ObjActions : Constants{
         }
 
         val Explode: Function = Function { room, to_act, action, current_target ->
-           val center_xx = to_act.xx
+            val center_xx = to_act.xx
             val center_yy = to_act.yy
             //subaction_map["wooden_hit"]?.execute(room, to_act, null, room.currentMap.getCell(center_xx, center_yy))
             for (dxx in -1..1) {

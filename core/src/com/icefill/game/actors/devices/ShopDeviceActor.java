@@ -1,32 +1,21 @@
 package com.icefill.game.actors.devices;
 
-import java.util.Iterator;
-import java.util.ListIterator;
-
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.icefill.game.Assets;
 import com.icefill.game.Global;
-import com.icefill.game.actors.AreaCell;
-import com.icefill.game.actors.DungeonGroup;
-import com.icefill.game.actors.EquipActor;
-import com.icefill.game.actors.ObjActor;
-import com.icefill.game.actors.ProjectileActor;
-import com.icefill.game.actors.RoomGroup;
-import com.icefill.game.actors.ShopInventoryActor;
+import com.icefill.game.actors.dungeon.AreaCell;
+import com.icefill.game.actors.dungeon.DungeonGroup;
+import com.icefill.game.actors.dungeon.RoomGroup;
+import com.icefill.game.actors.windows.ShopInventoryWindow;
 import com.icefill.game.sprites.NonObjSprites;
-import com.icefill.game.sprites.ObjSprites;
 
 public class ShopDeviceActor extends DeviceActor{
 	Animation effect[];
 	//TextureRegion shrine_deact;
 	//TextureRegion shrine_act;
 	boolean activated;
-	ShopInventoryActor shop_inven;
+	ShopInventoryWindow shop_inven;
 	
 	public ShopDeviceActor() {
 			passable=false;
@@ -34,7 +23,7 @@ public class ShopDeviceActor extends DeviceActor{
 			//TextureAtlas atlas= Assets.getAsset("sprite/shrine.atlas",TextureAtlas.class);
 			//shrine_deact= atlas.findRegion("idle_dl0000");
 			//shrine_act= atlas.findRegion("idle_ur0000");
-			shop_inven= new ShopInventoryActor(Assets.getSkin(),null);
+			shop_inven= new ShopInventoryWindow(Assets.getSkin(),null);
 			Global.getUIStage().addActor(shop_inven);
 			shop_inven.setVisible(false);
 			sprites= Assets.non_obj_sprites_map.get("shop");
@@ -54,7 +43,7 @@ public class ShopDeviceActor extends DeviceActor{
 		setXX(cell.getXX());
 		setYY(cell.getYY());
 		
-		shop_inven= new ShopInventoryActor(Assets.getSkin(),null);
+		shop_inven= new ShopInventoryWindow(Assets.getSkin(),null);
 		if (type)
 		{
 			

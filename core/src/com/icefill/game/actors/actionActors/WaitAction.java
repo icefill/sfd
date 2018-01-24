@@ -3,7 +3,7 @@ package com.icefill.game.actors.actionActors;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.icefill.game.Assets;
-import com.icefill.game.actors.DungeonGroup;
+import com.icefill.game.actors.dungeon.DungeonGroup;
 import com.icefill.game.actors.ObjActor;
 
 public class WaitAction extends ActionActor {

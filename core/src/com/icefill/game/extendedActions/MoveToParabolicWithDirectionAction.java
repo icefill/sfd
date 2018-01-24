@@ -15,7 +15,7 @@ public class MoveToParabolicWithDirectionAction extends MoveToParabolicAction {
 		direction= new Vector2();
 		direction_start= new Vector2(endX-startX,endY-startY+z_modifier);
 		direction_end= new Vector2(endX-startX,endY-startY-z_modifier);
-		((BasicActor)target).setRotation(direction_start.angle());
+		target.setRotation(direction_start.angle());
 		
 		//v0=(float)((endZ-startZ)/this.getDuration()+g*0.5*this.getDuration());
 
@@ -26,7 +26,7 @@ public class MoveToParabolicWithDirectionAction extends MoveToParabolicAction {
 		direction.sub(direction_start);
 		direction.scl(percent);
 		direction.add(direction_start);
-		((BasicActor)target).setRotation(direction.angle());
+		target.setRotation(direction.angle());
 		
 		//float time=this.getDuration()*percent;
 		//((BasicActor)target).setZ((float)(startZ+v0*time-0.5*g*time*time));

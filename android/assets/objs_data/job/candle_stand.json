@@ -6,7 +6,7 @@
 	"hp_modifier":[2,3],
 	"base_hp":2,
 	"ability_count":0,
-	"light":{"xx":-1,"yy":2,"zz":5,"radius":5,"direction":1},
+	"glow":[0,32,1],
 	"no_direction":true
 	
 }

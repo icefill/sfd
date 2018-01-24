@@ -20,10 +20,10 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 public class BasicActor extends Group implements Constants{
-	protected int xx,yy;	//tile_coord of actor
-	protected float z=0;
+	public int xx,yy;	//tile_coord of actor
+	public float z=0;
 	protected int curr_dir=0;
-	protected float elapsed_time=0.0f;
+	public float elapsed_time=0.0f;
 
 	private int front_back=0;
 	protected boolean pause=false;
@@ -38,7 +38,7 @@ public class BasicActor extends Group implements Constants{
 	
 	protected boolean acting=false;
 	private boolean active=false;
-	protected BasicSprites sprites;
+	public BasicSprites sprites;
 	protected String sprites_name;
 	ActionActor acting_action;
 	protected int pause_id;
@@ -300,8 +300,7 @@ public int getDirection(){return curr_dir;}
 			to_return.x=-1;
 			to_return.y=0;
 			break;
-		} 
-		//to_return.nor();
+		}
 		return to_return;
 	}
 

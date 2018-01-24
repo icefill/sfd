@@ -1,6 +1,6 @@
 package com.icefill.game;
 
-import com.icefill.game.actors.DungeonGroup;
+import com.icefill.game.actors.dungeon.DungeonGroup;
 import com.icefill.game.sprites.ObjSprites;
 import com.icefill.game.utils.Randomizer;
 
@@ -36,14 +36,13 @@ public class Job
   public String[] attainable_passive_ability; 
   public String[] learnable_magic_type;
   public String[] changeable_job;
-  //public ArrayList<String> equippable_gear;
   public String move_ability;
   public ArrayList<EquipmentForLevel> equipments_for_level;
   public String[] item_name;
+  public float glow[];
   public ObjSprites default_sprites;
   public String type;
   public String ai_type;
-  public DungeonGroup.LightInformation light;
   public String dead_ability;
   public Job()
   {
@@ -85,13 +84,13 @@ public class Job
     	ai_type="melee";
     }
     else this.ai_type = factory.ai_type; 
-    
-    this.light = factory.light;
+
     this.fire_level=factory.fire_level;
     this.lightning_level=factory.lightning_level;
     this.holy_level=factory.holy_level;
     this.unholy_level=factory.unholy_level;
-    
+
+    this.glow=factory.glow;
     if (factory.transparent>0) alpha=.65f;
   }
   public int getJPNeed(){
@@ -197,6 +196,7 @@ public class Job
     int unholy_level;
     int ability_count;
     float runaway_ratio;
+    float glow[];
     
     ArrayList<EquipmentForLevel> equipments_for_level;
     String[] item_name;
@@ -209,7 +209,6 @@ public class Job
     
     String move_ability;
     String dead_ability;
-    DungeonGroup.LightInformation light;
   }
   public static class EquipmentForLevel {
 	  int min_level;

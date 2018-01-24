@@ -4,17 +4,13 @@ package com.icefill.game.sprites;
 import java.util.LinkedList;
 
 
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.icefill.game.Assets;
-import com.icefill.game.actors.EquipActor;
-import com.icefill.game.actors.InventoryActor;
+import com.icefill.game.actors.windows.PersonalInventory;
 
 import java.util.Queue;
 
-import com.badlogic.gdx.Audio;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -108,7 +104,7 @@ public class ObjSprites extends BasicSprites {
 	public void draw(Batch batch,float delta) {
 		
 	}
-	public void drawAnimation(Batch batch,float elapsed_time,int anim,int direction,float x,float y,float origin_x,float origin_y,float rotation,float scalex,float scaley,InventoryActor inventory,Color color) {
+	public void drawAnimation(Batch batch, float elapsed_time, int anim, int direction, float x, float y, float origin_x, float origin_y, float rotation, float scalex, float scaley, PersonalInventory inventory, Color color) {
 		if (!equippable) {
 			//batch.setColor(color);
 			//batch.setColor(.47f,.48f,.45f,1f);

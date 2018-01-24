@@ -4,7 +4,7 @@ package com.icefill.game;
 
 import java.util.LinkedList;
 import java.util.Stack;
-import com.icefill.game.actors.AreaCell;
+import com.icefill.game.actors.dungeon.AreaCell;
 import com.icefill.game.actors.ObjActor;
 import com.icefill.game.actors.actionActors.AbilityActor;
 import com.icefill.game.actors.actionActors.ActionActor.ActionContainer;

@@ -10,7 +10,7 @@ public class MoveToParabolicAction extends MoveTo3DAction {
 
 	protected void begin(){
 		super.begin();
-		v0=(float)((endZ-startZ)/this.getDuration()+g*0.5*this.getDuration());
+		v0=(endZ-startZ)/this.getDuration()+g*0.5f*this.getDuration();
 
 	}
 	public void setG(float g) {
@@ -19,7 +19,7 @@ public class MoveToParabolicAction extends MoveTo3DAction {
 	protected void update (float percent) {
 		super.update(percent);
 		float time=this.getDuration()*percent;
-		((BasicActor)target).setZ((float)(startZ+v0*time-0.5*g*time*time));
+		((BasicActor)target).setZ((startZ+v0*time-0.5f*g*time*time));
 	}
 	
 	

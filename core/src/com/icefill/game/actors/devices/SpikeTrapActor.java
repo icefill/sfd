@@ -6,11 +6,10 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.icefill.game.Assets;
-import com.icefill.game.actors.AreaCell;
-import com.icefill.game.actors.DungeonGroup;
+import com.icefill.game.actors.dungeon.AreaCell;
+import com.icefill.game.actors.dungeon.DungeonGroup;
 import com.icefill.game.actors.ObjActor;
-import com.icefill.game.actors.RoomGroup;
-import com.icefill.game.sprites.NonObjSprites;
+import com.icefill.game.actors.dungeon.RoomGroup;
 
 public class SpikeTrapActor extends DeviceActor {
 	TextureRegion spike_hide;

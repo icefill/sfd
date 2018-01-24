@@ -12,11 +12,10 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.icefill.game.Assets;
 import com.icefill.game.Global;
 import com.icefill.game.utils.Randomizer;
-import com.icefill.game.actors.AreaCell;
-import com.icefill.game.actors.DungeonGroup;
-import com.icefill.game.actors.EffectActor;
+import com.icefill.game.actors.dungeon.AreaCell;
+import com.icefill.game.actors.dungeon.DungeonGroup;
+import com.icefill.game.actors.effects.EffectActor;
 import com.icefill.game.actors.EquipActor;
-import com.icefill.game.actors.Function;
 import com.icefill.game.actors.ObjActor;
 import com.icefill.game.StatusTuple;
 
@@ -199,11 +198,8 @@ public class AbilityActor extends ActionActor {
 				subaction_running=false;
 			}
 		}
-		else { // sub_motions_done
-			//if (motion_state==1 &&
-			//		(to_act.isActing()||!room.isTargetDone(room.getCurrentRoom())))
-			//{ return 0;}
-			 { //All actions are done
+		else {
+			  //All actions are done
 				switch (motion_state) {
 					case 0://pre_motion_done --> check hit_or_miss
 						//actor_list.clear();
@@ -227,26 +223,21 @@ public class AbilityActor extends ActionActor {
 						else return 1;
 				//motion_done--> if hit -> state=2 else miss motion
 
-			}
+				}
 			
 			return 0;
 		}
-		}
-		
-		
-		
-		
-		
 		//else ==1: motion
 		// else hit motion
 		return 0;
 	}
+
 	public int executePassive(DungeonGroup room, ObjActor to_act,int level){
 		motions.get(0).motions.get(0).execute(room, to_act, null, null);
 		return -1;
 	}
+
 	public int execute(DungeonGroup room, ObjActor to_act,int level){
-		
 		if (motions.size()>motion_index) {
 			// have motion to execute
 			if (MotionExecute(room,to_act,level) == -1) {// check motion done
@@ -255,19 +246,12 @@ public class AbilityActor extends ActionActor {
 			return 0;
 		}
 		else {// motions all done;
-			
 			motion_index=0;
 			if (exp_flag==true)
 			{
 				exp_flag=false;
 				to_act.gainExperience(3,null, room,false);
 			}
-			/*
-			for (AreaCell target_area: room.getTargetList()) {
-			ObjActor target=room.getCurrentRoom().getActor(target_area);
-			}
-			*/
-			
 			return -1;
 		}
 		
@@ -329,6 +313,7 @@ public class AbilityActor extends ActionActor {
 		}
 		return false;
 	}
+
 	public int calculateBlockRate(ObjActor to_act,ObjActor target)
 	{
 		Motion motion= current_motion;
@@ -365,6 +350,7 @@ public class AbilityActor extends ActionActor {
 		
 		return 0;
 	}
+
 	public int statusChange(DungeonGroup room,ObjActor to_act,ObjActor target,int level) {
 		StatusTuple temp=current_motion.status_change;
 		if (current_motion.status_change.status_type.equals("mana_change")) {
@@ -397,15 +383,10 @@ public class AbilityActor extends ActionActor {
 			}
 			
 			
-			//}
 			if (temp.getDuration(level)>0) {
-				//Global.showBigMessage("TURN EFFECT!");
-				//if (temp.getAmount(level)>0)
-				//target.setColor(.3f,1f,.3f,1f);
 				StatusTuple.TURNEFFECT temp_effect= new StatusTuple.TURNEFFECT(temp.turn_effect,temp.getEffect(level),damage, to_act,current_motion.end_motions,reserved_effect);
 				target.addTurnEffect(temp_effect);
 				reserved_effect=null;
-				//target.setForbiddenActionTypeList();
 			}
 			return damage;
 		}
@@ -571,7 +552,7 @@ public class AbilityActor extends ActionActor {
 		
 	}
 	public static float calculateHitRate(StatusTuple ability_status,int level,ObjActor obj,ObjActor target) {
-		float hit_rate = 0;
+		float hit_rate;
 		if (target.getType().equals("wall") || target.getType().equals("obstacle") )
 			hit_rate=100;
 		else if (ability_status.relative)
@@ -598,18 +579,13 @@ public class AbilityActor extends ActionActor {
 					hit_rate=0;
 				}
 			}
-		/*
-		else if (ability_status.relative && obj.getInventory().getEquip(3)!=null)
-			hit_rate=obj.getInventory().getEquip(3).getStatus().ACCURACY-target.status.total_status.DODGE;
-			*/
 		else hit_rate=ability_status.getAccuracy(level)-target.status.total_status.DODGE;
 		
 		if (hit_rate==0) hit_rate=3f;
 		int frb=obj.getFrontRearOrBack(target);
 		switch (frb)
 		{
-		case 0:
-			break;
+		case 0:	break;
 		case 1:
 		case 3:
 			hit_rate=(int)(hit_rate*1.2);
@@ -652,17 +628,13 @@ public class AbilityActor extends ActionActor {
 			int direction=to_act.getDirectionToTarget(target.getXX(), target.getYY());
 			Sound hit_sound= Assets.getAsset("sound/slash.wav", Sound.class);
 			hit_sound.play(1f,1f,1f);
-			
-			//seq.addAction(target.startAction());
-			//seq.addAction(target.deActivateAction());
+
 			seq.addAction(target.setDirectionAction(target.getOppositeDirection(direction)));
 			seq.addAction(target.DodgeAction(to_act.getDirectionToTarget(target.getXX(),target.getYY()),room)
 								);
-			//seq.addAction(target.endActionSubAction());
+
 			target.clearActions();
 			target.addAction(seq);
-			//target.setActingAction(this);
-
 		}
 		
 	} 

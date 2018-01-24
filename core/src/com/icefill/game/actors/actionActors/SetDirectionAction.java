@@ -9,8 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.icefill.game.Assets;
 import com.icefill.game.Global;
 import com.icefill.game.actors.BasicActor;
-import com.icefill.game.actors.CommonInventoryActor;
-import com.icefill.game.actors.DungeonGroup;
+import com.icefill.game.actors.dungeon.DungeonGroup;
 import com.icefill.game.actors.ObjActor;
 import com.icefill.game.sprites.NonObjSprites;
 

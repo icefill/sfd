@@ -9,11 +9,11 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.icefill.game.Assets;
 import com.icefill.game.Global;
-import com.icefill.game.actors.AreaCell;
-import com.icefill.game.actors.DungeonGroup;
+import com.icefill.game.actors.dungeon.AreaCell;
+import com.icefill.game.actors.dungeon.DungeonGroup;
 import com.icefill.game.actors.EquipActor;
 import com.icefill.game.actors.ObjActor;
-import com.icefill.game.actors.RoomGroup;
+import com.icefill.game.actors.dungeon.RoomGroup;
 import com.icefill.game.extendedActions.ExtendedActions;
 
 public class ItemActor extends DeviceActor{

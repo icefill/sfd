@@ -1,22 +1,13 @@
 package com.icefill.game.screens;
 
-import com.badlogic.gdx.Gdx;
 //import com.esotericsoftware.kryo.Kryo;
 //import com.esotericsoftware.kryo.io.Output;
-import com.badlogic.gdx.utils.JsonReader;
-import com.badlogic.gdx.utils.JsonValue;
-import com.badlogic.gdx.utils.OrderedMap;
-import com.icefill.game.Assets;
 import com.icefill.game.Constants;
 import com.icefill.game.Global;
 import com.icefill.game.SigmaFiniteDungeon;
-import com.icefill.game.actors.DungeonGroup;
-import com.icefill.game.actors.DungeonSeed;
-import com.icefill.game.actors.HUDActor;
-import com.icefill.game.RoomShapeType;
-import com.icefill.game.actors.DungeonGroup.ObjListElt;
-
-import java.util.ArrayList;
+import com.icefill.game.actors.dungeon.DungeonGroup;
+import com.icefill.game.actors.dungeon.DungeonSeed;
+import com.icefill.game.actors.windows.HUD;
 
 
 public class GameScreen extends BasicScreen
@@ -27,7 +18,7 @@ public class GameScreen extends BasicScreen
     super(game);
     Global.setStage(this.stage);
     Global.setUIStage(this.ui_stage);
-    Global.setHUD(new HUDActor());
+    Global.setHUD(new HUD());
 
     DungeonSeed dungeonSeed = new DungeonSeed("dungeon_prop.dat");
     DungeonGroup dungeon = new DungeonGroup(dungeonSeed, this, this.ui_stage);

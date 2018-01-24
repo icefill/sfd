@@ -9,6 +9,14 @@ import com.icefill.game.Job;
 
 
 import com.icefill.game.Job.EquipmentForLevel;
+import com.icefill.game.actors.actionActors.Function;
+import com.icefill.game.actors.dungeon.AreaCell;
+import com.icefill.game.actors.dungeon.DungeonGroup;
+import com.icefill.game.actors.dungeon.RoomGroup;
+import com.icefill.game.actors.windows.LevelUpWindow;
+import com.icefill.game.actors.windows.PersonalInventory;
+import com.icefill.game.actors.windows.ObjInfoWindow;
+import com.icefill.game.actors.windows.TargetInfoActor;
 import com.icefill.game.utils.Randomizer;
 import com.icefill.game.StatusTuple;
 import com.badlogic.gdx.math.Vector2;
@@ -63,22 +71,20 @@ public class ObjActor extends BasicActor implements Constants {
 	CharUI char_ui;
 	private String type;
 	private LinkedList<String> forbidden_action_type_list;
-	//private LinkedList<String> learnable_magic_type_list;
-	//Status damage,odd of release or turn, status change, action seal 
 	private boolean adjust_color;
 	private boolean unique_sprite;
 	private boolean is_leader;
 	private int team;
 	private boolean obs_destroy_flag;
-	InventoryActor inventory;
-	ObjInfoWindow skill_window;
-	LevelUpWindow level_up_window;
+	public PersonalInventory inventory;
+	com.icefill.game.actors.windows.ObjInfoWindow skill_window;
+	com.icefill.game.actors.windows.LevelUpWindow level_up_window;
 	
 	//ObjActor self;
 	NonObjSprites glow;
 	
 	public float speed;
-	Job job;
+	public Job job;
 	//Color adjust_c;
 	 
 	
@@ -107,17 +113,15 @@ public class ObjActor extends BasicActor implements Constants {
 	
 	public TotalStatus status;
 	
-	protected LinkedList<ActionContainer> ability_list;
-	//protected LinkedList<ActionContainer> misc_action_list;
-	protected LinkedList<AbilityActor> passive_action_list;
-	protected LinkedList<AbilityActor> attain_ability_list;
-	protected LinkedList<AbilityActor> attain_passive_ability_list;
+	public LinkedList<ActionContainer> ability_list;
+	public LinkedList<AbilityActor> passive_action_list;
+	public LinkedList<AbilityActor> attain_ability_list;
+	public LinkedList<AbilityActor> attain_passive_ability_list;
 	
-	protected LinkedList<StatusTuple.TURNEFFECT> turn_effect_list;
+	public LinkedList<StatusTuple.TURNEFFECT> turn_effect_list;
 	
-	protected ActionContainer move_ability;
-	protected Function dead_ability;
-	//public SequenceAction action_seq;
+	public ActionContainer move_ability;
+	public com.icefill.game.actors.actionActors.Function dead_ability;
 
 	//for animation
 	public boolean equippable=false;
@@ -126,14 +130,8 @@ public class ObjActor extends BasicActor implements Constants {
 	private int selected_equip=-1;
 	
 	private Label turn_effect_info;
-	private TargetInfoActor target_info;
-	private TargetInfoActor ability_info;
-	
-	//private Table info_table;
-	
-//	private Body tile_body;
-//	TextureRegion team_indicator;
-//	TextureRegion ability_indicator;
+	private com.icefill.game.actors.windows.TargetInfoActor target_info;
+	private com.icefill.game.actors.windows.TargetInfoActor ability_info;
 	
 	public ObjActor(int xx,int yy,int team, int level,Job job,int controlled) {
 		this.team=team;
@@ -142,7 +140,6 @@ public class ObjActor extends BasicActor implements Constants {
 		initialize(job);
 		setXX(xx);
     	setYY(yy);
-    	//adjust_c= new Color(1f,1f,1f,1f);
     	if (ability_list==null) ability_list= new LinkedList<ActionContainer>();
     	
     	
@@ -152,8 +149,7 @@ public class ObjActor extends BasicActor implements Constants {
     	ability_list.add(new ActionContainer(Assets.actions_map.get("Wait"),0));
     	ability_list.add(new ActionContainer(Assets.actions_map.get("SetDirection"),0));
     	
-    	//adjust_c= new Color(.3f,.3f,.3f,job.alpha);
-    	
+
 	}
 	
     public ObjActor(String json_name,DragAndDrop drag) {
@@ -175,7 +171,7 @@ public class ObjActor extends BasicActor implements Constants {
     	this.sprites=Assets.obj_sprites_map.get(temp_factory.sprites_name);
     	this.sprites_name= new String(temp_factory.sprites_name);
     	
-    	inventory = new InventoryActor(Assets.getSkin(),temp_factory.equipment_name,temp_factory.item_name,this,drag);
+    	inventory = new PersonalInventory(Assets.getSkin(),temp_factory.equipment_name,temp_factory.item_name,this,drag);
     	
     	if (temp_factory.base_status!=null) {
     		status=new TotalStatus(this,temp_factory.base_status,inventory);
@@ -199,10 +195,7 @@ public class ObjActor extends BasicActor implements Constants {
     {
     	unique_sprite=flag;
     }
-    public void calculateTotalStatus() {
-    	//total_status.
-    }
-    public InventoryActor getInventory() {
+    public PersonalInventory getInventory() {
     	return inventory;
     }
     
@@ -226,11 +219,11 @@ public class ObjActor extends BasicActor implements Constants {
 			turn_effect_info.setVisible(false);
 			turn_effect_info.pack();
 		
-			target_info= new TargetInfoActor(this,style);
+			target_info= new com.icefill.game.actors.windows.TargetInfoActor(this,style);
 			ability_info=new TargetInfoActor(this,style);
 
     	
-    		skill_window = new ObjInfoWindow(this,Assets.getSkin());
+    		skill_window = new com.icefill.game.actors.windows.ObjInfoWindow(this,Assets.getSkin());
     		
 
 			setJob(job,true);
@@ -263,12 +256,12 @@ public class ObjActor extends BasicActor implements Constants {
 	    	String[] equipment_names=null;
 	    	if (equipments_set!=null) equipment_names=equipments_set.chooseEquipmentSet(); 
 	    	if (equipment_names!= null) {
-	    		inventory = new InventoryActor(Assets.getSkin(),equipment_names,job.item_name,this,null);
+	    		inventory = new PersonalInventory(Assets.getSkin(),equipment_names,job.item_name,this,null);
 	    	}
 	   		status= new TotalStatus(this,base_status,inventory);
 	    	this.addActor(turn_effect_info);
 	    	//this.addActor(target_info);
-	    	level_up_window = new LevelUpWindow(this,Assets.getSkin());
+	    	level_up_window = new com.icefill.game.actors.windows.LevelUpWindow(this,Assets.getSkin());
     		
 	    	//this.addActor(info_table);
 	}
@@ -310,7 +303,7 @@ public class ObjActor extends BasicActor implements Constants {
 		}
 		
 		// for light
-    	if (job.light != null) {
+    	if (job.glow != null) {
     			is_glowing=true;
 				glow= (NonObjSprites)Assets.non_obj_sprites_map.get("glow");
 			
@@ -542,8 +535,8 @@ public class ObjActor extends BasicActor implements Constants {
 			 		batch.setBlendFunction(GL20.GL_DST_COLOR,GL20.GL_SRC_ALPHA);
 			 		batch.setColor(1f,1f,1f,1f);
 			 		
-				glow.drawAnimation(batch, elapsed_time, 1, 0, getX(),getY()+32
-						,0,1f,1f);
+				glow.drawAnimation(batch, elapsed_time, 1, 0, getX()+job.glow[0],getY()+job.glow[1]
+						,0,job.glow[2],job.glow[2]);
 				batch.setColor(1f,1f,1f,1f);
 
 				batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
@@ -582,16 +575,12 @@ public class ObjActor extends BasicActor implements Constants {
 				return;
 			}
 		}
-		if (getInventory() !=null)
-	      {
-	    	  for (int i=1;i<4;i++)
-	    	  {
+		if (getInventory() !=null) {
+	    	  for (int i=1;i<4;i++) {
 	    		  EquipActor temp_equip=getInventory().getEquippingSlot(i).getEquip();
-	    		  if (temp_equip!=null && temp_equip.equip_action!=null)
-	    		  {
+	    		  if (temp_equip!=null && temp_equip.equip_action!=null) {
 	    			  ActionContainer temp= temp_equip.equip_action;
-	    			  if (temp.action.isSelected())
-	    				{
+	    			  if (temp.action.isSelected())	{
 	    					selected_action=temp;
 	    					action_selected=true;
 	    					return;
@@ -622,7 +611,6 @@ public class ObjActor extends BasicActor implements Constants {
 	
 	public void selectActor() {
 		selected=true;
-		
 	}
 	public void deSelectActor(){
 		selected=false;
@@ -633,7 +621,7 @@ public class ObjActor extends BasicActor implements Constants {
 	  public float lineDistance(ObjActor b) {
 		  return (float)Math.sqrt((double)((this.getXX()-b.getXX())*(this.getXX()-b.getXX())+(this.getYY()-b.getYY())*(this.getYY()-b.getYY())));
 	  }
-	  public float lineDistance(AreaCell b) {
+	  public float lineDistance(com.icefill.game.actors.dungeon.AreaCell b) {
 		  return (float)Math.sqrt((double)((this.getXX()-b.getXX())*(this.getXX()-b.getXX())+(this.getYY()-b.getYY())*(this.getYY()-b.getYY())));  
 	  }
 	
@@ -671,16 +659,13 @@ public class ObjActor extends BasicActor implements Constants {
 
 	public void showAbilityIcon(ActionActor ability)
 	{
-		//this.showMessage("bummer");
-		if (ability!=null)
-		{
-		final Actor icon= ability.getIconActor();
-		if (icon!=null)
-		{	
-			ability_info.addTargetInfo("new skill\n\n\n");
-			ability_info.addActor(icon);
-			icon.setPosition(20,10);
-			ability_info.addAction(		
+		if (ability!=null) {
+			final Actor icon= ability.getIconActor();
+			if (icon!=null) {
+				ability_info.addTargetInfo("new skill\n\n\n");
+				ability_info.addActor(icon);
+				icon.setPosition(20,10);
+				ability_info.addAction(
 					Actions.sequence(
 							//Actions.moveTo(200,100,.3f),
 							Actions.fadeIn(.2f),
@@ -691,41 +676,22 @@ public class ObjActor extends BasicActor implements Constants {
 					)
 					
 				);
-/*
-			//this.addActor(icon);
-			icon.setPosition(-15, 50);
-			icon.addAction(Actions.sequence(
-						Actions.parallel(
-								Actions.fadeIn(.5f),
-								Actions.moveBy(0,3f,.5f)
-						)
-						,Actions.delay(4f)
-						,Actions.fadeOut(.5f)
-						,Actions.run(new Runnable() {public void run() {
-							icon.remove();
-							}} )
-					));
-		*/}
-		
+			}
 		}
 	}
-	public ActionActor getRandomAbilityToLearn()
-	{
+
+	public ActionActor getRandomAbilityToLearn() {
 		ActionActor ability=null;
 		ActionActor passive_ability=null;
-		if (!attain_ability_list.isEmpty())
-		{
+		if (!attain_ability_list.isEmpty()) {
 			ability=
 			attain_ability_list.get(Randomizer.nextInt(attain_ability_list.size()));
 		}
-		if (attain_passive_ability_list!=null && !attain_passive_ability_list.isEmpty())
-		{
+		if (attain_passive_ability_list!=null && !attain_passive_ability_list.isEmpty()) {
 			passive_ability=
 			attain_passive_ability_list.get(Randomizer.nextInt(attain_passive_ability_list.size()));
-		}	
-		
-		if (passive_ability!=null && Randomizer.nextFloat()>.5f)
-		{
+		}
+		if (passive_ability!=null && Randomizer.nextFloat()>.5f) {
 			return passive_ability;
 		}
 		return ability;
@@ -736,17 +702,13 @@ public class ObjActor extends BasicActor implements Constants {
 	public LinkedList<StatusTuple.TURNEFFECT>getTurnEffectLIst() {
 		return turn_effect_list;
 	}
-	public void addTurnEffect(StatusTuple.TURNEFFECT turn_effect){
-
+	public void addTurnEffect(StatusTuple.TURNEFFECT turn_effect) {
 		Iterator<StatusTuple.TURNEFFECT> iter=turn_effect_list.iterator();
-		while (iter.hasNext())
-		{
+		while (iter.hasNext()) {
 			StatusTuple.TURNEFFECT temp_effect=iter.next();
-			if (temp_effect.turn_effect_name!=null && temp_effect.turn_effect_name.equals(turn_effect.turn_effect_name))
-			{
+			if (temp_effect.turn_effect_name!=null && temp_effect.turn_effect_name.equals(turn_effect.turn_effect_name)) {
 				iter.remove();
 			}
-			//iter.next();
 		}
 		turn_effect_list.add(turn_effect);
 		status.setStatus(getInventory(), getTurnEffectLIst());
@@ -756,6 +718,7 @@ public class ObjActor extends BasicActor implements Constants {
 			setForbiddenActionTypeList();
 		}
 	}
+
 	public void setForbiddenActionTypeList() {
 		forbidden_action_type_list.clear();
 		for (StatusTuple.TURNEFFECT turn_effect: turn_effect_list) {
@@ -775,10 +738,10 @@ public class ObjActor extends BasicActor implements Constants {
 				action_container.is_forbidden=false;
 			}
 		}
-		if (forbidden_action_type_list.contains("move")){
+		if (forbidden_action_type_list.contains("move")) {
 			this.move_ability.is_forbidden=true;
 		}
-		else if (this.move_ability!=null){
+		else if (this.move_ability!=null) {
 			this.move_ability.is_forbidden=false;
 		}
 			
@@ -794,12 +757,12 @@ public class ObjActor extends BasicActor implements Constants {
 						  !(temp.is_forbidden) &&
 						  ((AbilityActor)temp.action).checkWeaponType(this)
 				  	)
-				  ) 
-		  {
+				  ) {
 	  		  return true;
 		  }
 		  else return false;
 	}
+
 	public void clearTurnEffect() {
 		
 		removeTurnEffectInfo();
@@ -812,7 +775,7 @@ public class ObjActor extends BasicActor implements Constants {
 			}
 			
 			if (temp_effect.end_motions!=null && !temp_effect.turn_effect_name.equals("revive")) {
-				for(Function temp_function:temp_effect.end_motions) {
+				for(com.icefill.game.actors.actionActors.Function temp_function:temp_effect.end_motions) {
 					temp_function.execute(Global.dungeon, this, null,null);
 					
 				}
@@ -823,32 +786,22 @@ public class ObjActor extends BasicActor implements Constants {
 		setForbiddenActionTypeList();
 		this.status.setStatus(inventory, turn_effect_list);
 	}
-	public void doTurnEffect(DungeonGroup room) {
-		for (Iterator<StatusTuple.TURNEFFECT> itr=turn_effect_list.iterator();itr.hasNext();){
+
+	public void doTurnEffect(com.icefill.game.actors.dungeon.DungeonGroup room) {
+		for (Iterator<StatusTuple.TURNEFFECT> itr=turn_effect_list.iterator();itr.hasNext();) {
 			StatusTuple.TURNEFFECT temp_effect=itr.next();
 			if (temp_effect.amount!=0) {
 				SequenceAction seq= new SequenceAction();
-				
-				/*
-				Sound hit_sound= Assets.getAsset("sound/hit.wav", Sound.class);
-				hit_sound.play();
-				seq.addAction(this.basicHitAction(room, null));
-				*/
-				
-				this.addAction(seq);
-				//target.setActingAction(this);
 
+				this.addAction(seq);
 				this.showStatusChange("DAMAGED:"+temp_effect.amount,0);
-				
 				this.inflictDamage(temp_effect.amount, null);
 				
 			}
 				temp_effect.current_turn++;
 				addTurnEffectInfo(temp_effect.turn_effect_name+(temp_effect.duration-temp_effect.current_turn));
-				if (temp_effect.current_turn>=temp_effect.duration)
-				{
-					if (temp_effect.effect!=null)
-					{
+				if (temp_effect.current_turn>=temp_effect.duration) {
+					if (temp_effect.effect!=null) {
 						temp_effect.effect.end();
 					}
 					if (temp_effect.release_message==null)
@@ -882,7 +835,7 @@ public class ObjActor extends BasicActor implements Constants {
 	}
 	
 	//*********************************************** Actions ******************************************/
-	public void setDirection(int dir){
+	public void setDirection(int dir) {
 		super.setDirection(dir);
 		if (inventory!=null) {
 			if (inventory.getEquip(2)!=null && inventory.getEquip(2).getType()== 2) inventory.getEquip(2).setDirection(dir);
@@ -891,43 +844,35 @@ public class ObjActor extends BasicActor implements Constants {
 		
 		//if (curr_dir!=dir)curr_dir=dir;
 		}
-	public int getDirectionToTarget(AreaCell cell)
-	{
+	public int getDirectionToTarget(com.icefill.game.actors.dungeon.AreaCell cell) {
 		if (cell!=null)
 			return getDirectionToTarget(cell.getXX(),cell.getYY());
 		else
 			return curr_dir;
 	}
-	public void setDirectionToTarget(ObjActor obj)
-	{
-		AreaCell cell=Global.getCurrentRoom().getCell(obj);
-		if (cell!=null)
-		{
+	public void setDirectionToTarget(ObjActor obj) {
+		com.icefill.game.actors.dungeon.AreaCell cell=Global.getCurrentRoom().getCell(obj);
+		if (cell!=null) {
 			setDirectionToTarget(cell);
 			return;
 		}
 		else
 			return;
 	}
-	public void setDirectionToTarget(AreaCell cell)
-	{
-		if (this.getXX()==cell.getXX() && this.getYY()==cell.getYY())
-		{
+	public void setDirectionToTarget(com.icefill.game.actors.dungeon.AreaCell cell) {
+		if (this.getXX()==cell.getXX() && this.getYY()==cell.getYY()) {
 			return;
 		}
-		else
-		{
+		else {
 			setDirection(getDirectionToTarget(cell.getXX(),cell.getYY()));
 		}
 	}
-	public Action setDirectionToTargetAction(final ObjActor obj)
-	{
+	public Action setDirectionToTargetAction(final ObjActor obj) {
 		return Actions.run(new Runnable() {public void run() {
 			setDirectionToTarget(obj);
 			}} );
 	}
-	public Action setDirectionToTargetAction(final AreaCell cell)
-	{
+	public Action setDirectionToTargetAction(final com.icefill.game.actors.dungeon.AreaCell cell) {
 		return Actions.run(new Runnable() {public void run() {
 			setDirectionToTarget(cell);
 			}} );
@@ -958,7 +903,7 @@ public class ObjActor extends BasicActor implements Constants {
 			seq.addAction(Actions.moveBy(-vector.x, -vector.y,0.25f));
 			return seq;
 		}
-		public Action GuardAction (ObjActor attacker, DungeonGroup dungeon) {
+		public Action GuardAction (ObjActor attacker, com.icefill.game.actors.dungeon.DungeonGroup dungeon) {
 			
 			Sound hit_sound= Assets.getAsset("sound/guard.wav", Sound.class);
 			hit_sound.play(50f);
@@ -989,7 +934,8 @@ public class ObjActor extends BasicActor implements Constants {
 				);
 			return seq;
 		}
-		public Action DodgeAction(int direction,DungeonGroup dungeon) {
+
+		public Action DodgeAction(int direction, com.icefill.game.actors.dungeon.DungeonGroup dungeon) {
 			SequenceAction seq= new SequenceAction();
 			int x=0;
 			int y=0;
@@ -1059,47 +1005,39 @@ public class ObjActor extends BasicActor implements Constants {
 				((ObjActor)self).setIdleAnimation(animation);}});
 		}
 
-		public void gainExperience(int amount,DungeonGroup dungeon) {
+		public void gainExperience(int amount, com.icefill.game.actors.dungeon.DungeonGroup dungeon) {
 				showStatusChange("EXP:"+amount,0);
 				experience+=amount;
 				this.checkLevelUp(dungeon);
 			
 		}
-		public void gainExperience(float multiplier,ObjActor opponent,DungeonGroup dungeon,boolean check_level_up) {
+		public void gainExperience(float multiplier, ObjActor opponent, com.icefill.game.actors.dungeon.DungeonGroup dungeon, boolean check_level_up) {
 			float d_level;
-			if (opponent!=null)
-			{
+			if (opponent!=null) {
 				d_level=this.level-opponent.level;
 				if (d_level<0) d_level=1/(-d_level);
 				else d_level++;
-				
 			}
-			else
-			{
+			else {
 				d_level=1;
 			}
-				if (check_level_up)
-					gainExperience((int)(multiplier*d_level),dungeon);	
-				else
-					gainTempExperience((int)(multiplier*d_level),dungeon);
-				
-				
+			if (check_level_up)
+				gainExperience((int)(multiplier*d_level),dungeon);
+			else
+				gainTempExperience((int)(multiplier*d_level),dungeon);
 		}
 	
 		
-		public void gainTempExperience(int amount,DungeonGroup dungeon) {
+		public void gainTempExperience(int amount, com.icefill.game.actors.dungeon.DungeonGroup dungeon) {
 			showStatusChange("EXP:"+amount,0);
 			temp_exp+=amount;
-			//this.checkLevelUp(dungeon);
-		
 		}
 
 		public int computeExpToLevelUp(int current_level)
 		{
 			return (int)(60*Math.pow(2, current_level));
 		}
-		public void checkLevelUp(final DungeonGroup dungeon) {
-			// experience need to level up at level n : 30 * (2^n -1)
+		public void checkLevelUp(final com.icefill.game.actors.dungeon.DungeonGroup dungeon) {
 			Global.gfs.pauseGFS();
 			experience+=temp_exp;
 			temp_exp=0;
@@ -1117,16 +1055,12 @@ public class ObjActor extends BasicActor implements Constants {
 						    	  }
 						    	 }
 						      )
-						      )
-						      );
-						      
-				
-				
+						  	));
 			}
 			Global.gfs.reRunGFS();
 		}
 		
-		public Action basicHitAction(final DungeonGroup room,ObjActor to_act) {
+		public Action basicHitAction(final com.icefill.game.actors.dungeon.DungeonGroup room, ObjActor to_act) {
 			int direction;
 				if (to_act!=null) {
 					direction=to_act.getDirectionToTarget(this.getXX(),this.getYY()); 
@@ -1140,25 +1074,15 @@ public class ObjActor extends BasicActor implements Constants {
 			SequenceAction seq= new SequenceAction();
 			seq.addAction(//Actions.after(
 					Actions.sequence(
-							// Actions.delay(.1f),
-								
-							//this.ConcileShadowAction(),
 							Actions.parallel(
 								room.getGFSM().pauseGFSAction()
-								//,this.basicShakeAction()
-							    //,this.animationAction(ATTACKED,1,0.0f)
 							    ,Actions.delay(.5f)
 								,this.pulledAction(direction,.5f)
 								,Actions.rotateBy(2*multiplier,0.1f)
 								,Actions.rotateBy(-2*multiplier,0.4f)
-								
 								,room.getGFSM().reRunGFSAction()
-								
 								)
-								//Actions.delay(.3f),
-							//this.RevealShadowAction()
 							)
-						//)
 					);
 			return seq;
 			
@@ -1166,48 +1090,21 @@ public class ObjActor extends BasicActor implements Constants {
 		
 		public Action basicShakeAction() {
 			SequenceAction seq= new SequenceAction();
-				seq.addAction(Actions.moveBy(3f,0,.04f));
-				seq.addAction(Actions.moveBy(-3f,0,.07f));
-				//seq.addAction(Actions.moveBy(2f,0,.03f));
-				//seq.addAction(Actions.moveBy(-2f,0,.03f));
-				//seq.addAction(Actions.moveBy(2f,0,.03f));
-				//seq.addAction(Actions.moveBy(-2f,0,.03f));
+			seq.addAction(Actions.moveBy(3f,0,.04f));
+			seq.addAction(Actions.moveBy(-3f,0,.07f));
 			return seq;
 		}
-		public Action basicBuffAction(DungeonGroup room,ObjActor to_act) {
+		public Action basicBuffAction(com.icefill.game.actors.dungeon.DungeonGroup room, ObjActor to_act) {
 			SequenceAction seq= new SequenceAction();
 			final int direction=this.getDirection();
-			/*
-			seq.addAction(Actions.after(
-					Actions.sequence(
-							this.ConcileShadowAction(),
-							room.getGFSM().pauseGFSAction(),
-							this.setDirectionAction(DL),
-							Actions.delay(.02f),
-							this.setDirectionAction(DR),
-							Actions.delay(.02f),
-							this.setDirectionAction(UR),
-							Actions.delay(.02f),
-							this.setDirectionAction(UL),
-							Actions.delay(.02f),
-							this.RevealShadowAction()
-							,this.setDirectionAction(direction)
-							,room.getGFSM().reRunGFSAction()
-							
-							)
-						)
-					);
-			*/
 			return seq;	
 		}
-		public boolean checkDeadandExecuteDead(final DungeonGroup room) {
+		public boolean checkDeadandExecuteDead(final com.icefill.game.actors.dungeon.DungeonGroup room) {
 				if (status.current_hp <= 0 && obj_state != PL_DEAD) {
 					status.current_hp=0;
 					obj_state=PL_DEAD;
-					//this.clearActions();
-					if (!this.isObstacle())
-					{
-					addAction(Actions.sequence(
+					if (!this.isObstacle())	{
+						addAction(Actions.sequence(
 							room.getGFSM().pauseGFSAction(),
 							Actions.delay(.4f),
 							Actions.run(new Runnable() {public void run() {
@@ -1231,17 +1128,15 @@ public class ObjActor extends BasicActor implements Constants {
 							}})
 							
 							)
-					);
+						);
 					}
-					else
-					{
+					else {
 						addAction(Actions.sequence(
 								room.getGFSM().pauseGFSAction(),
 								Actions.after(deadAction(room)),
 								Actions.delay(.3f),
 								room.getGFSM().reRunGFSAction()
 								));
-						
 						}
 					
 					return true;
@@ -1250,7 +1145,7 @@ public class ObjActor extends BasicActor implements Constants {
 				
 		}
 
-		public Action deadAction(final DungeonGroup room) {
+		public Action deadAction(final com.icefill.game.actors.dungeon.DungeonGroup room) {
 			SequenceAction to_return = new SequenceAction();
 			if (this.obj_state!=DEAD) {
 			clearTurnEffect();
@@ -1266,7 +1161,7 @@ public class ObjActor extends BasicActor implements Constants {
 					room.getAttacker().gainTempExperience(10,room);
 			}
 			
-			AreaCell temp=room.current_map.getCell(this.getXX(),this.getYY());
+			com.icefill.game.actors.dungeon.AreaCell temp=room.current_map.getCell(this.getXX(),this.getYY());
 			
 			if (this.team!=0 && this.inventory!=null && room.current_map.getCell(this.getXX(), this.getYY())!= null&& temp.device==null) {
 				
@@ -1288,27 +1183,14 @@ public class ObjActor extends BasicActor implements Constants {
 					dead_ability.execute(room, ObjActor.this, null,null);
 				}}));
 			
-			//to_return.addAction(Actions.delay(.5f));
 			}
-			//to_return.addAction(room.getGFSM().reRunGFSAction());
 			this.status.current_ap=0;
 			
-			//tile_body.setTransform(6000, 6000,0);
 			to_return.addAction(Actions.run(new Runnable() {public void run() {
 					if (ObjActor.this.team==0)
 						room.team_lists[ObjActor.this.team].remove(self);
 					Global.gfs.checkBattleOverandChangeState();
 			}}));
-			//to_return.addAction(action);
-			/*
-			if (this.team==0) {
-				room.getDeadPlayerList().add(this);
-			}
-			else {
-				room.getDeadEnemyList().add(this);
-			}
-			*/
-			//Global.gfs.checkBattleOverandChangeState();
 			}
 			
 			return to_return;
@@ -1316,8 +1198,6 @@ public class ObjActor extends BasicActor implements Constants {
 		public void reviveAction(DungeonGroup room) {
 			
 			this.obj_state=PL_DONE;
-			//room.getDeadlist().remove(this);
-			//room.team_lists[this.team].add(this);
 			setFrontBack(0);
 			this.remove();
 			Global.getCurrentRoom().addActor(this);
@@ -1327,7 +1207,6 @@ public class ObjActor extends BasicActor implements Constants {
 
 		public Action animationAction(final int animation,int n,float pause_time) {
 			SequenceAction seq= new SequenceAction();
-			//final int prev_ani=((ObjActor)self).getCurrentAnimation();
 				seq.addAction(Actions.run(new Runnable() {@Override public void run() {
 					((ObjActor)self).setAnimation(animation);;
 					ObjActor.this.elapsed_time=0f;
@@ -1348,11 +1227,9 @@ public class ObjActor extends BasicActor implements Constants {
 		}	
 		public Action reverseAnimationAction(final int animation,int n,float pause_time) {
 			SequenceAction seq= new SequenceAction();
-			//final int prev_ani=((ObjActor)self).getCurrentAnimation();
 				seq.addAction(Actions.run(new Runnable() {@Override public void run() {
 					((ObjSprites)sprites).setAnimationReverse(animation);
 					((ObjActor)self).setAnimation(animation);;
-					
 					ObjActor.this.elapsed_time=0f;
 				}})
 				);
@@ -1377,7 +1254,7 @@ public class ObjActor extends BasicActor implements Constants {
 				ObjActor.this.elapsed_time=0f;
 			}});
 		}
-		public Action changeMapPositionSubAction (final RoomGroup obj_group,final int xx,final int yy) {
+		public Action changeMapPositionSubAction (final RoomGroup obj_group, final int xx, final int yy) {
 			return Actions.run(new Runnable() {public void run() {obj_group.changeActorPosition(ObjActor.this,xx, yy);}});
 		}
 		
@@ -1400,18 +1277,17 @@ public class ObjActor extends BasicActor implements Constants {
 		
 		public void showStatusChange(String message,int type) {
 			
-			if ( !(getType().equals("wall") && !getType().equals("obstacle") )
-				) {
+			if ( !(getType().equals("wall") && !getType().equals("obstacle") )) {
 				status_change_label_index++;
-			Label.LabelStyle style= new Label.LabelStyle();
-	    	style.font=Assets.getFont();
-	    	final Label status_change_label = new Label(message,style);
-			status_change_label.setPosition(-20, 40);
-			status_change_label.setVisible(false);
-			status_change_label.setVisible(true);
-			status_change_label.pack();
-			this.addActor(status_change_label);
-			status_change_label.addAction(
+				Label.LabelStyle style= new Label.LabelStyle();
+	    		style.font=Assets.getFont();
+	    		final Label status_change_label = new Label(message,style);
+				status_change_label.setPosition(-20, 40);
+				status_change_label.setVisible(false);
+				status_change_label.setVisible(true);
+				status_change_label.pack();
+				this.addActor(status_change_label);
+				status_change_label.addAction(
 											Actions.parallel(
 											Actions.sequence(
 														Actions.delay(2f),
@@ -1445,9 +1321,6 @@ public class ObjActor extends BasicActor implements Constants {
 				
 			target_info.addTargetInfo(message);
 			Global.getCurrentRoom().addActor(target_info);
-			//target_info.remove();
-			//info_table.add(target_info);
-			//info_table.setVisible(true);
 			}
 		}
 		public void showMessage(String message) {
@@ -1456,12 +1329,9 @@ public class ObjActor extends BasicActor implements Constants {
 			target_info.addTargetInfo(message);
 			target_info.addAction(		
 					Actions.sequence(
-							//Actions.moveTo(200,100,.3f),
 							Actions.fadeIn(.2f),
 							Actions.delay(.3f),
-							//Actions.fadeOut(.2f),
 							Actions.run(new Runnable() {public void run() {target_info.removeTargetInfo();}})
-							//Actions.removeActor()
 					)
 					
 				);
@@ -1470,22 +1340,17 @@ public class ObjActor extends BasicActor implements Constants {
 		}
 		public void addTurnEffectInfo(String message) {
 			if (!this.isWall() && !this.isObstacle() ) {
-				
-			turn_effect_info.setText(message);
-			//this.addActor(turn_effect_info);
-			turn_effect_info.setVisible(true);
-			turn_effect_info.pack();
-			
-				}
+				turn_effect_info.setText(message);
+				turn_effect_info.setVisible(true);
+				turn_effect_info.pack();
+			}
 		}
 		
 		public void removeTargetInfo() {
 			target_info.removeTargetInfo();
-			//info_table.setVisible(false);
 		}
 		public void removeTurnEffectInfo() {
 			turn_effect_info.setVisible(false);
-			//info_table.setVisible(false);
 		}
 		public void addCoolTimes() {
 			for (ActionContainer temp_action: ability_list) {
@@ -1496,100 +1361,82 @@ public class ObjActor extends BasicActor implements Constants {
 			for (ActionContainer temp_action: ability_list) {
 				temp_action.subCoolTime();
 			}
-			if (getInventory() !=null)
-		      {
-		    	  for (int i=1;i<4;i++)
-		    	  {
+			if (getInventory() !=null) {
+		    	  for (int i=1;i<4;i++) {
 		    		  EquipActor temp_equip=getInventory().getEquippingSlot(i).getEquip();
-		    		  if (temp_equip!=null && temp_equip.equip_action!=null)
-		    		  {
+		    		  if (temp_equip!=null && temp_equip.equip_action!=null) {
 		    			  ActionContainer temp= temp_equip.equip_action;
-		    			  temp.subCoolTime();    
-		    			  
+		    			  temp.subCoolTime();
 		    		  }
 		    	  }
 		      }
-			if (move_ability!=null)
-			{
+			if (move_ability!=null)	{
 				move_ability.subCoolTime();
 			}
-			
 		}
 		public void resetCoolTimes() {
 			for (ActionContainer temp_action: ability_list) {
 				temp_action.resetCoolTime();
 			}
-			if (move_ability!=null)
-			{
+			if (move_ability!=null)	{
 				move_ability.resetCoolTime();
 			}
 		}
 		
-public String toString(){
-	String to_return="";
-	to_return+=
+	public String toString() {
+		String to_return="";
+		to_return+=
 			   "Job:"+this.job.job_name+"\n"+ 
 			   "Ctr:"+controlled_name[this.controlled]+"\n"+
 			   (status!=null ? status.toString():"\n")+	   
 			   "Lvl:"+this.level+"\n"+
 			   "EXP:"+this.experience+"\n";
-	
-			   
-	return to_return;
-}
+		return to_return;
+	}
 
-public String getSelectedString() {
-	String to_return="";
-	to_return+=
+	public String getSelectedString() {
+		String to_return="";
+		to_return+=
 			   this.job.job_name+"\n\n"+
 			   "HP:"+this.status.current_hp+"\n"+
 			   "LEVEL:"+this.level+"\n"+	   
 			   "EXP:"+this.experience+"/("+computeExpToLevelUp(this.level)+")";
-			   
-	return to_return;
-}
+		return to_return;
+	}
 	
 
-public int getOneDistance(ObjActor temp)
-{
-	return Math.abs(temp.getXX()-this.getXX())
+	public int getOneDistance(ObjActor temp) {
+		return Math.abs(temp.getXX()-this.getXX())
 			  +Math.abs(temp.getYY()-this.getYY());
-}
-public int getOneDistance(AreaCell temp)
-{
-	return Math.abs(temp.getXX()-this.getXX())
+	}
+	public int getOneDistance(AreaCell temp) {
+		return Math.abs(temp.getXX()-this.getXX())
 			  +Math.abs(temp.getYY()-this.getYY());
-}
-public boolean isObstacle()
-{
-	if (job!=null&& job.type.equals("obstacle")) return true;
-	else return false;
-}
-public boolean isDangerous()
-{
-	if (job!=null && job.dangerous) return true;
-	else return false;
-}
-public boolean isWall()
-{
-	if (job!=null&& job.type.equals("wall")) return true;
-	else return false;
-}
-public boolean isMeleeUnit()
-{
-	if (job.ai_type.equals("melee")) return true;
-	else return false;
-}
-public boolean isRangedUnit()
-{
-	if (job.ai_type.equals("ranged")) return true;
-	else return false;
-}
-public boolean isAssistUnit()
-{
-	if (job.ai_type.equals("assist")) return true;
-	else return false;
-}
+	}
+	public boolean isObstacle() {
+		if (job!=null&& job.type.equals("obstacle")) return true;
+		else return false;
+	}
+	public boolean isDangerous() {
+		if (job!=null && job.dangerous) return true;
+		else return false;
+	}
+	public boolean isWall() {
+		if (job!=null&& job.type.equals("wall")) return true;
+		else return false;
+	}
+	public boolean isMeleeUnit() {
+		if (job.ai_type.equals("melee")) return true;
+		else return false;
+	}
+	public boolean isRangedUnit() {
+		if (job.ai_type.equals("ranged")) return true;
+		else return false;
+	}
+	public boolean isAssistUnit() {
+		if (job.ai_type.equals("assist")) return true;
+		else return false;
+	}
 /***************************** For Read Json ******************************************/	
 public static class Seed {
 	String name;
@@ -1621,7 +1468,7 @@ public static class TotalStatus {
 	private int current_ap;
 	ObjActor obj;
 	
-	public TotalStatus(ObjActor obj,Status base_status,InventoryActor inventory) {
+	public TotalStatus(ObjActor obj, Status base_status, PersonalInventory inventory) {
 		this.base_status= new Status(base_status);
 		total_status= new Status();
 		setStatus(inventory,null);
@@ -1633,7 +1480,7 @@ public static class TotalStatus {
 		base_status= new Status();
 		total_status= new Status();
 	}
-	public void setStatus(InventoryActor inventory,LinkedList<StatusTuple.TURNEFFECT>turn_effect_list) {
+	public void setStatus(PersonalInventory inventory, LinkedList<StatusTuple.TURNEFFECT>turn_effect_list) {
 		
 		total_status.STR=base_status.STR;
 		total_status.DEX=base_status.DEX;
@@ -1693,18 +1540,7 @@ public static class TotalStatus {
 	{
 		return current_hp;
 	}
-	/*
-	public boolean inflictDamageInRatio(float ratio,ObjActor attacker)
-	{
-		if (ratio>0)
-		{
-			float amount= total_status.HP*ratio;
-			inflictDamage((int)amount);
-			return true;
-		}
-		else return false;
-	}
-	*/
+
 	public void fullHP()
 	{
 		current_hp=total_status.HP;
@@ -1815,33 +1651,3 @@ static class RequiredLevelCompare implements Comparator<AbilityActor> {
 
 }
 
-/*
- addListener(new InputListener(){
-	public boolean touchDown (InputEvent event,float x,float y,int pointer, int button){
-		((ProtoActor)event.getTarget()).selected=true;
-		return false;
-	}
-})
-
-if(selected) 
-		{
-			Vector3 worldPt= new Vector3(Gdx.input.getX(),Gdx.input.getY(),0f);
-			stage.getCamera().unproject(worldPt);
-			setX(worldPt.x);
-			setY(worldPt.y);
-			
-			//setX(Gdx.input.getX()*(stage.getWidth()/Gdx.graphics.getWidth())-16);
-			//setY((Gdx.graphics.getHeight()-Gdx.input.getY())*(stage.getHeight()/Gdx.graphics.getHeight())-20);
-			waited=waited+delta;
-			if (waited>1 && Gdx.input.isButtonPressed(Input.Buttons.LEFT))
-			{
-			
-			selected=false;
-			waited=0;
-			
-			}
-		}
-;
-
-
-*/

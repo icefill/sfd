@@ -12,13 +12,13 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.RepeatAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.icefill.game.Assets;
-import com.icefill.game.actors.AreaCell;
+import com.icefill.game.actors.dungeon.AreaCell;
 import com.icefill.game.actors.BasicActor;
-import com.icefill.game.actors.DungeonGroup;
-import com.icefill.game.actors.Function;
+import com.icefill.game.actors.dungeon.DungeonGroup;
+import com.icefill.game.actors.actionActors.Function;
 import com.icefill.game.actors.ObjActor;
-import com.icefill.game.actors.ProjectileActor;
-import com.icefill.game.actors.RoomGroup;
+import com.icefill.game.actors.effects.ProjectileActor;
+import com.icefill.game.actors.dungeon.RoomGroup;
 import com.icefill.game.sprites.NonObjSprites;
 
 public class Angel extends DeviceActor{

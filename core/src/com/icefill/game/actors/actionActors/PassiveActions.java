@@ -1,8 +1,7 @@
 package com.icefill.game.actors.actionActors;
 
-import com.icefill.game.actors.DungeonGroup;
+import com.icefill.game.actors.dungeon.DungeonGroup;
 import com.icefill.game.actors.ObjActor;
-import com.icefill.game.actors.PassiveFunction;
 import com.icefill.game.Constants;
 import com.icefill.game.Global;
 

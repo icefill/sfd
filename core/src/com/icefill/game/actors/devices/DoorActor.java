@@ -4,10 +4,9 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.icefill.game.Assets;
-import com.icefill.game.Global;
-import com.icefill.game.actors.AreaCell;
-import com.icefill.game.actors.DungeonGroup;
-import com.icefill.game.actors.RoomGroup;
+import com.icefill.game.actors.dungeon.AreaCell;
+import com.icefill.game.actors.dungeon.DungeonGroup;
+import com.icefill.game.actors.dungeon.RoomGroup;
 import com.icefill.game.sprites.NonObjSprites;
 
 public class DoorActor extends DeviceActor{

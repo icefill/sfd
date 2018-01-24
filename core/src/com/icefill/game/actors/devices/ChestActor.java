@@ -1,15 +1,12 @@
 package com.icefill.game.actors.devices;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.icefill.game.Assets;
 import com.icefill.game.Global;
-import com.icefill.game.actors.AreaCell;
-import com.icefill.game.actors.DungeonGroup;
+import com.icefill.game.actors.dungeon.AreaCell;
+import com.icefill.game.actors.dungeon.DungeonGroup;
 import com.icefill.game.actors.EquipActor;
-import com.icefill.game.actors.RoomGroup;
-import com.icefill.game.extendedActions.ExtendedActions;
+import com.icefill.game.actors.dungeon.RoomGroup;
 import com.icefill.game.sprites.NonObjSprites;
 
 public class ChestActor extends DeviceActor{
