@@ -40,6 +40,7 @@ public class MercButton extends Button {
 		    			Global.getCurrentRoom().setObj(obj);
 		    			Global.getPlayerTeam().add(obj);
 		    			Global.getPlayerTeam().decreaseGold(price);
+		    			Global.showBigMessage("Hired");
 		    			//obj.team=0;
 		    			obj=null;
 		    		}

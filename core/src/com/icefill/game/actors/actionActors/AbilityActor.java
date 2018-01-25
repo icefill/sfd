@@ -667,10 +667,10 @@ public class AbilityActor extends ActionActor {
 		return to_return;
 	}
 	public String toString2(int level) {
-		String to_return="name: "+this.action_name+"\n\n"+
-				 "DESCRIPTION: \n"+this.description+"\n"
-				 +"TYPE        : "+this.action_type+"(LVL:"+this.action_level+")\n"
-				 +"REQUIRED_LEVEL:"+this.required_level+"\n\n";
+		String to_return="*name: "+this.action_name+"\n\n"+
+				 "  "+this.description+"\n\n"
+				 +"*TYPE        : "+this.action_type+"(LVL:"+this.action_level+")\n\n"
+				 +"*REQUIRED_LEVEL:"+this.required_level+"\n\n";
 				 //+ "REQUIRED LEVEL:"+(this.required_level)+"\n";
 				if (level-1>=0) {
 					to_return+=//"CURRENT LEVEL :"+(level-1)+"\n\n"+

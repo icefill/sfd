@@ -152,10 +152,7 @@ class ObjActions : Constants{
             prj.addAction(
                     Actions.sequence(
                             prj.startAction(), Actions.delay(.5f), prj.deActivateAndEndAction()
-
-                            //,prj.endActionSubAction()
-                            //,Actions.run(new Runnable() {public void run() {prj.remove();}})
-                    )
+             )
             )
             Global.getPlayerTeam().increaseGold(150)
             -1
@@ -260,8 +257,8 @@ class ObjActions : Constants{
 
         val SummonJelly: Function = Function { room, to_act, action, current_target ->
             val target = room.area_computer.targetList.first
-
             val obj = ObjActor(-1, -1, to_act.team, 2, Assets.jobs_map["jelly"], 1)
+
             obj.setSummonedObj()
             if (to_act.team >= 0)
                 room.getTeamList(to_act.team).addPlayer(obj)
@@ -272,7 +269,8 @@ class ObjActions : Constants{
             x = room.currentRoom.map.mapToScreenCoordX(target.xx, target.yy)
             y = room.currentRoom.map.mapToScreenCoordY(target.xx, target.yy)
             obj.addAction(ExtendedActions.moveToParabolic(x, y, obj.z, .3f))
-
+            val seq = SequenceAction(to_act.startAction(),Actions.delay(1f),to_act.deActivateAndEndAction());
+            to_act.addAction(seq);
             -1
         }
         val SummonSkeleton: Function = Function { room, to_act, action, current_target ->

@@ -36,16 +36,12 @@ public class RoomSeed {
         array= new char[room_size[0]][room_size[1]];
     }
 
-    public void makeDownStair() {
+    public void makeFinalRoom() {
         int middle_x=room_size[0]/2;
         int middle_y=room_size[1]/2;
-        for (int dx=-1;dx<2;dx++){
-            for (int dy=-1;dy<2;dy++){
-                array[middle_x+dx][middle_y+dy]= OBJ.NOTHING.c;
-            }
-        }
+        clearRoom();
         array[room_size[0]/2][room_size[1]/2-1]=OBJ.NOTHING.c;
-        array[room_size[0]/2][room_size[1]/2]=OBJ.NOTHING.c;
+        array[room_size[0]/2][room_size[1]/2]=OBJ.DOWN_STAIR.c;
     }
     public void makeUpStair() {
         int middle_x=room_size[0]/2;
@@ -152,14 +148,25 @@ public class RoomSeed {
         clearRoom();
         int middle_x=(int)((room_size[0]-1)/2);
         int middle_y=(int)((room_size[1]-1)/2);
+        array[middle_x-1][middle_y-1]=OBJ.FIRE_BOWL.c;
+        array[middle_x+1][middle_y-1]=OBJ.FIRE_BOWL.c;
         array[middle_x-1][middle_y]=OBJ.RECRUIT_CAT.c;
         array[middle_x+1][middle_y]=OBJ.SHOP_CAT.c;
 
     }
-    public void makeAngelRoom() {
+    public void makeHealingRoom() {
         clearRoom();
         int middle_x=(int)((room_size[0]-1)/2);
         int middle_y=(int)((room_size[1]-1)/2);
+        if (middle_x-2>1)
+            array[middle_x-2][middle_y]=OBJ.FIRE_BOWL.c;
+        if (middle_x+2<room_size[0]-2)
+            array[middle_x+2][middle_y]=OBJ.FIRE_BOWL.c;
+        if (middle_y-2>1)
+            array[middle_x][middle_y-2]=OBJ.FIRE_BOWL.c;
+        if (middle_y+2<room_size[1]-2)
+            array[middle_x][middle_y+2]=OBJ.FIRE_BOWL.c;
+
         //obj_index_array[middle_x][middle_y]=-8;
         //obj_index_array[1][1]=-4;
         //obj_index_array[1][2]=-4;
@@ -181,6 +188,15 @@ public class RoomSeed {
         int middle_x=(int)((room_size[0]-1)/2);
         int middle_y=(int)((room_size[1]-1)/2);
         clearRoom();
+        if (middle_x-2>1)
+            array[middle_x-2][middle_y]=OBJ.FIRE_BOWL.c;
+        if (middle_x+2<room_size[0]-2)
+            array[middle_x+2][middle_y]=OBJ.FIRE_BOWL.c;
+        if (middle_y-2>1)
+            array[middle_x][middle_y-2]=OBJ.FIRE_BOWL.c;
+        if (middle_y+2<room_size[1]-2)
+            array[middle_x][middle_y+2]=OBJ.FIRE_BOWL.c;
+
         array[middle_x][middle_y]=OBJ.SHOP_CAT.c;
     }
     public void makemercRoom() {
@@ -237,7 +253,7 @@ public class RoomSeed {
 
 
     }
-    public void makeHealingRoom() {
+    public void makeShrineRoom() {
         int middle_x=(int)(room_size[0]/2);
         int middle_y=(int)(room_size[1]/2);
         clearRoom();
@@ -252,7 +268,7 @@ public class RoomSeed {
         if (middle_y+2<room_size[1]-2)
             array[middle_x][middle_y+2]=OBJ.FIRE_BOWL.c;
 
-        array[middle_x][middle_y]=OBJ.ANGEL.c;
+        array[middle_x][middle_y]=OBJ.SHRINE.c;
 
     }
     public String toString() {

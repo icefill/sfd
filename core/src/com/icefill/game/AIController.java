@@ -672,8 +672,7 @@ public class AIController {
 				  if (target==null)
 				  	{// no target, no move postion
 				  			AreaCell obs_cell=findObjToDestory();
-				  			if (obs_cell!=null)
-				  			{
+				  			if (obs_cell!=null && target==null) {
 					  			if (target.equals(Global.getCurrentRoom().getCell(selected_obj)))
 					  			{
 									selected_obj.selectAction(selected_obj.getActionList().getFirst());

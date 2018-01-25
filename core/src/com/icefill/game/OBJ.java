@@ -1,7 +1,7 @@
 package com.icefill.game;
 
 public enum OBJ {
-    WALL('w'),EXPLOSIVE('e'),OBSTACLE('o'),FIRE_BOWL('f'),DOOR('d'),TRAP('t')
+    WALL('w'),DOWN_STAIR('↓'),EXPLOSIVE('e'),OBSTACLE('o'),FIRE_BOWL('f'),DOOR('d'),TRAP('t')
     ,SHOP_CAT('C'),SHRINE('S'),MONSTER('m'),BOSS_MONSTER('b'),MAGIC_SCROLL('M'),ITEM('I'),WEAPON('W'),ANGEL('A'),RECRUIT_CAT('R')
     ,UNDEST_OBS('U'),DEST_OBS('D')
     ,NOTHING('x');
@@ -29,6 +29,7 @@ public enum OBJ {
             case 'R': return RECRUIT_CAT;
             case 'U': return UNDEST_OBS;
             case 'D': return DEST_OBS;
+            case '↓': return DOWN_STAIR;
             default: return NOTHING;
         }
     }

@@ -2,9 +2,15 @@
 {
     //Room tileSet can choose
 
-     dungeon_size:{xxx:4,yyy:4,zzz:5}
+     dungeon_size:{xxx:2,yyy:2,zzz:5}
      monster_room_ratio:0.33
 
+     shop_n_in_floor:[0,1]
+     healing_room_n_in_floor:[0,1]
+     hire_room_n_in_floor:[0,1]
+     shrine_in_floor:[1,2]
+     treasure_room_in_floor:[1,2]
+     scroll_room_in_floor:[1,2]
 
      room_type:[
         {name:"basic",floor_name:"floor1", down_stair_name:"down_stair_floor",wall_name:"wall1",door_name:"door_wall1","fire_bowl_name":"candle_stand"}
@@ -56,7 +62,7 @@
 
     ]
 
-
+    //Monster spawned in dungeon
     monsters:[
         {   min_floor:1, max_floor:1
                         names:[ {name:jelly,level:1,mul:2}
@@ -118,6 +124,7 @@
                                       ]
          }
     ]
+    //Bosses of each floor.
     bosses:[
             {   min_floor:1, max_floor:1
                             names:[ {name:king jelly,level:3,mul:1}
@@ -140,6 +147,7 @@
                                   ]
             }
     ]
+    //Magic scrolls players can get in the 'scroll room'
     scrolls_in_chest:[
             {   min_floor:1, max_floor:2
                                 names:[ {name:S#Fireball,mul:1}
@@ -179,6 +187,7 @@
                                                   ]
              }
     ]
+    //Weapons players can get in the 'scroll room'
     weapons_in_chest:[
             {   min_floor:1, max_floor:1
                                             names:[ {name:axe0,mul:1}

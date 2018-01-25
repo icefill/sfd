@@ -48,6 +48,7 @@ public class PersonalInventory extends Table {
 		status_label.setText(obj.toString());
 		this.add(equip_table).pad(8).colspan(2).row();
 		this.add(status_label);
+		this.add(new PotraitTable(obj));
 
 		equipping_slots.get(2).setCouple(equipping_slots.get(3));
 		equipping_slots.get(3).setCouple(equipping_slots.get(2));

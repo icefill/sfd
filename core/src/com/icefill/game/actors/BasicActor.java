@@ -41,20 +41,14 @@ public class BasicActor extends Group implements Constants{
 	public BasicSprites sprites;
 	protected String sprites_name;
 	ActionActor acting_action;
-	protected int pause_id;
-	
+
 	public void setActingAction(ActionActor action) {
 		this.acting_action= action;
 	}
 	public void releaseActingAction(){
 		this.acting_action=null;
 	}
-	public void setPauseID(int id) {
-		this.pause_id=id;
-	}
-	public int getPauseID() {
-		return pause_id;
-	}
+
 	public void setFrontBack(int flag) {
 		this.front_back=flag;
 		//Global.getCurrentRoom().sortActors();
@@ -103,17 +97,17 @@ public class BasicActor extends Group implements Constants{
 			elapsed_time += Gdx.graphics.getDeltaTime();
 	}
 	
-	public void start() {self.acting=true;self.active=true;
-	if (acting_action!= null)
-	{
-	//	acting_action.addActingActor(this);
-		acting_action.addActorCount();
-	}}
+	public void start() {
+		self.acting=true;self.active=true;
+		if (acting_action!= null) {
+	    //	acting_action.addActingActor(this);
+	    	acting_action.addActorCount();
+	    }
+	}
 	public void deActivate() {
-	self.active=false;
-	if (acting_action!=null)
-		{
-		acting_action.subtractActorCount();
+	    self.active=false;
+	    if (acting_action!=null) {
+		    acting_action.subtractActorCount();
 		}
 	}
 	public void end() {self.acting=false;}

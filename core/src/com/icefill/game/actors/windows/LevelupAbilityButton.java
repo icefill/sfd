@@ -68,7 +68,6 @@ public class LevelupAbilityButton extends TextButton {
 		else
 		{
 			batch.draw(ability.getIcon(), getX(), getY(),40,40);
-			Assets.getFont().draw(batch, " "+ability.required_level, getX(), getY());
 			batch.setColor(1f,1f,1f,1f);
 		}
 		//Assets.getFont().draw(batch,ability.getActionName(), getX(), getY()+120);

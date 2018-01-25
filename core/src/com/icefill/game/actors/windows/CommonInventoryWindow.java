@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.icefill.game.actors.EquipActor;
 
 public class CommonInventoryWindow extends BasicInventoryWindow {
+	Table common_table;
 	Table obj_inven_table;
 
 	CommonInventoryWindow inventory;

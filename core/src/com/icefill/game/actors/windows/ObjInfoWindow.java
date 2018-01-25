@@ -83,8 +83,8 @@ public class ObjInfoWindow extends BasicWindow {
 		
 		label = new Label("", new Label.LabelStyle(Assets.getSkin().getFont("default-font"), Color.WHITE) );
 	    job_label= new Label("JOBS", new Label.LabelStyle(Assets.getSkin().getFont("default-font"), Color.WHITE) );
-	    job_label2= new Label("CURRENT: ", new Label.LabelStyle(Assets.getSkin().getFont("default-font"), Color.BLACK) );
-	    job_label3= new Label("CHANGEABLE: ", new Label.LabelStyle(Assets.getSkin().getFont("default-font"), Color.BLACK) );
+	    job_label2= new Label("CURRENT    : ", new Label.LabelStyle(Assets.getSkin().getFont("default-font"), Color.BLACK) );
+	    job_label3= new Label("CHANGEABLE : ", new Label.LabelStyle(Assets.getSkin().getFont("default-font"), Color.BLACK) );
 		
 	    job_table.add(job_label).pad(7).colspan(2).row();
 		current_job_button= new TextButton("LEARN", Assets.getSkin(), "default");
@@ -94,8 +94,7 @@ public class ObjInfoWindow extends BasicWindow {
   	      }
   	    });
 		job_table.add(job_label2).pad(5);
-		
-		job_table.add(current_job_button).pad(5).row();
+		job_table.add(current_job_button).fill().left().pad(5).row();
     	job_table.add(job_label3).pad(5).top();
     	job_table.add(job_table2).pad(5).row();
 		job_button= new TextButton[5];
@@ -109,7 +108,7 @@ public class ObjInfoWindow extends BasicWindow {
 	  	      	window.getObj();
 	  	      }
 	  	    });
-	    	job_table2.add(job_button[i]).left().pad(5).row();
+	    	job_table2.add(job_button[i]).fill().left().pad(5).row();
 	    	job_button[i].setVisible(false);
 	    	
 	    }
@@ -130,7 +129,7 @@ public class ObjInfoWindow extends BasicWindow {
 	    });
 	    //left_up_table.add("SKILLS").row();
 	    potrait_table= new PotraitTable(obj_to_level_up);
-	    left_up_table.add(potrait_table).height(70).row();
+	    left_up_table.add(potrait_table).height(30).row();
 	    left_up_table.add(status_table).row();
 		left_up_table.add(ability_table).row();
 		table.add(left_table);
@@ -140,11 +139,11 @@ public class ObjInfoWindow extends BasicWindow {
 		right_table.setBackground(Assets.getBackground());
 		right_table.add(ability_info_table);
 		ability_info_table.setVisible(false);
-		table.add(right_table).size(250,250).row();
+		table.add(right_table).size(250,270).row();
 	    left_up_table.add(button).pad(5f).row();
 	    //left_up_table.add(close_button);
 	    left_table.add(left_up_table).size(150,150).pad(15).row();
-	    left_table.add(job_table).size(150,100).pad(15);
+	    left_table.add(job_table).size(150,70).pad(15);
 		status_table.add(label);
 		//obj_to_level_up.addActor(this);
 		//this.add(table);
@@ -205,7 +204,7 @@ public class ObjInfoWindow extends BasicWindow {
 		
 		job_info_table.setVisible(true);
 		job_info_table.setJobInfo(job);
-		
+
 	}
 	
 	public ActionContainer getAbilityToAdd() {
@@ -294,6 +293,7 @@ public class ObjInfoWindow extends BasicWindow {
 			{
 			LevelupAbilityButton button= new LevelupAbilityButton((AbilityActor)(temp_ability),dungeon);
 			ability_table.add(button);
+			if (ability_table.getChildren().size%5==0)ability_table.row();
 			}
 		}
 		ability_table.row();
@@ -360,7 +360,6 @@ public class ObjInfoWindow extends BasicWindow {
 			}
 			batch.draw(ability.getIcon(), getX(), getY(),32,40);
 			
-			Assets.getFont().draw(batch, " "+ability.required_level, getX(), getY());
 			batch.setColor(1f,1f,1f,1f);
 			//Assets.getFont().draw(batch,ability.getActionName(), getX(), getY()+120);
 		}
@@ -412,7 +411,7 @@ public class ObjInfoWindow extends BasicWindow {
 			
 			if (job_info_label==null)
 			{
-				job_info_label= new Label("Bummer",new Label.LabelStyle(Assets.getFont(), Color.WHITE));
+				job_info_label= new Label("Bummer",new Label.LabelStyle(Assets.getFont(), Color.BLACK));
 				this.add(job_info_label).pad(5).row();
 				button = new TextButton("CHANGE JOB", Assets.getSkin(), "default");
 				button.setVisible(false);

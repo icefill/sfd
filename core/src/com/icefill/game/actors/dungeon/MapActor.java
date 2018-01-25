@@ -94,6 +94,10 @@ public class MapActor extends BasicActor implements Constants {
 					case RECRUIT_CAT	: area_cell_array[xx][yy].device = new MercShopDeviceActor(area_cell_array[xx][yy],room,dungeon_level); break;
 					case UNDEST_OBS		: break;
 					case DEST_OBS		: break;
+					case DOWN_STAIR		: 	area_cell_array[xx][yy]= new AreaCell(xx,yy,Assets.floor_map.get(room_type.down_stair_name),room);
+											area_cell_array[xx][yy].setX(this.mapToScreenCoordX(xx, yy));
+											area_cell_array[xx][yy].setY(this.mapToScreenCoordY(xx, yy));
+                                            area_cell_array[xx][yy].setFloorIndex();break;
 					default: area_cell_array[xx][yy].setFloorIndex();break;
 				}
 				if (area_cell_array[xx][yy]!=null) room.addActor(area_cell_array[xx][yy]);

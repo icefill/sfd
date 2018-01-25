@@ -80,15 +80,11 @@ public class DungeonGroup extends Group  implements Constants {
   public MapActor current_map;
   private RoomGroup current_room;
   public RoomGroup rooms[][][];
-  //LinkedList<ObjActor> transparent_list;
-  //NonObjSprites glow;
   private ObjActor selected_obj;
   private ObjActor attacker;
   ActionActor selected_action;
   public final BasicScreen screen;
-  //boolean mouse_clicked = false;
-  //private Color ambient_color;
-  
+
   // MAna
   //public int mana=5;
 
@@ -116,7 +112,6 @@ public class DungeonGroup extends Group  implements Constants {
 	this.final_room=dungeon_seed.final_room;
 	this.initial_room=dungeon_seed.initial_room;
 	
-    //this.Global.dungeon = this;
     this.fsm = new GFSM(this);
     Global.gfs=fsm;
     Global.dungeon=this;
@@ -173,7 +168,6 @@ public class DungeonGroup extends Group  implements Constants {
     	       DungeonGroup.this.clicked_yy = DungeonGroup.this.current_map.screenTomapCoordY(x, y);
     	       DungeonGroup.this.cursor.doSelectAction();
     	       DungeonGroup.this.screen.clicked=true;
-    	  	   //DungeonGroup.this.mouse_clicked = true;
     	  	}
       }
       public boolean mouseMoved(InputEvent event, float x, float y) {

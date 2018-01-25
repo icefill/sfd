@@ -44,7 +44,7 @@ public class BasicInventoryWindow extends BasicWindow {
 		window.row();
 		TextButton closeButton = new TextButton("CLOSE",skin);
 		closeButton.addListener(new HidingClickListener(this));
-		inven_table.add(closeButton).colspan(5);
+		inven_table.add(closeButton).colspan(5).pad(15);
 	}
 	public void setUnstackable()
 	{
