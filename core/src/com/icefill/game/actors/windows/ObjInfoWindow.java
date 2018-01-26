@@ -323,7 +323,7 @@ public class ObjInfoWindow extends BasicWindow {
 		//protected String action_name;
 		protected boolean on_cursor;
 		public AbilityActor getAbility() {
-			return (AbilityActor)(ability_container.action);
+			return ability;
 		}
 		public ObjInfoAbilityButton(ActionContainer ability_container, final DungeonGroup dungeon){
 			this.ability_container=ability_container;

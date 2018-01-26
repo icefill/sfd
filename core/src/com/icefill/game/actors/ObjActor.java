@@ -8,6 +8,7 @@ import com.icefill.game.Job;
 
 import com.icefill.game.Job.EquipmentForLevel;
 import com.icefill.game.actors.actionActors.Function;
+import com.icefill.game.actors.devices.GoldActor;
 import com.icefill.game.actors.dungeon.AreaCell;
 import com.icefill.game.actors.dungeon.DungeonGroup;
 import com.icefill.game.actors.dungeon.RoomGroup;
@@ -101,7 +102,7 @@ public class ObjActor extends BasicActor implements Constants {
     private float mv_spd;
 
     public int level = 1;
-    public int experience=0;
+    public int experience = 0;
 
 
     public int dodge;
@@ -250,7 +251,7 @@ public class ObjActor extends BasicActor implements Constants {
         String[] equipment_names = null;
         if (equipments_set != null) equipment_names = equipments_set.chooseEquipmentSet();
         if (equipment_names != null) {
-            inventory = new PersonalInventory(Assets.getSkin(), equipment_names,null/* job.item_name*/, this, null);
+            inventory = new PersonalInventory(Assets.getSkin(), equipment_names, null/* job.item_name*/, this, null);
         }
         status = new TotalStatus(this, base_status, inventory);
         this.addActor(turn_effect_info);
@@ -765,7 +766,7 @@ public class ObjActor extends BasicActor implements Constants {
         else if (!(temp.action instanceof AbilityActor)
                 ||
                 (
-                        ((AbilityActor) temp.action).mana_cost <= Global.dungeon.getTeamList(this.team).getMana() &&
+                        ((AbilityActor) temp.action).mana_cost <= Global.dungeon.getTeam(this.team).getMana() &&
                                 (temp.current_cool_time <= 0) &&
                                 !(temp.is_forbidden) &&
                                 ((AbilityActor) temp.action).checkWeaponType(this)
@@ -1201,18 +1202,25 @@ public class ObjActor extends BasicActor implements Constants {
                     room.getAttacker().gainTempExperience(10, room);
             }
 
-            com.icefill.game.actors.dungeon.AreaCell temp = room.current_map.getCell(this.getXX(), this.getYY());
+            com.icefill.game.actors.dungeon.AreaCell tempCell = room.current_map.getCell(this.getXX(), this.getYY());
 
-            if (this.team != 0 && this.inventory != null && room.current_map.getCell(this.getXX(), this.getYY()) != null && temp.device == null) {
-
-                if (this.team != 0 && !this.isLeader() && this.dead_ability == null) {
-                    EquipActor relic = this.inventory.getRandomEquip();
-
-                    if (relic != null && temp.device == null) {
-                        temp.device = new ItemActor(relic, temp, Global.getCurrentRoom());
+            if (this.team != 0 && room.current_map.getCell(this.getXX(), this.getYY()) != null && tempCell.device == null && this.dead_ability == null) {
+                if (Randomizer.hitInRatio(.6f))
+                if (Randomizer.hitInRatio(0.2f)) {
+                    if (this.inventory != null && !this.isLeader()) {
+                        EquipActor relic = this.inventory.getRandomEquip();
+                        if (relic != null && tempCell.device == null) {
+                            tempCell.device = new ItemActor(relic, tempCell, Global.getCurrentRoom());
+                        }
                     }
                 }
-
+                else {
+                    if (Randomizer.hitInRatio(0.65f))
+                        tempCell.device = new GoldActor(15, tempCell, Global.getCurrentRoom());
+                    else {
+                        tempCell.device= new ItemActor(new EquipActor(Global.dungeon.item_pool.getItem(Global.dungeon.room_zzz+1)),tempCell,Global.dungeon.getCurrentRoom());
+                    }
+                }
             }
 
             to_return.addAction(changeAnimationSubAction(DEAD));
@@ -1408,17 +1416,19 @@ public class ObjActor extends BasicActor implements Constants {
             Global.getCurrentRoom().addActor(target_info);
         }
     }
+
     public void showMessage(String message) {
-        showMessage(message,0.3f);
+        showMessage(message, 0.3f);
     }
-    public void showMessage(String message,float time) {
+
+    public void showMessage(String message, float time) {
         if (!getType().equals("wall") && !getType().equals("obstacle")) {
 
             target_info.addTargetInfo(message);
             target_info.addAction(
                     Actions.sequence(
                             Actions.fadeIn(time),
-                            Actions.delay(time+0.2f),
+                            Actions.delay(time + 0.2f),
                             Actions.run(new Runnable() {
                                 public void run() {
                                     target_info.removeTargetInfo();
@@ -1488,8 +1498,8 @@ public class ObjActor extends BasicActor implements Constants {
                         (status != null ? status.toString() : "\n") +
                         "Lvl: " + this.level + "\n" +
                         "EXP: " + this.experience + "\n\n *MAGIC LEVEL:\n" +
-                        " FIRE: "+ this.job.fire_level+"\n LIGHTNING: "+ this.job.lightning_level+"\n"+
-                        " HOLY: "+ this.job.holy_level+"\n UNHOLY   : "+ this.job.unholy_level+"\n"
+                        " FIRE: " + this.job.fire_level + "\n LIGHTNING: " + this.job.lightning_level + "\n" +
+                        " HOLY: " + this.job.holy_level + "\n UNHOLY   : " + this.job.unholy_level + "\n"
         ;
 
         return to_return;

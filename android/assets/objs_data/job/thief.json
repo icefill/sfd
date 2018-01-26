@@ -1,0 +1,26 @@
+{
+	"job_name":"thief",
+	"type":"character",
+	"default_sprites":"basic",
+	"description":"swift, versatile.",
+	"str_modifier":[2,3],
+	"base_str":3,
+	"dex_modifier":[2,2],
+	"base_dex":3,
+	"int_modifier":[0,1],
+	"base_int":3,
+	"hp_modifier":[2,3],
+	"base_hp":14,
+	"equipments_for_level":[
+		{
+			"equipment_names":[["bandana","leather_armor1","cudgel",null,null,null]]
+		}
+	],
+	"equippable_gear":["cloth_armor","light_armor","bladed_weapon","blunt_weapon","bow"],
+	"ability_name":["Normal attack","Shoot arrow","Push"],
+	"attainable_ability":["Throw dagger"],
+	"changeable_job":["assassin"],
+	"move_ability":"Move3",
+	"ability_count":2,
+	"price":120
+}

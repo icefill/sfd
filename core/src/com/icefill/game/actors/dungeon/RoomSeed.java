@@ -126,8 +126,10 @@ public class RoomSeed {
         clearRoom();
         int middle_x=(int)(room_size[0]/2);
         int middle_y=(int)(room_size[1]/2);
-        array[middle_x][middle_y-1]=OBJ.FIRE_BOWL.c;
-        array[middle_x][middle_y+1]=OBJ.FIRE_BOWL.c;
+        array[middle_x-2][middle_y-1]=OBJ.FIRE_BOWL.c;
+        array[middle_x+1][middle_y-1]=OBJ.FIRE_BOWL.c;
+        array[middle_x-2][middle_y+1]=OBJ.FIRE_BOWL.c;
+        array[middle_x+1][middle_y+1]=OBJ.FIRE_BOWL.c;
         array[middle_x][middle_y]=OBJ.WEAPON.c;
         array[middle_x-1][middle_y]=OBJ.ITEM.c;
     }

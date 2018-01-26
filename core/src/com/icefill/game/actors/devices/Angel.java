@@ -112,7 +112,7 @@ public class Angel extends DeviceActor{
 	public void revive(DungeonGroup dungeon) {
 		activated=true;
 		int i=1;
-		for (ObjActor temp_player:dungeon.getTeamList(0)) {
+		for (ObjActor temp_player:dungeon.getTeam(0)) {
 			temp_player.status.healInRatio(1f);
 			ProjectileActor prj= new ProjectileActor("particles/particle_heal.json",null,100,new Color(.0f,.0f,.3f,1f));
 			prj.setPosition(temp_player.getX(), temp_player.getY());

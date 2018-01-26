@@ -12,14 +12,7 @@
 		"down_marker",
 		"shop",
 		"merc",
-	 	"wall_tile",
-		"light_emitter",
-		"door",
 		"glow",
-		"hat",
-		"mage_hat",
-		"mage_hat2",
-		"mage_hat3",
 		"bandana",
 		"stone",
 		"hood1",
@@ -101,7 +94,7 @@
 		"shield7",
 		"goblin_shield",
 		"slash",
-		"tattoo1",
 		"charge_mana",
-		"rotating_slash"
+		"rotating_slash",
+		"assassin_mask"
 	]

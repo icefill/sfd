@@ -32,7 +32,6 @@ public class BattleWinWindow extends BasicWindow{
 	TextButton revive_button;
 	TextButton hp_button;
 	TextButton mp_button;
-	TextButton jp_button;
 	
 	TextButton item_button;
 	TextButton magic_item_button;
@@ -79,9 +78,9 @@ public class BattleWinWindow extends BasicWindow{
 	    exp_button.addListener(new ClickListener() {
 	      public void clicked(InputEvent event, float x, float y) {
 	    	   
-	      	 //if (!getDungeon().getTeamList(0).isEmpty())
-	      	 // sum/=getDungeon().getTeamList(0).size();
-	      	 for (ObjActor obj: getDungeon().getTeamList(0)) {
+	      	 //if (!getDungeon().getTeam(0).isEmpty())
+	      	 // sum/=getDungeon().getTeam(0).size();
+	      	 for (ObjActor obj: getDungeon().getTeam(0)) {
 	     		
 	     		obj.gainExperience(sum, getDungeon());
 	     	}
@@ -90,18 +89,6 @@ public class BattleWinWindow extends BasicWindow{
 	  					window.getDungeon().setVisible(true);
 	  		//EquipActor item= new EquipActor()
 	  		//getDungeon().getCurrentRoom().setItem(item)
-	      }
-	      
-	    });
-	    jp_button = new TextButton("JP 3:", Assets.getSkin(), "default");
-	    jp_button.addListener(new ClickListener() {
-	      public void clicked(InputEvent event, float x, float y) {
-	    	  if (sum!=0)
-	    		  Global.getPlayerTeam().increaseJP(sum/5);
-	    	//getDungeon().getDeadEnemyList().clear();	      	  
-	    	window.hideTable();
-	  		window.getDungeon().setVisible(true);
-
 	      }
 	      
 	    });
@@ -176,7 +163,7 @@ public class BattleWinWindow extends BasicWindow{
 		      public void clicked(InputEvent event, float x, float y) {
 		    	 // getDungeon().getDeadEnemyList().clear();	      	  
 			  		
-		    	  for (ObjActor temp_player:getDungeon().getTeamList(0)) {
+		    	  for (ObjActor temp_player:getDungeon().getTeam(0)) {
 		  			temp_player.status.healInRatio(3.0f/5);
 		  			com.icefill.game.actors.effects.ProjectileActor prj= new ProjectileActor("particles/particle_heal.json",null,100,new Color(.0f,.0f,.3f,1f));
 		  			prj.setPosition(temp_player.getX(), temp_player.getY());
@@ -343,18 +330,16 @@ public class BattleWinWindow extends BasicWindow{
 			magic_item_button.setVisible(false);
 		}
 		
-		sum=getDungeon().getTeamList(1).size();
+		sum=getDungeon().getTeam(1).size();
 		Global.getPlayerTeam().increaseGold(sum*10);
 		
 		
-      	sum+=Global.dungeon.getTeamList(0).size();
+      	sum+=Global.dungeon.getTeam(0).size();
       	
     	sum*=5;
     	if (sum!=0)
-    	jp_button.setText("JP: "+sum/5);
-      	exp_button.setText("EXP: "+sum);
-      	jp_button.setVisible(true);
-		this.setVisible(true);
+     	exp_button.setText("EXP: "+sum);
+    	this.setVisible(true);
 	}
 
 	public ObjActor getObj() {

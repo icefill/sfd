@@ -4,13 +4,13 @@
 	"type":"character",
 	"default_sprites":"basic",
 	"description":"Bummer...",
-		"str_modifier":[2,3],
-	"base_str":4,
+		"str_modifier":[3,4],
+	"base_str":3,
 	"dex_modifier":[1,2],
 	"base_dex":2,
 	"int_modifier":[0,1],
 	"base_int":2,
-	"hp_modifier":[2,3],
+	"hp_modifier":[3,4],
 	"base_hp":20,
 	"equipments_for_level":[
 		{

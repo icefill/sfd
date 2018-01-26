@@ -18,7 +18,7 @@
 		}
 	],
 	"equippable_gear":["cloth_armor","light_armor","bladed_weapon","blunt_weapon","bow"],
-	"ability_name":["Normal attack","Spear attack","Shoot arrow","Push"],
+	"ability_name":["Normal attack","Shoot arrow","Push"],
 	"attainable_ability":["First aid","Charge mana"],
 	"attainable_passive_ability":["max hire up","max mana up"],
 	"changeable_job":["war_lord","arch_mage"],

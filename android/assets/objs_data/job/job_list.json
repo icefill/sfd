@@ -41,5 +41,7 @@
 	"obstacle.json",
 	"skeleton_archer.json",
 	"wolf.json",
-	"ice_wall.json"
+	"ice_wall.json",
+	"thief.json",
+	"assassin.json"
 ]

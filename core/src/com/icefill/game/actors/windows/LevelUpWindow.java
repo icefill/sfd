@@ -82,8 +82,8 @@ public class LevelUpWindow extends BasicWindow {
 		left_table.pack();
 		table.add("LEVEL UP! CHOOSE A NEW ABILITY").pad(5).row();
 		table.add(outer_table).row();
-		outer_table.add(left_table).size(240,220);
-		outer_table.add(right_table).size(200,220);
+		outer_table.add(left_table).size(240,250);
+		outer_table.add(right_table).size(200,250);
 		//outer_table.pack();
 		ability_info_table = new AbilityInfoTable();
 		//right_table.pack();
@@ -144,18 +144,15 @@ public class LevelUpWindow extends BasicWindow {
 		//obj.status.current_hp=obj.status.total_status.HP;
 		
 		
-		if (obj.level% 2 ==0)
-		{
+
 			if (obj.isLeader())
 				this.chooseAndAddAbilities(dungeon);
-			else
-			{
+			else if (obj.level% 2 ==0)	{
 				AbilityActor ability=(AbilityActor)obj.getRandomAbilityToLearn();
 				if (ability!=null)
 				obj.addAbility(ability);
 			}
-		}
-		//this.setVisible(true);
+
 	}
 	public TextButton getLearnButton()
 	{

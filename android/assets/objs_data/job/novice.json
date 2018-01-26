@@ -9,16 +9,16 @@
 	"base_dex":3,
 	"int_modifier":[0,1],
 	"base_int":3,
-	"hp_modifier":[2,3],
+	"hp_modifier":[3,4],
 	"base_hp":17,
 	"equipments_for_level":[
 		{
 			"equipment_names":[["helm2","leather_armor2","short_sword",null,null,null]],
 		}
 	],
-	"equippable_gear":["cloth_armor","light_armor","bladed_weapon","blunt_weapon","bow"],
-	"ability_name":["Normal attack","Shoot arrow","Push"],
-	"attainable_ability":["Throw stone"],
+	"equippable_gear":["cloth_armor","light_armor","bladed_weapon","blunt_weapon"],
+	"ability_name":["Normal attack","Push"],
+	"attainable_ability":["Throw stone","Bash"],
 	"changeable_job":["knight","spearman"],
 	"move_ability":"Move",
 	"ability_count":2,

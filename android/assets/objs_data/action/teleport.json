@@ -19,6 +19,7 @@
 	"splash_friendly_contain":false,
 	"splash_enemy_contain":true,
 	"splash_obj_block":true,
+	"cool_time":3,
 	"price":55,
 	"motions":[
 		{

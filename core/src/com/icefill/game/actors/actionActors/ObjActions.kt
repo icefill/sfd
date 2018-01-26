@@ -56,6 +56,7 @@ class ObjActions : Constants{
 
             subaction_map.put("show_selected_item", showSelectedItemAction)
             subaction_map.put("throw_selected_item", throwSelectedItemAction)
+            subaction_map.put("throw_dagger", throwDagger)
             subaction_map.put("throw_bomb", throwBombAction)
             subaction_map.put("throw_stone", throwStoneAction)
             subaction_map.put("throw_web", throwWebAction)
@@ -261,7 +262,7 @@ class ObjActions : Constants{
 
             obj.setSummonedObj()
             if (to_act.team >= 0)
-                room.getTeamList(to_act.team).addPlayer(obj)
+                room.getTeam(to_act.team).addPlayer(obj)
             room.currentRoom.setObj(target, obj)
             var x = room.currentRoom.map.mapToScreenCoordX(to_act.xx, to_act.yy)
             var y = room.currentRoom.map.mapToScreenCoordY(to_act.xx, to_act.yy)
@@ -278,7 +279,7 @@ class ObjActions : Constants{
             val obj = ObjActor(-1, -1, to_act.team, 2, Assets.jobs_map["skeleton"], 1)
             obj.setSummonedObj()
             if (to_act.team >= 0)
-                room.getTeamList(to_act.team).addPlayer(obj)
+                room.getTeam(to_act.team).addPlayer(obj)
             room.currentRoom.setObj(target, obj)
             obj.setActingAction(action)
             obj.start()
@@ -1816,6 +1817,38 @@ class ObjActions : Constants{
 
             -1
         }
+
+        val throwWeaponStraightAction: Function = Function { room, to_act, action, current_target ->
+            val equip = to_act.inventory.getEquip(2)
+            to_act.inventory.setEquip(2, null)
+            val prj = ProjectileActor(equip)
+            val first_target = room.area_computer.targetList.first
+            prj.setPosition(to_act.x, to_act.y)
+            prj.z = to_act.z + 20
+            room.currentRoom.addActor(prj)
+            val arrow_vector = Vector2(first_target.x - to_act.x, first_target.y - to_act.y)
+
+            prj.rotation = arrow_vector.angle()
+
+
+            prj.setActingAction(action)
+            prj.addAction(
+                    Actions.sequence(
+                            prj.startAction(),
+                            Actions.sequence(
+                                    ExtendedActions.moveTo3D(first_target.x, first_target.y, first_target.z + 10, .3f),
+                                    ExtendedActions.moveTo3D(to_act.x, to_act.y, first_target.z + 10, .3f),
+                                    Actions.sequence(
+                                            Actions.delay(.5f), prj.deActivateAndEndAction(), Actions.run { to_act.inventory.setEquip(2, equip) }
+
+                                    )//prj.setDirectionAction(UR)
+                                    //,Actions.delay(.5f)
+                            )
+                    )
+            )
+
+            -1
+        }
         val throwSelectedItemStraightAction: Function = Function { room, to_act, action, current_target ->
             val equip = Global.getSelectedEquip()
             val prj = ProjectileActor(equip)
@@ -1853,10 +1886,8 @@ class ObjActions : Constants{
 
             -1
         }
-        val throwWeaponStraightAction: Function = Function { room, to_act, action, current_target ->
-            val equip = to_act.inventory.getEquip(2)
-            to_act.inventory.setEquip(2, null)
-            val prj = ProjectileActor(equip)
+        val throwDagger: Function = Function { room, to_act, action, current_target ->
+            val prj = ProjectileActor(null,"throwing_dagger",.3f)
             val first_target = room.area_computer.targetList.first
             prj.setPosition(to_act.x, to_act.y)
             prj.z = to_act.z + 20
@@ -1870,14 +1901,21 @@ class ObjActions : Constants{
             prj.addAction(
                     Actions.sequence(
                             prj.startAction(),
-                            Actions.sequence(
-                                    ExtendedActions.moveTo3D(first_target.x, first_target.y, first_target.z + 10, .3f),
-                                    ExtendedActions.moveTo3D(to_act.x, to_act.y, first_target.z + 10, .3f),
+                            Actions.parallel(
+                                    ExtendedActions.moveTo3D(first_target.x, first_target.y, first_target.z + 10, to_act.lineDistance(first_target) / 10f),
                                     Actions.sequence(
-                                            Actions.delay(.5f), prj.deActivateAndEndAction(), Actions.run { to_act.inventory.setEquip(2, equip) }
+                                            Actions.delay(to_act.lineDistance(first_target) / 10f - .05f), prj.deActivateAndEndAction()
+                                            /*,Actions.delay(.5f)
+                                         ,Actions.run(
+                                                 new Runnable() {
+                                                     public void run() {
+                                                          Global.current_room.setItem(first_target.getXX(),first_target.getYY(),equip,false);
+                                                     }
+                                                 }
+
+                                         )*/
 
                                     )//prj.setDirectionAction(UR)
-                                    //,Actions.delay(.5f)
                             )
                     )
             )

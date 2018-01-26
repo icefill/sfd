@@ -61,7 +61,6 @@ public class Assets {
         manager.load("sprite/lightning.atlas",TextureAtlas.class);
         manager.load("sprite/chain.atlas",TextureAtlas.class);
         manager.load("sprite/trap1.atlas",TextureAtlas.class);
-        manager.load("sprite/background.png",Texture.class);
 		manager.load("sprite/background2.png",Texture.class);
 
 		manager.load("sprite/message_background.png",Texture.class);

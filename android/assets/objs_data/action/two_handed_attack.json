@@ -26,36 +26,34 @@
 	"motions":[
 		{
 			"pre_motions":["basic_attack"],
-	 		"motions":["basic_attack_effect"],
-	 		"hit_motions":["blood_effect"],
-	 		status_change:
-	 		{
-	 			"status_type":"physical_weapon1_damage",
-	 			effect:[
-	 				{"amount":70,"accuracy":-1},
-	 				{"amount":80,"accuracy":-1},
-	 				{"amount":90,"accuracy":-1},
-	 				{"amount":95,"accuracy":-1},
-	 				{"amount":100,"accuracy":-1}
-	 			]
-	 		}
-	 	},
-	 	{
-	 		"pre_motions":["basic_right_attack"],
-	 		"motions":["basic_attack_effect"	],
-	 		"hit_motions":["blood_effect"],
-	 		"status_change":
-	 		{
-	 			"status_type":"physical_weapon2_damage",
-	 			"effect":[
-	 				{"amount":70,"accuracy":-1},
-	 				{"amount":80,"accuracy":-1},
-	 				{"amount":90,"accuracy":-1},
-	 				{"amount":95,"accuracy":-1},
-	 				{"amount":100,"accuracy":-1}
-	 				
-	 			]
-	 		}
-	 	}
+			"motions":["basic_attack_effect"],
+			"hit_motions":["blood_effect"],
+			"status_change":{
+				"status_type":"physical_weapon1_damage",
+				"relative":true,
+				"base_weapon_type":"ARM1",
+				"effect":[
+					{"amount":100,"accuracy":100,"critical":100},
+					{"amount":110,"accuracy":110,"critical":100},
+					{"amount":120,"accuracy":120,"critical":100},
+				]
+			}
+		},
+		{
+			"pre_motions":["basic_right_attack"],
+			"motions":["basic_attack_effect"],
+			"hit_motions":["blood_effect"],
+			"status_change":{
+				"status_type":"physical_weapon2_damage",
+				"relative":true,
+				"base_weapon_type":"ARM2",
+				"effect":[
+					{"amount":100,"accuracy":100,"critical":100},
+					{"amount":110,"accuracy":110,"critical":100},
+					{"amount":120,"accuracy":120,"critical":100},
+				]
+			}
+		}
 	]
+
 }

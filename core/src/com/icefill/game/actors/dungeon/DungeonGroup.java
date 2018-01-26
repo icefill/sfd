@@ -415,7 +415,7 @@ public class DungeonGroup extends Group  implements Constants {
 		return false;
 			
 	}
-	public Team getTeamList(int i) {
+	public Team getTeam(int i) {
 		return team_lists[i];
 	}
 

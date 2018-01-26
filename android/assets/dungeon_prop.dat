@@ -2,19 +2,21 @@
 {
     //Room tileSet can choose
 
-     dungeon_size:{xxx:2,yyy:2,zzz:5}
+     dungeon_size:{xxx:4,yyy:4,zzz:5}
      monster_room_ratio:0.33
 
      shop_n_in_floor:[0,1]
      healing_room_n_in_floor:[0,1]
      hire_room_n_in_floor:[0,1]
      shrine_in_floor:[1,2]
-     treasure_room_in_floor:[1,2]
-     scroll_room_in_floor:[1,2]
+     treasure_room_in_floor:[0,2]
+     scroll_room_in_floor:[0,1]
 
      room_type:[
         {name:"basic",floor_name:"floor1", down_stair_name:"down_stair_floor",wall_name:"wall1",door_name:"door_wall1","fire_bowl_name":"candle_stand"}
      ]
+
+
 
 
      //Character when start a game.(objs_data/chars/) ex) novice1, tom, teressa,skeleton warrrior ....
@@ -27,20 +29,21 @@
             names:[ {name:novice,level:1,mul:2}
                     ,{name:novice_bow,level:1,mul:1}
                     ,{name:apprentice_mage,level:1,mul:1}
+                    ,{name:thief,level:1,mul:1}
                   ]
         }
         {  min_floor:2, max_floor:2
             names:[ {name:novice,level:2,mul:2}
                     ,{name:novice_bow,level:2,mul:2}
                     ,{name:apprentice_mage,level:2,mul:1}
+                    ,{name:thief,level:2,mul:1}
                   ]
         }
         {   min_floor:3, max_floor:3
-            names:[ {name:black_mage,level:2,mul:1}
-                    ,{name:knight,level:2,mul:1}
-                    ,{name:cleric,level:2,mul:1}
-                    ,{name:archer,level:2,mul:1}
-                    ,{name:spearman,level:2,mul:1}
+            names:[ {name:black_mage,level:3,mul:1}
+                    ,{name:knight,level:3,mul:1}
+                    ,{name:cleric,level:3,mul:1}
+                    ,{name:archer,level:3,mul:1}
                   ]
         }
         {   min_floor:4, max_floor:4
@@ -49,6 +52,7 @@
                     ,{name:cleric,level:4,mul:1}
                     ,{name:archer,level:4,mul:1}
                     ,{name:spearman,level:4,mul:1}
+                    ,{name:assassin,level:4,mul:1}
                   ]
         }
         {   min_floor:5, max_floor:15
@@ -57,6 +61,7 @@
                             ,{name:cleric,level:5,mul:1}
                             ,{name:archer,level:5,mul:1}
                             ,{name:spearman,level:5,mul:1}
+                            ,{name:assassin,level:5,mul:1}
                           ]
          }
 
@@ -70,7 +75,6 @@
                                 ,{name:bat,level:1,mul:2}
                                 ,{name:zombie,level:1,mul:2}
                                 ,{name:bandit,level:1,mul:1}
-                                ,{name:spider,level:1,mul:1}
                                 ,{name:skeleton_archer,level:1,mul:1}
                               ]
         }
@@ -87,9 +91,9 @@
         {   min_floor:3, max_floor:3
                         names:[ {name:goblin,level:3,mul:2}
                                 {name:goblin_shaman,level:1,mul:1}
-                                ,{name:zombie,level:3,mul:1}
                                 ,{name:bandit,level:3,mul:3}
                                 ,{name:bandit_archer,level:2,mul:1}
+                                ,{name:bandit_boss,level:3,mul:3}
                                 ,{name:skeleton,level:2,mul:2}
                                 ,{name:skeleton_archer,level:1,mul:1}
                                 ,{name:spider,level:3,mul:1}
@@ -103,21 +107,23 @@
                                 ,{name:zombie,level:3,mul:1}
                                 ,{name:bandit,level:4,mul:3}
                                 ,{name:bandit_archer,level:4,mul:1}
-                                ,{name:skeleton,level:3,mul:4}
+                                ,{name:skeleton,level:5,mul:4}
                                 ,{name:skeleton_archer,level:3,mul:1}
-                                ,{name:spider,level:3,mul:1}
-                                ,{name:bat,level:3,mul:1}
-                                ,{name:lizard_man,level:3,mul:2}
+                                ,{name:spider,level:5,mul:1}
+                                ,{name:bat,level:4,mul:1}
+                                ,{name:bandit_boss,level:4,mul:3}
+                                ,{name:lizard_man,level:4,mul:2}
                               ]
         }
         {   min_floor:5, max_floor:15
-                                names:[ ,{name:skeleton,level:5,mul:2}
-                                        ,{name:skeleton,level:4,mul:2}
-                                        ,{name:skeleton_archer,level:3,mul:1}
+                                names:[ ,{name:skeleton,level:6,mul:2}
+                                        ,{name:skeleton,level:5,mul:2}
+                                        ,{name:skeleton_archer,level:5,mul:1}
                                         ,{name:spider,level:7,mul:1}
-                                        ,{name:bat,level:3,mul:1}
+                                        ,{name:bat,level:5,mul:1}
                                         ,{name:lizard_man,level:5,mul:3}
                                         ,{name:bandit_archer,level:5,mul:1}
+                                        ,{name:bandit_boss,level:7,mul:3}
                                         ,{name:skeleton_archer,level:5,mul:1}
                                         ,{name:skeleton_mage,level:5,mul:2}
                                         ,{name:goblin_shaman,level:5,mul:1}
@@ -251,7 +257,7 @@
                                                        ,{name:str_up_potion,mul:1}
                                                        ,{name:def_up_potion,mul:1}
                                                        ,{name:healing_potion_10,mul:8}
-                                                       ,{name:S#Ice wall,mul:1}
+                                                       ,{name:S#Crystal wall,mul:2}
                                                        ,{name:S#Throw web,mul:2}
                                                        ,{name:S#Teleport,mul:1}
                                                       ]
@@ -263,7 +269,7 @@
                                                        ,{name:str_up_potion,mul:1}
                                                        ,{name:def_up_potion,mul:1}
                                                        ,{name:healing_potion_10,mul:8}
-                                                       ,{name:S#Ice wall,mul:1}
+                                                       ,{name:S#Crystal wall,mul:2}
                                                        ,{name:S#Throw web,mul:2}
                                                        ,{name:S#Teleport,mul:1}
                                                       ]
@@ -275,7 +281,7 @@
                                                        ,{name:str_up_potion,mul:1}
                                                        ,{name:def_up_potion,mul:1}
                                                        ,{name:healing_potion_10,mul:8}
-                                                       ,{name:S#Ice wall,mul:1}
+                                                       ,{name:S#Crystal wall,mul:2}
                                                        ,{name:S#Throw web,mul:2}
                                                        ,{name:S#Teleport,mul:1}
                                                       ]

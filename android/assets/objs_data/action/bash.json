@@ -3,7 +3,7 @@
 		"icon_name":"normal_attack",
 	"description":"...",
 	"short_name":"attack",
-	"action_type":"attack and push back enemy.",
+	"action_type":"attack and \npush back enemy.",
 	"target_empty_contain":true,
 	"friendly_contain":true,
 	"center_contain":false,

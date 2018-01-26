@@ -1,7 +1,7 @@
 
-tattoo1.png
+assassin_mask.png
 format: RGBA8888
-filter: MipMapNearestNearest,MipMapNearestNearest
+filter: MipMapLinearLinear,MipMapLinearLinear
 repeat: none
 dl0000
   rotate: false

@@ -13,11 +13,15 @@
 	"base_hp":17,
 	"equipments_for_level":[
 		{
+			"max_level":1,
 			"equipment_names":[["horned_helm","leather_armor3","axe1","short_sword",null,null]],
+			"equipment_names":[["horned_helm","leather_armor2","axe0","short_sword",null,null]]
 		}
+
+
 	],
 	"equippable_gear":["cloth_armor","light_armor","bladed_weapon","blunt_weapon","bow"],
-	"ability_name":["Two handed attack","Shoot arrow","Push"],
+	"ability_name":["Normal attack","Two handed attack","Shoot arrow","Push"],
 	"attainable_ability":[],
 	"changeable_job":["knight","spearman"],
 	"move_ability":"Move",

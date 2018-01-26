@@ -47,11 +47,11 @@ public class AIController {
 		  
 		  public LinkedList<ObjActor> getOpponentTeam(ObjActor obj)
 		  {
-			  return Global.dungeon.getTeamList(getOpponentTeamIndex(obj));
+			  return Global.dungeon.getTeam(getOpponentTeamIndex(obj));
 		  }
 		  public LinkedList<ObjActor> getTeam(ObjActor obj)
 		  {
-			  return Global.dungeon.getTeamList(obj.getTeam());
+			  return Global.dungeon.getTeam(obj.getTeam());
 		  }
 		  public int getOpponentTeamIndex(ObjActor obj)
 		  {

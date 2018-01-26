@@ -6,7 +6,7 @@
 	"description":"Basic job",
 		"str_modifier":[2,3],
 	"base_str":3,
-	"dex_modifier":[1,2],
+	"dex_modifier":[2,3],
 	"base_dex":3,
 	"int_modifier":[0,1],
 	"base_int":3,
@@ -17,11 +17,11 @@
 			"equipment_names":[["helm2","leather_armor1",null,"bow0",null,null]],
 		}
 	],
-	"equippable_gear":["cloth_armor","light_armor","bladed_weapon","blunt_weapon","bow"],
+	"equippable_gear":["cloth_armor","light_armor","bow"],
 	"ability_name":["Shoot arrow","Push"],
-	"attainable_ability":["Double arrow","First aid"],
+	"attainable_ability":["Double arrow"],
 	"changeable_job":["archer"],
-	"move_ability":"Move",
+	"move_ability":"Move2",
 	"ability_count":2,
 	"price":80
 }

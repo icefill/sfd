@@ -6,7 +6,28 @@ repeat: none
 dl0000
   rotate: false
   xy: 1, 1
-  size: 50, 50
-  orig: 50, 50
+  size: 15, 15
+  orig: 15, 15
+  offset: 0, 0
+  index: -1
+dl0001
+  rotate: false
+  xy: 18, 1
+  size: 15, 15
+  orig: 15, 15
+  offset: 0, 0
+  index: -1
+dl0002
+  rotate: false
+  xy: 35, 1
+  size: 15, 15
+  orig: 15, 15
+  offset: 0, 0
+  index: -1
+dl0003
+  rotate: false
+  xy: 52, 1
+  size: 15, 15
+  orig: 15, 15
   offset: 0, 0
   index: -1

@@ -284,7 +284,7 @@ public class SlotButton extends ImageButton {
 		Assets.getFont().setColor(Color.WHITE);
 	}
 	if (shop_product) {
-		Assets.getFont().setColor(Color.YELLOW);
+		Assets.getFont().setColor(Color.BLACK);
 		Assets.getFont().draw(batch, "$"+getPrice(), getX()+10, getY()+10);
 		Assets.getFont().setColor(Color.WHITE);
 	}

@@ -9,7 +9,7 @@
 	"splash_center_contain":true,
 	"enemy_contain":false,
 	"obj_block":true,
-	"targeting_max_range":5,
+	"targeting_max_range":4,
 	"targeting_type":0,
 	"splash_max_range":0,
 	"splash_type":0,

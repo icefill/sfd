@@ -1,8 +1,8 @@
 {
-	"action_name":"Ice wall",
+	"action_name":"Crystal wall",
 	"icon_name":"ice_wall",
-	"short_name":"i wall",
-	"description":"Summon wall of \nice to Block enemy",
+	"short_name":"c wall",
+	"description":"Summon wall of \ncrystal to Block enemy",
 	"action_type":"holy_magic",
 	"target_empty_contain":true,
 	"center_contain":false,
@@ -22,6 +22,7 @@
 	"splash_obj_block":false,
 	"cool_time":2,
 	"mana_cost":1,
+	"price":40,
 	"motions":[
 		{
 		"pre_motions":["basic_attack"],

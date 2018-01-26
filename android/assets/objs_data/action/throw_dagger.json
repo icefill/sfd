@@ -1,7 +1,7 @@
 {
-	"action_name":"Throw item straight",
-	"icon_name":"explosion",
-	"description":"Throw item",
+	"action_name":"Throw dagger",
+	"icon_name":"throw2",
+	"description":"Throw dagger",
 	"action_type":"item",
 	"ai_type":"ranged",
 	"target_empty_contain":true,
@@ -21,11 +21,11 @@
 	"splash_enemy_contain":true,
 	"splash_obj_block":false,
 	"required_level":1,
-	"cool_time":1,
-	"mana_cost":3,
+	"cool_time":3,
+	"mana_cost":0,
 	"motions":[
 		{
-		"pre_motions":["push_half","throw_selected_item_straight"],
+		"pre_motions":["push_half","throw_dagger"],
 	 	"motions":["basic_attack_effect"],
 	 		"hit_motions":["blood_effect"],
 	 		"status_change":

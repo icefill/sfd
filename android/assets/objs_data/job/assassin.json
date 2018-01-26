@@ -1,0 +1,27 @@
+{
+	"job_name":"assassin",
+	"jp_need":5,
+	"type":"character",
+	"default_sprites":"basic",
+	"description":"...",
+		"str_modifier":[3,4],
+	"base_str":4,
+	"dex_modifier":[3,4],
+	"base_dex":3,
+	"int_modifier":[0,1],
+	"base_int":3,
+	"hp_modifier":[2,3],
+	"base_hp":15,
+	"equipments_for_level":[
+		{
+			"equipment_names":[["assassin_mask","leather_armor3","long_sword1",null,null,null]],
+		}
+	],
+	"equippable_gear":["cloth_armor","light_armor","bladed_weapon","blunt_weapon","bow"],
+	"ability_name":["Normal attack","Shoot arrow","Push","Double attack"],
+	"attainable_ability":["Teleport"],
+	"changeable_job":["assassin"],
+	"move_ability":"Move3",
+	"ability_count":2,
+	"price":150,
+}
