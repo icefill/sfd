@@ -1,7 +1,7 @@
 {
 	"action_name":"Multiple arrow",
 	"icon_name":"multiple_arrow",
-	"description":"Shoot multiple arrow\n far away object.",
+	"description":"Shoot multiple arrow.",
 	"action_type":"attack",
 	"ai_type":"ranged",
 	"target_empty_contain":true,

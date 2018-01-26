@@ -2,7 +2,7 @@
 	"action_name":"Teleport",
 	"icon_name":"move",
 	"short_name":"teleport",
-	"description":"Bummer...",
+	"description":"Move any position freely.",
 	"action_type":"move",
 	"target_empty_contain":true,
 	"friendly_contain":false,

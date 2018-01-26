@@ -2,7 +2,7 @@
 	"action_name":"Acidball",
 	"short_name":"A ball",
 	"icon_name":"acid_ball",
-	"description":"Cast Ball of Acid gas \n in straight direction.",
+	"description":"Cast Ball of Acid gas\n in straight direction.",
 	"action_type":"unholy_magic",
 	"action_level":2,
 	"ai_type":"ranged",

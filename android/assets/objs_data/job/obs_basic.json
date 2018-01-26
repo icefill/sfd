@@ -4,7 +4,6 @@
 	"default_sprites":"obs_basic",
 	"description":"Undestructable obstacle",
 	"hp_modifier":[200,300],
-	"adjust_color":true,
 	"ability_count":0
     	
 }

@@ -1,7 +1,7 @@
 {
 	"action_name":"Setdirection",
 	"icon_name":"explosion",
-	"description":"make explosion\n near caster,\n knock back nearby enemies.",
+	"description":"set direction of target",
 	"action_type":"fire_magic",
 	"target_empty_contain":true,
 	"center_contain":true,

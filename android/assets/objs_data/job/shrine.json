@@ -5,6 +5,5 @@
 	"description":"Bummer...",
 	"hp_modifier":[200,300],
 	"ability_count":0,
-	"adjust_color":true
-    	
+
 }

@@ -1,5 +1,5 @@
 {
-	"job_name":"avatar",
+	"job_name":"adventurer",
 	"type":"character",
 	"ai_type":"melee",
 	"default_sprites":"basic",
@@ -18,7 +18,7 @@
 		}
 	],
 	"equippable_gear":["cloth_armor","light_armor","bladed_weapon","blunt_weapon","bow"],
-	"ability_name":["Normal attack","Spear attack","Shoot arrow","Push","Fireball","Acidball","Double arrow","Lightning","Chain lightning"],
+	"ability_name":["Normal attack","Spear attack","Shoot arrow","Push"],
 	"attainable_ability":["First aid","Charge mana"],
 	"attainable_passive_ability":["max hire up","max mana up"],
 	"changeable_job":["war_lord","arch_mage"],
@@ -26,7 +26,7 @@
 	"ability_count":2,
 	"fire_level":1,
 	"lightning_level":1,
-	"holy_level":1,
+	"holy_level":1
 	
 
 }

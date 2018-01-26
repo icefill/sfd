@@ -122,8 +122,8 @@ public class Assets {
         //LoadWallMap();
         LoadObjSprites(obj_sprites_name_list);
         LoadNonObjSprites(non_obj_sprites_name_list);
-        LoadJobsMap();
         LoadActionsMap();
+		LoadJobsMap();
         LoadParticles();
     }
     public static Label.LabelStyle getLabelStyle()
@@ -275,16 +275,15 @@ public class Assets {
     	Json action_json= new Json();
     	ArrayList<String> action_name_list= action_json.fromJson(ArrayList.class,
     			Gdx.files.internal("objs_data/action/action_list.json"));
-    	AbilityActor.Factory temp_factory;
+    	AbilityActor.Seed temp_seed;
     	for (String action_file_name:action_name_list) {
-    		temp_factory= action_json.fromJson(AbilityActor.Factory.class
+    		temp_seed = action_json.fromJson(AbilityActor.Seed.class
     				,Gdx.files.internal("objs_data/action/"+ action_file_name));
-    		AbilityActor temp_ability=new AbilityActor(temp_factory);
-    		actions_map.put(temp_factory.action_name,temp_ability);
+    		AbilityActor temp_ability=new AbilityActor(temp_seed);
+    		actions_map.put(temp_seed.action_name,temp_ability);
     	}
     	actions_map.put("OpenInventory", new OpenInventoryAction());
 		actions_map.put("OpenMap", new OpenMapAction());
-
 		actions_map.put("Wait",new WaitAction());
     	actions_map.put("SetDirection",new SetDirectionAction());	
     	actions_map.put("AddAbility", new ObjInfoAbilityActor());

@@ -4,7 +4,7 @@
 	"item_name":[null,null,null,null,null,
 				 null,null,null,null,null],
 	"type":"char",
-	"job":"avatar",
+	"job":"adventurer",
 	"sprites_name":"basic",
 	"equippable":true,
 	"level":1,

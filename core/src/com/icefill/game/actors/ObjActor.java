@@ -69,7 +69,6 @@ public class ObjActor extends BasicActor implements Constants {
     CharUI char_ui;
     private String type;
     private LinkedList<String> forbidden_action_type_list;
-    private boolean adjust_color;
     private boolean unique_sprite;
     private boolean is_leader;
     private int team;
@@ -102,7 +101,7 @@ public class ObjActor extends BasicActor implements Constants {
     private float mv_spd;
 
     public int level = 1;
-    public int experience;
+    public int experience=0;
 
 
     public int dodge;
@@ -207,7 +206,6 @@ public class ObjActor extends BasicActor implements Constants {
     public void initialize(Job job) {
 
         this.job = job;
-        adjust_color = job.adjust_color;
         Label.LabelStyle style = new Label.LabelStyle(Assets.getFont(), Color.BLACK);
         style.background = new NinePatchDrawable(new NinePatch(Assets.getAsset(("sprite/message_background.png"), Texture.class), 15, 8, 8, 15));
 
@@ -252,7 +250,7 @@ public class ObjActor extends BasicActor implements Constants {
         String[] equipment_names = null;
         if (equipments_set != null) equipment_names = equipments_set.chooseEquipmentSet();
         if (equipment_names != null) {
-            inventory = new PersonalInventory(Assets.getSkin(), equipment_names, job.item_name, this, null);
+            inventory = new PersonalInventory(Assets.getSkin(), equipment_names,null/* job.item_name*/, this, null);
         }
         status = new TotalStatus(this, base_status, inventory);
         this.addActor(turn_effect_info);
@@ -273,6 +271,7 @@ public class ObjActor extends BasicActor implements Constants {
         if (job.dead_ability != null) {
             dead_ability = ObjActions.getSubAction(job.dead_ability);
         }
+
 		/*
 		if (job.learnable_magic_type!=null) {
 			learnable_magic_type_list= new LinkedList<String>();
@@ -280,6 +279,7 @@ public class ObjActor extends BasicActor implements Constants {
 				learnable_magic_type_list.add(temp);
 			}
 		}*/
+
         //Setting attainable abilities
         if (job.attainable_ability != null) {
             attain_ability_list = new LinkedList<AbilityActor>();
@@ -533,7 +533,7 @@ public class ObjActor extends BasicActor implements Constants {
             batch.setColor(1f, 1f, 1f, 1f);
         }
         applyTransform(batch, computeTransform());
-        ((ObjSprites) sprites).drawAnimation(batch, elapsed_time, curr_ani, curr_dir, 0, getZ(), 0, 0, 0, 1, 1, inventory, getColor());
+        ((ObjSprites) sprites).drawAnimation(batch, elapsed_time, curr_ani, curr_dir, 0, getZ(), 0, 0, 0, 1, 1, inventory, job.color);
         if (obj_state != PL_DEAD) {
             char_ui.draw_health(elapsed_time, batch, status.current_hp, status.total_status.HP, status.current_ap, this.selected);
             resetTransform(batch);
@@ -554,7 +554,7 @@ public class ObjActor extends BasicActor implements Constants {
     }
 
     public void draw(Batch batch, float delta, float x, float y) {
-        ((ObjSprites) sprites).drawAnimation(batch, elapsed_time, curr_ani, curr_dir, x, y, 0, 0, 0, 1, 1, inventory, getColor());
+        ((ObjSprites) sprites).drawAnimation(batch, elapsed_time, curr_ani, curr_dir, x, y, 0, 0, 0, 1, 1, inventory, job.color);
     }
 
     public void act(float delta) {
@@ -1408,15 +1408,17 @@ public class ObjActor extends BasicActor implements Constants {
             Global.getCurrentRoom().addActor(target_info);
         }
     }
-
     public void showMessage(String message) {
+        showMessage(message,0.3f);
+    }
+    public void showMessage(String message,float time) {
         if (!getType().equals("wall") && !getType().equals("obstacle")) {
 
             target_info.addTargetInfo(message);
             target_info.addAction(
                     Actions.sequence(
-                            Actions.fadeIn(.2f),
-                            Actions.delay(.3f),
+                            Actions.fadeIn(time),
+                            Actions.delay(time+0.2f),
                             Actions.run(new Runnable() {
                                 public void run() {
                                     target_info.removeTargetInfo();

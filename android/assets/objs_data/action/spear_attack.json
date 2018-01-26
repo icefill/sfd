@@ -1,7 +1,7 @@
 {
 	"action_name":"Spear attack",
-		"icon_name":"normal_attack",
-	"short_name":"attack",
+		"icon_name":"spear_attack",
+	"short_name":"attack 2 tiles with spear.",
 	"description":"...",
 	"action_type":"attack",
 	"target_empty_contain":true,

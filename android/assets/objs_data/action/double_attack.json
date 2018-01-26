@@ -2,7 +2,7 @@
 	"action_name":"Double attack",
 	"short_name":"attk x2",
 		"icon_name":"double_attack",
-	"description":"Attack twice\n swiftly.",
+	"description":"Attack twice swiftly.",
 	"action_type":"attack",
 	"target_empty_contain":true,
 	"friendly_contain":true,

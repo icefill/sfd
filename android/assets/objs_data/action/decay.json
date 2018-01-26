@@ -2,7 +2,7 @@
 	"action_name":"Decay",
 	"short_name":"decay",
 	"icon_name":"decay",
-	"description":"Cast gas of acid \n near caster.",
+	"description":"Cast gas of acid near caster.",
 	"action_type":"unholy_magic",
 	"ai_type":"ranged",
 	"action_level":3,

@@ -66,48 +66,48 @@ public class AbilityActor extends ActionActor {
 	
 	public AbilityActor()
 	{}
-	public AbilityActor(Factory factory){
+	public AbilityActor(Seed seed){
 		type=1;
 		ap=1;
-		action_type= factory.action_type;
-		ai_type=factory.ai_type;
+		action_type= seed.action_type;
+		ai_type= seed.ai_type;
 		if (ai_type==null)
 			ai_type="melee";
-		required_level=factory.required_level;
-		action_name=factory.action_name;
-		description=factory.description;
-		action_type=factory.action_type;
-		action_level=factory.action_level;
-		short_name=factory.short_name;
-		this.do_not_execute_avoid_motion=factory.do_not_execute_avoid_motion;
-		center_contain=factory.center_contain;
-		splash_center_contain=factory.splash_center_contain;
-		target_empty_contain=factory.target_empty_contain;
-		friendly_contain=factory.friendly_contain;
-		enemy_contain=factory.enemy_contain;
-	    obj_block=factory.obj_block;
-	    friendly_pass=factory.friendly_pass;
-	    wall_block=factory.wall_block;
-		targeting_min_range=factory.targeting_min_range;
-		targeting_max_range=factory.targeting_max_range;
-		targeting_type=factory.targeting_type;
-		splash_min_range=factory.splash_min_range;
-		splash_max_range=factory.splash_max_range;
-		splash_type=factory.splash_type;
-		self_targeting=factory.self_targeting;
-		splash_empty_contain=factory.splash_empty_contain;
-		splash_friendly_contain=factory.friendly_contain;
-		splash_enemy_contain=factory.splash_enemy_contain;
-		splash_obj_block=factory.splash_obj_block;
-		need_hire=factory.need_hire;
-		price=factory.price;
-		this.weapon_type=factory.weapon_type;
-		this.cool_time=factory.cool_time;
-		this.mana_cost=factory.mana_cost;
+		required_level= seed.required_level;
+		action_name= seed.action_name;
+		description= seed.description;
+		action_type= seed.action_type;
+		action_level= seed.action_level;
+		short_name= seed.short_name;
+		this.do_not_execute_avoid_motion= seed.do_not_execute_avoid_motion;
+		center_contain= seed.center_contain;
+		splash_center_contain= seed.splash_center_contain;
+		target_empty_contain= seed.target_empty_contain;
+		friendly_contain= seed.friendly_contain;
+		enemy_contain= seed.enemy_contain;
+	    obj_block= seed.obj_block;
+	    friendly_pass= seed.friendly_pass;
+	    wall_block= seed.wall_block;
+		targeting_min_range= seed.targeting_min_range;
+		targeting_max_range= seed.targeting_max_range;
+		targeting_type= seed.targeting_type;
+		splash_min_range= seed.splash_min_range;
+		splash_max_range= seed.splash_max_range;
+		splash_type= seed.splash_type;
+		self_targeting= seed.self_targeting;
+		splash_empty_contain= seed.splash_empty_contain;
+		splash_friendly_contain= seed.friendly_contain;
+		splash_enemy_contain= seed.splash_enemy_contain;
+		splash_obj_block= seed.splash_obj_block;
+		need_hire= seed.need_hire;
+		price= seed.price;
+		this.weapon_type= seed.weapon_type;
+		this.cool_time= seed.cool_time;
+		this.mana_cost= seed.mana_cost;
 		//this.status_change_list=factory.status_change_list;
 		tooltip.setText(this.toString());
 		motions= new ArrayList<Motion>();
-		for ( SubMotionName motion_names:factory.motions) {
+		for ( SubMotionName motion_names: seed.motions) {
 			Motion temp_motion= new Motion(motion_names);
 			if (temp_motion.status_change !=null) {
 				temp_motion.status_change.setStatusType();
@@ -115,8 +115,9 @@ public class AbilityActor extends ActionActor {
 			motions.add(new Motion(motion_names));
 			
 		}
-		
-		icon_texture = new TextureRegion(Assets.getAsset("sprite/icon.atlas", TextureAtlas.class).findRegion(factory.icon_name));//new Texture("sprite/icon_attack.png");
+		TextureRegion temp=Assets.getAsset("sprite/icon.atlas", TextureAtlas.class).findRegion(seed.icon_name);
+		if (temp==null) throw new RuntimeException("Icon of abiliity "+this.getActionName() +" does not exist.");
+		else icon_texture = temp;
 		
 	}
 	public String getShortName()
@@ -667,16 +668,16 @@ public class AbilityActor extends ActionActor {
 		return to_return;
 	}
 	public String toString2(int level) {
-		String to_return="*name: "+this.action_name+"\n\n"+
+		String to_return="*name: "+this.action_name+" (LEVEL"+level+")\n\n"+
 				 "  "+this.description+"\n\n"
 				 +"*TYPE        : "+this.action_type+"(LVL:"+this.action_level+")\n\n"
 				 +"*REQUIRED_LEVEL:"+this.required_level+"\n\n";
 				 //+ "REQUIRED LEVEL:"+(this.required_level)+"\n";
-				if (level-1>=0) {
+				if (level>=0) {
 					to_return+=//"CURRENT LEVEL :"+(level-1)+"\n\n"+
 							 //"RANGE       : "+this.targeting_min_range+"~"+this.targeting_max_range+"\n"+
 							 //"SPLASH      : "+this.splash_min_range+"~"+this.splash_max_range+"\n\n"+
-							 getDamagesInfo(level-1)+"\n";
+							 getDamagesInfo(level)+"\n";
 				}
 			/*
 				to_return+="\n\nNEXT LEVEL :"+(level)+"\n\n"+
@@ -713,7 +714,7 @@ public class AbilityActor extends ActionActor {
 		Assets.getFont().setColor(Color.WHITE);
 	}
 }
-	public static class Factory {
+	public static class Seed {
 		public String action_name;
 		public String icon_name;
 		public String description;

@@ -2,7 +2,7 @@
 	"action_name":"Bomb",
 	"short_name":"Bomb",
 	"icon_name":"explosion",
-	"description":"make explosion\n near caster,\n knock back nearby enemies.",
+	"description":"Throw bomb.",
 	"action_type":"item",
 	"ai_type":"ranged",
 	"target_empty_contain":true,

@@ -1,11 +1,8 @@
 package com.icefill.game.actors.dungeon;
 
 import com.icefill.game.Constants;
-import com.icefill.game.OBJ;
 import com.icefill.game.RoomShapeType;
 import com.icefill.game.utils.NonRepeatRandomizer;
-
-import java.util.ArrayList;
 
 public class RoomSeed {
       int[] room_size;

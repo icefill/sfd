@@ -32,6 +32,7 @@ public class ShopItemWindow extends ItemWindow {
 		    		  else
 		    		  {
 		    			  Global.getPlayerTeam().getInventory().setSlot(slot.equip);
+						  Global.showBigMessage("Bought "+slot.equip.name);
 		    		  }
 		    			  slot.setSlot(null);
 		    			  window.hideTable();
@@ -39,7 +40,7 @@ public class ShopItemWindow extends ItemWindow {
 		    	  }
 		    	  else
 		    	  {
-		    		  Global.showMessage("NOT ENOUGH GOLD", 1);
+		    		  Global.showBigMessage("NOT ENOUGH GOLD");
 		    	  }
 		      }
 		      

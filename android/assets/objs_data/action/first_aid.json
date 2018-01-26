@@ -2,7 +2,7 @@
 	"action_name":"First aid",
 	"short_name":"f aid",
 	"icon_name":"first_aid",
-	"description":"Heals a unit\n near caster.",
+	"description":"Heals a unit near caster.",
 	"action_type":"holy_magic",
 	"target_empty_contain":true,
 	"friendly_contain":true,

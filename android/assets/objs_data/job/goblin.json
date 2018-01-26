@@ -2,8 +2,7 @@
 	"job_name":"goblin",
 	"type":"character",
 	"default_sprites":"goblin",
-		"transparent":1,
-	
+
 	"description":"Bummer...",
 		"str_modifier":[1,2],
 	"base_str":4,

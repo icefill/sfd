@@ -1,7 +1,7 @@
 {
 	"action_name":"Mana stone",
 	"icon_name":"depend",
-	"description":"Increase mana",
+	"description":"Charge mana",
 	"action_type":"item",
 	"target_empty_contain":true,
 	"center_contain":true,

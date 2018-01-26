@@ -1,7 +1,7 @@
 {
 	"action_name":"Normal attack",
 		"icon_name":"normal_attack",
-	"description":"...",
+	"description":"attack with melee weapon",
 	"short_name":"attack",
 	"action_type":"attack",
 	"target_empty_contain":true,

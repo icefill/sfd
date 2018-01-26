@@ -2,8 +2,7 @@
 	"job_name":"jelly",
 	"type":"character",
 	"default_sprites":"slime",
-		"transparent":0.4,
-	
+
 	"description":"Bummer...",
 		"str_modifier":[1,2],
 	"base_str":4,

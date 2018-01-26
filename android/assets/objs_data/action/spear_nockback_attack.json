@@ -1,7 +1,7 @@
 {
 	"action_name":"Spear nockback attack",
-		"icon_name":"normal_attack",
-	"description":"...",
+		"icon_name":"spear_bash",
+	"description":"attack with spear and pushback enemy.",
 	"action_type":"attack",
 	"target_empty_contain":true,
 	"friendly_contain":true,

@@ -1,7 +1,7 @@
 {
 	"action_name":"Explosion",
 	"icon_name":"explosion",
-	"description":"make explosion\n near caster,\n knock back nearby enemies.",
+	"description":"make explosion near caster,\n knock back nearby enemies.",
 	"action_type":"fire_magic",
 	"action_level":1,
 	"target_empty_contain":true,

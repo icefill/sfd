@@ -2,7 +2,7 @@
 	"action_name":"Energy ray",
 	"icon_name":"energy_ray",
 	"short_name":"e ray",
-	"description":"Straight line of lightining enegy ",
+	"description":"Straight line of \nlightining enegy ",
 	"action_type":"lightning_magic",
 	"ai_type":"ranged",
 	"action_level":3,

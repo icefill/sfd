@@ -298,7 +298,7 @@ public class DungeonGroup extends Group  implements Constants {
     this.fsm.act(delta);
 	  if (isMouseClicked()&& fsm.getCurrentState()==GS_PLAYER_ACTING)
       {
-	  		Global.showMessage("Please Wait until acting is over.",1);
+	  		//Global.showMessage("Please Wait until acting is over.",1);
       }
     
   }

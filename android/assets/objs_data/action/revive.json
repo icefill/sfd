@@ -1,7 +1,7 @@
 {
 	"action_name":"Revive",
 	"icon_name":"depend",
-	"description":"Revive one recently dead friendly unit",
+	"description":"Revive one recently \ndead friendly unit",
 	"action_type":"item",
 	"target_empty_contain":true,
 	"center_contain":true,

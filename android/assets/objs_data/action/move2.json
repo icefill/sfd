@@ -1,7 +1,7 @@
 {
 	"action_name":"Move2",
 	"icon_name":"move",
-	"description":"Bummer...",
+	"description":"Move maximum 2 tile",
 	"action_type":"move",
 	"target_empty_contain":true,
 	"friendly_contain":false,

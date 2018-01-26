@@ -3,7 +3,7 @@
 	"icon_name":"shoot_arrow",
 	"short_name":"attack",
 	"ai_type":"ranged",
-	"description":"Shoot arrow\n far away object.",
+	"description":"Shoot arrow.",
 	"action_type":"attack",
 	"target_empty_contain":true,
 	"center_contain":false,

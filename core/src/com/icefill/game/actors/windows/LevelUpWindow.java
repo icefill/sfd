@@ -241,9 +241,7 @@ public class LevelUpWindow extends BasicWindow {
 		label.setText(temp);
 		
 		obj.status.setStatus(obj.inventory,obj.turn_effect_list);
-		
-		//this.add(label).fillX().row();
-		//Show new Ability
+
 		ability_table.clearChildren();
 		int i=0;
 		ability_table.add("ABILITIES").pad(5).colspan(4).row();
@@ -255,7 +253,6 @@ public class LevelUpWindow extends BasicWindow {
 			i++;
 			if (i%4==0)
 				ability_table.row();
-			
 		}
 		if (obj.attain_passive_ability_list!=null)
 		for (ActionActor temp_ability:obj.attain_passive_ability_list) {

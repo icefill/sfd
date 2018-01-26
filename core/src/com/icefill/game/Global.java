@@ -63,29 +63,7 @@ public class Global {
 		tool_tip=null;
 		item_window=null;
 	}
-	/*
-	public static void reserveCameraPosition(){
-		if (reserved_camera_position==null)
-		{
-			reserved_camera_position= new Vector3();
-		}
-		reserved_camera_position.set(current_screen.camera.position);
-	}
-	public static void restoreCameraPosition()
-	{
-		if (reserved_camera_position!=null)
-		{
-			current_screen.camera.position.set(reserved_camera_position);
-			//reserved_camera_position=null;
-		}
-	}
 
-	public static void setCameraCenter()
-	{
-		//current_screen.camera.position.set(Global.getCurrentRoom().getMap().map_center_x, Global.getCurrentRoom().getMap().map_center_y, 0f);
-
-	}
-	*/
 	public static void setCurrentRoom(com.icefill.game.actors.dungeon.RoomGroup room)
 	{
 		current_room=room;
@@ -239,7 +217,10 @@ public class Global {
 										
 									);*/
 	}
-	public static void showBigMessage(String message) 
+	public static void showBigMessage(String message) {
+		showBigMessage(message,1.2f);
+	}
+	public static void showBigMessage(String message,float time)
 	{
 	    final Label status_change_label = new Label("",Assets.getLabelStyleBackgrounded());//new Label.LabelStyle(Assets.getFont(), Color.WHITE) );
 		status_change_label.setSize(300, 60);
@@ -260,7 +241,7 @@ public class Global {
 							//Actions.parallel(
 									//Actions.delay(1f),
 							//Actions.run(new Runnable() {public void run() {message_n--;}}),
-							Actions.delay(1.2f),
+							Actions.delay(time),
 							Actions.fadeOut(.1f),
 							Global.gfs.reRunGFSAction(),
 							Actions.removeActor()

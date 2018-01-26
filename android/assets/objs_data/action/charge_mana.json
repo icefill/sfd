@@ -2,7 +2,7 @@
 	"action_name":"Charge mana",
 	"short_name":"mana",
 	"icon_name":"charge_mana",
-	"description":"Increase mana",
+	"description":"charge mana",
 	"action_type":"item",
 	"target_empty_contain":true,
 	"center_contain":true,

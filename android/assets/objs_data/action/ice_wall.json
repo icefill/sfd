@@ -2,7 +2,7 @@
 	"action_name":"Ice wall",
 	"icon_name":"ice_wall",
 	"short_name":"i wall",
-	"description":"Summon wall of ice \n to Block enemy",
+	"description":"Summon wall of \nice to Block enemy",
 	"action_type":"holy_magic",
 	"target_empty_contain":true,
 	"center_contain":false,

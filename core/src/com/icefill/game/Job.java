@@ -1,5 +1,8 @@
 package com.icefill.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.icefill.game.actors.actionActors.ObjActions;
 import com.icefill.game.actors.dungeon.DungeonGroup;
 import com.icefill.game.sprites.ObjSprites;
 import com.icefill.game.utils.Randomizer;
@@ -12,7 +15,6 @@ public class Job
   public String job_name;
   public String description;
   public int jp_need;
-  public boolean adjust_color;
   public boolean dangerous;
   public boolean no_direction;
   public int[] str_modifier;
@@ -24,7 +26,7 @@ public class Job
   public int base_hp;
   public int[] hp_modifier;
   public int ability_count;
-  public float alpha=1f;
+  public Color color;
   public int fire_level;
   public int lightning_level;
   public int holy_level;
@@ -38,7 +40,7 @@ public class Job
   public String[] changeable_job;
   public String move_ability;
   public ArrayList<EquipmentForLevel> equipments_for_level;
-  public String[] item_name;
+ // public String[] item_name;
   public float glow[];
   public ObjSprites default_sprites;
   public String type;
@@ -51,7 +53,6 @@ public class Job
   public Job(Factory factory)
   {
 	this.no_direction=factory.no_direction;  
-	this.adjust_color=factory.adjust_color;
 	this.dangerous=factory.dangerous;
 	this.learnable_magic_type=factory.learnable_magic_type;
     this.job_name = factory.job_name;
@@ -68,15 +69,55 @@ public class Job
     this.runaway_ratio=factory.runaway_ratio;
     this.default_sprites = ((ObjSprites)Assets.obj_sprites_map.get(factory.default_sprites));
     this.equipments_for_level = factory.equipments_for_level;
-    //this.equippable_gear=factory.equippable_gear;
-    this.item_name = factory.item_name;
+    if (equipments_for_level!=null) {
+        for (EquipmentForLevel equipmentsForLevel : equipments_for_level) {
+            if (equipmentsForLevel!=null) {
+                for (String[] equipments :equipmentsForLevel.equipment_names) {
+                    if (equipments!=null) {
+                        for (String equipment:equipments ) {
+                            if (equipment!=null && !Gdx.files.internal("objs_data/equipment/" + equipment + ".json").exists()) throw new RuntimeException("job "+job_name+"'s equipment "+equipment+" not exist.");
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+   // this.item_name = factory.item_name;
+
     this.ability_name = factory.ability_name;
+    if (ability_name!=null) {
+        for (String name :ability_name) {
+            if (Assets.actions_map.get(name)==null) throw new RuntimeException("job "+job_name+"'s ability "+name+" not exist.");
+        }
+    }
     this.attainable_ability= factory.attainable_ability;
+      if (attainable_ability!=null) {
+          for (String name :attainable_ability) {
+              if (Assets.actions_map.get(name)==null) throw new RuntimeException("job "+job_name+"'s ability "+name+" not exist.");
+          }
+      }
     this.attainable_passive_ability= factory.attainable_passive_ability;
+      if (attainable_passive_ability!=null) {
+          for (String name :attainable_passive_ability) {
+              if (Assets.actions_map.get(name)==null) throw new RuntimeException("job "+job_name+"'s ability "+name+" not exist.");
+          }
+      }
     this.move_ability=factory.move_ability;
+      if (move_ability!=null) {
+          if (Assets.actions_map.get(move_ability)==null) throw new RuntimeException("job "+job_name+"'s ability "+move_ability+" not exist.");
+      }
     this.ability_count = factory.ability_count;
     this.dead_ability=factory.dead_ability;
+      if (dead_ability!=null) {
+          if ( ObjActions.getSubAction(dead_ability)==null) throw new RuntimeException("job "+job_name+"'s dead ability "+dead_ability+" not exist.");
+      }
     this.changeable_job=factory.changeable_job;
+      if (changeable_job!=null) {
+          for (String job_name :changeable_job) {
+              if (!Gdx.files.internal("objs_data/job/").exists()) throw new RuntimeException("job "+job_name+"'s ability "+job_name+" not exist.");
+          }
+      }
     this.type = factory.type;
     this.price=factory.price;
     if (factory.ai_type==null)
@@ -91,7 +132,11 @@ public class Job
     this.unholy_level=factory.unholy_level;
 
     this.glow=factory.glow;
-    if (factory.transparent>0) alpha=.65f;
+    if (factory.color!=null) {
+        this.color = new Color(factory.color[0], factory.color[1], factory.color[2], factory.color[3]);
+    }
+    else this.color=Color.WHITE;
+
   }
   public int getJPNeed(){
 	  return jp_need;
@@ -177,11 +222,11 @@ public class Job
     String description;
     String default_sprites;
     int jp_need;
-    boolean adjust_color;
     boolean dangerous;
     boolean no_direction;
     int[] str_modifier;
     int transparent;
+    float[] color;
     int base_str;
     int[] dex_modifier;
     int base_dex;
@@ -199,7 +244,7 @@ public class Job
     float glow[];
     
     ArrayList<EquipmentForLevel> equipments_for_level;
-    String[] item_name;
+    //String[] item_name;
     String[] ability_name;
     String[] attainable_ability;
     String[] attainable_passive_ability;

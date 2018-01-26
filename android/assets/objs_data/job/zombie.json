@@ -2,8 +2,7 @@
 	"job_name":"zombie",
 	"type":"character",
 	"default_sprites":"zombie",
-		"transparent":1,
-	
+
 	"description":"Bummer...",
 		"str_modifier":[1,2],
 	"base_str":4,

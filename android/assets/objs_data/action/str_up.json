@@ -1,6 +1,6 @@
 {
 	"action_name":"Str up",
-	"icon_name":"depend",
+	"icon_name":"str_up",
 	"description":"Increase strength",
 	"action_type":"item",
 	"target_empty_contain":true,

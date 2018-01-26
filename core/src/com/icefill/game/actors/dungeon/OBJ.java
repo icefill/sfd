@@ -1,4 +1,4 @@
-package com.icefill.game;
+package com.icefill.game.actors.dungeon;
 
 public enum OBJ {
     WALL('w'),DOWN_STAIR('↓'),EXPLOSIVE('e'),OBSTACLE('o'),FIRE_BOWL('f'),DOOR('d'),TRAP('t')

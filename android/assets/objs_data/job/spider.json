@@ -2,8 +2,7 @@
 	"job_name":"spider",
 	"type":"character",
 	"default_sprites":"spider",
-		"transparent":0.4,
-	
+
 	"description":"Bummer...",
 		"str_modifier":[1,2],
 	"base_str":4,

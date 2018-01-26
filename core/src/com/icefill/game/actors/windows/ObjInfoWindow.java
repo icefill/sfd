@@ -98,7 +98,7 @@ public class ObjInfoWindow extends BasicWindow {
     	job_table.add(job_label3).pad(5).top();
     	job_table.add(job_table2).pad(5).row();
 		job_button= new TextButton[5];
-	    for (int i=0;i<4;i++)
+	    for (int i=0;i<3;i++)
 	    {
 	    	final int n=i;
 	    	job_button[i]= new TextButton("LEARN", Assets.getSkin(), "default");
@@ -174,7 +174,7 @@ public class ObjInfoWindow extends BasicWindow {
 			if (obj.job.changeable_job!=null)
 			{
 				int job_size=obj.job.changeable_job.length;
-				for (int i=0;i<4;i++)
+				for (int i=0;i<3;i++)
 				{
 					if (i<job_size)
 					{
@@ -190,7 +190,7 @@ public class ObjInfoWindow extends BasicWindow {
 			}
 			else
 			{
-				for (int i=0;i<4;i++)
+				for (int i=0;i<3;i++)
 				{
 					job_button[i].setVisible(false);
 					
@@ -291,7 +291,7 @@ public class ObjInfoWindow extends BasicWindow {
 			//((AbilityActor)temp_ability);
 			if (temp_ability!=null && temp_ability instanceof AbilityActor)
 			{
-			LevelupAbilityButton button= new LevelupAbilityButton((AbilityActor)(temp_ability),dungeon);
+			ObjInfoAbilityButton button= new ObjInfoAbilityButton(temp_container,dungeon);
 			ability_table.add(button);
 			if (ability_table.getChildren().size%5==0)ability_table.row();
 			}
@@ -302,7 +302,7 @@ public class ObjInfoWindow extends BasicWindow {
 			//((AbilityActor)temp_ability);
 			if (temp_ability!=null && temp_ability instanceof AbilityActor)
 			{
-			LevelupAbilityButton button= new LevelupAbilityButton((AbilityActor)(temp_ability),dungeon);
+			ObjInfoAbilityButton button= new ObjInfoAbilityButton((AbilityActor)(temp_ability),dungeon);
 			ability_table.add(button);
 			}
 		}
@@ -316,16 +316,18 @@ public class ObjInfoWindow extends BasicWindow {
       //  Global.setCameraCenter();
         this.setVisible(false);
 	}
-	public class LevelupAbilityButton extends BasicActor {
+	public class ObjInfoAbilityButton extends BasicActor {
+		final ActionContainer ability_container;
 		final AbilityActor ability;
 		//protected TextureRegion icon_texture;
 		//protected String action_name;
 		protected boolean on_cursor;
 		public AbilityActor getAbility() {
-			return ability;
+			return (AbilityActor)(ability_container.action);
 		}
-		public LevelupAbilityButton(AbilityActor ability,final DungeonGroup dungeon){
-			this.ability=ability;
+		public ObjInfoAbilityButton(ActionContainer ability_container, final DungeonGroup dungeon){
+			this.ability_container=ability_container;
+			this.ability=(AbilityActor)ability_container.action;
 			this.setBounds(0, 0, 32, 40);
 			this.addListener(new InputListener() {
 				public void enter(InputEvent event,float x, float y, int pointer,Actor fromActor)
@@ -345,13 +347,35 @@ public class ObjInfoWindow extends BasicWindow {
 			    });
 
 		}
-		
+		public ObjInfoAbilityButton(AbilityActor ability, final DungeonGroup dungeon){
+			this.ability=ability;
+			ability_container=null;
+			this.setBounds(0, 0, 32, 40);
+			this.addListener(new InputListener() {
+				public void enter(InputEvent event,float x, float y, int pointer,Actor fromActor)
+				{
+					on_cursor=true;
+				}
+				public void exit(InputEvent event,float x, float y, int pointer,Actor fromActor)
+				{
+					on_cursor=false;
+				}
+
+				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+					window.setAbilityToAdd(new ActionContainer(getAbility(),0));
+					//window.getObj().action_list.add(new ActionContainer(getAbility(),0));
+					return true;
+				}
+			});
+
+		}
+
 		public void act(float delta){
 			super.act(delta);
 			this.setBounds(getX(), getY(),32,40);
 		}
 		public void draw(Batch batch, float delta){// For drawing icon
-			if(((AbilityActor)ability).required_level>obj.level) {
+			if(ability.required_level>obj.level) {
 				batch.setColor(.3f,.2f,.2f,1f);
 			}
 			else {
@@ -359,7 +383,8 @@ public class ObjInfoWindow extends BasicWindow {
 					batch.setColor(0f,0f,1f,1f);
 			}
 			batch.draw(ability.getIcon(), getX(), getY(),32,40);
-			
+			if (ability_container!=null)
+				Assets.getFont().draw(batch,""+ability_container.level, getX(), getY()+30);
 			batch.setColor(1f,1f,1f,1f);
 			//Assets.getFont().draw(batch,ability.getActionName(), getX(), getY()+120);
 		}
@@ -381,7 +406,7 @@ public class ObjInfoWindow extends BasicWindow {
 		      	//new_ability_point--;
 		      	//String temp=obj.getJob().job_name+"CHOOSE NEW ABILITY."+new_ability_point+"\n\n";
 				//label.setText(temp);
-			
+
 		  					//window.getObj().attain_ability_list.remove(getAbility());
 		  					//window.hideTable();
 		  					//window.getDungeon().setVisible(false);
@@ -391,15 +416,7 @@ public class ObjInfoWindow extends BasicWindow {
 		      }
 		    });
 		}
-		/*
-		public void setJob(ObjActor obj)
-		{
-			if (obj!=null)
-			{
-				
-			}
-		}
-		*/
+
 	}
 	public class JobInfoTable extends Table {
 		private Label job_info_label;
@@ -425,7 +442,7 @@ public class ObjInfoWindow extends BasicWindow {
 			    	}
 			    	else
 			    	{
-			    		Global.showMessage("NOT ENOUGH LEVEL",1);
+			    		Global.showBigMessage("NOT ENOUGH LEVEL( NEED"+info_job.getJPNeed()+" but"+ Global.getSelectedObj().level+" )");
 			    	}
 					  }
 			    });
@@ -533,7 +550,7 @@ public class ObjInfoWindow extends BasicWindow {
 					level=action.level;
 				draw_range_actor.setAbility((AbilityActor)ability);
 			}
-			setText(ability.toString2(level+1));
+			setText(ability.toString2(level));
 		}
 		public void draw(Batch batch, float delta){
 			super.draw(batch,delta);

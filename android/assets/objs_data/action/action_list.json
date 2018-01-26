@@ -1,7 +1,4 @@
 [
-	"hire_novice.json",
-	"hire_novice_bow.json",
-	"hire_apprentice_mage.json",	
 	"ap_potion.json",
 	"attract.json",
 	"throw_item.json",
@@ -36,7 +33,7 @@
 	"leap.json",
 	"burn.json",
 	"lightning.json",
-	"chain_burn.json",
+	"chain_lightning.json",
 	"fireball.json",
 	"acidball.json",
 	"str_up.json",

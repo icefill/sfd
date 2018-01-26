@@ -1,8 +1,8 @@
 {
 	"action_name":"Def up",
 	"short_name":"def up",
-	"icon_name":"depend",
-	"description":"Increase defense",
+	"icon_name":"def_up",
+	"description":"Increase DEF",
 	"action_type":"item",
 	"target_empty_contain":true,
 	"center_contain":true,

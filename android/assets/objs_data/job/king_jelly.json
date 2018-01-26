@@ -3,8 +3,7 @@
 	"type":"character",
 	"ai_type":"assist",
 	"default_sprites":"king_slime",
-		"transparent":0.4,
-	
+
 	"description":"Bummer...",
 		"str_modifier":[1,2],
 	"base_str":4,

@@ -6,7 +6,7 @@ repeat: none
 dl0000
   rotate: false
   xy: 1, 1
-  size: 10, 16
-  orig: 10, 16
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1

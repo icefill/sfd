@@ -4,6 +4,5 @@
 	"default_sprites":"ice_wall",
 	"description":"Bummer...",
 	"hp_modifier":[7,8],
-	"adjust_color":true,
 	"ability_count":0
 }

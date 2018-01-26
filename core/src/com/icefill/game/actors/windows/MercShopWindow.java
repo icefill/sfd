@@ -22,13 +22,13 @@ public class MercShopWindow extends BasicWindow {
 		for (int i=0;i<3;i++)
 		{
 			buttons[i]=new MercButton(merc_pool.getMonster(level));
-			table.add(buttons[i]).size(60).pad(5);
+			table.add(buttons[i]).size(100,80).pad(5);
 		}
 		table.row();
 		for (int i=0;i<3;i++)
 		{
 			TextButton button=new TextButton("Info", Assets.getSkin(), "default");
-			table.add(button).size(60,20).pad(5);
+			table.add(button).size(100,20).pad(5);
 			final ObjActor obj= buttons[i].obj;
 			button.addListener(new InputListener() {
 				public void enter(InputEvent event,float x, float y, int pointer,Actor fromActor)

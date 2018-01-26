@@ -2,7 +2,7 @@
 	"action_name":"Double arrow",
 	"short_name":"arrow x2",
 	"icon_name":"double_arrow",
-	"description":"Shoot arrow\n far away object.",
+	"description":"Shoot arrow twice.",
 	"action_type":"attack",
 	"ai_type":"ranged",
 	"target_empty_contain":true,

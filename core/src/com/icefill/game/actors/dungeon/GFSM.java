@@ -218,9 +218,9 @@ public class GFSM {
                             public void run() {
                                 sound.play();
                                 if (temp.isLeader())
-                                    temp.showMessage("I am the boss!!");
+                                    temp.showMessage("I am the boss!!",2f);
                                 else
-                                    temp.showMessage("!!!");
+                                    temp.showMessage("ENEMY!!!");
                             }
                         }),
                         Actions.delay(.4f)

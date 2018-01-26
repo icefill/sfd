@@ -2,7 +2,7 @@
 	"action_name":"Fireball",
 	"icon_name":"fire_ball",
 	"short_name":"f ball",
-	"description":"Cast Ball of Fire \n in straight direction.",
+	"description":"Cast Ball of Fire\n in straight direction.",
 	"action_type":"fire_magic",
 	"ai_type":"ranged",
 	"action_level":2,

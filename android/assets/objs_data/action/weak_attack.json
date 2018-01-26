@@ -2,7 +2,7 @@
 	"action_name":"Weak attack",
 	"short_name":"weak_attack",
 	"icon_name":"normal_attack",
-	"description":"push back enemy.",
+	"description":"weak attack",
 	"action_type":"attack",
 	"target_empty_contain":true,
 	"friendly_contain":true,

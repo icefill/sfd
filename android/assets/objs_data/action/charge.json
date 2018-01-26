@@ -1,8 +1,8 @@
 {
 	"action_name":"Charge",
 	"short_name":"charge",
-		"icon_name":"sonic_blade",
-	"description":"Damaging\n row of enemies.",
+		"icon_name":"charge",
+	"description":"Charge straight and \nDamage row of enemies.",
 	"action_type":"move",
 	"target_empty_contain":true,
 	"friendly_contain":false,

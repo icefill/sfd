@@ -63,14 +63,16 @@ public class MercButton extends Button {
 		super.draw(batch, delta);
 		if (obj!=null)
 		{
-			obj.draw(batch, delta,this.getX()+30,this.getY()+20);
+			obj.draw(batch, delta,this.getX()+50,this.getY()+30);
 			//Assets.getFont().draw(batch,obj.job.job_name, getX(), getY()+10);
 			batch.setColor(Color.YELLOW);
-			Assets.getFont().draw(batch,"$"+price, getX()+35, getY()+50);
+			Assets.getFont().draw(batch,"LVL:"+obj.level, getX()+7, getY()+68);
+			Assets.getFont().draw(batch,"$"+price, getX()+61, getY()+68);
+			Assets.getFont().draw(batch,obj.job.job_name, getX()+7, getY()+14);
 			batch.setColor(Color.WHITE);	
 		}
 		else
-			Assets.getFont().draw(batch,"SOLD", getX()+15, getY()+30);
+			Assets.getFont().draw(batch,"SOLD", getX()+40, getY()+45);
 	}
 	
 }

@@ -1,7 +1,7 @@
 {
 	"action_name":"Leap",
 	"icon_name":"leap",
-	"description":"Move by jump over \n obstacles.",
+	"description":"Move by jump over obstacles.",
 	"action_type":"move",
 	"target_empty_contain":true,
 	"friendly_contain":false,

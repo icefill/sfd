@@ -3,7 +3,7 @@
 		"icon_name":"heal",
 		"short_name":"heal",
 	"ai_type":"healing",
-	"description":"Heals a target",
+	"description":"Heals an area of target",
 	"action_type":"holy_magic",
 	"action_level":2,
 	"target_empty_contain":true,

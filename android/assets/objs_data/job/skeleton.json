@@ -2,8 +2,7 @@
 	"job_name":"skeleton",
 	"type":"character",
 	"default_sprites":"skeleton",
-		"transparent":1,
-	
+
 	"description":"Bummer...",
 		"str_modifier":[1,1],
 	"base_str":3,

@@ -1,7 +1,7 @@
 {
 	"action_name":"Sonic blade",
 		"icon_name":"sonic_blade",
-	"description":"Damaging\n row of enemies.",
+	"description":"Damaging row of enemies.",
 	"action_type":"attack",
 	"target_empty_contain":true,
 	"friendly_contain":true,

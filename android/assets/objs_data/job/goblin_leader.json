@@ -2,8 +2,7 @@
 	"job_name":"goblin_leader",
 	"type":"character",
 	"default_sprites":"goblin",
-		"transparent":1,
-	
+	"color":[1,0.3,0.3,1],
 	"description":"Bummer...",
 		"str_modifier":[1,2],
 	"base_str":4,
