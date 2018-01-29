@@ -335,7 +335,7 @@ public class LevelUpWindow extends BasicWindow {
 					level=action.level;
 				draw_range_actor.setAbility((AbilityActor)ability);
 			}
-			setText(ability.toString2(level+1));
+			setText(ability.getAbilityInfo(level+1));
 		}
 		public void draw(Batch batch, float delta){
 			super.draw(batch,delta);

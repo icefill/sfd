@@ -1,7 +1,7 @@
 {
 	"action_name":"Area Heal",
 		"icon_name":"heal",
-		"short_name":"heal",
+		"short_name":"a heal",
 	"ai_type":"healing",
 	"description":"Heals an area of target",
 	"action_type":"holy_magic",

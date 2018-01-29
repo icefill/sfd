@@ -18,7 +18,7 @@
 		}
 	],
 	"equippable_gear":["cloth_armor","light_armor","heavy_armor","spear","bladed_weapon","blunt_weapon","bow","shield"],
-	"ability_name":["Normal attack","Spear attack","Shoot arrow","Push"],
+	"ability_name":["L#3:Normal attack","L#2:Spear attack","L#2:Shoot arrow","Push"],
 	"attainable_ability":["Double attack"],
 	"attainable_passive_ability":["max hire up"],
 	"move_ability":"Move",

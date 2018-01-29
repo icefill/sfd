@@ -4,6 +4,9 @@
 
      dungeon_size:{xxx:4,yyy:4,zzz:5}
      monster_room_ratio:0.33
+     obs_ratio_in_room:[0.15,0.4]
+     destructable_obs_ratio_in_obs:[0.2,0.4]
+     trap_n_in_room:[0,3]
 
      shop_n_in_floor:[0,1]
      healing_room_n_in_floor:[0,1]

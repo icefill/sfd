@@ -22,7 +22,7 @@
 		}		
 	],
 	
-	"ability_name":["Normal attack","Bash"],
+	"ability_name":["L#2:Normal attack","Bash"],
 	"move_ability":"Move",
 	"ability_count":2
 }

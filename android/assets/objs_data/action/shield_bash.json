@@ -1,5 +1,6 @@
 {
 	"action_name":"Shield bash",
+    "short_name":"s bash",
 	"icon_name":"shield_bash",
 	"description":"bashing enemy with shield,\n knocks back enemy.",
 	"action_type":"attack",
@@ -26,7 +27,7 @@
 	 		"hit_motions":["blood_effect","move_back"],
 	 		"status_change":
 	 		{
-	 			"status_type":"physical_weapon1_damage",
+	 			"status_type":"weapon1_damage",
 	 			"effect":[
 	 				{"amount":70,"accuracy":-1},
 	 				{"amount":78,"accuracy":-1},

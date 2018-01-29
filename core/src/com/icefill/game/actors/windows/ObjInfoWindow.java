@@ -550,7 +550,7 @@ public class ObjInfoWindow extends BasicWindow {
 					level=action.level;
 				draw_range_actor.setAbility((AbilityActor)ability);
 			}
-			setText(ability.toString2(level));
+			setText(ability.getAbilityInfo(level));
 		}
 		public void draw(Batch batch, float delta){
 			super.draw(batch,delta);

@@ -36,7 +36,7 @@
 		]},
 	],
 	"equippable_gear":["cloth_armor","light_armor","bladed_weapon","blunt_weapon","bow"],
-	"ability_name":["Normal attack","Push"],
+	"ability_name":["L#2:Normal attack","Push"],
 	"attainable_ability":[],
 	"changeable_job":["knight","spearman"],
 	"move_ability":"Move",

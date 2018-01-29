@@ -261,76 +261,86 @@ public class ObjActor extends BasicActor implements Constants {
         //this.addActor(info_table);
     }
 
-    public void setJob(Job job, boolean initial_job) {
-        this.job = job;
-        this.type = job.type;
-        this.sprites = job.default_sprites;
-
-        if (job.move_ability != null) {
-            move_ability = new ActionContainer(Assets.actions_map.get(job.move_ability), 0);
+    public void setJob(Job job_to_set, boolean initial_job) {
+        this.job = job_to_set;
+        this.type = job_to_set.type;
+        this.sprites = job_to_set.default_sprites;
+        if (job_to_set.move_ability != null) {
+            move_ability = new ActionContainer(Assets.actions_map.get(job_to_set.move_ability), 0);
         }
-        if (job.dead_ability != null) {
-            dead_ability = ObjActions.getSubAction(job.dead_ability);
+        if (job_to_set.dead_ability != null) {
+            dead_ability = ObjActions.getSubAction(job_to_set.dead_ability);
         }
-
-		/*
-		if (job.learnable_magic_type!=null) {
-			learnable_magic_type_list= new LinkedList<String>();
-			for (String temp:job.learnable_magic_type) {
-				learnable_magic_type_list.add(temp);
-			}
-		}*/
 
         //Setting attainable abilities
-        if (job.attainable_ability != null) {
+        if (job_to_set.attainable_ability != null) {
             attain_ability_list = new LinkedList<AbilityActor>();
-            for (String ability_name : job.attainable_ability) {
+            for (String ability_name : job_to_set.attainable_ability) {
                 attain_ability_list.add((AbilityActor) (Assets.actions_map.get(ability_name)));
             }
             Collections.sort(attain_ability_list, new RequiredLevelCompare());
-
         }
-        if (job.attainable_passive_ability != null) {
+        if (job_to_set.attainable_passive_ability != null) {
             attain_passive_ability_list = new LinkedList<AbilityActor>();
-            for (String ability_name : job.attainable_passive_ability) {
+            for (String ability_name : job_to_set.attainable_passive_ability) {
                 attain_passive_ability_list.add((AbilityActor) (Assets.actions_map.get(ability_name)));
             }
             Collections.sort(attain_passive_ability_list, new RequiredLevelCompare());
-
         }
-
         // for light
-        if (job.glow != null) {
+        if (job_to_set.glow != null) {
             is_glowing = true;
             glow = (NonObjSprites) Assets.non_obj_sprites_map.get("glow");
-
         }
 
 
         if (initial_job) {
             //Setting ability
-            if (job.ability_name != null) {
+            if (job_to_set.ability_name != null) {
                 ability_list = new LinkedList<ActionContainer>();
-                for (String ability_name : job.ability_name) {
-                    ability_list.add(new ActionContainer(Assets.actions_map.get(ability_name), 0));
+                for (String ability_name : job_to_set.ability_name) {
+                    String name;
+                    int level;
+                    if (ability_name.startsWith("L#")) {
+                        name=ability_name.substring(4);
+                        level=Integer.parseInt(ability_name.substring(2,3));
+                    }
+                    else
+                    {
+                        name=ability_name;
+                        level=0;
+                    }
+                    ability_list.add(new ActionContainer(Assets.actions_map.get(name), level));
                 }
             }
         } else {
-            if (job.ability_name != null) {
-                for (String ability_name : job.ability_name) {
-                    //ActionContainer ac=new ActionContainer(Assets.actions_map.get(ability_name),0);
+            if (job_to_set.ability_name != null) {
+                for (String ability_name : job_to_set.ability_name) {
+                    String name;
+                    int level;
+                    if (ability_name.startsWith("L#")) {
+                        name=ability_name.substring(4);
+                        level=Integer.parseInt(ability_name.substring(2,3));
+                    }
+                    else
+                    {
+                        name=ability_name;
+                        level=0;
+                    }
                     Boolean contains = false;
                     for (ActionContainer temp_cont : ability_list) {
-                        if (temp_cont.action.getActionName().equals(ability_name)) {
+                        if (temp_cont.action.getActionName().equals(name)) {
+                            temp_cont.level= (temp_cont.level<level)?level:temp_cont.level;
                             contains = true;
+                            break;
                         }
                     }
                     if (!contains) {
-                        ability_list.add(new ActionContainer(Assets.actions_map.get(ability_name), 0));
+                        ability_list.add(new ActionContainer(Assets.actions_map.get(name), level));
                     }
                 }
             }
-            EquipmentForLevel equipments_set = job.getEquipmentForLevel(level);
+            EquipmentForLevel equipments_set = job_to_set.getEquipmentForLevel(level);
             String head_name = null;
             if (equipments_set != null) head_name = equipments_set.chooseEquipmentSet()[0];
             if (head_name != null) {
@@ -340,10 +350,10 @@ public class ObjActor extends BasicActor implements Constants {
             }
 
         }
-        this.fire_level = job.fire_level;
-        this.lightning_level = job.lightning_level;
-        this.holy_level = job.holy_level;
-        this.unholy_level = job.unholy_level;
+        this.fire_level = job_to_set.fire_level;
+        this.lightning_level = job_to_set.lightning_level;
+        this.holy_level = job_to_set.holy_level;
+        this.unholy_level = job_to_set.unholy_level;
 
 
     }

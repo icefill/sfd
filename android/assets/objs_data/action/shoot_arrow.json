@@ -3,7 +3,7 @@
 	"icon_name":"shoot_arrow",
 	"short_name":"attack",
 	"ai_type":"ranged",
-	"description":"Shoot arrow.",
+	"description":"attack with bow",
 	"action_type":"attack",
 	"target_empty_contain":true,
 	"center_contain":false,
@@ -31,9 +31,13 @@
 	 	{
 	 		"relative":true,
 	 		"base_weapon_type":"ARM2",
-	 		"status_type":"physical_weapon2_damage",
+	 		"status_type":"weapon2_damage",
 	 		"effect":[
-	 			{"amount":100,"accuracy":100,"critical":100}
+				{"amount":70,"accuracy":60,"critical":100},
+				{"amount":85,"accuracy":90,"critical":100},
+				{"amount":100,"accuracy":100,"critical":100},
+				{"amount":120,"accuracy":120,"critical":100},
+				{"amount":130,"accuracy":130,"critical":110}
 	 		]
 	 	}
 	 	}

@@ -1,6 +1,7 @@
 {
 	"action_name":"Fire cannon",
 	"icon_name":"fire_ball",
+	"short_name":"f cannon",
 	"description":"Shoot magical bullet of Fire\n in straight direction.",
 	"action_type":"fire_magic",
 	"ai_type":"ranged",

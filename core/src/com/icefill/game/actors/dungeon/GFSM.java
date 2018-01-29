@@ -152,7 +152,7 @@ public class GFSM {
         this.seq = 0;
         this.sub_seq = 0;
         this.states_stack.push(Integer.valueOf(state));
-      }
+    }
 
     public String getCurrentStateName() {
         return DungeonGroup.gs_state_name[((Integer) states_stack.getFirst()).intValue()];
@@ -175,7 +175,6 @@ public class GFSM {
             }
         }
         pushState(Constants.GS_PLAYER_ACTING);
-
     }
 
     //************************DUNGEON_INIT_STATE **************************************
@@ -218,7 +217,7 @@ public class GFSM {
                             public void run() {
                                 sound.play();
                                 if (temp.isLeader())
-                                    temp.showMessage("I am the boss!!",2f);
+                                    temp.showMessage("I am the boss!!", 2f);
                                 else
                                     temp.showMessage("ENEMY!!!");
                             }
@@ -691,7 +690,6 @@ public class GFSM {
                 this.seq += 1;
                 break;
             default:
-
                 if (sub_seq != -1) { //Still acting -> excute action
                     if (dungeonGroup.getSelectedObj() != null && dungeonGroup.getSelectedObj().getSelectedAction() != null)
                         sub_seq = dungeonGroup.getSelectedObj().getSelectedAction().execute(Global.dungeon, dungeonGroup.getSelectedObj());
@@ -702,40 +700,35 @@ public class GFSM {
                         Global.getSelectedObj().setDirectionToTarget(cell_to_examine.getXX(), cell_to_examine.getYY());
                         cell_to_examine.execute(Global.dungeon);
                         cell_to_examine = null;
-
                     }
-
                     if (dungeonGroup.getSelectedObj() != null && dungeonGroup.getSelectedObj().getSelectedAction() != null)
                         dungeonGroup.getSelectedObj().getSelectedAction().addCoolTime();
                     if (dungeonGroup.getSelectedObj() != null && dungeonGroup.getSelectedObj().getSelectedAction() != null && dungeonGroup.getSelectedObj().getSelectedAction().action != null)
                         if (dungeonGroup.getSelectedObj().getSelectedAction().action instanceof AbilityActor && dungeonGroup.getSelectedObj().getTeam() == 0) {
-
                             if (!dungeonGroup.getSelectedObj().getSelectedAction().isManaFree())
                                 dungeonGroup.team_lists[0].decreaseMana(((AbilityActor) dungeonGroup.getSelectedObj().getSelectedAction().action).mana_cost);
                         }
                     if (dungeonGroup.getSelectedObj() != null)
                         dungeonGroup.getSelectedObj().removeTargetInfo();
+
                     sub_seq = 0;
                     if (acting_state != INSPECTION) {
-
                         if (dungeonGroup.getSelectedObj() != null) {
                             AreaCell selected_cell = dungeonGroup.current_map.getCell(dungeonGroup.getSelectedObj().getXX(), dungeonGroup.getSelectedObj().getYY());
                             if (selected_cell.device != null) { // IF there is a device on current tile
                                 (selected_cell.device).action(Global.dungeon, selected_cell);
                             }
-
                         }
                         for (AreaCell target_cell : dungeonGroup.area_computer.getTargetList()) {
                             ObjActor target = Global.dungeon.getCurrentRoom().getObj(target_cell);
                             if (target != null) {
                                 if (target_cell.device != null && !target.equals(Global.getSelectedObj())) {
                                     // IF there is a device on current tile
-                                     (target_cell.device).action(Global.dungeon, target_cell);
+                                    (target_cell.device).action(Global.dungeon, target_cell);
                                 }
 
                             }
                         }
-
                     }
                     // decrease AP
                     if (dungeonGroup.getSelectedObj() != null)
@@ -767,26 +760,26 @@ public class GFSM {
                                 if (dungeonGroup.getSelectedObj().status.getCurrentAP() > 0) { //AP remain
                                     pushState(Constants.GS_CHOOSE_ACTION);
                                 } else {// AP =0
-                                        if (dungeonGroup.getSelectedObj().obj_state != Constants.PL_DEAD) {
-                                            dungeonGroup.getSelectedObj().obj_state = Constants.PL_DONE;
-                                            dungeonGroup.getSelectedObj().showMessage("WAIT");
-                                            Sound select_sound = Assets.getAsset("sound/wait.wav", Sound.class);
-                                            select_sound.play();
-                                            Global.dungeon.addAction(
-                                                    Actions.sequence(
-                                                            this.pauseGFSAction(),
-                                                            Actions.delay(.3f),
-                                                            this.reRunGFSAction()
-                                                    )
-                                            );
-                                        }
-                                        dungeonGroup.deSelectObj();
-                                        //check team_end
-                                        if (dungeonGroup.isTeamEnd(current_team)) {
-                                            pushState(Constants.GS_PHASE_END);
-                                        } else {
-                                            pushState(Constants.GS_CHOOSE_CHAR);
-                                        }
+                                    if (dungeonGroup.getSelectedObj().obj_state != Constants.PL_DEAD) {
+                                        dungeonGroup.getSelectedObj().obj_state = Constants.PL_DONE;
+                                        dungeonGroup.getSelectedObj().showMessage("WAIT");
+                                        Sound select_sound = Assets.getAsset("sound/wait.wav", Sound.class);
+                                        select_sound.play();
+                                        Global.dungeon.addAction(
+                                                Actions.sequence(
+                                                        this.pauseGFSAction(),
+                                                        Actions.delay(.3f),
+                                                        this.reRunGFSAction()
+                                                )
+                                        );
+                                    }
+                                    dungeonGroup.deSelectObj();
+                                    //check team_end
+                                    if (dungeonGroup.isTeamEnd(current_team)) {
+                                        pushState(Constants.GS_PHASE_END);
+                                    } else {
+                                        pushState(Constants.GS_CHOOSE_CHAR);
+                                    }
                                 }
                             } else if (acting_state == BATTLE_AI) {
                                 if (dungeonGroup.getSelectedObj() == null) {
@@ -832,7 +825,7 @@ public class GFSM {
                                         ObjActor target = Global.dungeon.getCurrentRoom().getObj(target_cell);
                                         if (target != null) {
                                             if (target_cell.device != null) { // IF there is a device on current tile
-                                                 (target_cell.device).action(Global.dungeon, target_cell);
+                                                (target_cell.device).action(Global.dungeon, target_cell);
                                                 pushState(Constants.GS_ROOM_INIT);
                                                 return;
                                             }

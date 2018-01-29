@@ -1,5 +1,6 @@
 {
 	"action_name":"Setdirection",
+	"short_name":"dir"
 	"icon_name":"explosion",
 	"description":"set direction of target",
 	"action_type":"fire_magic",

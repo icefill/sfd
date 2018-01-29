@@ -59,11 +59,12 @@ public class ShopItemWindow extends ItemWindow {
 
 
 	}
-	
+
 	public void setButton(SlotButton button) {
+		button_table.reset();
 		button_table.add(buy_button).pad(5f);
 		button_table.add(close_button).pad(5f);
-
+		this.pack();
 	}
 
 	

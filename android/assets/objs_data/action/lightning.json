@@ -1,5 +1,6 @@
 {
 	"action_name":"Lightning",
+	"short_name":"lgtning",
 	"icon_name":"lightning",
 	"description":"attack an enemy with lightning",
 	"action_type":"lightning_magic",

@@ -71,7 +71,7 @@ public class RoomGroup extends Group implements Constants {
                 float y = map.mapToScreenCoordY(xx, yy);
                 ObjActor temp;
 
-                switch (OBJ.toEnum(roomSeed.array[xx][yy])) {
+                switch (roomSeed.array[xx][yy]) {
                     case ANGEL:
                         break;
                     case WALL: {

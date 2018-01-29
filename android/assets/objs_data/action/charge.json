@@ -28,7 +28,7 @@
 	 		"pre_motions":["charge"],
 	 		"hit_motions":["blood_effect"],
 	 		"status_change":{
-	 			"status_type":"physical_weapon1_damage",
+	 			"status_type":"weapon1_damage",
 	 			"effect":[
 	 				 	{"amount":100,"accuracy":-1},
 	 				 	{"amount":100,"accuracy":-1},

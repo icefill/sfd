@@ -14,11 +14,11 @@
 	"base_hp":17,
 	"equipments_for_level":[
 		{
-			"equipment_names":[["hair1","armor1","sword1","shield1",null,null]],
+			"equipment_names":[["hair1","armor1","sword1","shield1",null,null]]
 		}
 	],
 	"equippable_gear":["cloth_armor","light_armor","bladed_weapon","blunt_weapon","bow"],
-	"ability_name":["Normal attack","Shoot arrow","Push"],
+	"ability_name":["L#2:Normal attack","L#2:Shoot arrow","L#1:Spear attack","Push"],
 	"attainable_ability":["First aid","Charge mana"],
 	"attainable_passive_ability":["max hire up","max mana up"],
 	"changeable_job":["war_lord","arch_mage"],

@@ -2,7 +2,7 @@
 	"action_name":"Bash",
 		"icon_name":"normal_attack",
 	"description":"...",
-	"short_name":"attack",
+	"short_name":"bash",
 	"action_type":"attack and \npush back enemy.",
 	"target_empty_contain":true,
 	"friendly_contain":true,
@@ -29,7 +29,7 @@
 	 		"hit_motions":["blood_effect","move_back"],
 	 		"status_change":
 	 		{
-	 			"status_type":"physical_weapon1_damage",
+	 			"status_type":"weapon1_damage",
 	 			"relative":true,
 	 			"base_weapon_type":"ARM1",
 	 			"effect":[

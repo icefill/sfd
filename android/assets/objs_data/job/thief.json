@@ -17,7 +17,7 @@
 		}
 	],
 	"equippable_gear":["cloth_armor","light_armor","bladed_weapon","blunt_weapon","bow"],
-	"ability_name":["Normal attack","Shoot arrow","Push"],
+	"ability_name":["L#2:Normal attack","L#2:Shoot arrow","Push"],
 	"attainable_ability":["Throw dagger"],
 	"changeable_job":["assassin"],
 	"move_ability":"Move3",

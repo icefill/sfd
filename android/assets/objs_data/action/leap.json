@@ -1,5 +1,6 @@
 {
 	"action_name":"Leap",
+	"short_name":"leap",
 	"icon_name":"leap",
 	"description":"Move by jump over obstacles.",
 	"action_type":"move",

@@ -64,13 +64,23 @@ public class EquipActor extends BasicActor implements Constants {
         	
     	}
     	else {
-    	Json floor_json = new Json();
+    	Json equip_json = new Json();
     	EquipActor.Factory temp_factory;
-    	String atlas_path="sprite/"+json_name+".atlas";
-    	temp_factory= floor_json.fromJson(EquipActor.Factory.class
-    				,Gdx.files.internal("objs_data/equipment/"+ json_name+".json"));
+    	String name;
+    	int level;
+			if (json_name.startsWith("L#")) {
+				name=json_name.substring(3);
+				level=Integer.parseInt(json_name.substring(2,3));
+			}
+			else
+			{
+				name=json_name;
+				level=0;
+			}
+    	temp_factory= equip_json.fromJson(EquipActor.Factory.class
+    				,Gdx.files.internal("objs_data/equipment/"+ name+".json"));
     	if (temp_factory.equip_action!=null)
-    		equip_action=new ActionContainer(Assets.actions_map.get(temp_factory.equip_action),0);
+    		equip_action=new ActionContainer(Assets.actions_map.get(temp_factory.equip_action),level);
     	if (temp_factory.n>0)
     		this.n=temp_factory.n;
     	//else
@@ -362,7 +372,7 @@ public class EquipActor extends BasicActor implements Constants {
 		return style;
 	}
 	public String toString() {
-		String to_return=name+"\n";
+		String to_return=name+"\n\n";
 		if (status!=null) {
 			if (status.MIN_ATTACK>0) to_return+="ATK:"+status.MIN_ATTACK+"";
 			if (status.MAX_ATTACK>0) to_return+="~"+status.MAX_ATTACK+"\n";

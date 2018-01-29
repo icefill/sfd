@@ -88,7 +88,15 @@ public class Job
     this.ability_name = factory.ability_name;
     if (ability_name!=null) {
         for (String name :ability_name) {
-            if (Assets.actions_map.get(name)==null) throw new RuntimeException("job "+job_name+"'s ability "+name+" not exist.");
+            if (name.startsWith("L#")) {
+                if (Assets.actions_map.get((name).substring(4))==null) throw new RuntimeException("job "+job_name+"'s ability "+name+" not exist.");
+                try {
+                    Integer.parseInt(name.substring(2, 3));
+                } catch (NumberFormatException e) {
+                    throw new RuntimeException("Job "+job_name+"'s ability level in"+name+ " is wrong.");
+                }
+            }
+            else if (Assets.actions_map.get(name)==null) throw new RuntimeException("job "+job_name+"'s ability "+name+" not exist.");
         }
     }
     this.attainable_ability= factory.attainable_ability;

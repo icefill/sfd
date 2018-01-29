@@ -6,4 +6,5 @@
 	"direction_rotation":[0,0,0,0],
 	"sprites_name":"yello_potion",
 	"item_type":4,
+	"price":80
 }

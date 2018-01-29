@@ -27,7 +27,7 @@
 	 		"hit_motions":["blood_effect"],
 	 		"status_change":
 	 		{
-	 			"status_type":"physical_weapon1_damage",
+	 			"status_type":"weapon1_damage",
 	 			"effect":[
 	 				{"amount":85,"accuracy":75},
 	 				{"amount":90,"accuracy":80},

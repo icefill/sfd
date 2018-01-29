@@ -29,7 +29,7 @@
 	 		"motions":["basic_attack_effect"],
 	 		"hit_motions":null,
 	 		"status_change":{
-	 			"status_type":"physical_weapon1_damage",
+	 			"status_type":"weapon1_damage",
 	 			"effect":[
 	 				 	{"amount":70,"accuracy":-1},
 	 				 	{"amount":80,"accuracy":-1},

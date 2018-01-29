@@ -1,6 +1,7 @@
 {
 	"action_name":"Chain lightning",
 	"icon_name":"chain_lightning",
+	"short_name":"c lightning",
 	"description":"bolt of lightning travels through\n multiple enemies (or friendly)",
 	"action_type":"lightning_magic",
 	"action_level":2,

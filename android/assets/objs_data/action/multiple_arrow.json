@@ -1,5 +1,6 @@
 {
 	"action_name":"Multiple arrow",
+	"short_name":"M arrow",
 	"icon_name":"multiple_arrow",
 	"description":"Shoot multiple arrow.",
 	"action_type":"attack",
@@ -31,7 +32,7 @@
 	 	"hit_motions":["blood_effect"],
 	 	"status_change":
 	 	{
-	 		"status_type":"physical_weapon2_damage",
+	 		"status_type":"weapon2_damage",
 	 		"effect":[
 	 			{"amount":80,"accuracy":-1},
 	 			{"amount":90,"accuracy":-1},

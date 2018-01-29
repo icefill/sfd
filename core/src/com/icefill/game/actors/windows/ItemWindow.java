@@ -151,33 +151,17 @@ public class ItemWindow extends BasicWindow {
         );
 
         table.add(description_parent_table).pad(5f).row();
-        table.add(button_table);
-        //
-	    /*
-	    table.add(use_button).pad(1);
-	    table.add(equip_button).pad(1);
-	    table.add(un_equip_button).pad(1).row();
-	    table.add(memorize_button).pad(1);
-	    table.add(add_to_shortcut_button).pad(1);
-	    table.add(delete_shortcut_button).pad(1);
-	    */
-        //dungeon.getUiStage().addActor(this);
-        //this.add(table);
-        //this.setFillParent(true);
-        //this.center();
-        //table.pack();
-
-        //this.setVisible(false);
-
+        table.add(button_table).pad(5f);
     }
 
     public void setButton(SlotButton slot) {
-        button_table.clear();
+        //button_table.clearChildren();
+        button_table.reset();
         if (slot.equip.type < 4
                 ) {
             if (Global.getSelectedObj().getInventory().getEquip(slot.equip.type) == null ||
                     !Global.getSelectedObj().getInventory().getEquip(slot.equip.type).equals(slot.equip))
-                button_table.add(equip_button).pad(5);
+                button_table.add(equip_button);
 
         }
         if (slot.type == -1) {
@@ -204,36 +188,32 @@ public class ItemWindow extends BasicWindow {
                                 || slot.equip.equip_action.action.getActionType().equals("unholy_magic")
                 )
                 ) {
-            //if (Global.getSelectedObj().isLearnable((AbilityActor)slot.equip.equip_action.action)){
             button_table.add(memorize_button).pad(5);
-            // }
-
         }
         button_table.add(close_button).pad(5);
-
     }
 
     public void setDescription(SlotButton slot) {
-        description_parent_table.clear();
+        description_parent_table.clearChildren();
         int equip_n = Math.abs(slot.equip.getType());
         if (1 <= equip_n && equip_n <= 3) {
             EquipActor current_equip = Global.getSelectedObj().getInventory().getEquip(equip_n);
             if (current_equip != null && !current_equip.equals(slot.equip)) {
-
                 current_description_table.setDescription(current_equip, true);
-                description_parent_table.add(current_description_table).height(280);
+                description_parent_table.add(current_description_table).height(250);
             }
-            description_table.setDescription(slot, true);
+            description_table.setDescriptionTable(slot, true);
         }
-        description_table.setDescription(slot, false);
-        description_parent_table.add(description_table).height(280);
+        description_table.setDescriptionTable(slot, false);
+        description_parent_table.add(description_table).height(250);
+        description_parent_table.pack();
     }
 
     public void setSlot(SlotButton slot) {
         if (slot.equip != null) {
             setButton(slot);
             setDescription(slot);
-
+            this.pack();
             this.slot = slot;
         }
     }
@@ -244,7 +224,6 @@ public class ItemWindow extends BasicWindow {
 
     public void showTable(SlotButton slot, ObjActor obj) {
         setSlot(slot);
-        //this.mp_button.setText("MANA:"+getDungeon().getDeadEnemyList().size());
         this.setVisible(true);
     }
 
@@ -261,8 +240,8 @@ public class ItemWindow extends BasicWindow {
             name_label = new Label(name, new Label.LabelStyle(Assets.getSkin().getFont("font_slkscr_8pt"), Color.WHITE));
             description = new Label("blah blah blah...", new Label.LabelStyle(Assets.getSkin().getFont("font_slkscr_8pt"), Color.BLACK));
             description.setWrap(true);
-            this.add(name_label).pad(5).row();
-            this.add(item_image).pad(5).colspan(4).row();
+            this.add(name_label).pad(3).row();
+            this.add(item_image).pad(3).colspan(4).row();
             this.add(description).width(120).pad(2).colspan(4).row();
 
         }
@@ -270,21 +249,15 @@ public class ItemWindow extends BasicWindow {
         public void setDescription(EquipActor equip, Boolean has_alternative) {
             item_image.setDrawable(equip.getInventoryImage());
             if (equip.status == null) {
-                description.setText(((AbilityActor) (equip.equip_action.action)).toString2(equip.equip_action.level));
-
+                description.setText(((AbilityActor) (equip.equip_action.action)).getAbilityInfo(equip.equip_action.level));
             } else {
                 description.setText(equip.toString());
             }
             description.pack();
-            //if (has_alternative)
-            //{
             name_label.setVisible(true);
-            //}
-            //else
-            //	name_label.setVisible(false);
         }
 
-        public void setDescription(SlotButton slot, Boolean has_alternative) {
+        public void setDescriptionTable(SlotButton slot, Boolean has_alternative) {
             setDescription(slot.equip, has_alternative);
         }
 

@@ -1,5 +1,6 @@
 {
 	"action_name":"Meteor",
+	"short_name":"meteor",
 	"icon_name":"meteor",
 	"description":"summon meteor",
 	"action_type":"fire_magic",

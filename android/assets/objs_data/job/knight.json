@@ -18,7 +18,7 @@
 		}
 	],
 	"equippable_gear":["cloth_armor","light_armor","heavy_armor","shield","bladed_weapon","blunt_weapon"],
-	"ability_name":["Normal attack","Defend","Push"],
+	"ability_name":["L#3:Normal attack","L#1:Spear attack","L#1:Shoot arrow","Defend","Push"],
 	"attainable_ability":["Shield bash","Defend","Charge"],
 	"move_ability":"Move",
 	"ability_count":2,

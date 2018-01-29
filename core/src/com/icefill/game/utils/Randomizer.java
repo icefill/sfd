@@ -23,6 +23,17 @@ public class Randomizer {
 			return nextInt(min_value+1-max_value)+max_value;
 		} 
 	}
+	public static float nextFloat(float min_value,float upper_bound) {
+		if (min_value<upper_bound) {
+			return nextFloat()*(upper_bound-min_value)+min_value;
+		}
+		else if (min_value==upper_bound) {
+			return min_value;
+		}
+		else {
+			return nextFloat()*(min_value-upper_bound)+min_value;
+		}
+	}
 	
 	public static float nextFloat() {
 		return rnd.nextFloat();

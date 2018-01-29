@@ -40,7 +40,7 @@ public class MapActor extends BasicActor implements Constants {
 	LinkedList<AreaCell> area_list;
 	
 	
-	public MapActor(RoomShapeType room_type, RoomGroup room, int[] map_size, char[][] array,
+	public MapActor(RoomShapeType room_type, RoomGroup room, int[] map_size, OBJ[][] array,
 					DungeonGroup.ItemPool item_pool, DungeonGroup.ItemPool equip_pool, DungeonGroup.ItemPool scroll_pool,
 					int dungeon_level) {
 		door_list= new AreaCell[6];
@@ -66,7 +66,7 @@ public class MapActor extends BasicActor implements Constants {
 				area_cell_array[xx][yy]= new AreaCell(xx,yy,Assets.floor_map.get(room_type.floor_name),room);
 				area_cell_array[xx][yy].setX(this.mapToScreenCoordX(xx, yy));
 				area_cell_array[xx][yy].setY(this.mapToScreenCoordY(xx, yy));
-				switch (OBJ.toEnum(array[xx][yy])) {
+				switch (array[xx][yy]) {
 					case ANGEL 			: area_cell_array[xx][yy].device = new Angel(area_cell_array[xx][yy],room); break;
 					case WALL			: {
 						area_cell_array[xx][yy]= new AreaCell(xx,yy,Assets.floor_map.get(room_type.wall_name),room);

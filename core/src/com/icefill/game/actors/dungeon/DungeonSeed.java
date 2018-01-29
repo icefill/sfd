@@ -20,6 +20,9 @@ public class DungeonSeed {
     int[][] final_room;
     int[][] boss_room;
     float monster_room_ratio;
+    float obs_ratio_in_room[];
+    float destructable_obs_ratio_in_obs[];
+    int trap_n_in_room[];
 
     int[] shop_n_in_floor;
     int[] healing_room_n_in_floor;
@@ -56,7 +59,9 @@ public class DungeonSeed {
         room_array = new RoomSeed[dungeon_size[0]][dungeon_size[1]][dungeon_size[2]];
 
         monster_room_ratio = dungeon_prop.get("monster_room_ratio").asInt();
-
+        obs_ratio_in_room=dungeon_prop.get("obs_ratio_in_room").asFloatArray();
+        destructable_obs_ratio_in_obs=dungeon_prop.get("destructable_obs_ratio_in_obs").asFloatArray();
+        trap_n_in_room=dungeon_prop.get("trap_n_in_room").asIntArray();
         shop_n_in_floor = dungeon_prop.get("shop_n_in_floor").asIntArray();
         healing_room_n_in_floor = dungeon_prop.get("healing_room_n_in_floor").asIntArray();
         hire_room_n_in_floor = dungeon_prop.get("hire_room_n_in_floor").asIntArray();
@@ -325,7 +330,8 @@ public class DungeonSeed {
                             (xxx == initial_room[zzz][0] && yyy == initial_room[zzz][1])
 
                             ) {
-                        room_array[xxx][yyy][zzz].makeWallAndDoor();
+                        room_array[xxx][yyy][zzz].makeWalls();
+                        room_array[xxx][yyy][zzz].makeDoors();
                         if (zzz != 0) {
                             room_array[xxx][yyy][zzz].makeHealingRoom();
                             //room_array[xxx][yyy][zzz].makeUpStair();
@@ -334,9 +340,9 @@ public class DungeonSeed {
                         }
                         // Do some stuff
                     } else if (xxx == final_room[zzz][0] && yyy == final_room[zzz][1]) {
-                        room_array[xxx][yyy][zzz].makeWallAndDoor();
+                        room_array[xxx][yyy][zzz].makeWalls();
+                        room_array[xxx][yyy][zzz].makeDoors();
                         if (zzz != dungeon_size[2]) {
-
                             room_array[xxx][yyy][zzz].makeFinalRoom();
                             room_array[xxx][yyy][zzz].room_type = 3;
                         }
@@ -344,12 +350,15 @@ public class DungeonSeed {
                         int room_area = room_array[xxx][yyy][zzz].getRoomArea();
 
                         //Create Obstacles
-                        int max_obs = (int) (room_area * 0.2f);
-                        int min_obs = (int) (room_area * 0.15f);
-                        int obs_n_in_room = 0;
-                        obs_n_in_room = com.icefill.game.utils.Randomizer.nextInt(min_obs, max_obs);
-                        room_array[xxx][yyy][zzz].createObstacles(obs_n_in_room);
-                        room_array[xxx][yyy][zzz].makeWallAndDoor();
+                        int max_obs = (int) (room_area * obs_ratio_in_room[1]);
+                        int min_obs = (int) (room_area * obs_ratio_in_room[0]);
+                        int trap_n=Randomizer.nextInt(trap_n_in_room[0],trap_n_in_room[1]);
+                        int obs_n_in_room = com.icefill.game.utils.Randomizer.nextInt(min_obs, max_obs);
+                        float destructable_ratio=Randomizer.nextFloat(destructable_obs_ratio_in_obs[0],destructable_obs_ratio_in_obs[1]);
+                        System.out.println(destructable_ratio);
+                        room_array[xxx][yyy][zzz].createObstacles(obs_n_in_room,destructable_ratio,trap_n);
+                        room_array[xxx][yyy][zzz].makeWalls();
+                        room_array[xxx][yyy][zzz].makeDoors();
                     }
 
 

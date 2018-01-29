@@ -425,26 +425,21 @@ class ObjActions : Constants{
             //AreaCell before=null;
             val line: LineSegment
             val seq = SequenceAction()
-            /*
-                 if (!move_stack.isEmpty()) {
-                 Chain chain= new Chain(to_act.getX(),to_act.getY());
-                 chain.extendChain(move_stack.getFirst().getX(),move_stack.getFirst().getY(), 5f);
-                 room.addActor(chain);
-                 }
-                 */
+
             seq.addAction(to_act.startAction())
             seq.addAction(to_act.changeAnimationSubAction(Constants.WALK))
             do {
                 val before_cell = temp
-                temp = move_stack.pollLast()
+                temp = move_stack.removeAt(move_stack.size-1)
                 if (temp != null) {
                     //	seq.addAction(to_act.changeAnimationSubAction(WALK));
                     val temp_obj = room.currentRoom.getObj(temp)
                     if (temp_obj != null) {
                         seq.addAction(Actions.run {
                             temp_obj.addAction((temp_obj as ObjActor).DodgeAction(to_act.getDirectionToTarget(temp_obj.xx, temp_obj.yy), room))
-                            if (before_cell != null && before_cell.device != null)
+                            if (before_cell != null && before_cell.device != null) {
                                 before_cell.device.activateDevice(Global.dungeon, before_cell)
+                            }
                         })
                     }
 

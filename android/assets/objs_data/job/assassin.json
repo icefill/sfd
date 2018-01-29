@@ -18,7 +18,7 @@
 		}
 	],
 	"equippable_gear":["cloth_armor","light_armor","bladed_weapon","blunt_weapon","bow"],
-	"ability_name":["Normal attack","Shoot arrow","Push","Double attack"],
+	"ability_name":["L#3:Normal attack","L#2:Shoot arrow","L#0:Spear attack","Push","Double attack"],
 	"attainable_ability":["Teleport"],
 	"changeable_job":["assassin"],
 	"move_ability":"Move3",

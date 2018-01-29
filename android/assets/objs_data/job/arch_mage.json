@@ -19,7 +19,7 @@
 		}
 	],
 	"equippable_gear":["cloth_armor","light_armor","staff"],
-	"ability_name":["Normal attack","Spear attack","Shoot arrow","Push","Fireball"],
+	"ability_name":["L#1:Normal attack","Push","Fireball"],
 	"attainable_ability":["Charge mana","Heal","Burn","Fireball"],
 	"attainable_passive_ability":[],
 	"move_ability":"Move",

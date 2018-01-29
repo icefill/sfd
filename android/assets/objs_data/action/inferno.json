@@ -1,6 +1,6 @@
 {
 	"action_name":"Inferno",
-		"icon_name":"sonic_blade",
+	"icon_name":"sonic_blade",
 	"description":"Damaging row of enemies.",
 	"action_type":"attack",
 	"target_empty_contain":true,

@@ -10,6 +10,11 @@ public enum OBJ {
     OBJ(char c) {
         this.c=c;
     }
+    
+    public static boolean checkBlocked(OBJ obj) {
+        if (obj.equals(WALL) || obj.equals(DOWN_STAIR) || obj.equals(OBSTACLE) || obj.equals(SHOP_CAT) || obj.equals(SHRINE) ||obj.equals(ANGEL) || obj.equals(RECRUIT_CAT) ||obj.equals(UNDEST_OBS)) return true;
+        else return false;
+    }
     public static OBJ toEnum(char ch) {
         switch (ch) {
             case 'w': return WALL;

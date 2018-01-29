@@ -322,8 +322,8 @@ public class AbilityActor extends ActionActor {
 		
 		if (motion!=null &&
 				(
-						motion.status_change.status_type.equals("physical_weapon1_damage") ||
-						motion.status_change.status_type.equals("physical_weapon2_damage")||
+						motion.status_change.status_type.equals("weapon1_damage") ||
+						motion.status_change.status_type.equals("weapon2_damage")||
 						motion.status_change.status_type.equals("physical_damage")
 				)
 			)
@@ -410,10 +410,10 @@ public class AbilityActor extends ActionActor {
 					else if (temp.status_type.equals("magic_damage")) {
 						damage=calculateMagicDamage(temp.getAmount(level),to_act,target);
 					} 
-					else if (temp.status_type.equals("physical_weapon1_damage")) {
+					else if (temp.status_type.equals("weapon1_damage")) {
 						damage=calculateMaxPhysicalWeaponDamage(temp.getAmount(level),to_act,target,2);
 					}
-					else if (temp.status_type.equals("physical_weapon2_damage")) {
+					else if (temp.status_type.equals("weapon2_damage")) {
 						damage=calculateMaxPhysicalWeaponDamage(temp.getAmount(level),to_act,target,3);
 					}
 					
@@ -434,10 +434,10 @@ public class AbilityActor extends ActionActor {
 					else if (temp.status_type.equals("magic_damage")) {
 						damage=calculateMagicDamage(temp.getAmount(level),to_act,target);
 					} 
-					else if (temp.status_type.equals("physical_weapon1_damage")) {
+					else if (temp.status_type.equals("weapon1_damage")) {
 						damage=calculateMinPhysicalWeaponDamage(temp.getAmount(level),to_act,target,2);
 					}
-					else if (temp.status_type.equals("physical_weapon2_damage")) {
+					else if (temp.status_type.equals("weapon2_damage")) {
 						damage=calculateMinPhysicalWeaponDamage(temp.getAmount(level),to_act,target,3);
 					}
 					
@@ -667,7 +667,7 @@ public class AbilityActor extends ActionActor {
 						 getDamagesInfo(level);
 		return to_return;
 	}
-	public String toString2(int level) {
+	public String getAbilityInfo(int level) {
 		String to_return="*name: "+this.action_name+" (LEVEL"+level+")\n\n"+
 				 "  "+this.description+"\n\n"
 				 +"*TYPE        : "+this.action_type+"(LVL:"+this.action_level+")\n\n"
@@ -693,8 +693,9 @@ public class AbilityActor extends ActionActor {
 			int i=1;
 			for (Motion motion: motions) {
 				if (motion.status_change!=null) {
-					to_return+=
-						"#"+i+motion.status_change.status_type+": "+motion.status_change.getAmount(level)+"("+motion.status_change.getAccuracy(level)+")\n";
+					if (motion.status_change.relative)
+						to_return+=	"#"+i+motion.status_change.status_type+": "+motion.status_change.getAmount(level)+"%(acc:"+motion.status_change.getAccuracy(level)+"%)\n";
+					else to_return+=	"#"+i+motion.status_change.status_type+": "+motion.status_change.getAmount(level)+"(acc:"+motion.status_change.getAccuracy(level)+"%)\n";
 				}
 			}
 		}

@@ -18,7 +18,7 @@
 		}
 	],
 	"equippable_gear":["cloth_armor","light_armor","bow"],
-	"ability_name":["Shoot arrow","Push"],
+	"ability_name":["L#2:Shoot arrow","L#0:Normal attack","L#0:Spear attack","Push"],
 	"attainable_ability":["Double arrow"],
 	"changeable_job":["archer"],
 	"move_ability":"Move2",

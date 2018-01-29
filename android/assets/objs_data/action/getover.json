@@ -1,7 +1,7 @@
 {
 	"action_name":"Getoverhere",
 	"icon_name":"chain",
-	"short_name":"pull",
+	"short_name":"drag",
 	"description":"drag enemy with chain",
 	"action_type":"item",
 	"target_empty_contain":true,
