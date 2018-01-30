@@ -355,7 +355,6 @@ public class DungeonSeed {
                         int trap_n=Randomizer.nextInt(trap_n_in_room[0],trap_n_in_room[1]);
                         int obs_n_in_room = com.icefill.game.utils.Randomizer.nextInt(min_obs, max_obs);
                         float destructable_ratio=Randomizer.nextFloat(destructable_obs_ratio_in_obs[0],destructable_obs_ratio_in_obs[1]);
-                        System.out.println(destructable_ratio);
                         room_array[xxx][yyy][zzz].createObstacles(obs_n_in_room,destructable_ratio,trap_n);
                         room_array[xxx][yyy][zzz].makeWalls();
                         room_array[xxx][yyy][zzz].makeDoors();

@@ -22,8 +22,8 @@
 	"equippable_gear":["cloth_armor","staff"],
 	"ability_name":["First aid","Heal","Charge mana","Push"],
 	"attainable_ability":["Heal","Charge mana","Area Heal"],
-	"move_ability":"Move",
+	"move_ability":"Move2",
 	"holy_level":2,
 	"ability_count":2,
-	"price":120,
+	"price":120
 }

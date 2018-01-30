@@ -17,22 +17,3 @@ ur0000
   orig: 30, 30
   offset: 0, 0
   index: -1
-
-hair12.png
-format: RGBA8888
-filter: MipMapNearestNearest,MipMapNearestNearest
-repeat: none
-output/hear12
-  rotate: false
-  xy: 1, 35
-  size: 128, 64
-  orig: 128, 64
-  offset: 0, 0
-  index: -1
-output/hear1
-  rotate: false
-  xy: 1, 1
-  size: 64, 32
-  orig: 64, 32
-  offset: 0, 0
-  index: -1

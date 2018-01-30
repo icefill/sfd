@@ -20,11 +20,6 @@ public class GameScreen extends BasicScreen
     Global.setUIStage(this.ui_stage);
     Global.setHUD(new HUD());
 
-    DungeonSeed dungeonSeed = new DungeonSeed("dungeon_prop.dat");
-    DungeonGroup dungeon = new DungeonGroup(dungeonSeed, this, this.ui_stage);
-    this.stage.addActor(dungeon);
-    stage.setScrollFocus(dungeon);
-    dungeon.setBounds(0F,0F, 1280.0F, 960.0F);
   }
 
   public void GameOver() {

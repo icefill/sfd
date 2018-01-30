@@ -1080,7 +1080,7 @@ public class ObjActor extends BasicActor implements Constants {
     }
 
     public int computeExpToLevelUp(int current_level) {
-        return (int) (60 * Math.pow(2, current_level));
+        return (int) (100 * Math.pow(2, current_level));
     }
 
     public void checkLevelUp(final com.icefill.game.actors.dungeon.DungeonGroup dungeon) {
@@ -1708,7 +1708,7 @@ public class ObjActor extends BasicActor implements Constants {
             return "STR:" + total_status.STR + "(" + equip_status.STR + ")" + "\n" +
                     "DEX:" + total_status.DEX + "(" + equip_status.DEX + ")" + "\n" +
                     "INT:" + total_status.INT + "(" + equip_status.INT + ")" + "\n" +
-                    "AP:" + current_ap + "/" + total_status.ABILITY_COUNT + "(" + equip_status.ABILITY_COUNT + ")" + "\n" +
+                    "AP:"  + total_status.ABILITY_COUNT + "(" + equip_status.ABILITY_COUNT + ")" + "\n" +
                     "HP:" + current_hp + "/" + total_status.HP + "(" + equip_status.HP + ")" + "\n" +
                     "DEF:" + total_status.DEFENSE + "(" + equip_status.DEFENSE + ")" + "\n" +
                     "DODGE:" + total_status.DODGE + "(" + equip_status.DODGE + ")" + "\n";

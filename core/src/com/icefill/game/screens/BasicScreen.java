@@ -60,8 +60,6 @@ public class BasicScreen
     this.viewport.apply();
     this.ui_viewport.apply();
 
-    Gdx.app.log(SigmaFiniteDungeon.LOG, "!!!" + ((OrthographicCamera)this.stage.getCamera()).zoom);
-
     this.inputMultiplexer = new InputMultiplexer();
     MapInputProcessor map_input_processor= new MapInputProcessor();
     this.inputMultiplexer.addProcessor(this.ui_stage);
@@ -105,18 +103,6 @@ public class BasicScreen
 
   public void render(float delta)
   {
-    if ((Gdx.input.isKeyPressed(8)) && (this.zoom > 0.5D))
-    {
-      this.zoom -= 0.01F;
-      ((OrthographicCamera)this.camera).zoom = this.zoom;
-      this.camera.update();
-    }
-    else if ((Gdx.input.isKeyPressed(9)) && (this.zoom < 1.5D))
-    {
-      this.zoom += 0.01F;
-      ((OrthographicCamera)this.camera).zoom = this.zoom;
-      this.camera.update();
-    }
     this.stage.act(delta);
     this.ui_stage.act(delta);
 

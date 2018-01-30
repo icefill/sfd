@@ -1,9 +1,0 @@
-{
-	"job_name":"hermit_statue",
-	"type":"wall",
-	"default_sprites":"hermit_statue",
-	"description":"Bummer...",
-	"hp_modifier":[20,30],
-	"ability_count":0
-    	
-}

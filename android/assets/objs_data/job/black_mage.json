@@ -24,7 +24,7 @@
 	"ability_name":["Burn","Fireball","Charge mana","Push"],
 	"attainable_ability":["Charge mana"],
 	"learnable_magic_type":["fire_magic","lightning_magic"],
-	"move_ability":"Move",
+	"move_ability":"Move2",
 	"lightning_level":2,
 	"fire_level":2,
 	"unholy_level":2,

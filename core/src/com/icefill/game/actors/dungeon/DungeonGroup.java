@@ -1,6 +1,7 @@
 package com.icefill.game.actors.dungeon;
 
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -83,18 +84,18 @@ public class DungeonGroup extends Group  implements Constants {
   private ObjActor selected_obj;
   private ObjActor attacker;
   ActionActor selected_action;
-  public final BasicScreen screen;
+  public BasicScreen screen;
 
   // MAna
   //public int mana=5;
 
-  public DungeonGroup(DungeonSeed dungeon_factory,BasicScreen screen,Stage ui_stage)
+  public DungeonGroup(DungeonSeed dungeon_factory,BasicScreen gameScreen)
   {
-	  this.screen=screen;
-	  initialize(dungeon_factory,screen,ui_stage);
+	  this.screen=gameScreen;
+	  initialize(dungeon_factory);
   }
   
-  private void initialize(DungeonSeed dungeon_seed,BasicScreen screen,Stage ui_stage)
+  private void initialize(DungeonSeed dungeon_seed)
   {
 	  area_computer= new AreaComputer();
 	  //To do :: dispose

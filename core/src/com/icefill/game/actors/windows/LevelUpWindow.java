@@ -147,10 +147,14 @@ public class LevelUpWindow extends BasicWindow {
 
 			if (obj.isLeader())
 				this.chooseAndAddAbilities(dungeon);
-			else if (obj.level% 2 ==0)	{
+			else {//if (obj.level% 2 ==0)	{
 				AbilityActor ability=(AbilityActor)obj.getRandomAbilityToLearn();
-				if (ability!=null)
-				obj.addAbility(ability);
+				if (ability!=null) {
+					obj.addAbility(ability);
+					Global.showBigMessage(obj+" learned "+ability.getActionName());
+
+				}
+
 			}
 
 	}

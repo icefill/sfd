@@ -34,6 +34,7 @@ public class Randomizer {
 			return nextFloat()*(min_value-upper_bound)+min_value;
 		}
 	}
+
 	
 	public static float nextFloat() {
 		return rnd.nextFloat();

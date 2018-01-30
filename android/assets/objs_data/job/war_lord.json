@@ -1,6 +1,6 @@
 {
 	"job_name":"war_lord",
-	"jp_need":4,
+	"jp_need":5,
 	"type":"character",
 	"default_sprites":"basic",
 	"description":"Bummer...",
@@ -19,7 +19,7 @@
 	],
 	"equippable_gear":["cloth_armor","light_armor","heavy_armor","spear","bladed_weapon","blunt_weapon","bow","shield"],
 	"ability_name":["L#3:Normal attack","L#2:Spear attack","L#2:Shoot arrow","Push"],
-	"attainable_ability":["Double attack"],
+	"attainable_ability":["Double attack","Bash"],
 	"attainable_passive_ability":["max hire up"],
 	"move_ability":"Move",
 	"ability_count":2

@@ -1,0 +1,13 @@
+{
+	"name":"spear2",
+	"type":"spear",
+	"two_handed":true,
+	"sprites_name":"spear",
+	"direction_rotation":[90,90,90,90],
+	"body_color":null,
+	"item_type":2,
+	"price":200,
+	"status":{"STR_MODIFIER":0,"DEX_MODIFIER":0,"INT_MODIFIER":0,"HP_MODIFIER":0,
+			"MIN_ATTACK":12,"MAX_ATTACK":15,"DEFENSE":0,"ACCURACY":80}
+}
+	

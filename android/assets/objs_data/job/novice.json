@@ -17,7 +17,7 @@
 		}
 	],
 	"equippable_gear":["cloth_armor","light_armor","bladed_weapon","blunt_weapon"],
-	"ability_name":["L#2:Normal attack","L#0:Shoot arrow","L#0:Shoot arrow","Push"],
+	"ability_name":["L#2:Normal attack","L#0:Shoot arrow","L#1:Spear attack","Push"],
 	"attainable_ability":["Throw stone","Bash"],
 	"changeable_job":["knight","spearman"],
 	"move_ability":"Move",

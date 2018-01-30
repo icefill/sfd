@@ -14,7 +14,7 @@
 	"base_hp":19,
 	"equipments_for_level":[
 		{
-			"equipment_names":[["helm1","armor1","spear",null,null,null]]
+			"equipment_names":[["helm4","armor1","spear",null,null,null]]
 		}
 	],
 	"equippable_gear":["cloth_armor","light_armor","bladed_weapon","blunt_weapon","spear"],

@@ -33,7 +33,6 @@ public class EquipActor extends BasicActor implements Constants {
 	private boolean disposable;
 	public boolean two_handed;
 	public ActionContainer equip_action;
-	TextureRegion background;
 	boolean has_background;
 	//PlaceHolderEquipActor place_holder;
 	

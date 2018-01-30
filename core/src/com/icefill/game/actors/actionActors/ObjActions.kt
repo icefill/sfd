@@ -22,11 +22,14 @@ import java.util.*
  * Created by Byungpil on 2017-01-19.
  */
 
-class ObjActions : Constants{
+class ObjActions : Constants {
     companion object {
         var subaction_map = HashMap<String, Function>()
-        @JvmStatic fun getSubAction(str: String): Function? = subaction_map[str]
-        @JvmStatic fun initializeSubActionMap() {
+        @JvmStatic
+        fun getSubAction(str: String): Function? = subaction_map[str]
+
+        @JvmStatic
+        fun initializeSubActionMap() {
             subaction_map.put("basic_attack", BasicAttackSubAction)
             subaction_map.put("spear_attack", SpearAttackSubAction)
             subaction_map.put("basic_cast", BasicCastSubAction)
@@ -128,6 +131,7 @@ class ObjActions : Constants{
             subaction_map.put("half_gold", HalfGoldSubAction)
             subaction_map.put("half_hp", HalfHPSubAction)
             subaction_map.put("full_hp", FullHPSubAction)
+            subaction_map.put("steal_gold", StealGoldSubAction)
         }
 
         val ShowMapSubAction: Function = Function { room, to_act, action, current_target ->
@@ -153,7 +157,7 @@ class ObjActions : Constants{
             prj.addAction(
                     Actions.sequence(
                             prj.startAction(), Actions.delay(.5f), prj.deActivateAndEndAction()
-             )
+                    )
             )
             Global.getPlayerTeam().increaseGold(150)
             -1
@@ -211,12 +215,29 @@ class ObjActions : Constants{
                     Actions.sequence(
                             prj.startAction(), Actions.delay(.5f), prj.deActivateAndEndAction()
 
-                            //,prj.endActionSubAction()
-                            //,Actions.run(new Runnable() {public void run() {prj.remove();}})
                     )
             )
             to_act.status.fullHP()
             //}
+            -1
+        }
+        val StealGoldSubAction: Function = Function { dungeon, to_act, action, current_target ->
+            val targetCell = dungeon.area_computer.targetList.first
+            val target=dungeon.currentRoom.getObj(targetCell)
+
+            if (!(target.isWall || target.isObstacle)) {
+                var amount=0
+                repeat(target.level+1){it -> amount+=Randomizer.nextInt(10,14)}
+                dungeon.getTeam(to_act.team).increaseGold(amount)
+                Global.showBigMessage("Stole "+amount+"G")
+            }
+
+            to_act.addAction(
+                    Actions.sequence(
+                            to_act.startAction(), Actions.delay(.8f), to_act.deActivateAndEndAction()
+                    )
+            )
+
             -1
         }
         val ChargeManaSubAction: Function = Function { room, to_act, action, current_target ->
@@ -270,7 +291,7 @@ class ObjActions : Constants{
             x = room.currentRoom.map.mapToScreenCoordX(target.xx, target.yy)
             y = room.currentRoom.map.mapToScreenCoordY(target.xx, target.yy)
             obj.addAction(ExtendedActions.moveToParabolic(x, y, obj.z, .3f))
-            val seq = SequenceAction(to_act.startAction(),Actions.delay(1f),to_act.deActivateAndEndAction());
+            val seq = SequenceAction(to_act.startAction(), Actions.delay(1f), to_act.deActivateAndEndAction());
             to_act.addAction(seq);
             -1
         }
@@ -430,7 +451,7 @@ class ObjActions : Constants{
             seq.addAction(to_act.changeAnimationSubAction(Constants.WALK))
             do {
                 val before_cell = temp
-                temp = move_stack.removeAt(move_stack.size-1)
+                temp = move_stack.removeAt(move_stack.size - 1)
                 if (temp != null) {
                     //	seq.addAction(to_act.changeAnimationSubAction(WALK));
                     val temp_obj = room.currentRoom.getObj(temp)
@@ -1882,7 +1903,7 @@ class ObjActions : Constants{
             -1
         }
         val throwDagger: Function = Function { room, to_act, action, current_target ->
-            val prj = ProjectileActor(null,"throwing_dagger",.3f)
+            val prj = ProjectileActor(null, "throwing_dagger", .3f)
             val first_target = room.area_computer.targetList.first
             prj.setPosition(to_act.x, to_act.y)
             prj.z = to_act.z + 20

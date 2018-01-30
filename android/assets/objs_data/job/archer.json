@@ -19,7 +19,7 @@
 		}
 	],
 	"equippable_gear":["cloth_armor","light_armor","bow"],
-	"ability_name":["L#1:Normal attack","L#1:Spear attack","L#3:Shoot arrow","Push"],
+	"ability_name":["L#1:Normal attack","L#0:Spear attack","L#3:Shoot arrow","Push"],
 	"attainable_ability":["Multiple arrow","Leg aim shot"],
 	"move_ability":"Move",
 	"ability_count":2,

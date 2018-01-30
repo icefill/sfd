@@ -1,6 +1,6 @@
 {
 	"job_name":"arch_mage",
-	"jp_need":4,
+	"jp_need":5,
 	"ai_type":"ranged",
 	"type":"character",
 	"default_sprites":"basic",
@@ -19,9 +19,9 @@
 		}
 	],
 	"equippable_gear":["cloth_armor","light_armor","staff"],
-	"ability_name":["L#1:Normal attack","Push","Fireball"],
+	"ability_name":["L#2:Normal attack","L#2:Shoot arrow","L#1:Spear attack","Push","Fireball"],
 	"attainable_ability":["Charge mana","Heal","Burn","Fireball"],
-	"attainable_passive_ability":[],
+	"attainable_passive_ability":["max mana up"],
 	"move_ability":"Move",
 	"fire_level":3,
 	"lightning_level":3,

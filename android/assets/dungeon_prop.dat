@@ -4,7 +4,7 @@
 
      dungeon_size:{xxx:4,yyy:4,zzz:5}
      monster_room_ratio:0.33
-     obs_ratio_in_room:[0.15,0.4]
+     obs_ratio_in_room:[0.15,0.27]
      destructable_obs_ratio_in_obs:[0.2,0.4]
      trap_n_in_room:[0,3]
 
@@ -196,7 +196,7 @@
                                                   ]
              }
     ]
-    //Weapons players can get in the 'scroll room'
+    //Weapons players can get in the 'item room'
     weapons_in_chest:[
             {   min_floor:1, max_floor:1
                                             names:[ {name:axe0,mul:1}
@@ -213,7 +213,6 @@
                                                    ,{name:sabre1,mul:2}
                                                    ,{name:staff2,mul:2}
                                                    ,{name:leather_armor3,mul:2}
-                                                   ,{name:spear,mul:2}
                                                    ,{name:shield2,mul:2}
                                                    ,{name:robe2,mul:2}
                                                    ,{name:bow1,mul:2}
@@ -234,6 +233,8 @@
                                                    ,{name:bow3,mul:1}
                                                    ,{name:axe3,mul:1}
                                                    ,{name:long_sword2,mul:1}
+                                                   ,{name:long_sword3,mul:1}
+                                                   ,{name:spear2,mul:1}
                                                    ,{name:shield4,mul:1}
                                                    ,{name:mace2,mul:1}
                                                    ,{name:robe3,mul:1}
@@ -244,9 +245,12 @@
                                                    ,{name:bow3,mul:1}
                                                    ,{name:axe4,mul:1}
                                                    ,{name:long_sword3,mul:1}
+                                                   ,{name:long_sword4,mul:1}
+                                                   ,{name:spear2,mul:1}
                                                    ,{name:shield4,mul:1}
                                                    ,{name:mace3,mul:1}
                                                    ,{name:robe3,mul:1}
+                                                   ,{name:shield7,mul:1}
                                                   ]
              }
 

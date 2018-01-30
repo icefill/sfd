@@ -59,6 +59,7 @@
 	"throw_web.json",
 	"throw_dagger.json",
 	"summon_jelly.json",
-	"summon_skeleton.json"
+	"summon_skeleton.json",
+	"steal_gold.json"
 	
 ]
