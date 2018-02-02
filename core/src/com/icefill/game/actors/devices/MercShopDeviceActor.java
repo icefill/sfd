@@ -20,7 +20,7 @@ public class MercShopDeviceActor extends DeviceActor{
 	
 	public MercShopDeviceActor() {
 			passable=false;
-			curr_dir=0;
+			curr_dir=DIR.DL;
 			//TextureAtlas atlas= Assets.getAsset("sprite/shrine.atlas",TextureAtlas.class);
 			//shrine_deact= atlas.findRegion("idle_dl0000");
 			//shrine_act= atlas.findRegion("idle_ur0000");
@@ -34,7 +34,7 @@ public class MercShopDeviceActor extends DeviceActor{
 	public MercShopDeviceActor(AreaCell cell,RoomGroup room,int dungeon_level) {
 		super(room);
 		passable=false;
-		curr_dir=0;
+		curr_dir=DIR.DL;
 		//TextureAtlas atlas= Assets.getAsset("sprite/shrine.atlas",TextureAtlas.class);
 		//shrine_deact= atlas.findRegion("idle_dl0000");
 		//shrine_act= atlas.findRegion("idle_ur0000");

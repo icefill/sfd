@@ -7,7 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions
 import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction
 import com.icefill.game.*
+import com.icefill.game.Constants.CONTROLLED_PLAYER
 import com.icefill.game.actors.*
+import com.icefill.game.actors.devices.GoldActor
 import com.icefill.game.actors.devices.SpikeTrapActor
 import com.icefill.game.actors.dungeon.AreaCell
 import com.icefill.game.actors.effects.EffectActor
@@ -17,13 +19,17 @@ import com.icefill.game.actors.effects.ProjectileActor
 import com.icefill.game.extendedActions.ExtendedActions
 import com.icefill.game.utils.Randomizer
 import java.util.*
+import com.icefill.game.Constants.DIR.*
+import  com.badlogic.gdx.utils.Array
+
+
 
 /**
  * Created by Byungpil on 2017-01-19.
  */
 
-class ObjActions : Constants {
-    companion object {
+class ObjActions {
+    companion object : Constants {
         var subaction_map = HashMap<String, Function>()
         @JvmStatic
         fun getSubAction(str: String): Function? = subaction_map[str]
@@ -107,8 +113,6 @@ class ObjActions : Constants {
             subaction_map.put("camera_to_center", cameraToCenterAction)
             subaction_map.put("camera_to_actor", cameraToActorAction)
             subaction_map.put("camera_to_target", cameraToTargetAction)
-            subaction_map.put("dark", darkAction)
-            subaction_map.put("restore_dark", restoreDarkAction)
             subaction_map.put("delay", delaySubAction)
             subaction_map.put("throw_chain", ThrowChainAction)
             subaction_map.put("move_foward", MoveFowardSubAction)
@@ -131,11 +135,12 @@ class ObjActions : Constants {
             subaction_map.put("half_gold", HalfGoldSubAction)
             subaction_map.put("half_hp", HalfHPSubAction)
             subaction_map.put("full_hp", FullHPSubAction)
+            subaction_map.put("summon_company", SummonCompanySubAction)
             subaction_map.put("steal_gold", StealGoldSubAction)
         }
 
         val ShowMapSubAction: Function = Function { room, to_act, action, current_target ->
-            Global.showBigMessage("MAP REVEALED")
+            Global.showBigMessage("Your surroundings are unveild.")
             val prj = ProjectileActor("particles/bless.json", null, 100f, Color(.0f, .0f, .3f, 1f))
             prj.setPosition(to_act.x, to_act.y)
             prj.z = 50f
@@ -145,26 +150,31 @@ class ObjActions : Constants {
                             prj.startAction(), Actions.delay(.5f), prj.deActivateAndEndAction()
                     )
             )
-            room.revealFloorMap()
+            room.revealNearRoom()
             -1
         }
         val DoubleGoldSubAction: Function = Function { room, to_act, action, current_target ->
-            Global.showBigMessage("You feel richer")
+            Global.showBigMessage("You've got some golds.")
             val prj = ProjectileActor("particles/bless.json", null, 100f, Color(.0f, .0f, .3f, 1f))
             prj.setPosition(to_act.x, to_act.y)
             prj.z = 50f
+
             room.currentRoom.addActor(prj)
             prj.addAction(
                     Actions.sequence(
                             prj.startAction(), Actions.delay(.5f), prj.deActivateAndEndAction()
                     )
             )
-            Global.getPlayerTeam().increaseGold(150)
+            val emptyCells: Array<AreaCell> = room.currentRoom.findEmptyCellsRandomly(Randomizer.nextInt(10, 18))
+            emptyCells?.forEach { it?.apply { device = GoldActor(15, this, room.currentRoom) } }
+
+            //Global.getPlayerTeam().increaseGold(150)
             -1
         }
+
         val HalfGoldSubAction: Function = Function { room, to_act, action, current_target ->
             Global.getPlayerTeam().increaseGold(-Global.getPlayerTeam().gold / 2)
-            Global.showBigMessage("GOLD HALF")
+            Global.showBigMessage("Your wealth flew away.")
             val prj = ProjectileActor("particles/curse.json", null, 100f, Color(.0f, .0f, .3f, 1f))
             prj.setPosition(to_act.x, to_act.y)
             prj.z = 50f
@@ -179,16 +189,17 @@ class ObjActions : Constants {
             )
             -1
         }
-        val darkAction: Function = Function { room, to_act, action, current_target ->
+        val SummonCompanySubAction: Function = Function { room, to_act, action, current_target ->
+            val companion_info = room.recruit_pool.getMonster(room.room_zzz + 1)
+            val obj = ObjActor(-1, -1, to_act.team, companion_info.level, Assets.jobs_map[companion_info.job], CONTROLLED_PLAYER)
+            room.getTeam(to_act.team).addPlayer(obj)
+            if (room.currentRoom.setObj(obj)) Global.showBigMessage("You've got a company")
+            val seq = SequenceAction(to_act.startAction(), Actions.delay(1f), to_act.deActivateAndEndAction());
+            to_act.addAction(seq)
             -1
         }
-        val restoreDarkAction: Function = Function { room, to_act, action, current_target ->
-            -1
-        }
-        val HalfHPSubAction: Function = Function { room, to_act, action, current_target ->
-            //for (ObjActor temp:Global.getPlayerTeam())
-            //{
 
+        val HalfHPSubAction: Function = Function { room, to_act, action, current_target ->
             to_act.inflictDamage((to_act.status.currentHP * .5f).toInt(), null)
             val prj = ProjectileActor("particles/curse.json", null, 100f, Color(.0f, .0f, .3f, 1f))
             prj.setPosition(to_act.x, to_act.y)
@@ -200,11 +211,11 @@ class ObjActions : Constants {
                     )
             )
             //}
-            Global.showBigMessage("It hurts")
+            Global.showBigMessage("The prayer injured cause of unclean mind.")
             -1
         }
         val FullHPSubAction: Function = Function { room, to_act, action, current_target ->
-            Global.showBigMessage("YOU FEEL REFRESHED")
+            Global.showBigMessage("The payer's wound healed.")
             //for (ObjActor temp:Global.getPlayerTeam())
             //{
             val prj = ProjectileActor("particles/bless.json", null, 100f, Color(.0f, .0f, .3f, 1f))
@@ -223,13 +234,13 @@ class ObjActions : Constants {
         }
         val StealGoldSubAction: Function = Function { dungeon, to_act, action, current_target ->
             val targetCell = dungeon.area_computer.targetList.first
-            val target=dungeon.currentRoom.getObj(targetCell)
+            val target = dungeon.currentRoom.getObj(targetCell)
 
             if (!(target.isWall || target.isObstacle)) {
-                var amount=0
-                repeat(target.level+1){it -> amount+=Randomizer.nextInt(10,14)}
+                var amount = 0
+                repeat(target.level + 1) { it -> amount += Randomizer.nextInt(10, 14) }
                 dungeon.getTeam(to_act.team).increaseGold(amount)
-                Global.showBigMessage("Stole "+amount+"G")
+                Global.showBigMessage("Stole " + amount + "G")
             }
 
             to_act.addAction(
@@ -569,13 +580,13 @@ class ObjActions : Constants {
             val first_cell = room.area_computer.targetList.first
             val seq = SequenceAction()
             //seq.addAction(to_act.startAction());
-            seq.addAction(to_act.setDirectionAction(Constants.DL))
+            seq.addAction(to_act.setDirectionAction(DL))
             seq.addAction(Actions.delay(.02f))
-            seq.addAction(to_act.setDirectionAction(Constants.DR))
+            seq.addAction(to_act.setDirectionAction(DR))
             seq.addAction(Actions.delay(.02f))
-            seq.addAction(to_act.setDirectionAction(Constants.UR))
+            seq.addAction(to_act.setDirectionAction(UR))
             seq.addAction(Actions.delay(.02f))
-            seq.addAction(to_act.setDirectionAction(Constants.UL))
+            seq.addAction(to_act.setDirectionAction(UL))
             seq.addAction(Actions.delay(.02f))
             //seq.addAction(to_act.deActivateAction());
             //seq.addAction(to_act.endActionSubAction());
@@ -584,6 +595,11 @@ class ObjActions : Constants {
 
             -1
         }
+
+        enum class DIR {
+
+        }
+
         val ShieldBashAction: Function = Function { room, to_act, action, current_target ->
             val first_cell = room.area_computer.targetList.first
             val seq = SequenceAction()
@@ -591,7 +607,7 @@ class ObjActions : Constants {
 
             seq.addAction(to_act.setDirectionAction(direction_guard))
 
-            val vector_direction = BasicActor.directionToScreenVector(direction_guard).scl(25f)
+            val vector_direction = direction_guard.toScreenVector().scl(25f)
             seq.addAction(to_act.startAction())
             seq.addAction(Actions.parallel(
                     to_act.animationAction(Constants.GUARD, 1, .8f), Actions.sequence(
@@ -616,7 +632,7 @@ class ObjActions : Constants {
             val sound = Assets.getAsset("sound/slash.wav", Sound::class.java)
             sound.play()
             seq.addAction(to_act.setDirectionAction(direction_guard))
-            val vector_direction = BasicActor.directionToScreenVector(direction_guard).scl(15f)
+            val vector_direction = direction_guard.toScreenVector().scl(15f)
             seq.addAction(to_act.startAction())
             seq.addAction(Actions.parallel(
                     //to_act.animationAction(GUARD, 1,.5f)
@@ -641,7 +657,7 @@ class ObjActions : Constants {
             val sound = Assets.getAsset("sound/slash.wav", Sound::class.java)
             sound.play()
             seq.addAction(to_act.setDirectionAction(direction_guard))
-            val vector_direction = BasicActor.directionToScreenVector(direction_guard).scl(15f)
+            val vector_direction = direction_guard.toScreenVector().scl(15f)
             seq.addAction(to_act.startAction())
             seq.addAction(Actions.parallel(
                     //to_act.animationAction(GUARD, 1,.5f)
@@ -667,7 +683,7 @@ class ObjActions : Constants {
 
             seq.addAction(to_act.setDirectionAction(direction_guard))
 
-            val vector_direction = BasicActor.directionToScreenVector(direction_guard).scl(25f)
+            val vector_direction = direction_guard.toScreenVector().scl(25f)
             seq.addAction(to_act.startAction())
             seq.addAction(Actions.parallel(
                     to_act.animationAction(Constants.GUARD, 1, .5f), Actions.sequence(
@@ -694,7 +710,7 @@ class ObjActions : Constants {
 
             //seq.addAction(to_act.setDirectionAction(direction_guard));
 
-            val vector_direction = BasicActor.directionToScreenVector(direction_guard).scl(15f)
+            val vector_direction = direction_guard.toScreenVector().scl(15f)
             seq.addAction(Actions.parallel(
                     to_act.changeIdleAnimationSubAction(Constants.GUARD), to_act.changeAnimationSubAction(Constants.GUARD)
             )
@@ -730,7 +746,7 @@ class ObjActions : Constants {
                 val rotation_before = to_act.inventory.getEquip(2).rotation
             }
 
-            if (direction == Constants.DL || direction == Constants.UL) {
+            if (direction == DL || direction == UL) {
                 from = 0f
                 to = 215f
                 multiplier = 1
@@ -806,10 +822,10 @@ class ObjActions : Constants {
                 val rotation_before = to_act.inventory.getEquip(2).rotation
             }
             when (direction) {
-                Constants.DL -> spear_dir = 200.5f
-                Constants.DR -> spear_dir = 337.5f
-                Constants.UR -> spear_dir = 22.5f
-                Constants.UL -> spear_dir = 157.5f
+                DL -> spear_dir = 200.5f
+                DR -> spear_dir = 337.5f
+                UR -> spear_dir = 22.5f
+                UL -> spear_dir = 157.5f
                 else -> spear_dir = 200.5f
             }
             if (to_act.inventory.getEquip(2) != null) {
@@ -853,7 +869,7 @@ class ObjActions : Constants {
                 val to: Float
                 val rotation_before = to_act.inventory.getEquip(2).rotation
 
-                if (direction == Constants.DL || direction == Constants.UL) {
+                if (direction == DL || direction == UL) {
                     from = 45f
                     to = 215f
                     multiplier = 1
@@ -903,7 +919,7 @@ class ObjActions : Constants {
             if (target_obj != null) {
                 val target_center = room.area_computer.targetCenter
                 val direction = to_act.getDirectionToTarget(target.xx, target.yy)
-                val dir_vector = BasicActor.directionToMapVector(direction)
+                val dir_vector = direction.toMapVector()
                 val target_x = to_act.xx + dir_vector.x.toInt()
                 val target_y = to_act.yy + dir_vector.y.toInt()
                 val chain = Chain(to_act.x, to_act.y + to_act.z + 7f)
@@ -931,13 +947,13 @@ class ObjActions : Constants {
             val target_center = room.area_computer.targetCenter
             val target = room.currentRoom.getObj(current_target_area.xx, current_target_area.yy)
             if (target != null && target.type != "wall") {
-                val direction: Int
+                val direction: Constants.DIR
                 if (current_target_area == target_center) {
                     direction = to_act.getDirectionToTarget(target.xx, target.yy)
                 } else {
                     direction = target_center.getDirectionToTarget(target.xx, target.yy)
                 }
-                val dir_vector = BasicActor.directionToMapVector(direction)
+                val dir_vector = direction.toMapVector()
                 val target_x = to_act.xx + dir_vector.x.toInt()
                 val target_y = to_act.yy + dir_vector.y.toInt()
                 val i = room.area_computer.targetList.indexOf(current_target_area)
@@ -973,7 +989,7 @@ class ObjActions : Constants {
             else
                 target = null
             if (target != null && target.type != "wall") {
-                val direction: Int
+                val direction: Constants.DIR
                 if (current_target_area == target_center) {
 
                     val seq = SequenceAction()
@@ -991,7 +1007,7 @@ class ObjActions : Constants {
                 } else {
                     direction = target_center.getDirectionToTarget(target.xx, target.yy)
                 }
-                val dir_vector = BasicActor.directionToMapVector(direction)
+                val dir_vector = direction.toMapVector()
                 val target_x = current_target_area!!.xx + dir_vector.x.toInt()
                 val target_y = current_target_area.yy + dir_vector.y.toInt()
                 val i = room.area_computer.targetList.indexOf(current_target_area)
@@ -1065,7 +1081,7 @@ class ObjActions : Constants {
             val target = room.currentRoom.getObj(current_target_area.xx, current_target_area.yy)
             if (target != null && target.type != "wall") {
                 val direction = to_act.getDirectionToTarget(target.xx, target.yy)
-                val dir_vector = BasicActor.directionToMapVector(direction)
+                val dir_vector = direction.toMapVector()
                 val target_x = current_target_area.xx + dir_vector.x.toInt()
                 val target_y = current_target_area.yy + dir_vector.y.toInt()
 
@@ -1122,7 +1138,7 @@ class ObjActions : Constants {
             val to: Float
             //final float rotation_before= to_act.getInventory().getEquip(3).getRotation();
 
-            if (direction == Constants.DL || direction == Constants.UL) {
+            if (direction == DL || direction == UL) {
                 from = 45f
                 to = 215f
                 multiplier = 1
@@ -1163,10 +1179,10 @@ class ObjActions : Constants {
             seq.addAction(to_act.setDirectionAction(direction))
             val from: Float
             when (direction) {
-                Constants.DL -> from = 170f
-                Constants.DR -> from = -27f
-                Constants.UR -> from = 27f
-                Constants.UL -> from = 190f
+                DL -> from = 170f
+                DR -> from = -27f
+                UR -> from = 27f
+                UL -> from = 190f
                 else -> from = 0f
             }
             seq.addAction(
@@ -1385,7 +1401,7 @@ class ObjActions : Constants {
 
                                     ),
                                     Actions.sequence(
-                                            Actions.delay(4f / prj.speed - .15f), prj.setDirectionAction(Constants.UR), prj.deActivateAndEndAction()
+                                            Actions.delay(4f / prj.speed - .15f), prj.setDirectionAction(UR), prj.deActivateAndEndAction()
 
                                     )
                             )
@@ -1677,7 +1693,7 @@ class ObjActions : Constants {
                             Actions.parallel(
                                     ExtendedActions.moveToParabolic(first_target.x, first_target.y, first_target.z + 40, .3f),
                                     Actions.sequence(
-                                            Actions.delay(to_act.lineDistance(first_target) / prj.speed), prj.setDirectionAction(Constants.UR), prj.deActivateAndEndAction()
+                                            Actions.delay(to_act.lineDistance(first_target) / prj.speed), prj.setDirectionAction(UR), prj.deActivateAndEndAction()
 
                                     )
                             )
@@ -1685,23 +1701,6 @@ class ObjActions : Constants {
             )
 
             -1
-
-            /*
-         EquipActor equip= Global.selected_equip;
-         final Image image= new Image(equip.getInventoryImage());
-         SequenceAction seq= new SequenceAction();
-         to_act.setActingAction(action);
-         seq.addAction(to_act.startAction());
-         seq.addAction(Actions.run(new Runnable() {public void run() {
-                     to_act.addActor(image);image.setPosition(-20, 30);
-                     image.addAction(ExtendedActions.moveBy(0, 5,.3f));}}));
-         seq.addAction(Actions.delay(.6f));
-         seq.addAction(Actions.run(new Runnable() {public void run() {image.remove();}}));
-         seq.addAction(to_act.deActivateAction());
-         seq.addAction(to_act.endActionSubAction());
-         to_act.addAction(seq);
-         */
-            //return -1;
         }
         val throwSelectedItemAction: Function = Function { room, to_act, action, current_target ->
             val equip = Global.getSelectedEquip()
@@ -1712,8 +1711,8 @@ class ObjActions : Constants {
             val dir = to_act.getDirectionToTarget(first_target)
             val arrow_vector = Vector2(first_target.x - to_act.x, first_target.y - to_act.y)
             when (dir) {
-                Constants.DL, Constants.UL -> prj.rotation = arrow_vector.angle() + 30
-                Constants.DR, Constants.UR -> prj.rotation = arrow_vector.angle() - 30
+                DL, UL -> prj.rotation = arrow_vector.angle() + 30
+                DR, UR -> prj.rotation = arrow_vector.angle() - 30
             }
             //prj.setRotation(degrees);
             prj.z = to_act.z + 30
@@ -1761,15 +1760,7 @@ class ObjActions : Constants {
                                     ExtendedActions.moveToParabolic(first_target.x, first_target.y, first_target.z + 10, .5f),
                                     Actions.sequence(
                                             Actions.delay(.5f), prj.deActivateAndEndAction()//, Actions.delay(.5f)
-                                            /*	,Actions.run(
-                                                 new Runnable() {
-                                                     public void run() {
-                                                          Global.current_room.setItem(first_target.getXX(),first_target.getYY(),equip,false);
-                                                     }
-                                                 }
-
-                                         )*/
-                                    )//prj.setDirectionAction(UR)
+                                    )
                             )
                     )
             )
@@ -1885,17 +1876,8 @@ class ObjActions : Constants {
                                     ExtendedActions.moveTo3D(first_target.x, first_target.y, first_target.z + 10, to_act.lineDistance(first_target) / 10f),
                                     Actions.sequence(
                                             Actions.delay(to_act.lineDistance(first_target) / 10f - .05f), prj.deActivateAndEndAction()
-                                            /*,Actions.delay(.5f)
-                                         ,Actions.run(
-                                                 new Runnable() {
-                                                     public void run() {
-                                                          Global.current_room.setItem(first_target.getXX(),first_target.getYY(),equip,false);
-                                                     }
-                                                 }
 
-                                         )*/
-
-                                    )//prj.setDirectionAction(UR)
+                                    )
                             )
                     )
             )
@@ -2142,7 +2124,7 @@ class ObjActions : Constants {
 
                             var multiplier = 1
 
-                            if (direction == Constants.DR || direction == Constants.UR) multiplier = -1
+                            if (direction == DR || direction == UR) multiplier = -1
                             val pause_id = 0
                             //seq.addAction(target.basicHitAction(room, to_act));
 

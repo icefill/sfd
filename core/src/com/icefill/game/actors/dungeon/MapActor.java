@@ -84,7 +84,7 @@ public class MapActor extends BasicActor implements Constants {
 						area_cell_array[xx][yy].setWallIndex();
 						break;}
 					case TRAP			: area_cell_array[xx][yy].device= new SpikeTrapActor(area_cell_array[xx][yy],room); break;
-					case SHOP_CAT		: area_cell_array[xx][yy].device = new ShopDeviceActor(area_cell_array[xx][yy],room,dungeon_level,false);break;
+					case SHOP_CAT		: area_cell_array[xx][yy].device = new ShopDeviceActor(area_cell_array[xx][yy],room,dungeon_level);break;
 					case SHRINE			: area_cell_array[xx][yy].device= new ShrineActor(area_cell_array[xx][yy],room); break;
 					case MONSTER		: break;
 					case BOSS_MONSTER	: break;
@@ -102,12 +102,12 @@ public class MapActor extends BasicActor implements Constants {
 				}
 				if (area_cell_array[xx][yy]!=null) room.addActor(area_cell_array[xx][yy]);
 				//Set direction for door
-				if (yy==0 && xx != map_size[0]-1) area_cell_array[xx][yy].setDirection(UR);
-				else if (xx==0 && yy != map_size[1]-1) area_cell_array[xx][yy].setDirection(UL);
+				if (yy==0 && xx != map_size[0]-1) area_cell_array[xx][yy].setDirection(DIR.UR);
+				else if (xx==0 && yy != map_size[1]-1) area_cell_array[xx][yy].setDirection(DIR.UL);
 				else {
 						room.addActor(area_cell_array[xx][yy]);
-						if (xx==map_size[0]-1) area_cell_array[xx][yy].setDirection(DR);
-						else if (yy==map_size[1]-1)area_cell_array[xx][yy].setDirection(DL);
+						if (xx==map_size[0]-1) area_cell_array[xx][yy].setDirection(DIR.DR);
+						else if (yy==map_size[1]-1)area_cell_array[xx][yy].setDirection(DIR.DL);
 				}
 
 			}
@@ -127,15 +127,15 @@ public class MapActor extends BasicActor implements Constants {
 			((DoorActor)(door_cell.device)).openDoor(dungeon, door_cell);
 		}
 	}
-	public void openDoor(DungeonGroup dungeon,int direction)
+	public void openDoor(DungeonGroup dungeon,DIR direction)
 	{
-		if (door_list[direction]!=null)
-			((DoorActor)(door_list[direction].device)).openDoor(dungeon, door_list[direction]);
+		if (door_list[direction.v]!=null)
+			((DoorActor)(door_list[direction.v].device)).openDoor(dungeon, door_list[direction.v]);
 	}
-	public void closeDoor(DungeonGroup dungeon,int direction)
+	public void closeDoor(DungeonGroup dungeon,DIR direction)
 	{
-		if (door_list[direction]!=null)
-			((DoorActor)(door_list[direction].device)).closeDoor(dungeon, door_list[direction]);
+		if (door_list[direction.v]!=null)
+			((DoorActor)(door_list[direction.v].device)).closeDoor(dungeon, door_list[direction.v]);
 	}
 	public void closeAllDoor(DungeonGroup dungeon)
 	{
@@ -168,12 +168,12 @@ public class MapActor extends BasicActor implements Constants {
 
 				batch.setColor(area_color);
 				if (temp.is_in_range && temp.isAnimationStarted())	{
-					area_selection.drawAnimation(batch, temp.elapsed_time,0, 0, mapToScreenCoordX(temp.xx, temp.yy), mapToScreenCoordY(temp.xx, temp.yy)+temp.getZ(),false);
+					area_selection.drawAnimation(batch, temp.elapsed_time,0, DIR.DL, mapToScreenCoordX(temp.xx, temp.yy), mapToScreenCoordY(temp.xx, temp.yy)+temp.getZ(),false);
 					temp.elapsed_time+=Gdx.graphics.getDeltaTime();
 				}
 				if (temp.is_target){
 					batch.setColor(1f,0f,0f,0.5f);
-					area_selection.drawAnimation(batch, 1, 0, 0, mapToScreenCoordX(temp.xx, temp.yy), mapToScreenCoordY(temp.xx, temp.yy)+temp.getZ(),false);
+					area_selection.drawAnimation(batch, 1, 0, DIR.DL, mapToScreenCoordX(temp.xx, temp.yy), mapToScreenCoordY(temp.xx, temp.yy)+temp.getZ(),false);
 				}
 				batch.setColor(1f,1f,1f,1f);
 			}
@@ -213,12 +213,12 @@ public class MapActor extends BasicActor implements Constants {
 					x = mapToScreenCoordX(xx, yy) - TILE_ANCHOR_X;
 					y = mapToScreenCoordY(xx, yy) - TILE_ANCHOR_Y;
 					if (!((xx == map_size[0] - 1) || (yy == map_size[1] - 1))) {
-						batch.draw((temp.floor.animation.get(temp.floor_index)[temp.getDirection()]).getKeyFrame(elapsed_time, true), x, y + temp.getZ());
+						batch.draw((temp.floor.animation.get(temp.floor_index)[temp.getDirection().v]).getKeyFrame(elapsed_time, true), x, y + temp.getZ());
 						if (temp.device != null)
 							temp.device.drawDevice(batch, delta);
 						//temp.drawWall(batch, delta);
 					} else {
-						batch.draw((temp.floor.animation.get(temp.floor_index)[temp.getDirection()]).getKeyFrame(elapsed_time, true), x, y + temp.getZ());
+						batch.draw((temp.floor.animation.get(temp.floor_index)[temp.getDirection().v]).getKeyFrame(elapsed_time, true), x, y + temp.getZ());
 					}
 
 					if (temp.effect != null) {
@@ -341,7 +341,7 @@ public class MapActor extends BasicActor implements Constants {
 		}
 		area_list.clear();
 	}
-	public void makeDoor(int direction,int to_xx,int to_yy,RoomGroup room) {
+	public void makeDoor(DIR direction,int to_xx,int to_yy,RoomGroup room) {
 		int x=0,y=0;
 		int xx=0,yy=0;
 		switch (direction) {
@@ -362,7 +362,7 @@ public class MapActor extends BasicActor implements Constants {
 		area_cell_array[x][y].device.setPosition(this.mapToScreenCoordX(x, y),this.mapToScreenCoordY(x, y));
 		area_cell_array[x][y].setUsualWall();
 		//((DoorActor)(area_cell_array[x][y].device)).setDoorPosition(this.mapToScreenCoordX(xx, yy-1)-TILE_ANCHOR_X,this.mapToScreenCoordY(xx, yy-1)-TILE_ANCHOR_Y+16);
-		door_list[direction]=(area_cell_array[x][y]);
+		door_list[direction.v]=(area_cell_array[x][y]);
 	}
 	public void makeVerticalDoor(int to_xx,int to_yy,int to_zz,RoomGroup room) {
 		int x=0,y=0;
@@ -370,7 +370,7 @@ public class MapActor extends BasicActor implements Constants {
 		xx=map_size[0]/2;
 		yy=map_size[1]/2;
 		
-		area_cell_array[xx][yy].device=new DoorActor(0,to_xx,to_yy,to_zz,area_cell_array[xx][yy],room);
+		area_cell_array[xx][yy].device=new DoorActor(DIR.DL,to_xx,to_yy,to_zz,area_cell_array[xx][yy],room);
 		area_cell_array[xx][yy].device.setPosition(this.mapToScreenCoordX(xx, yy),this.mapToScreenCoordY(xx, yy));
 		//((DoorActor)(area_cell_array[x][y].device)).setDoorPosition(this.mapToScreenCoordX(xx, yy-1)-TILE_ANCHOR_X,this.mapToScreenCoordY(xx, yy-1)-TILE_ANCHOR_Y+16);
 		//door_list.add(area_cell_array[x][y]);

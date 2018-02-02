@@ -36,7 +36,7 @@ public class EffectActor extends BasicActor implements Constants {
     protected float glowing_distance = 200;
 
     public EffectActor(String particle_file_name, String sprite_name, float after_delay, float glowing_distance, Color glow_color) {
-        curr_dir = DL;
+        curr_dir = DIR.DL;
         this.glowing_distance = glowing_distance;
         after_delay = this.after_delay;
         if (sprite_name != null)
@@ -58,14 +58,14 @@ public class EffectActor extends BasicActor implements Constants {
     }
 
     public EffectActor(BasicSprites sprites) {
-        curr_dir = DL;
+        curr_dir = DIR.DL;
         //after_delay=this.after_delay;
         this.sprites = sprites;
 
     }
 
     public EffectActor(String particle_file_name, String sprite_name, float after_delay, boolean GLOW_FLAG) {
-        curr_dir = DL;
+        curr_dir = DIR.DL;
         after_delay = this.after_delay;
         if (sprite_name != null)
             sprites = Assets.non_obj_sprites_map.get(sprite_name);
@@ -115,7 +115,7 @@ public class EffectActor extends BasicActor implements Constants {
             batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
 
             batch.setColor(glow_color);
-            glow.drawAnimation(batch, elapsed_time, 0, 0, getX(), getY() + getZ(), 0, glowing_distance, glowing_distance);
+            glow.drawAnimation(batch, elapsed_time, 0, DIR.DL, getX(), getY() + getZ(), 0, glowing_distance, glowing_distance);
             batch.setColor(1f, 1f, 1f, 1f);
         }
 

@@ -7,11 +7,10 @@
      obs_ratio_in_room:[0.15,0.27]
      destructable_obs_ratio_in_obs:[0.2,0.4]
      trap_n_in_room:[0,3]
-
-     shop_n_in_floor:[0,1]
+     shop_n_in_floor:[1,2]
      healing_room_n_in_floor:[0,1]
-     hire_room_n_in_floor:[0,1]
-     shrine_in_floor:[1,2]
+     hire_room_n_in_floor:[0,2]
+     shrine_in_floor:[10,12]
      treasure_room_in_floor:[0,2]
      scroll_room_in_floor:[0,1]
 
@@ -205,10 +204,10 @@
                                                    ,{name:leather_armor2,mul:1}
                                                    ,{name:robe1,mul:1}
                                                    ,{name:shield1,mul:1}
-                                                   ,{name:bow0,mul:1}
+                                                   ,{name:bow0,mul:2}
                                                   ]
              }
-            {   min_floor:1, max_floor:3
+            {   min_floor:2, max_floor:3
                                             names:[ {name:axe1,mul:2}
                                                    ,{name:sabre1,mul:2}
                                                    ,{name:staff2,mul:2}

@@ -24,9 +24,9 @@ public class ItemActor extends DeviceActor {
     //	float rotation;
     public ItemActor(EquipActor equip, AreaCell cell, RoomGroup room) {
         super(room);
-        curr_dir = 0;
+        curr_dir = DIR.DL;
         this.equip = equip;
-        //setRotation(Randomizer.nextInt(30,150));
+        //setRotation(Randomizer.next(30,150));
         setX(cell.getX());
         setY(cell.getY());
         setZ(7);
@@ -53,7 +53,7 @@ public class ItemActor extends DeviceActor {
         if (equip.type_for_ability.equals("scroll")) {
             batch.draw(background,getX()-16,getY()-16+getZ());
         }
-        equip.getSprites().drawAnimationMiddleRotation(batch, delta, 0, DL, getX(), getY() + getZ(), getRotation(), 1f, 1f);
+        equip.getSprites().drawAnimationMiddleRotation(batch, delta, 0, DIR.DL, getX(), getY() + getZ(), getRotation(), 1f, 1f);
 
     }
 

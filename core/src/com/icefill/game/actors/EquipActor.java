@@ -1,6 +1,5 @@
 package com.icefill.game.actors;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -20,7 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class EquipActor extends BasicActor implements Constants {
 	float direction_rotation[];
-	int direction_before=-1;
+	DIR direction_before=DIR.AB;
 	public int type=0;
 	public int price;
 	public int n=1;
@@ -157,10 +156,10 @@ public class EquipActor extends BasicActor implements Constants {
 	public EquipActor(NonObjSprites sprites,int dl,int dr,int ur,int ul) {
 		this.sprites=sprites;
 		direction_rotation= new float[4];
-		direction_rotation[DL]=dl;
-		direction_rotation[DR]=dr;
-		direction_rotation[UL]=ul;
-		direction_rotation[UR]=ur;
+		direction_rotation[DIR.DL.v]=dl;
+		direction_rotation[DIR.DR.v]=dr;
+		direction_rotation[DIR.UL.v]=ul;
+		direction_rotation[DIR.UR.v]=ur;
 		
 	}
 	public String getGearType()
@@ -171,24 +170,24 @@ public class EquipActor extends BasicActor implements Constants {
 		return (NonObjSprites)sprites;
 	}
 	
-	public void drawAnimation(Batch batch, float elapsed_time,int animation,int direction){
+	public void drawAnimation(Batch batch, float elapsed_time,int animation,DIR direction){
 			if (direction != direction_before) {
-				setRotation(direction_rotation[direction]);
+				setRotation(direction_rotation[direction.v]);
 				direction_before=direction;
 			}
 			((NonObjSprites)sprites).drawAnimation(batch, elapsed_time, 0, direction,getX(), getY()); 
 
 	}
-	public void drawRotatableAnimation(Batch batch, float elapsed_time,int animation,int direction){
+	public void drawRotatableAnimation(Batch batch, float elapsed_time,int animation,DIR direction){
 		if (direction != direction_before) {
-			setRotation(direction_rotation[direction]);
+			setRotation(direction_rotation[direction.v]);
 			direction_before=direction;
 		}
 		((NonObjSprites)sprites).drawAnimation(batch, elapsed_time, 0, direction,getX(), getY(),this.getRotation(), 1, 1); 
 
 }
 	public void drawEquip(Batch batch, float delta) {
-		((NonObjSprites)sprites).drawAnimation(batch,elapsed_time, 0, DL, sprites.getAnchorPointX()+5, sprites.getAnchorPointY()+5); 
+		((NonObjSprites)sprites).drawAnimation(batch,elapsed_time, 0, DIR.DL, sprites.getAnchorPointX()+5, sprites.getAnchorPointY()+5);
 	}
 /*
 	public void drawAnimation(Batch batch, float elapsed_time,int animation,int direction,float rotation,float x,float y){
@@ -198,12 +197,12 @@ public class EquipActor extends BasicActor implements Constants {
 	public int getType() {return type;}
 	public String getTypeForAbility() {return type_for_ability;}
 	public EquipStatus getStatus() {return status;}
-	public void setRotationDirection(int direction){
-		setRotation(direction_rotation[direction]);
+	public void setRotationDirection(DIR direction){
+		setRotation(direction_rotation[direction.v]);
 		direction_before=direction;
 	}
-	public Action setRotationDirectionAction(final int direction) {
-		return Actions.run(new Runnable() {public void run(){self.addAction(Actions.rotateTo(direction_rotation[direction]));}});
+	public Action setRotationDirectionAction(final DIR direction) {
+		return Actions.run(new Runnable() {public void run(){self.addAction(Actions.rotateTo(direction_rotation[direction.v]));}});
 	}
 	public Action setRotationAction(final float degrees){
 		return Actions.run(new Runnable() {public void run(){self.addAction(Actions.rotateTo(degrees));}});

@@ -2,8 +2,7 @@ package com.icefill.game.actors;
 
 
 import com.badlogic.gdx.Gdx;
-import com.icefill.game.Global;
-import com.icefill.game.Job;
+import com.icefill.game.*;
 
 
 import com.icefill.game.Job.EquipmentForLevel;
@@ -17,7 +16,6 @@ import com.icefill.game.actors.windows.PersonalInventory;
 import com.icefill.game.actors.windows.ObjInfoWindow;
 import com.icefill.game.actors.windows.TargetInfoActor;
 import com.icefill.game.utils.Randomizer;
-import com.icefill.game.StatusTuple;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -38,8 +36,6 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import com.icefill.game.Assets;
-import com.icefill.game.Constants;
 import com.icefill.game.actors.actionActors.AbilityActor;
 import com.icefill.game.actors.actionActors.ActionActor;
 import com.icefill.game.actors.actionActors.ActionActor.ActionContainer;
@@ -50,7 +46,6 @@ import com.icefill.game.sprites.NonObjSprites;
 import com.icefill.game.sprites.ObjSprites;
 
 public class ObjActor extends BasicActor implements Constants {
-
     //internal vars
     protected int curr_ani;
     private boolean is_position_changed;
@@ -553,7 +548,7 @@ public class ObjActor extends BasicActor implements Constants {
                 batch.setBlendFunction(GL20.GL_DST_COLOR, GL20.GL_SRC_ALPHA);
                 batch.setColor(1f, 1f, 1f, 1f);
 
-                glow.drawAnimation(batch, elapsed_time, 1, 0, getX() + job.glow[0], getY() + job.glow[1]
+                glow.drawAnimation(batch, elapsed_time, 1, DIR.DL, getX() + job.glow[0], getY() + job.glow[1]
                         , 0, job.glow[2], job.glow[2]);
                 batch.setColor(1f, 1f, 1f, 1f);
 
@@ -857,7 +852,8 @@ public class ObjActor extends BasicActor implements Constants {
     }
 
     //*********************************************** Actions ******************************************/
-    public void setDirection(int dir) {
+    @Override
+    public void setDirection(DIR dir) {
         super.setDirection(dir);
         if (inventory != null) {
             if (inventory.getEquip(2) != null && inventory.getEquip(2).getType() == 2)
@@ -869,7 +865,7 @@ public class ObjActor extends BasicActor implements Constants {
         //if (curr_dir!=dir)curr_dir=dir;
     }
 
-    public int getDirectionToTarget(com.icefill.game.actors.dungeon.AreaCell cell) {
+    public DIR getDirectionToTarget(com.icefill.game.actors.dungeon.AreaCell cell) {
         if (cell != null)
             return getDirectionToTarget(cell.getXX(), cell.getYY());
         else
@@ -932,13 +928,13 @@ public class ObjActor extends BasicActor implements Constants {
         return seq;
     }
 
-    public Action pulledAction(int direction) {
+    public Action pulledAction(DIR direction) {
         return pulledAction(direction, 1f);
     }
 
-    public Action pulledAction(int direction, float multiplier) {
+    public Action pulledAction(DIR direction, float multiplier) {
         SequenceAction seq = new SequenceAction();
-        Vector2 vector = directionToScreenVector(direction).scl(10 * multiplier);
+        Vector2 vector = direction.toScreenVector().scl(10 * multiplier);
         seq.addAction(Actions.moveBy(vector.x, vector.y, 0.05f));
         seq.addAction(Actions.moveBy(-vector.x, -vector.y, 0.25f));
         return seq;
@@ -950,11 +946,11 @@ public class ObjActor extends BasicActor implements Constants {
         hit_sound.play(50f);
 
         SequenceAction seq = new SequenceAction();
-        int direction_guard = attacker.getDirectionToTarget(getXX(), getYY());
+        DIR direction_guard = attacker.getDirectionToTarget(getXX(), getYY());
 
-        seq.addAction(setDirectionAction(getOppositeDirection(direction_guard)));
+        seq.addAction(setDirectionAction(direction_guard.opposite()));
 
-        Vector2 vector_direction = BasicActor.directionToScreenVector(direction_guard).scl(6);
+        Vector2 vector_direction = direction_guard.toScreenVector().scl(6);
 
         if (!dodging) {
             backup_pos_x = getX();
@@ -976,12 +972,12 @@ public class ObjActor extends BasicActor implements Constants {
         return seq;
     }
 
-    public Action DodgeAction(int direction, com.icefill.game.actors.dungeon.DungeonGroup dungeon) {
+    public Action DodgeAction(DIR direction, com.icefill.game.actors.dungeon.DungeonGroup dungeon) {
         SequenceAction seq = new SequenceAction();
         int x = 0;
         int y = 0;
-        direction = BasicActor.getRightDirection(direction);
-        Vector2 vector_direction = BasicActor.directionToScreenVector(direction).scl(15);
+        direction = direction.turnRight(1);
+        Vector2 vector_direction = direction.toScreenVector().scl(15);
         if (!dodging) {
             backup_pos_x = getX();
             backup_pos_y = getY();
@@ -1005,7 +1001,7 @@ public class ObjActor extends BasicActor implements Constants {
         return seq;
     }
 
-    public Action pushAction(int direction) {
+    public Action pushAction(DIR direction) {
         SequenceAction seq = new SequenceAction();
         int x = 0;
         int y = 0;
@@ -1107,15 +1103,15 @@ public class ObjActor extends BasicActor implements Constants {
     }
 
     public Action basicHitAction(final com.icefill.game.actors.dungeon.DungeonGroup room, ObjActor to_act) {
-        int direction;
+        DIR direction;
         if (to_act != null) {
             direction = to_act.getDirectionToTarget(this.getXX(), this.getYY());
-        } else direction = DL;
+        } else direction = DIR.DL;
         int multiplier = 1;
         Sound hit_sound = Assets.getAsset("sound/hit.wav", Sound.class);
         hit_sound.play();
 
-        if (direction == DR || direction == UR) multiplier = -1;
+        if (direction .equals( DIR.DR )|| direction.equals( DIR.UR)) multiplier = -1;
         SequenceAction seq = new SequenceAction();
         seq.addAction(//Actions.after(
                 Actions.sequence(
@@ -1137,12 +1133,6 @@ public class ObjActor extends BasicActor implements Constants {
         SequenceAction seq = new SequenceAction();
         seq.addAction(Actions.moveBy(3f, 0, .04f));
         seq.addAction(Actions.moveBy(-3f, 0, .07f));
-        return seq;
-    }
-
-    public Action basicBuffAction(com.icefill.game.actors.dungeon.DungeonGroup room, ObjActor to_act) {
-        SequenceAction seq = new SequenceAction();
-        final int direction = this.getDirection();
         return seq;
     }
 
@@ -1279,7 +1269,7 @@ public class ObjActor extends BasicActor implements Constants {
                     }
                 })
         );
-        seq.addAction(Actions.delay((float) (((ObjActor) self).getAnimationDuration(animation, DL))));
+        seq.addAction(Actions.delay((float) (((ObjActor) self).getAnimationDuration(animation, DIR.DL.v))));
         seq.addAction(((ObjActor) self).pauseAnimation(pause_time));
         seq.addAction(Actions.run(new Runnable() {
                     @Override
@@ -1309,7 +1299,7 @@ public class ObjActor extends BasicActor implements Constants {
                     }
                 })
         );
-        seq.addAction(Actions.delay((float) (((ObjActor) self).getAnimationDuration(animation, DL))));
+        seq.addAction(Actions.delay((float) (((ObjActor) self).getAnimationDuration(animation, DIR.DL.v))));
         seq.addAction(((ObjActor) self).pauseAnimation(pause_time));
         seq.addAction(Actions.run(new Runnable() {
                     @Override

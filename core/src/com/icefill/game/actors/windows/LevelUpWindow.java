@@ -212,27 +212,27 @@ public class LevelUpWindow extends BasicWindow {
 		String temp=obj.getJob().job_name+"ABILITIES";
 		/*
 		if (job.hp_modifier!=null) {
-			int hp_modifier=Randomizer.nextInt(job.hp_modifier[0],job.hp_modifier[1]);
+			int hp_modifier=Randomizer.next(job.hp_modifier[0],job.hp_modifier[1]);
 			base_status.HP+=hp_modifier;
 			if (hp_modifier>0)
 				temp+="HP: +"+hp_modifier+"\n";
 		}
 		if (job.str_modifier!=null) {
-			int str_modifier=Randomizer.nextInt(job.str_modifier[0],job.str_modifier[1]);
+			int str_modifier=Randomizer.next(job.str_modifier[0],job.str_modifier[1]);
 			base_status.STR+=str_modifier;
 			if (str_modifier>0)
 				temp+="STR: +"+str_modifier+"\n";
 		}
 	
 		if (job.dex_modifier!=null) {
-			int dex_modifier=Randomizer.nextInt(job.dex_modifier[0],job.dex_modifier[1]);
+			int dex_modifier=Randomizer.next(job.dex_modifier[0],job.dex_modifier[1]);
 			base_status.DEX+=dex_modifier;
 			if (dex_modifier>0)
 				temp+="DEX: +"+dex_modifier+"\n";
 		}
 	
 		if (job.int_modifier!=null) {
-			int int_modifier=Randomizer.nextInt(job.int_modifier[0],job.int_modifier[1]);
+			int int_modifier=Randomizer.next(job.int_modifier[0],job.int_modifier[1]);
 			base_status.INT+=int_modifier;
 			if (int_modifier>0)
 				temp+="INT: +"+int_modifier+"\n";
@@ -276,8 +276,8 @@ public class LevelUpWindow extends BasicWindow {
 		}
 		else
 		{
-			int index= rn.nextInt(obj.attain_ability_list.size());
-			//int index2= rn.nextInt(obj.attain_ability_list.size());
+			int index= rn.next(obj.attain_ability_list.size());
+			//int index2= rn.next(obj.attain_ability_list.size());
 			
 			LevelupAbilityButton button= new LevelupAbilityButton((AbilityActor)(obj.attain_ability_list.get(index)),dungeon);
 			this.add(button);

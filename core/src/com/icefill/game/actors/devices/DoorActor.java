@@ -16,9 +16,8 @@ public class DoorActor extends DeviceActor{
 	AreaCell cell;
 	Animation effect[];
 	
-	public DoorActor(int direction,int move_position_x,int move_position_y,int move_position_z,AreaCell cell,RoomGroup room) {
+	public DoorActor(DIR direction,int move_position_x,int move_position_y,int move_position_z,AreaCell cell,RoomGroup room) {
 		super(room);
-		
 			curr_dir=direction;
 			sprites= Assets.non_obj_sprites_map.get("down_marker");
 			this.cell=cell;
@@ -28,7 +27,7 @@ public class DoorActor extends DeviceActor{
 			move_position[1]=move_position_y;
 			move_position[2]=move_position_z;
 	}
-	public DoorActor(int direction,int move_position_x,int move_position_y,AreaCell cell,RoomGroup room) {
+	public DoorActor(DIR direction,int move_position_x,int move_position_y,AreaCell cell,RoomGroup room) {
 		super(room);
 		this.cell=cell;
 		this.setFrontBack(1);
@@ -71,9 +70,8 @@ public class DoorActor extends DeviceActor{
 		if (cell.is_blocked)
 		{
 			//cell.setFrontBack(1);
-			
 			cell.is_blocked=false;
-			cell.wall_direction=(cell.wall_direction+1)%4;
+			cell.wall_direction=cell.wall_direction.turnLeft(1);
 		}
 		//if (device!=null)
 			//device.activateDevice(dungeon);
@@ -84,7 +82,7 @@ public class DoorActor extends DeviceActor{
 		{
 			//cell.setFrontBack(0);
 			cell.is_blocked=true;
-			cell.wall_direction=(cell.wall_direction+1)%4;
+			cell.wall_direction=cell.wall_direction.turnLeft(1);
 		}
 		//if (device!=null)
 			//device.activateDevice(dungeon);
@@ -93,7 +91,7 @@ public class DoorActor extends DeviceActor{
 		cell.is_blocked=false;
 		//if (wall_direction==1) {
 				//is_blocked=false;
-				cell.wall_direction=(cell.wall_direction+1)%4;
+				cell.wall_direction=cell.wall_direction.turnLeft(1);
 				Sound hit_sound= Assets.getAsset("sound/door.wav", Sound.class);
 				hit_sound.play();
 				//}

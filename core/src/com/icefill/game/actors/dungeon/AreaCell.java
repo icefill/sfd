@@ -19,7 +19,7 @@ public class AreaCell extends BasicActor {
 	public boolean is_blocked=false;
 	public boolean transparent=false;
 	
-	public int wall_direction;
+	public DIR wall_direction;
 	public Floor floor;
 	public int floor_index;
 	public int wall_index;
@@ -47,12 +47,10 @@ public class AreaCell extends BasicActor {
 		}
 	}
 
-	public void setDirection(int direction) {
-		if (0 <= direction && direction <= 3) {
-				if (curr_dir != direction) curr_dir = direction;
-		}
-		wall_direction=direction;
-		if (floor.wall_animation !=null && getDirection()<2)
+	public void setDirection(DIR dir) {
+		if (curr_dir != dir) curr_dir = dir;
+		wall_direction=dir;
+		if (floor.wall_animation !=null && (getDirection().equals(DIR.DL) ||getDirection().equals(DIR.DR)) )
 		{
 				transparent=true;
 		}
@@ -93,7 +91,7 @@ public class AreaCell extends BasicActor {
 			{
 				batch.setColor(1f,1f,1f,.4f);
 			}
-			batch.draw((floor.wall_animation.get(wall_index)[getDirection()]).getKeyFrame(elapsed_time,true), getX()-35,getY()+getZ()-15);
+			batch.draw((floor.wall_animation.get(wall_index)[wall_direction.v]).getKeyFrame(elapsed_time,true), getX()-35,getY()+getZ()-15);
 			batch.setColor(1f,1f,1f,1f);
 		}
 	}
@@ -102,7 +100,7 @@ public class AreaCell extends BasicActor {
 		if (floor.wall_animation!=null && is_blocked)
 		{
 			batch.setColor(1f,1f,1f,.7f);
-			batch.draw((floor.wall_animation.get(wall_index)[wall_direction]).getKeyFrame(elapsed_time,true), getX()-35,getY()+getZ()-15);
+			batch.draw((floor.wall_animation.get(wall_index)[wall_direction.v]).getKeyFrame(elapsed_time,true), getX()-35,getY()+getZ()-15);
 			batch.setColor(1f,1f,1f,1f);
 		}
 	}
@@ -140,14 +138,14 @@ public class AreaCell extends BasicActor {
 	}
 	public void drawGlow(Batch batch,float delta) {
 		if (glow!=null)
-		glow.drawAnimation(batch, elapsed_time, 1, 0, getX()+offset_modifier_x*floor.particle_offset_x
+		glow.drawAnimation(batch, elapsed_time, 1, DIR.DL, getX()+offset_modifier_x*floor.particle_offset_x
 				, getY()+floor.particle_offset_y+getZ()//+temp_light.zz
 				,0,1f,1f);
 		
 	}
 	public void setX(float x) {
 		super.setX(x);
-		if (getDirection()==DL ||getDirection()==UL)
+		if (getDirection()==DIR.DL ||getDirection()==DIR.UL)
 			offset_modifier_x=1;	
 		else
 			offset_modifier_x=-1;

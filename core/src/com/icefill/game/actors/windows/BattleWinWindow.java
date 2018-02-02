@@ -302,8 +302,8 @@ public class BattleWinWindow extends BasicWindow{
 		//this.mp_button.setText("MANA:"+getDungeon().getDeadEnemyList().size());
 		if (Global.getCurrentRoom().boss_room && Global.getCurrentRoom().room_zz%2 ==1) {
 			rn.reset();
-			int rn1=rn.nextInt();
-			int rn2=rn.nextInt();
+			int rn1=rn.next();
+			int rn2=rn.next();
 			
 			hero1=getHeroName(rn1);
 		    hero_button.setVisible(true);

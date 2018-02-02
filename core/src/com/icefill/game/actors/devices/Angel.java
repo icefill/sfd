@@ -34,7 +34,7 @@ public class Angel extends DeviceActor{
 
 	public Angel() {
 			passable=false;
-			curr_dir=0;
+			curr_dir=DIR.DL;
 			TextureAtlas atlas= Assets.getAsset("sprite/shrine.atlas",TextureAtlas.class);
 			shrine_deact= atlas.findRegion("idle_dl0000");
 			shrine_act= atlas.findRegion("idle_dl0000");
@@ -47,12 +47,12 @@ public class Angel extends DeviceActor{
 	public Angel(AreaCell cell,RoomGroup room) {
 		super(room);
 		passable=false;
-		curr_dir=0;
+		curr_dir=DIR.DL;
 	    
 		TextureAtlas atlas= Assets.getAsset("sprite/angel_statue.atlas",TextureAtlas.class);
 		shrine_deact= atlas.findRegion("idle_dl0000");
 		shrine_act= atlas.findRegion("idle_dl0000");
-		//int n=Randomizer.nextInt(shrine_effect_list.size());
+		//int n=Randomizer.next(shrine_effect_list.size());
 		//function= shrine_effect_list.get(n);
 		
 		setX(cell.getX());
@@ -184,7 +184,7 @@ public class Angel extends DeviceActor{
 			//elapsed_time-=delta;
 			super.draw(batch,delta);
 			batch.setBlendFunction(GL20.GL_DST_COLOR,GL20.GL_SRC_ALPHA);
-	 		glow.drawAnimation(batch, elapsed_time, 1, 0, getX()-20,getY()
+	 		glow.drawAnimation(batch, elapsed_time, 1, DIR.DL, getX()-20,getY()
 				,0,1f,1f);
 	 		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 			Assets.getRuneFont().draw(batch, word, getX()-26, getY()+10);

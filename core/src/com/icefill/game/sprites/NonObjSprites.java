@@ -48,24 +48,24 @@ public class NonObjSprites extends BasicSprites {
 	public void setrotationAnchor(float degree) {
 		this.rotation_anchor=degree;
 	}
-	public void drawAnimation(Batch batch,float elapsed_time,int anim,int direction,float x,float y) {
-		if (!has_direction) direction=0;
-		batch.draw(animation[direction].getKeyFrame(elapsed_time,true), x-anchor_x, y-anchor_y);
+	public void drawAnimation(Batch batch,float elapsed_time,int anim,DIR direction,float x,float y) {
+		if (!has_direction) direction=DIR.DL;
+		batch.draw(animation[direction.v].getKeyFrame(elapsed_time,true), x-anchor_x, y-anchor_y);
 	}
-	public void drawAnimation(Batch batch,float elapsed_time,int anim,int direction,float x,float y,boolean loop) {
-		if (!has_direction) direction=0;
-		batch.draw(animation[direction].getKeyFrame(elapsed_time,loop), x-anchor_x, y-anchor_y);
+	public void drawAnimation(Batch batch,float elapsed_time,int anim,DIR direction,float x,float y,boolean loop) {
+		if (!has_direction) direction=DIR.DL;
+		batch.draw(animation[direction.v].getKeyFrame(elapsed_time,loop), x-anchor_x, y-anchor_y);
 	}
-	public void drawAnimation(Batch batch,float elapsed_time,int anim,int direction,float x,float y,float rotation,float scale_x,float scale_y) {
-		if (!has_direction) direction=0;
-		if (!rotatable || direction== DL|| direction==UL)
-			batch.draw(animation[direction].getKeyFrame(elapsed_time,true), x-anchor_x, y-anchor_y,anchor_x,anchor_y,getWidth(),getHeight(),scale_x,scale_y,rotation-rotation_anchor);
+	public void drawAnimation(Batch batch,float elapsed_time,int anim,DIR direction,float x,float y,float rotation,float scale_x,float scale_y) {
+		if (!has_direction) direction=DIR.DL;
+		if (!rotatable || direction== DIR.DL|| direction==DIR.UL)
+			batch.draw(animation[direction.v].getKeyFrame(elapsed_time,true), x-anchor_x, y-anchor_y,anchor_x,anchor_y,getWidth(),getHeight(),scale_x,scale_y,rotation-rotation_anchor);
 		else
-			batch.draw(animation[direction].getKeyFrame(elapsed_time,true), x-(width-anchor_x), y-(anchor_y),width-anchor_x,anchor_y,getWidth(),getHeight(),scale_x,scale_y,rotation-(180-rotation_anchor));
+			batch.draw(animation[direction.v].getKeyFrame(elapsed_time,true), x-(width-anchor_x), y-(anchor_y),width-anchor_x,anchor_y,getWidth(),getHeight(),scale_x,scale_y,rotation-(180-rotation_anchor));
 	}
-	public void drawAnimationMiddleRotation(Batch batch,float elapsed_time,int anim,int direction,float x,float y,float rotation,float scale_x,float scale_y) {
-		if (!has_direction) direction=0;
-		batch.draw(animation[direction].getKeyFrame(elapsed_time,true), x-anchor_x, y-anchor_y,getWidth()/2,getHeight()/2,getWidth(),getHeight(),scale_x,scale_y,rotation-rotation_anchor);
+	public void drawAnimationMiddleRotation(Batch batch,float elapsed_time,int anim,DIR direction,float x,float y,float rotation,float scale_x,float scale_y) {
+		if (!has_direction) direction=DIR.DL;
+		batch.draw(animation[direction.v].getKeyFrame(elapsed_time,true), x-anchor_x, y-anchor_y,getWidth()/2,getHeight()/2,getWidth(),getHeight(),scale_x,scale_y,rotation-rotation_anchor);
 	}
 
 	public float getSpritesDuration(int animation,int direction) {
@@ -85,7 +85,7 @@ public class NonObjSprites extends BasicSprites {
 				for (int dir=0;dir<4;dir+=2){
 					index=0;
 					while(true) {
-						String region_name=direction_name[dir]
+						String region_name=DIR.toDIR(dir).toString()
 								+String.format("%04d", index);
 						temp_region=atlas.findRegion(region_name);
 						if (temp_region == null)
@@ -97,8 +97,8 @@ public class NonObjSprites extends BasicSprites {
 					}//while
 					if (index!=0)
 					animation[dir]=new Animation(0.07f,temp_frames.toArray(new TextureRegion[index]));
-					if (dir==UR && animation[dir]==null)
-						animation[dir]=createFlippedAnimation(animation[DL]);
+					if (dir==DIR.UR.v && animation[dir]==null)
+						animation[dir]=createFlippedAnimation(animation[DIR.DL.v]);
 					temp_frames.clear();
 					animation[dir+1]=createFlippedAnimation(animation[dir]);
 				}
@@ -107,7 +107,7 @@ public class NonObjSprites extends BasicSprites {
 				for (int dir=0;dir<4;dir+=2){
 					index=0;
 					while(true) {
-						String region_name=direction_name[dir]
+						String region_name=DIR.toDIR(dir).toString()
 								+String.format("%04d", index);
 						temp_region=atlas.findRegion(region_name);
 						if (temp_region == null)
@@ -127,7 +127,7 @@ public class NonObjSprites extends BasicSprites {
 			animation = new Animation[1];
 			index=0;
 			while(true) {
-				String region_name=direction_name[0]
+				String region_name=DIR.DL.toString()
 						+String.format("%04d", index);
 				temp_region=atlas.findRegion(region_name);
 				if (temp_region == null)

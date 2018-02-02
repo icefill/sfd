@@ -3,6 +3,8 @@ package com.icefill.game.actors.dungeon;
 
 import java.util.Comparator;
 
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.icefill.game.*;
 
 import java.util.LinkedList;
@@ -17,6 +19,7 @@ import com.icefill.game.actors.ObjActor;
 import com.icefill.game.actors.devices.*;
 import com.icefill.game.extendedActions.ExtendedActions;
 import com.icefill.game.sprites.NonObjSprites;
+import com.icefill.game.utils.NonRepeatRandomizer;
 import com.icefill.game.utils.Randomizer;
 
 import static com.icefill.game.utils.StaticFunctions.chooseAmong;
@@ -119,7 +122,7 @@ public class RoomGroup extends Group implements Constants {
                         controlled = CONTROLLED_AI;
                         temp_obj = dungeon_seed.monster_pool.getMonster(dungeon_level);
                         temp = new ObjActor(xx, yy, temp_obj.team, temp_obj.level, Assets.jobs_map.get(temp_obj.job), controlled);
-                        temp.setDirection(com.icefill.game.utils.Randomizer.nextInt(0, 3));
+                        temp.setDirection(DIR.getRandomDIR());
                         obj_array[xx][yy] = temp;
                         temp.setX(x);
                         temp.setY(y + map.getCell(xx, yy).getZ());
@@ -135,7 +138,7 @@ public class RoomGroup extends Group implements Constants {
                         enemy_list.add(temp);
                         enemy_list.setLeader(temp);
                         boss_room = true;
-                        temp.setDirection(com.icefill.game.utils.Randomizer.nextInt(0, 3));
+                        temp.setDirection(DIR.getRandomDIR());
                         obj_array[xx][yy] = temp;
                         temp.setX(x);
                         temp.setY(y + map.getCell(xx, yy).getZ());
@@ -155,7 +158,7 @@ public class RoomGroup extends Group implements Constants {
                         DungeonGroup.ObjListElt elt = chooseAmong(dungeon_seed.undest_obs_info_list);
                         temp = new ObjActor(xx, yy, elt.team, elt.level, Assets.jobs_map.get(elt.job), CONTROLLED_AI);
                         obj_array[xx][yy] = temp;
-                        temp.setDirection(Randomizer.nextInt(4));
+                        temp.setDirection(DIR.getRandomDIR());
                         temp.setX(x);
                         temp.setY(y + map.getCell(xx, yy).getZ());
                         this.addActor(temp);
@@ -180,19 +183,19 @@ public class RoomGroup extends Group implements Constants {
         light_emitter = (NonObjSprites) Assets.non_obj_sprites_map.get("light_emitter");
         //map.getAreaCell(1, 1).device=new ItemActor(new EquipActor((AbilityActor)Assets.actions_map.get("Fireball")),map.getAreaCell(1, 1));
 
-        if (has_door[UL])
-            map.makeDoor(UL, room_xx - 1, room_yy, this);
-        if (has_door[DR])
-            map.makeDoor(DR, room_xx + 1, room_yy, this);
-        if (has_door[UR])
-            map.makeDoor(UR, room_xx, room_yy - 1, this);
-        if (has_door[DL])
-            map.makeDoor(DL, room_xx, room_yy + 1, this);
+        if (has_door[DIR.UL.v])
+            map.makeDoor(DIR.UL, room_xx - 1, room_yy, this);
+        if (has_door[DIR.DR.v])
+            map.makeDoor(DIR.DR, room_xx + 1, room_yy, this);
+        if (has_door[DIR.UR.v])
+            map.makeDoor(DIR.UR, room_xx, room_yy - 1, this);
+        if (has_door[DIR.DL.v])
+            map.makeDoor(DIR.DL, room_xx, room_yy + 1, this);
 
 
     }
 
-    public void setPlayerToRoom(LinkedList<ObjActor> player_list, int from_dir) {
+    public void setPlayerToRoom(LinkedList<ObjActor> player_list, DIR from_dir) {
         int init_pos_x = 0;
         int init_pos_y = 0;
         int adder_x = 0;
@@ -224,7 +227,7 @@ public class RoomGroup extends Group implements Constants {
                 init_pos_x = map.map_size[0] / 2;
                 init_pos_y = map.map_size[1] - 3;
                 adder_x = 1;
-                from_dir = DL;
+                from_dir = DIR.DL;
                 break;
         }
         int i = 0;
@@ -237,11 +240,11 @@ public class RoomGroup extends Group implements Constants {
 
     }
 
-    public void setRoom(Team player_list, int from_dir, int to_dir) {
+    public void setRoom(Team player_list, DIR from_dir, DIR to_dir) {
         this.player_list = player_list;
         setPlayerToRoom(player_list, from_dir);
 
-        if (from_dir < 4) {
+        if (from_dir.v < 4) {
             for (ObjActor temp : player_list) {
                 temp.setDirection(to_dir);
             }
@@ -272,55 +275,160 @@ public class RoomGroup extends Group implements Constants {
     }
 
     public boolean setObj(AreaCell cell, ObjActor to_set) {
-        if (getObj(cell) == null) {
+        if (isCellEmpty(cell)) {
             setObj(cell.getXX(), cell.getYY(), to_set);
             return true;
         }
         return false;
     }
 
-    public boolean setObj(ObjActor to_set) {
+    public boolean isCellEmpty(AreaCell cell) {
+        if (cell != null) {
+            if (cell.device == null && getObj(cell) == null && !cell.is_blocked) return true;
+        }
+        return false;
+    }
+
+    public boolean isCellEmpty(int xx, int yy) {
+        if (map.isInFloor(xx, yy)) {
+            AreaCell cell = getCell(xx, yy);
+            return isCellEmpty(cell);
+        }
+        return false;
+    }
+
+    public Array<AreaCell> findEmptyCellsFromCenter(int n) {
+        Array<AreaCell> toReturn = new Array<AreaCell>(n);
         int xx = map.getCenterXX();
         int yy = map.getCenterYY();
-
-        if (to_set != null) {
-            if (map.getCell(xx, yy).device == null
-                    && getObj(xx, yy) == null
-                    ) {
-                setObj(xx, yy, to_set);
-                return true;
-            } else {
-                for (int dxx = -1; dxx < 2; dxx++) {
-                    for (int dyy = -1; dyy < 2; dyy++) {
-                        if (
-                                map.isInFloor(xx + dxx, yy + dyy)
-                                        && map.getCell(xx + dxx, yy + dyy).device == null
-                                        && !(map.getCell(xx + dxx, yy + dyy).is_blocked)
-                                        && getObj(xx + dxx, yy + dyy) == null
-                                ) {
-                            setObj(xx + dxx, yy + dyy, to_set);
-
-                            return true;
-                        }
-                    }
-                }
+        if (isCellEmpty(xx, yy)) toReturn.add(getCell(xx, yy));
+        int max = room_size[0] > room_size[1] ? room_size[0] - 1 : room_size[1] - 1;
+        Vector2 dir = new Vector2(1, 0);
+        int subMax = 1;
+        int i = 0;
+        Boolean changeMax = true;
+        while (i <= max || changeMax == false) {
+            i++;
+            xx += (int) (dir.x);
+            yy += (int) (dir.y);
+            System.out.println(xx + "," + yy);
+            if (isCellEmpty(xx, yy)) toReturn.add(getCell(xx, yy));
+            if (toReturn.size >= n) break;
+            if (subMax <= i) {
+                dir.rotate90(1);
+                i = 0;
+                changeMax = !changeMax;
+                if (changeMax) subMax++;
             }
 
-            {
-                for (xx = 1; xx < map.map_size[0] - 1; xx++) {
-                    for (yy = 1; yy < map.map_size[1] - 1; yy++) {
-                        if (map.getCell(xx, yy).device == null
-                                && !(map.getCell(xx, yy).is_blocked)
-                                && getObj(xx, yy) == null) {
-                            setObj(xx, yy, to_set);
-                            return true;
-                        }
+        }
+        return toReturn;
+    }
+
+    public Array<AreaCell> findEmptyCellsRandomly(int n) {
+        Array<AreaCell> toReturn = new Array<AreaCell>(n);
+        NonRepeatRandomizer nr = new NonRepeatRandomizer(1, room_size[0] - 1, 1, room_size[1] - 1);
+        for (int i = 0; i < (room_size[0] - 2) * (room_size[1] - 2); i++) {
+            nr.next();
+            if (isCellEmpty(nr.getX(), nr.getY())) {
+                toReturn.add(getCell(nr.getX(), nr.getY()));
+                if (toReturn.size >= n) return toReturn;
+            }
+        }
+        return toReturn;
+    }
+/*
+    public Array<AreaCell> findEmptyCellsDir(DIR dir, int n) {
+        final int MAX_SEARCH = 200;
+        int init_x;
+        int init_y;
+        int adder_x = 0;
+        int adder_y = 0;
+        switch (dir) {
+            case DL:
+                init_x = map.map_size[0] / 2 - 2;
+                init_y = map.map_size[1] - 2;
+                adder_x = 1;
+                break;
+            case DR:
+                init_x = map.map_size[0] - 2;
+                init_y = map.map_size[1] / 2 - 2;
+                adder_y = 1;
+                break;
+            case UR:
+                init_x = map.map_size[0] / 2 - 2;
+                init_y = 1;
+                adder_x = 1;
+                break;
+            case UL:
+                init_x = 1;
+                init_y = map.map_size[1] / 2 - 2;
+                ;
+                adder_y = 1;
+                break;
+            default:
+                init_x = map.map_size[0] / 2;
+                init_y = map.map_size[1] - 3;
+                adder_x = 1;
+                dir = DIR.DL;
+                break;
+        }
+        Array<AreaCell> toReturn = new Array<AreaCell>(n);
+        if (isCellEmpty(init_x, init_y)) {
+            toReturn.add(getCell(init_x, init_y));
+            if (toReturn.size >= n) return toReturn;
+        }
+        for (int i = 0; i < MAX_SEARCH; i++) {
+            int x = init_x + adder_x;
+            int y = init_y + adder_y;
+            if (isCellEmpty(init_x, init_y)) {
+                toReturn.add(getCell(init_x, init_y));
+            }
+            adder_x*=-1;
+            adder_y*=-1;
+
+        }
+
+    }
+
+  */
+
+
+
+    public AreaCell findEmptyCell() {
+        // try to set center
+        int xx = map.getCenterXX();
+        int yy = map.getCenterYY();
+        if (isCellEmpty(xx, yy)) {
+            return getCell(xx, yy);
+        } else { // try to set near center
+            for (int dxx = -1; dxx < 2; dxx++) {
+                for (int dyy = -1; dyy < 2; dyy++) {
+                    if (isCellEmpty(xx + dxx, yy + dyy)) {
+                        return getCell(xx + dxx, yy + dyy);
                     }
                 }
             }
         }
+        //Try to set from 1,1
+        for (xx = 1; xx < map.map_size[0] - 1; xx++) {
+            for (yy = 1; yy < map.map_size[1] - 1; yy++) {
+                if (isCellEmpty(xx, yy)) {
+                    return getCell(xx, yy);
+                }
+            }
+        }
+        return null;
+    }
 
-
+    public boolean setObj(ObjActor to_set) {
+        if (to_set != null) {
+            AreaCell cell = findEmptyCellsFromCenter(1).get(0);
+            if (cell != null) {
+                setObj(cell, to_set);
+                return true;
+            }
+        }
         return false;
     }
 
@@ -501,25 +609,26 @@ public class RoomGroup extends Group implements Constants {
         sort.sort(this.getChildren(), comp);
     }
 
-    public class AComparator implements Comparator<Actor> {
-        public int compare(Actor arg0, Actor arg1) {
-            if ((((BasicActor) arg0).getFrontBack()) < (((BasicActor) arg1).getFrontBack())) {
+public class AComparator implements Comparator<Actor> {
+    public int compare(Actor arg0, Actor arg1) {
+        if ((((BasicActor) arg0).getFrontBack()) < (((BasicActor) arg1).getFrontBack())) {
+            return -1;
+        } else if ((((BasicActor) arg0).getFrontBack()) > (((BasicActor) arg1).getFrontBack())) {
+            return 1;
+        } else if ((arg0).getY() > (arg1).getY()) {
+            return -1;
+        } else if ((arg0).getY() == (arg1).getY()) {
+            if (((BasicActor) arg0).getZ() < ((BasicActor) arg1).getZ()) {
                 return -1;
-            } else if ((((BasicActor) arg0).getFrontBack()) > (((BasicActor) arg1).getFrontBack())) {
-                return 1;
-            } else if ((arg0).getY() > (arg1).getY()) {
-                return -1;
-            } else if ((arg0).getY() == (arg1).getY()) {
-                if (((BasicActor) arg0).getZ() < ((BasicActor) arg1).getZ()) {
-                    return -1;
-                } else {
-                    return 0;
-                }
             } else {
-                return 1;
+                return 0;
             }
+        } else {
+            return 1;
         }
     }
+
+}
 
     public boolean isVisited() {
         return visited;

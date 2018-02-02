@@ -24,7 +24,7 @@ public class GoldActor extends DeviceActor {
         super(room);
         sprites = Assets.non_obj_sprites_map.get("gold");
         this.amount=amount;
-        curr_dir = 0;
+        curr_dir = DIR.DL;
         setX(cell.getX());
         setY(cell.getY());
         setZ(0);
@@ -49,7 +49,7 @@ public class GoldActor extends DeviceActor {
         batch.setColor(1f, 1f, 1f, 0.6f);
         batch.draw(shadow, getX() - 16, getY() - 8);
         batch.setColor(1f, 1f, 1f, 1f);
-        ((NonObjSprites) sprites).drawAnimationMiddleRotation(batch, elapsed_time, 0, DL, getX(), getY() + getZ(), getRotation(), 1f, 1f);
+        ((NonObjSprites) sprites).drawAnimationMiddleRotation(batch, elapsed_time, 0, DIR.DL, getX(), getY() + getZ(), getRotation(), 1f, 1f);
 
     }
 

@@ -34,7 +34,8 @@ public class DungeonMakingScreen extends BasicScreen {
         position_y = Gdx.graphics.getHeight() * .5f;
         //anim = ((ObjSprites)Assets.obj_sprites_map.get("spider")).animation[0][0][0];
         TextureAtlas atlas = new TextureAtlas("dungeon_loading.atlas");
-        anim = new Animation(1 / 4f, atlas.findRegion("dl0000"), atlas.findRegion("dl0001"), atlas.findRegion("dl0002"), atlas.findRegion("dl0003"));
+        anim = new Animation(1 / 8f, atlas.findRegion("dl0000"), atlas.findRegion("dl0001"), atlas.findRegion("dl0002"), atlas.findRegion("dl0003"));
+        anim.setPlayMode(Animation.PlayMode.LOOP);
         tempThread.start();
 
     }

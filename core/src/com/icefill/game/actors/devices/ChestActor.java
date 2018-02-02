@@ -15,7 +15,7 @@ public class ChestActor extends DeviceActor{
 	public ChestActor(EquipActor equip,AreaCell cell,RoomGroup room) {
 		super(room);
 			passable=false;
-			curr_dir=0;
+			curr_dir=DIR.DL;
 			this.equip=equip;
 			setX(cell.getX());
 			setY(cell.getY());
@@ -34,7 +34,7 @@ public class ChestActor extends DeviceActor{
 	}
 	public void draw(Batch batch, float delta) {
 		super.draw(batch,delta);
-		((NonObjSprites)sprites).drawAnimation(batch, delta, 0, 0, getX(), getY()+getZ());
+		((NonObjSprites)sprites).drawAnimation(batch, delta, 0, DIR.DL, getX(), getY()+getZ());
 	}
 	public void activateDevice(DungeonGroup dungeon,AreaCell cell) {
 		cell.is_blocked=false;

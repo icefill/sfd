@@ -19,23 +19,23 @@ public class SetDirectionAction extends ActionActor {
 	SetDirectionButton dr;
 	SetDirectionButton ur;
 	SetDirectionButton ul;
-	int direction_to_change;
+	DIR direction_to_change;
 	public SetDirectionAction(){
 		action_name="SetDirection";
 		short_name="SetDir";
-		direction_to_change=-1;
+		direction_to_change=DIR.AB;
 		type=1;
 		ap=1;
 		icon_texture = new TextureRegion(Assets.getAsset("sprite/icon.atlas", TextureAtlas.class).findRegion("move"));
-		dl = new SetDirectionButton(0,this);
-		dr = new SetDirectionButton(1,this);
-		ur = new SetDirectionButton(2,this);
-		ul = new SetDirectionButton(3,this);
+		dl = new SetDirectionButton(DIR.DL,this);
+		dr = new SetDirectionButton(DIR.DR,this);
+		ur = new SetDirectionButton(DIR.UR,this);
+		ul = new SetDirectionButton(DIR.UL,this);
 		
 		
 		
 	}
-	public void notifyDirection(int direction)
+	public void notifyDirection(DIR direction)
 	{
 		this.direction_to_change=direction;
 	}
@@ -72,10 +72,10 @@ public class SetDirectionAction extends ActionActor {
 		//begin = true;
 		}
 		else {
-			if (direction_to_change!=-1) {		    	
+			if (direction_to_change!=DIR.AB) {
 				room.getSelectedObj().setDirection(direction_to_change);
 				//begin=false;
-				direction_to_change=-1;
+				direction_to_change=DIR.AB;
 				dl.remove();
 				dr.remove();
 				ul.remove();
@@ -91,7 +91,7 @@ public class SetDirectionAction extends ActionActor {
 		float height;
 		float width;
 		final SetDirectionAction action;
-		public SetDirectionButton(int direction,SetDirectionAction action)
+		public SetDirectionButton(DIR direction,SetDirectionAction action)
 		{
 			//this.setDebug(true);
 			sprites= Assets.non_obj_sprites_map.get("exit_marker");

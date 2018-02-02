@@ -47,7 +47,7 @@ public class CursorActor extends BasicActor
   public void draw(Batch batch, float delta) {
     super.draw(batch, delta);
     
-    ((NonObjSprites)this.sprites).drawAnimation(batch, delta, 0, 0, getX(), getY() + getZ());
+    ((NonObjSprites)this.sprites).drawAnimation(batch, delta, 0, DIR.DL, getX(), getY() + getZ());
   }
 
   public boolean isMapPositionChanged() {

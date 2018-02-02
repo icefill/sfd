@@ -22,44 +22,44 @@ import com.icefill.game.screens.BasicScreen;
 import java.util.ArrayList;
 
 public class DungeonGroup extends Group  implements Constants {
-  // number of rooms 
+  // number of rooms
   public int dungeon_size[];
-  
+
   public ItemPool item_pool;
-  
+
   public ItemPool equip_pool;
   public ItemPool scroll_pool;
-  
+
   //public MonsterPool monster_pool;
   public MonsterPool recruit_pool;
-  
+
   int clicked_xx;
   int clicked_yy;
-  
+
   int selected_xx;
   int selected_yy;
-  
+
   int boss_room[][];
-  
-  
+
+
   AreaCell selected_cell;
-  
-  //When move room position, 
-  int from_dir=0;
-  int to_dir=0;
-  
+
+  //When move room position,
+  DIR from_dir=DIR.DL;
+  DIR to_dir=DIR.DL;
+
   // for cancel
   boolean cancel_flag=false;
   boolean enable_click=true;
-  
+
   CursorActor cursor;
-   
+
   //Music
   //Music music_wib;
   //Music music_anod;
   //Music music_battle;
   //UI
-  
+
 
   // To Save ////////////////////////////////////////////////
 
@@ -73,11 +73,11 @@ public class DungeonGroup extends Group  implements Constants {
   public int room_xxx=-1;
   public int room_yyy=-1;
   public int room_zzz=-1;
-  
+
   public AreaComputer area_computer;
-  
+
   GFSM fsm;
-  
+
   public MapActor current_map;
   private RoomGroup current_room;
   public RoomGroup rooms[][][];
@@ -94,7 +94,7 @@ public class DungeonGroup extends Group  implements Constants {
 	  this.screen=gameScreen;
 	  initialize(dungeon_factory);
   }
-  
+
   private void initialize(DungeonSeed dungeon_seed)
   {
 	  area_computer= new AreaComputer();
@@ -112,29 +112,29 @@ public class DungeonGroup extends Group  implements Constants {
 	this.boss_room=dungeon_seed.boss_room;
 	this.final_room=dungeon_seed.final_room;
 	this.initial_room=dungeon_seed.initial_room;
-	
+
     this.fsm = new GFSM(this);
     Global.gfs=fsm;
     Global.dungeon=this;
 
     this.cursor = new CursorActor();
-    
-  
+
+
     //Initialize team lists
   team_lists= new Team[2];
   team_lists[0]= new Team(dungeon_seed.char_name_list,true);
   Global.setPlayerTeam(team_lists[0]);
- 
+
     this.dungeon_size=dungeon_seed.dungeon_size;
     rooms= new RoomGroup[dungeon_size[0]][dungeon_size[1]][dungeon_size[2]];
-    
+
     this.item_pool=dungeon_seed.item_pool;
     this.equip_pool=dungeon_seed.equip_pool;
     this.scroll_pool=dungeon_seed.scroll_pool;
     this.recruit_pool=dungeon_seed.recruit_pool;
-    
+
     // shrine initialize
-    
+
     for (int z=0;z<dungeon_size[2];z++) {
  	   for (int y=0;y<dungeon_size[1];y++) {
     		for (int x=0;x<dungeon_size[0];x++) {
@@ -142,19 +142,19 @@ public class DungeonGroup extends Group  implements Constants {
     		}
     	}
     }
-    
+
     for (int zzz=0;zzz<dungeon_size[2]-1;zzz++) {
     	rooms[final_room[zzz][0]][final_room[zzz][1]][zzz].map.makeVerticalDoor(final_room[zzz][0], final_room[zzz][1], zzz+1,rooms[final_room[zzz][0]][final_room[zzz][1]][zzz]);
     }
-    
+
     //Set BoosroomDoor
     for (int zzz=0;zzz<dungeon_size[2];zzz++)
     {
     	setBossRoomDoor(boss_room[zzz][0],boss_room[zzz][1],zzz);
     }
-    
+
     setRoom(dungeon_seed.initial_room[0][0],dungeon_seed.initial_room[0][1],0);
-    
+
     addListener(new InputListener() {
       public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
        return true;
@@ -164,7 +164,7 @@ public class DungeonGroup extends Group  implements Constants {
     		  int pointer, int button) {
     	  	if (!isDragged()) {
     		   setMousePosition(x,y);
-    		   
+
     		   DungeonGroup.this.clicked_xx = DungeonGroup.this.current_map.screenTomapCoordX(x, y);
     	       DungeonGroup.this.clicked_yy = DungeonGroup.this.current_map.screenTomapCoordY(x, y);
     	       DungeonGroup.this.cursor.doSelectAction();
@@ -174,11 +174,11 @@ public class DungeonGroup extends Group  implements Constants {
       public boolean mouseMoved(InputEvent event, float x, float y) {
     	  setMousePosition(x,y);
         	return true;
-    	    
+
       }
       public boolean scrolled(InputEvent event, float x, float y, int amount)
       {
-    	if (amount>0)  
+    	if (amount>0)
     	  DungeonGroup.this.zoom(0.01F);
     	else
     		DungeonGroup.this.zoom(-0.01F);
@@ -186,13 +186,13 @@ public class DungeonGroup extends Group  implements Constants {
       }
 
     });
-    
+
     //addListener(new MyGestureDetector());
-    
+
     Global.getHUD().addMap(new MinimapActor(this));
-    
-    //this.addActor(battle_win_window); 
-	
+
+    //this.addActor(battle_win_window);
+
   }
 
   public ObjActor getAttacker() {
@@ -210,12 +210,12 @@ public class DungeonGroup extends Group  implements Constants {
   public void removeRoom() {
 	  if (this.cursor != null)
 		  this.cursor.remove();
-	  
+
 	  if (this.current_map !=null)
 		  this.current_map.remove();
-	  
+
 	  if (this.getCurrentRoom() != null) {
-		  getCurrentRoom().removeRoom();  
+		  getCurrentRoom().removeRoom();
 	  }
   }
   public void setRoom(int xxx,int yyy) {
@@ -227,26 +227,26 @@ public class DungeonGroup extends Group  implements Constants {
 	  removeRoom();
 	  // decide from door
 	  if (room_xxx==-1) //initial
-		  {from_dir=4;to_dir=5;}
-	  else if (x-room_xxx>0) {from_dir=UL;to_dir=DR;}
-	  else if (x-room_xxx<0) {from_dir=DR;to_dir=UL;}
-	  else if (y-room_yyy>0) {from_dir=UR;to_dir=DL;}
-	  else {from_dir=DL;to_dir=UR;}
-	  
+		  {from_dir=DIR.AB;to_dir=DIR.BL;}
+	  else if (x-room_xxx>0) {from_dir=DIR.UL;to_dir=DIR.DR;}
+	  else if (x-room_xxx<0) {from_dir=DIR.DR;to_dir=DIR.UL;}
+	  else if (y-room_yyy>0) {from_dir=DIR.UR;to_dir=DIR.DL;}
+	  else {from_dir=DIR.DL;to_dir=DIR.UR;}
+
 	  room_xxx=x;
 	  room_yyy=y;
 	  room_zzz=z;
-	  
-	  //Add map and room	  
+
+	  //Add map and room
 	  this.addActor(rooms[x][y][z].getMap());
 	  this.addActor(rooms[x][y][z]);
 	  this.current_map=rooms[x][y][z].getMap();
-	  
+
 	  this.setCurrentRoom(rooms[x][y][z]);
 	  getCurrentRoom().addActor(cursor);
 	  this.getCurrentRoom().setVisited();
 	  team_lists[1]=getCurrentRoom().getEnemyList();
-	  
+
 	  getCurrentRoom().setRoom(team_lists[0],from_dir,to_dir);
 	  cursor.setMapPosition(0, 0);
 	  cursor.moveTo(Global.getStage().getWidth()*.5f, Global.getStage().getHeight()*.5f);
@@ -262,20 +262,29 @@ public class DungeonGroup extends Group  implements Constants {
 		  for (int xx=0;xx<dungeon_size[0];xx++)
 		  {
 			  rooms[xx][yy][zz].visited=true;
-		  }  
+		  }
 	  }
   }
-  
+	public void revealNearRoom()
+	{
+		int xxx=this.getCurrentRoom().room_xx;
+		int yyy=this.getCurrentRoom().room_yy;
+		int zzz=this.getCurrentRoom().room_zz;
+		for (int dir=0;dir<4;dir++) {
+			RoomGroup room = getAdjacentRoom(xxx, yyy, zzz, DIR.toDIR(dir));
+			if (room!=null) room.visited=true;
+		}
+	}
   public void zoom(float amount)
   {
-    if ((0.5D < ((OrthographicCamera)this.screen.camera).zoom) && 
+    if ((0.5D < ((OrthographicCamera)this.screen.camera).zoom) &&
       (((OrthographicCamera)this.screen.camera).zoom < 1.5D))
     {
       ((OrthographicCamera)this.screen.camera).zoom += amount;
     }
   }
 
-  
+
   public void draw(Batch batch, float delta) { //this.elapsed_time += Gdx.graphics.getDeltaTime();
     super.draw(batch, delta);
   }
@@ -288,7 +297,7 @@ public class DungeonGroup extends Group  implements Constants {
 	  		 "xxx: "+room_xxx+"\nyyy: "+room_yyy+"\nzzz: "+room_zzz+"\n";
 	  return to_return;
   }
-  
+
   public void act(float delta)
   {
     super.act(delta);
@@ -301,10 +310,10 @@ public class DungeonGroup extends Group  implements Constants {
       {
 	  		//Global.showMessage("Please Wait until acting is over.",1);
       }
-    
+
   }
 
-  
+
   public void selectObj(ObjActor to_select) {
     if (getSelectedObj() == to_select) {
       return;
@@ -322,8 +331,8 @@ public class DungeonGroup extends Group  implements Constants {
     }
 
   }
-  
-  public void deSelectObj() { 
+
+  public void deSelectObj() {
 	  if (this.getSelectedObj() != null) {
 	  	getSelectedObj().getInventory().setVisible(false);
 	  	Global.getHUD().removeAbility(getSelectedObj());
@@ -335,7 +344,7 @@ public class DungeonGroup extends Group  implements Constants {
   }
 }
   public void setMousePosition(float x,float y) {
-	  cursor.setMapPosition(current_map.screenTomapCoordX(x,y), 
+	  cursor.setMapPosition(current_map.screenTomapCoordX(x,y),
     	      current_map.screenTomapCoordY(x, y));
 	    if (cursor.isMapPositionChanged()) {
 	    	  Global.getHUD().releaseObj();
@@ -357,8 +366,8 @@ public class DungeonGroup extends Group  implements Constants {
 		  }
 		  return true;
   }
-  
-  
+
+
   // team(team_number) is win -> return 1
   //                      lose -> reurn -1
   //                      else -> return 0
@@ -367,7 +376,7 @@ public class DungeonGroup extends Group  implements Constants {
 			  team_lists[0].getLeader().obj_state==PL_DEAD) {
 		  team_lists[0].eliminateTeam();
 		  return -1;}
-	  if (team_lists[1].getLeader() !=null && 
+	  if (team_lists[1].getLeader() !=null &&
 			  team_lists[1].getLeader().obj_state==PL_DEAD) {
 		  	team_lists[1].eliminateTeam();
 		  return 1;
@@ -376,31 +385,31 @@ public class DungeonGroup extends Group  implements Constants {
 	  else return 0;
   }
 
-  
+
   public boolean isTeamEnd(int team_number) {
 	  for (ObjActor temp_actor : team_lists[team_number]) {
           if (temp_actor.obj_state==PL_WAIT) {
             return false;
           }
         }
-      return true;  
+      return true;
   }
-  
+
   public boolean checkDungeonClear() {
-	  
+
 	  for (int xx=0;xx<dungeon_size[0];xx++){
 		  for (int yy=0;yy<dungeon_size[1];yy++){
 			  for (int zz=0;zz<dungeon_size[2];zz++){
 			  if (!rooms[xx][yy][zz].checkEnemyAnnihilated())
 				  return false;
 			  }
-		  }  
+		  }
 	  }
 	  return true;
   }
-  
-  
-	
+
+
+
 	public OrthographicCamera getCamera() {
 		return (OrthographicCamera)screen.camera;
 	}
@@ -414,7 +423,7 @@ public class DungeonGroup extends Group  implements Constants {
 			return true;
 		}
 		return false;
-			
+
 	}
 	public Team getTeam(int i) {
 		return team_lists[i];
@@ -446,7 +455,7 @@ public class DungeonGroup extends Group  implements Constants {
 			}
 		}
 		for (int i=0;i<4;i++) {
-			room=getAdjacentRoom(xxx,yyy,zzz,i);
+			room=getAdjacentRoom(xxx,yyy,zzz,DIR.toDIR(i));
 			if (room!=null)	{
 				int j= (i+2) %4;
 					if (room.map.getDoor(j)!=null)	{
@@ -455,7 +464,7 @@ public class DungeonGroup extends Group  implements Constants {
 			}
 		}
 	}
-	public RoomGroup getAdjacentRoom(int xxx,int yyy, int zzz,int dir) {
+	public RoomGroup getAdjacentRoom(int xxx,int yyy, int zzz,DIR dir) {
 		switch (dir) {
 		case DL:
 			yyy++;
@@ -477,8 +486,8 @@ public class DungeonGroup extends Group  implements Constants {
 		else
 			return null;
 	}
-	
-		
+
+
 		public void showTargetsAccuracyAndDamage(ActionContainer action) {
 		if (((AbilityActor)action.action).splash_type!=3)
 		for (AreaCell target_cell:area_computer.getTargetList()){
@@ -486,7 +495,7 @@ public class DungeonGroup extends Group  implements Constants {
 				if (target!= null) {
 					StatusTuple status_change=((AbilityActor)action.action).getFirstStatusTuple();
 					if (status_change!=null){
-						String frb_string=getSelectedObj().getFrontRearOrBackString(target);
+						String frb_string=getSelectedObj().getTargetFacing(target).toString();
 						int hit_rate=(int)((AbilityActor)action.action).calculateHitRate(status_change,action.level, getSelectedObj(), target);
 						int crit=(int)((AbilityActor)action.action).calculateCriticalRate(status_change,action.level, getSelectedObj(), target);
 						int min_damage=((AbilityActor)action.action).calculateMinDamage(status_change,action.level,Global.dungeon,getSelectedObj(),target);
@@ -519,7 +528,7 @@ public class DungeonGroup extends Group  implements Constants {
 
   public static class MonsterPool {
 	  ArrayList<MonsterPoolElt> monster_list_list;
-	  
+
 	  public MonsterPool() {
 		  monster_list_list= new ArrayList<MonsterPoolElt>();
 	  }
@@ -556,7 +565,7 @@ public class DungeonGroup extends Group  implements Constants {
   }
   public static class ItemPool {
 	  ArrayList<ItemPoolElt> item_list_list;
-	  
+
 	  public ItemPool() {
 		  item_list_list= new ArrayList<ItemPoolElt>();
 	  }

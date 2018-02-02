@@ -21,7 +21,7 @@ public class ObjSprites extends BasicSprites {
     boolean body_equippable;
     //Sound foot1= Assets.getAsset("sound/footstep.wav", Sound.class);
     boolean equippable;
-    int shield_dir = 0;
+    DIR shield_dir = DIR.DL;
     boolean sound_run;
     Texture shadow;
     public Animation[][][] animation;
@@ -106,76 +106,75 @@ public class ObjSprites extends BasicSprites {
 
     }
 
-    public void drawAnimation(Batch batch, float elapsed_time, int anim, int direction, float x, float y, float origin_x, float origin_y, float rotation, float scalex, float scaley, PersonalInventory inventory, Color color) {
+    public void drawAnimation(Batch batch, float elapsed_time, int anim, DIR direction, float x, float y, float origin_x, float origin_y, float rotation, float scalex, float scaley, PersonalInventory inventory, Color color) {
         if (!equippable) {
 
             if (anim != IDLE && anim != DEAD)
                 anim = IDLE;
             batch.setColor(color);
             if ((anim == DEAD || anim == RAISE) && animation[anim][0][0] != null)
-                batch.draw(animation[anim][direction][0].getKeyFrame(elapsed_time, false), x - anchor_x, y - anchor_y);
+                batch.draw(animation[anim][direction.v][0].getKeyFrame(elapsed_time, false), x - anchor_x, y - anchor_y);
             else {
-                batch.draw(animation[anim][direction][0].getKeyFrame(elapsed_time, true), x - anchor_x, y - anchor_y);
+                batch.draw(animation[anim][direction.v][0].getKeyFrame(elapsed_time, true), x - anchor_x, y - anchor_y);
             }
             batch.setColor(1f, 1f, 1f, 1f);
         } else if ((anim == DEAD || anim == RAISE) && animation[anim][0][0] != null) {
             //batch.setColor(color);
             //if (!body_equippable)
-            batch.draw(animation[anim][direction][0].getKeyFrame(elapsed_time, false), x - anchor_x, y - anchor_y);
+            batch.draw(animation[anim][direction.v][0].getKeyFrame(elapsed_time, false), x - anchor_x, y - anchor_y);
             //batch.setColor(color);
         } else if (body_equippable) {
-            int index = animation[anim][direction][HEAD].getKeyFrameIndex(elapsed_time);
+            int index = animation[anim][direction.v][HEAD].getKeyFrameIndex(elapsed_time);
             if (inventory.getEquip(2) != null && (inventory.getEquip(2).getType() != 6)) {
-                inventory.getEquip(2).setPosition(x + this.arm2_coord[anim][direction][index][0] - anchor_x, y + this.arm2_coord[anim][direction][index][1] - anchor_y);
+                inventory.getEquip(2).setPosition(x + this.arm2_coord[anim][direction.v][index][0] - anchor_x, y + this.arm2_coord[anim][direction.v][index][1] - anchor_y);
                 inventory.getEquip(2).drawRotatableAnimation(batch, elapsed_time, anim, direction);
             }
-            if ((anim == GUARD) && (inventory.getEquip(3) != null) && (direction == UL || direction == UR)) {
+            if ((anim == GUARD) && (inventory.getEquip(3) != null) && (direction == DIR.UL || direction == DIR.UR)) {
 
-                inventory.getEquip(3).setPosition(x + this.arm1_coord[anim][direction][index][0] - anchor_x, y + this.arm1_coord[anim][direction][index][1] - anchor_y);
+                inventory.getEquip(3).setPosition(x + this.arm1_coord[anim][direction.v][index][0] - anchor_x, y + this.arm1_coord[anim][direction.v][index][1] - anchor_y);
                 inventory.getEquip(3).drawAnimation(batch, elapsed_time, anim, direction);
             }
 
 
             batch.setColor(color);
-            batch.draw(animation[anim][direction][BODY].getKeyFrame(elapsed_time, true), x - anchor_x, y - anchor_y);
+            batch.draw(animation[anim][direction.v][BODY].getKeyFrame(elapsed_time, true), x - anchor_x, y - anchor_y);
             batch.setColor(1f, 1f, 1f, 1f);
 
             if (inventory.getEquip(1) != null) {
-                inventory.getEquip(1).setPosition(x + this.body_coord[anim][direction][index][0] - anchor_x, y + this.body_coord[anim][direction][index][1] - anchor_y);
+                inventory.getEquip(1).setPosition(x + this.body_coord[anim][direction.v][index][0] - anchor_x, y + this.body_coord[anim][direction.v][index][1] - anchor_y);
                 inventory.getEquip(1).drawAnimation(batch, elapsed_time, anim, direction);
 
             }
             batch.setColor(color);
-            batch.draw(animation[anim][direction][HEAD].getKeyFrame(elapsed_time, true), x - anchor_x, y - anchor_y);
+            batch.draw(animation[anim][direction.v][HEAD].getKeyFrame(elapsed_time, true), x - anchor_x, y - anchor_y);
             batch.setColor(1f, 1f, 1f, 1f);
             if (inventory.getEquip(0) != null) {
-                inventory.getEquip(0).setPosition(x + this.head_coord[anim][direction][index][0] - anchor_x, y + this.head_coord[anim][direction][index][1] - anchor_y);
+                inventory.getEquip(0).setPosition(x + this.head_coord[anim][direction.v][index][0] - anchor_x, y + this.head_coord[anim][direction.v][index][1] - anchor_y);
                 inventory.getEquip(0).drawAnimation(batch, elapsed_time, anim, direction);
 
             }
             if (anim == GUARD) {
-                if (inventory.getEquip(3) != null && (direction == DL || direction == DR)) {
-                    inventory.getEquip(3).setPosition(x + this.arm1_coord[anim][direction][index][0] - anchor_x, y + this.arm1_coord[anim][direction][index][1] - anchor_y);
+                if (inventory.getEquip(3) != null && (direction == DIR.DL || direction == DIR.DR)) {
+                    inventory.getEquip(3).setPosition(x + this.arm1_coord[anim][direction.v][index][0] - anchor_x, y + this.arm1_coord[anim][direction.v][index][1] - anchor_y);
                     inventory.getEquip(3).drawAnimation(batch, elapsed_time, anim, direction);
 
                 }
             } else {
                 if (inventory.getEquip(3) != null) {
                     if (inventory.getEquip(3).getType() == 3) {
-                        inventory.getEquip(3).setPosition(x + this.arm1_coord[anim][direction][index][0] - anchor_x, y + this.arm1_coord[anim][direction][index][1] - anchor_y);
+                        inventory.getEquip(3).setPosition(x + this.arm1_coord[anim][direction.v][index][0] - anchor_x, y + this.arm1_coord[anim][direction.v][index][1] - anchor_y);
                         switch (direction) {
-
                             case DL:
                             case UR:
-                                shield_dir = DR;
+                                shield_dir = DIR.DR;
                                 break;
                             default:
-                                shield_dir = DL;
+                                shield_dir = DIR.DL;
                                 break;
                         }
                         inventory.getEquip(3).drawAnimation(batch, elapsed_time, anim, shield_dir);
                     } else if (inventory.getEquip(3).getType() != 6) {
-                        inventory.getEquip(3).setPosition(x + this.arm1_coord[anim][direction][index][0] - anchor_x, y + this.arm1_coord[anim][direction][index][1] - anchor_y);
+                        inventory.getEquip(3).setPosition(x + this.arm1_coord[anim][direction.v][index][0] - anchor_x, y + this.arm1_coord[anim][direction.v][index][1] - anchor_y);
                         inventory.getEquip(3).drawRotatableAnimation(batch, elapsed_time, anim, direction);
                     }
 
@@ -184,50 +183,50 @@ public class ObjSprites extends BasicSprites {
 
         } else {
             int index;
-            index = animation[anim][direction][0].getKeyFrameIndex(elapsed_time);
+            index = animation[anim][direction.v][0].getKeyFrameIndex(elapsed_time);
 	         if (inventory.getEquip(2) != null && (inventory.getEquip(2).getType() != 6)) {
-                inventory.getEquip(2).setPosition(x + this.arm2_coord[anim][direction][index][0] - anchor_x, y + this.arm2_coord[anim][direction][index][1] - anchor_y);
+                inventory.getEquip(2).setPosition(x + this.arm2_coord[anim][direction.v][index][0] - anchor_x, y + this.arm2_coord[anim][direction.v][index][1] - anchor_y);
                 inventory.getEquip(2).drawRotatableAnimation(batch, elapsed_time, anim, direction);
             }
 
-            if ((anim == GUARD) && (inventory.getEquip(3) != null) && (direction == UL || direction == UR)) {
+            if ((anim == GUARD) && (inventory.getEquip(3) != null) && (direction == DIR.UL || direction == DIR.UR)) {
 
-                inventory.getEquip(3).setPosition(x + this.arm1_coord[anim][direction][index][0] - anchor_x, y + this.arm1_coord[anim][direction][index][1] - anchor_y);
+                inventory.getEquip(3).setPosition(x + this.arm1_coord[anim][direction.v][index][0] - anchor_x, y + this.arm1_coord[anim][direction.v][index][1] - anchor_y);
                 inventory.getEquip(3).drawAnimation(batch, elapsed_time, anim, direction);
             }
 
             batch.setColor(color);
-            batch.draw(animation[anim][direction][0].getKeyFrame(elapsed_time, true), x - anchor_x, y - anchor_y);
+            batch.draw(animation[anim][direction.v][0].getKeyFrame(elapsed_time, true), x - anchor_x, y - anchor_y);
             batch.setColor(1f, 1f, 1f, 1f);
             if (inventory.getEquip(0) != null) {
-                inventory.getEquip(0).setPosition(x + this.head_coord[anim][direction][index][0] - anchor_x, y + this.head_coord[anim][direction][index][1] - anchor_y);
+                inventory.getEquip(0).setPosition(x + this.head_coord[anim][direction.v][index][0] - anchor_x, y + this.head_coord[anim][direction.v][index][1] - anchor_y);
                 inventory.getEquip(0).drawAnimation(batch, elapsed_time, anim, direction);
 
             }
 
             if (anim == GUARD) {
-                if (inventory.getEquip(3) != null && (direction == DL || direction == DR)) {
-                    inventory.getEquip(3).setPosition(x + this.arm1_coord[anim][direction][index][0] - anchor_x, y + this.arm1_coord[anim][direction][index][1] - anchor_y);
+                if (inventory.getEquip(3) != null && (direction == DIR.DL || direction == DIR.DR)) {
+                    inventory.getEquip(3).setPosition(x + this.arm1_coord[anim][direction.v][index][0] - anchor_x, y + this.arm1_coord[anim][direction.v][index][1] - anchor_y);
                     inventory.getEquip(3).drawAnimation(batch, elapsed_time, anim, direction);
 
                 }
             } else {
                 if (inventory.getEquip(3) != null) {
                     if (inventory.getEquip(3).getType() == 3) {
-                        inventory.getEquip(3).setPosition(x + this.arm1_coord[anim][direction][index][0] - anchor_x, y + this.arm1_coord[anim][direction][index][1] - anchor_y);
+                        inventory.getEquip(3).setPosition(x + this.arm1_coord[anim][direction.v][index][0] - anchor_x, y + this.arm1_coord[anim][direction.v][index][1] - anchor_y);
                         switch (direction) {
 
                             case DL:
                             case UR:
-                                shield_dir = DR;
+                                shield_dir = DIR.DR;
                                 break;
                             default:
-                                shield_dir = DL;
+                                shield_dir = DIR.DL;
                                 break;
                         }
                         inventory.getEquip(3).drawAnimation(batch, elapsed_time, anim, shield_dir);
                     } else if ((inventory.getEquip(3).getType() != 6)) {
-                        inventory.getEquip(3).setPosition(x + this.arm1_coord[anim][direction][index][0] - anchor_x, y + this.arm1_coord[anim][direction][index][1] - anchor_y);
+                        inventory.getEquip(3).setPosition(x + this.arm1_coord[anim][direction.v][index][0] - anchor_x, y + this.arm1_coord[anim][direction.v][index][1] - anchor_y);
                         inventory.getEquip(3).drawRotatableAnimation(batch, elapsed_time, anim, direction);
                     }
 
@@ -251,28 +250,28 @@ public class ObjSprites extends BasicSprites {
         String region_name;
         if (body_equippable) {
             n_bodyparts = N_BODYPARTS;
-            animation = new Animation[N_ANIMATION][N_DIRECTION][N_BODYPARTS];
+            animation = new Animation[N_ANIMATION][4][N_BODYPARTS];
         } else {
             n_bodyparts = 1;
-            animation = new Animation[N_ANIMATION][N_DIRECTION][1];
+            animation = new Animation[N_ANIMATION][4][1];
         }
         has_animation = new boolean[N_ANIMATION];
         if (is_symmetric) direction_adder = 2;
         else direction_adder = 1;
         int index = 0;
         for (int ani = 0; ani < N_ANIMATION; ani++) {
-            for (int dir = 0; dir < N_DIRECTION; dir += direction_adder) {
+            for (int dir = 0; dir < 4; dir += direction_adder) {
                 for (int bodyparts = 0; bodyparts < n_bodyparts; bodyparts++) {
                     index = 0;
                     while (true) {
                         if (body_equippable)
                             region_name = animation_name[ani] + "_"
-                                    + direction_name[dir] + "_"
+                                    + DIR.toDIR(dir).toString() + "_"
                                     + bodyparts_name[bodyparts]
                                     + String.format("%04d", index);
                         else {
                             region_name = animation_name[ani] + "_"
-                                    + direction_name[dir]
+                                    + DIR.toDIR(dir).toString()
                                     + String.format("%04d", index);
                         }
                         temp_region = atlas.findRegion(region_name);

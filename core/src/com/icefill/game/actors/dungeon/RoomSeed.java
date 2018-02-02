@@ -7,10 +7,10 @@ import com.icefill.game.utils.NonRepeatRandomizer;
 
 import java.util.LinkedList;
 
-import static com.icefill.game.Constants.DL;
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 
-public class RoomSeed {
+
+
+public class RoomSeed implements Constants {
     int[] room_size;
     int xxx, yyy;
     OBJ[][] array;
@@ -163,25 +163,25 @@ public class RoomSeed {
 
     public void makeDoors() {
         if (array != null) {
-            if (has_door[Constants.DL]) {
-                door_position[Constants.DL][0] = room_size[0] / 2;
-                door_position[Constants.DL][1] = room_size[1] - 1;
-                array[door_position[DL][0]][door_position[DL][1]] = OBJ.DOOR;
+            if (has_door[DIR.DL.v]) {
+                door_position[DIR.DL.v][0] = room_size[0] / 2;
+                door_position[DIR.DL.v][1] = room_size[1] - 1;
+                array[door_position[DIR.DL.v][0]][door_position[DIR.DL.v][1]] = OBJ.DOOR;
             }
-            if (has_door[Constants.DR]) {
-                door_position[Constants.DR][0] = room_size[0] - 1;
-                door_position[Constants.DR][1] = room_size[1] / 2;
-                array[door_position[Constants.DR][0]][door_position[Constants.DR][1]] = OBJ.DOOR;
+            if (has_door[DIR.DR.v]) {
+                door_position[DIR.DR.v][0] = room_size[0] - 1;
+                door_position[DIR.DR.v][1] = room_size[1] / 2;
+                array[door_position[DIR.DR.v][0]][door_position[DIR.DR.v][1]] = OBJ.DOOR;
             }
-            if (has_door[Constants.UR]) {
-                door_position[Constants.UR][0] = room_size[0] / 2;
-                door_position[Constants.UR][1] = 0;
-                array[door_position[Constants.UR][0]][door_position[Constants.UR][1]] = OBJ.DOOR;
+            if (has_door[DIR.UR.v]) {
+                door_position[DIR.UR.v][0] = room_size[0] / 2;
+                door_position[DIR.UR.v][1] = 0;
+                array[door_position[DIR.UR.v][0]][door_position[DIR.UR.v][1]] = OBJ.DOOR;
             }
-            if (has_door[Constants.UL]) {
-                door_position[Constants.UL][0] = 0;
-                door_position[Constants.UL][1] = room_size[1] / 2;
-                array[door_position[Constants.UL][0]][door_position[Constants.UL][1]] = OBJ.DOOR;
+            if (has_door[DIR.UL.v]) {
+                door_position[DIR.UL.v][0] = 0;
+                door_position[DIR.UL.v][1] = room_size[1] / 2;
+                array[door_position[DIR.UL.v][0]][door_position[DIR.UL.v][1]] = OBJ.DOOR;
             }
         } else throw new RuntimeException("Roomseed Array not initialized");
     }
@@ -200,13 +200,13 @@ public class RoomSeed {
 
         int monster_x = -1;
         int monster_y = -1;
-        com.icefill.game.utils.NonRepeatRandomizer randomizer = new com.icefill.game.utils.NonRepeatRandomizer(x_min, x_max, y_min, y_max);
+        NonRepeatRandomizer randomizer = new NonRepeatRandomizer(x_min, x_max, y_min, y_max);
         for (int i = 0; i < monster_n; i++) {
-            int rn;// = randomizer.nextInt();
+            int rn;// = randomizer.next();
             for (int n = 0; n < 20; n++) {
-                rn = randomizer.nextInt();
-                monster_x = rn / 10;
-                monster_y = rn % 10;
+                randomizer.next();
+                monster_x=randomizer.getX();
+                monster_y=randomizer.getY();
                 if (!checkBlockedMonsterPosition(monster_x, monster_y)) {
                     array[monster_x][monster_y] = OBJ.MONSTER;
                     break;
@@ -314,35 +314,36 @@ public class RoomSeed {
         if (has_door[1]) x_max--;
         if (has_door[2]) y_min++;
         if (has_door[3]) x_min++;
-        com.icefill.game.utils.NonRepeatRandomizer randomizer = new NonRepeatRandomizer(x_min, x_max, y_min, y_max);
+        NonRepeatRandomizer randomizer = new NonRepeatRandomizer(x_min, x_max, y_min, y_max);
 
         for (int i = 0; i < n_in_room; i++) {
-            int rn = randomizer.nextInt();
-            int monster_x = rn / 10;
-            int monster_y = rn % 10;
+            randomizer.next();
+            int monster_x=randomizer.getX();
+            int monster_y=randomizer.getY();
+
             if (com.icefill.game.utils.Randomizer.hitInRatio(destructable_obs_ratio))
                 array[monster_x][monster_y] = OBJ.DEST_OBS;
             else
                 array[monster_x][monster_y] = OBJ.UNDEST_OBS;
         }
         for (int i = 0; i < trap_n; i++) {
-            int rn = randomizer.nextInt();
-            int trap_x = rn / 10;
-            int trap_y = rn % 10;
+            randomizer.next();
+            int trap_x=randomizer.getX();
+            int trap_y=randomizer.getY();
             array[trap_x][trap_y] = OBJ.TRAP;
         }
         int explosive_n = com.icefill.game.utils.Randomizer.nextInt(2);
         for (int i = 0; i < explosive_n; i++) {
-            int rn = randomizer.nextInt();
-            array[rn / 10][rn % 10] = OBJ.EXPLOSIVE;
+            randomizer.next();
+            array[randomizer.getX()][randomizer.getY()] = OBJ.EXPLOSIVE;
         }
         if (has_door[0] && has_door[2] && !has_door[1] && !has_door[3]) {
-            int xx = com.icefill.game.utils.Randomizer.nextInt(1, room_size[0] - 2);//rn.nextInt(room_size[0]-2)+1;
+            int xx = com.icefill.game.utils.Randomizer.nextInt(1, room_size[0] - 2);//rn.next(room_size[0]-2)+1;
             for (int yy = 0; yy < room_size[1]; yy++) {
                 array[xx][yy] = OBJ.NOTHING;
             }
         } else if (!has_door[0] && !has_door[2] && has_door[1] && has_door[3]) {
-            int yy = com.icefill.game.utils.Randomizer.nextInt(1, room_size[1] - 2);//rn.nextInt(room_size[1]-2)+1;
+            int yy = com.icefill.game.utils.Randomizer.nextInt(1, room_size[1] - 2);//rn.next(room_size[1]-2)+1;
             for (int xx = 0; xx < room_size[0]; xx++) {
                 array[xx][yy] = OBJ.NOTHING;
             }

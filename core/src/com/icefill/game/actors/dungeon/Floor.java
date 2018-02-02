@@ -66,7 +66,7 @@ public class Floor extends BasicActor
 			for (int dir=0;dir<4;dir++){
 				index=0;
 				while(true) {
-					String region_name=i+direction_name[dir]
+					String region_name=i+DIR.toDIR(dir).toString()
 							+String.format("%04d", index);
 					temp_region=atlas.findRegion(region_name);
 					if (temp_region == null)
@@ -80,12 +80,12 @@ public class Floor extends BasicActor
 					temp_animation[dir]=new Animation(0.07f,temp_frames.toArray(new TextureRegion[index]));
 				temp_frames.clear();
 			}
-			if (temp_animation[DR]==null)
-				temp_animation[DR]=temp_animation[DL];
-			if (temp_animation[UR]==null)
-				temp_animation[UR]=temp_animation[DL];
-			if (temp_animation[UL]==null)
-				temp_animation[UL]=temp_animation[UR];
+			if (temp_animation[DIR.DR.v]==null)
+				temp_animation[DIR.DR.v]=temp_animation[DIR.DL.v];
+			if (temp_animation[DIR.UR.v]==null)
+				temp_animation[DIR.UR.v]=temp_animation[DIR.DL.v];
+			if (temp_animation[DIR.UL.v]==null)
+				temp_animation[DIR.UL.v]=temp_animation[DIR.UR.v];
 			anim.add(temp_animation);
 		}
   }

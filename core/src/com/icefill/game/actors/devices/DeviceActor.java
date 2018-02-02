@@ -25,11 +25,10 @@ public class DeviceActor extends BasicActor{
 		elapsed_time=0;
 		this.remove();
 	}
-	public void setDirection(int dir)
+	public void setDirection(DIR dir)
 	{
-		if (0 <= dir && dir <= 3) {
-				if (curr_dir != dir) curr_dir = dir;
-			}
+		if (curr_dir != dir) curr_dir = dir;
+
 	}
 	public void drawDevice(Batch batch, float delta){
 		super.draw(batch, delta);

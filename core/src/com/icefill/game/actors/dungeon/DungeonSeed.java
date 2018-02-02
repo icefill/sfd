@@ -7,13 +7,14 @@ import com.badlogic.gdx.utils.OrderedMap;
 import com.icefill.game.Assets;
 import com.icefill.game.Constants;
 import com.icefill.game.RoomShapeType;
+import com.icefill.game.utils.NonRepeatRandomizer;
 import com.icefill.game.utils.Randomizer;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 
-public class DungeonSeed {
+public class DungeonSeed implements Constants {
     int[][] initial_room;
     int[] dungeon_size;
     int dungeon_area;
@@ -368,18 +369,16 @@ public class DungeonSeed {
         }
 
 
-        com.icefill.game.utils.NonRepeatRandomizer randomizer = new com.icefill.game.utils.NonRepeatRandomizer(dungeon_size[0], dungeon_size[1]);
-        int rn;
-
+        NonRepeatRandomizer randomizer = new NonRepeatRandomizer(dungeon_size[0], dungeon_size[1]);
         for (int i = 0; i < dungeon_size[2]; i++) {
             randomizer.reset();
             int p = 0;
             //Create Monsters
             for (int k = 0; k < dungeon_size[0] * dungeon_size[1] * monster_room_ratio; k++) {
                 for (int j = 0; j < 10; j++) {
-                    rn = randomizer.nextInt();
-                    int xx = rn / 10;
-                    int yy = rn % 10;
+                    randomizer.next();
+                    int xx = randomizer.getX();
+                    int yy = randomizer.getY();
                     if (
                             (xx != initial_room[i][0] || yy != initial_room[i][1]) &&
                                     (xx != final_room[i][0] || yy != final_room[i][1]) &&
@@ -396,9 +395,9 @@ public class DungeonSeed {
             int n_room = Randomizer.nextInt(healing_room_n_in_floor[0], healing_room_n_in_floor[1]);
             for (int k = 0; k < n_room; k++)
                 for (int j = 0; j < 10; j++) {
-                    rn = randomizer.nextInt();
-                    int xx = rn / 10;
-                    int yy = rn % 10;
+                    randomizer.next();
+                    int xx = randomizer.getX();
+                    int yy = randomizer.getY();
                     if (
                             (xx != initial_room[i][0] || yy != initial_room[i][1]) &&
                                     (xx != final_room[i][0] || yy != final_room[i][1]) &&
@@ -412,9 +411,9 @@ public class DungeonSeed {
             n_room = Randomizer.nextInt(shrine_in_floor[0], shrine_in_floor[1]);
             for (int k = 0; k < n_room; k++)
                 for (int j = 0; j < 10; j++) {
-                    rn = randomizer.nextInt();
-                    int xx = rn / 10;
-                    int yy = rn % 10;
+                    randomizer.next();
+                    int xx = randomizer.getX();
+                    int yy = randomizer.getY();
                     if (
                             (xx != initial_room[i][0] || yy != initial_room[i][1]) &&
                                     (xx != final_room[i][0] || yy != final_room[i][1]) &&
@@ -429,9 +428,9 @@ public class DungeonSeed {
             n_room= Randomizer.nextInt(treasure_room_in_floor[0], treasure_room_in_floor[1]);
             for (int k = 0; k < n_room; k++) {
                 for (int j = 0; j < 10; j++) {
-                    rn = randomizer.nextInt();
-                    int xx = rn / 10;
-                    int yy = rn % 10;
+                    randomizer.next();
+                    int xx = randomizer.getX();
+                    int yy = randomizer.getY();
                     if (
                             (xx != initial_room[i][0] || yy != initial_room[i][1]) &&
                                     (xx != final_room[i][0] || yy != final_room[i][1]) &&
@@ -446,9 +445,9 @@ public class DungeonSeed {
             n_room= Randomizer.nextInt(shop_n_in_floor[0], shop_n_in_floor[1]);
             for (int k = 0; k < n_room; k++) {
                 for (int j = 0; j < 10; j++) {
-                    rn = randomizer.nextInt();
-                    int xx = rn / 10;
-                    int yy = rn % 10;
+                    randomizer.next();
+                    int xx = randomizer.getX();
+                    int yy = randomizer.getY();
                     if (
                             (xx != initial_room[i][0] || yy != initial_room[i][1]) &&
                                     (xx != final_room[i][0] || yy != final_room[i][1]) &&
@@ -463,9 +462,9 @@ public class DungeonSeed {
             n_room= Randomizer.nextInt(scroll_room_in_floor[0], scroll_room_in_floor[1]);
             for (int k = 0; k < n_room; k++) {
                 for (int j = 0; j < 10; j++) {
-                    rn = randomizer.nextInt();
-                    int xx = rn / 10;
-                    int yy = rn % 10;
+                    randomizer.next();
+                    int xx = randomizer.getX();
+                    int yy = randomizer.getY();
                     if (
                             (xx != initial_room[i][0] || yy != initial_room[i][1]) &&
                                     (xx != final_room[i][0] || yy != final_room[i][1]) &&
@@ -480,9 +479,9 @@ public class DungeonSeed {
             n_room= Randomizer.nextInt(hire_room_n_in_floor[0], hire_room_n_in_floor[1]);
             for (int k = 0; k < n_room; k++) {
                 for (int j = 0; j < 10; j++) {
-                    rn = randomizer.nextInt();
-                    int xx = rn / 10;
-                    int yy = rn % 10;
+                    randomizer.next();
+                    int xx = randomizer.getX();
+                    int yy = randomizer.getY();
                     if (
                             (xx != initial_room[i][0] || yy != initial_room[i][1]) &&
                                     (xx != final_room[i][0] || yy != final_room[i][1]) &&
@@ -521,7 +520,7 @@ public class DungeonSeed {
                 int current_yyy = initial_room[zzz][1];
                 stack.add(room_array[current_xxx][current_yyy][zzz]);
                 stack.getLast().visited = true;
-                LinkedList<Integer> possible_door = new LinkedList<Integer>();
+                LinkedList<DIR> possible_door = new LinkedList<DIR>();
                 RoomSeed back_room = stack.getLast();
                 int iter = 0;
 
@@ -546,7 +545,7 @@ public class DungeonSeed {
                                 !(temp_room.visited)
                                         && !back_room.equals(temp_room)
                                 ) {
-                            possible_door.add(Constants.DL);
+                            possible_door.add(DIR.DL);
                         }
                     }
                     temp_xxx = current_xxx + 1;
@@ -560,7 +559,7 @@ public class DungeonSeed {
                                 !(temp_room.visited)
                                         && !back_room.equals(temp_room)
                                 ) {
-                            possible_door.add(Constants.DR);
+                            possible_door.add(DIR.DR);
                         }
                     }
                     temp_xxx = current_xxx;
@@ -574,7 +573,7 @@ public class DungeonSeed {
                                 !(temp_room.visited)
                                         && !back_room.equals(temp_room)
                                 ) {
-                            possible_door.add(Constants.UR);
+                            possible_door.add(DIR.UR);
                         }
                     }
                     temp_xxx = current_xxx - 1;
@@ -588,7 +587,7 @@ public class DungeonSeed {
                                 !(temp_room.visited)
                                         && !back_room.equals(temp_room)
                                 ) {
-                            possible_door.add(Constants.UL);
+                            possible_door.add(DIR.UL);
                         }
                     }
 
@@ -600,7 +599,7 @@ public class DungeonSeed {
                         current_yyy = stack.getLast().yyy;
                         back_room = temp;
                     } else {
-                        int next_direction = 0;
+                        DIR next_direction = DIR.DL;
                         // choose next direction
                         if (possible_door.size() == 1) {
                             next_direction = possible_door.getLast();
@@ -610,16 +609,16 @@ public class DungeonSeed {
                         }
 
                         switch (next_direction) {
-                            case Constants.DL:
+                            case DL:
                                 current_yyy = current_yyy + 1;
                                 break;
-                            case Constants.DR:
+                            case DR:
                                 current_xxx = current_xxx + 1;
                                 break;
-                            case Constants.UR:
+                            case UR:
                                 current_yyy = current_yyy - 1;
                                 break;
-                            case Constants.UL:
+                            case UL:
                                 current_xxx = current_xxx - 1;
                                 break;
                         }
@@ -641,17 +640,17 @@ public class DungeonSeed {
                 int dx = stack.get(i + 1).xxx - stack.get(i).xxx;
                 int dy = stack.get(i + 1).yyy - stack.get(i).yyy;
                 if (dx > 0) {
-                    stack.get(i + 1).has_door[Constants.UL] = true;
-                    stack.get(i).has_door[Constants.DR] = true;
+                    stack.get(i + 1).has_door[DIR.UL.v] = true;
+                    stack.get(i).has_door[DIR.DR.v] = true;
                 } else if (dx < 0) {
-                    stack.get(i + 1).has_door[Constants.DR] = true;
-                    stack.get(i).has_door[Constants.UL] = true;
+                    stack.get(i + 1).has_door[DIR.DR.v] = true;
+                    stack.get(i).has_door[DIR.UL.v] = true;
                 } else if (dy > 0) {
-                    stack.get(i + 1).has_door[Constants.UR] = true;
-                    stack.get(i).has_door[Constants.DL] = true;
+                    stack.get(i + 1).has_door[DIR.UR.v] = true;
+                    stack.get(i).has_door[DIR.DL.v] = true;
                 } else {
-                    stack.get(i + 1).has_door[Constants.DL] = true;
-                    stack.get(i).has_door[Constants.UR] = true;
+                    stack.get(i + 1).has_door[DIR.DL.v] = true;
+                    stack.get(i).has_door[DIR.UR.v] = true;
                 }
             }
 
@@ -670,29 +669,29 @@ public class DungeonSeed {
                     if (!(room_array[xx][yy][zzz].visited)) {
                         for (int i = 0; i < 4; i++) {
                             if (com.icefill.game.utils.Randomizer.hitInRatio(0.5f)) {
-                                switch (i) {
-                                    case Constants.DL:
+                                switch (DIR.toDIR(i)) {
+                                    case DL:
                                         if (yy + 1 < dungeon_size[1] && !isFinalRoom(xx, yy + 1, zzz)) {
                                             room_array[xx][yy][zzz].has_door[i] = true;
-                                            room_array[xx][yy + 1][zzz].has_door[Constants.UR] = true;
+                                            room_array[xx][yy + 1][zzz].has_door[DIR.UR.v] = true;
                                         }
                                         break;
-                                    case Constants.DR:
+                                    case DR:
                                         if (xx + 1 < dungeon_size[0] && !isFinalRoom(xx + 1, yy, zzz)) {
                                             room_array[xx][yy][zzz].has_door[i] = true;
-                                            room_array[xx + 1][yy][zzz].has_door[Constants.UL] = true;
+                                            room_array[xx + 1][yy][zzz].has_door[DIR.UL.v] = true;
                                         }
                                         break;
-                                    case Constants.UR:
+                                    case UR:
                                         if (0 <= yy - 1 && !isFinalRoom(xx, yy - 1, zzz)) {
                                             room_array[xx][yy][zzz].has_door[i] = true;
-                                            room_array[xx][yy - 1][zzz].has_door[Constants.DL] = true;
+                                            room_array[xx][yy - 1][zzz].has_door[DIR.DL.v] = true;
                                         }
                                         break;
-                                    case Constants.UL:
+                                    case UL:
                                         if (0 <= xx - 1 && !isFinalRoom(xx - 1, yy, zzz)) {
                                             room_array[xx][yy][zzz].has_door[i] = true;
-                                            room_array[xx - 1][yy][zzz].has_door[Constants.DR] = true;
+                                            room_array[xx - 1][yy][zzz].has_door[DIR.DR.v] = true;
                                         }
                                         break;
                                 }
